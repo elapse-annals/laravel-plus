@@ -12,9 +12,12 @@ class Framework extends Command
      *
      * @var string
      */
-    protected $signature = 'framework:create
+    protected $signature = 'framework:build
                             {framework_name : framework name}
-                            {--basis : only basis framework}';
+                            {--basis : only basis framework}
+                            {--delete : delete framework}
+                            {--D : delete framework}
+                            ';
 
     /**
      * The console command description.
@@ -43,6 +46,8 @@ class Framework extends Command
         //
         $framework_name = $this->argument('framework_name');
         $basis = $this->option('basis');
+        $is_delete = $this->option('delete');
+        $is_delete OR $is_delete = $this->option('D');
         $frameworks = [
             'Repository',
             'Service',
@@ -58,7 +63,7 @@ class Framework extends Command
         }
         $bar = $this->output->createProgressBar(count($frameworks));
         foreach ($frameworks as $framework) {
-            (new FrameworkController)->createFile($framework, $framework_name);
+            (new FrameworkController())->handle($framework, $framework_name, $is_delete);
             $bar->advance();
         }
         $bar->finish();
