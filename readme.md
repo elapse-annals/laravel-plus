@@ -9,7 +9,10 @@
 git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目，移动到对于自身项目中功能
 cp .env.example .env    // 复制配置
 php artisan key:generate    // 更新 key
-composer update   // 更新软件包 （默认已安装 composer ） 
+php artisan storage:link // 软连接映射
+composer update   // 更新软件包 （默认已安装 composer ）
+
+ php artisan framework:create test  // 创建分层项目 
 ```
 [composer 国内地址](https://www.phpcomposer.com/)
 
