@@ -12,7 +12,8 @@ php artisan key:generate    // 更新 key
 php artisan storage:link // 软连接映射
 composer update   // 更新软件包 （默认已安装 composer ）
 
- php artisan framework:create test  // 创建分层项目 
+ php artisan make:framework Test  // 创建分层架构
+ php artisan make:framework Test --D // 删除分层架构 
 ```
 [composer 国内地址](https://www.phpcomposer.com/)
 
