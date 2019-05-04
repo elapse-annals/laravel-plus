@@ -7,13 +7,14 @@
 
 ```php
 git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目，移动到对于自身项目中功能
-cp .env.example .env  // 复制配置
+cp .env.example .env    // 复制配置
 php artisan key:generate    // 更新 key
-composer update // 更新软件包 （默认以安装 [composer](https://www.phpcomposer.com/) ） 
+composer update   // 更新软件包 （默认已安装 composer ） 
 ```
+[composer](https://www.phpcomposer.com/)
 
 ### 改动内容
-- 设置日志打印默认按天执行
+- 设置日志打印默认按天执行（.env::LOG_CHANNEL）
 - 增加加载软件包
  
   - respect/validation
