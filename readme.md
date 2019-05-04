@@ -1,21 +1,15 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
 
-#### Version
-当前版本基于 5.8 改造
-
 #### About
 基于 Laravel 增加一部分软件包和进行实际业务使用功能调整
 
 ### 使用方式
-1.clone 项目
 
-2.复制配置
 ```php
- cp .env.example .env 
-```
-3.更新 key
-```php
-php artisan key:generate
+git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目，移动到对于自身项目中功能
+cp .env.example .env  // 复制配置
+php artisan key:generate    // 更新 key
+composer update // 更新软件包 （默认以安装 [composer](https://www.phpcomposer.com/) ） 
 ```
 
 ### 改动内容
@@ -44,4 +38,5 @@ php artisan key:generate
 
 
 
-
+#### Version
+当前版本基于 5.8 改造
