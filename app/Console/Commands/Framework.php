@@ -12,7 +12,7 @@ class Framework extends Command
      *
      * @var string
      */
-    protected $signature = 'framework:build
+    protected $signature = 'make:framework
                             {framework_name : framework name}
                             {--basis : only basis framework}
                             {--delete : delete framework}
