@@ -3,11 +3,9 @@
 
 namespace App\Transformers;
 
+use App\Transformers\Transformer;
 
-class Transformer
+class TestTransformer extends Transformer
 {
-    public function __construct()
-    {
 
-    }
 }

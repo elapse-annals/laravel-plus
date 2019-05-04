@@ -3,11 +3,9 @@
 
 namespace App\Formatters;
 
+use App\Formatters\Formatter;
 
-class Formatter
+class TestFormatter extends Formatter
 {
-    public function __construct()
-    {
 
-    }
 }

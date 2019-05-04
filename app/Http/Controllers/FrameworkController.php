@@ -7,8 +7,19 @@ use Illuminate\Http\Request;
 class FrameworkController extends Controller
 {
     //
-    public function createFile($framework)
+    public function createFile($framework, $framework_name)
     {
-        sleep(1);
+        switch ($framework) {
+            case 'Repository':
+                $file_name = 'Repositories';
+                break;
+            case 'Service':
+            case 'Presenter':
+            case 'Transformer':
+            case 'Formatter':
+                $file_name = $framework . 's';
+                break;
+        }
+        usleep(200000);
     }
 }

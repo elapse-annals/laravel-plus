@@ -3,11 +3,9 @@
 
 namespace App\Presenters;
 
+use App\Presenters\Repository;
 
-class Repository
+class TestRepository extends Repository
 {
-    public function __construct()
-    {
 
-    }
 }

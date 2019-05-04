@@ -3,11 +3,9 @@
 
 namespace App\Services;
 
+use App\Services\Service;
 
-class Service
+class TestService extends Service
 {
-    public function __construct()
-    {
 
-    }
 }

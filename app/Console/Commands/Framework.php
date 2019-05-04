@@ -44,15 +44,21 @@ class Framework extends Command
         $framework_name = $this->argument('framework_name');
         $basis = $this->option('basis');
         $frameworks = [
-            'Service',
             'Repository',
+            'Service',
             'Presenter',
             'Transformer',
             'Formatter',
         ];
+        if (true === $basis) {
+            $frameworks = [
+                'Repository',
+                'Service',
+            ];
+        }
         $bar = $this->output->createProgressBar(count($frameworks));
         foreach ($frameworks as $framework) {
-            (new FrameworkController)->createFile($framework);
+            (new FrameworkController)->createFile($framework, $framework_name);
             $bar->advance();
         }
         $bar->finish();

@@ -3,11 +3,9 @@
 
 namespace App\Presenters;
 
+use App\Presenters\Presenter;
 
-class Presenter
+class TestPresenter extends Presenter
 {
-    public function __construct()
-    {
 
-    }
 }
