@@ -43,9 +43,9 @@ composer update   // 更新软件包 （默认已安装 composer ）
         - Service 业务服务层
         - Repository 数据仓库层
     - 扩展分层
-        - Presenter 增加固定业务中控层
-        - Transformer 增加转化层/筛选层（筛选后在选择输出）
-        - Formatter 增加格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
+        - Presenter 固定业务中控层
+        - Transformer 转化层/筛选层（筛选后在选择输出）
+        - Formatter 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
           
      
    
