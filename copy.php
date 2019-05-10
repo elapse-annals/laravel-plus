@@ -22,7 +22,9 @@ if (is_dir('LaravelPlus/vendor')) {
     exec("rm -rf LaravelPlus/vendor/*");
 }
 exec("cp -r LaravelPlus/* {$product}");
-exec("rm {$product}/copy.php");
+if (is_file("{$product}/copy.php")) {
+    exec("rm {$product}/copy.php");
+}
 $hidden_files = [
     '.env.example',
     '.gitattributes',
