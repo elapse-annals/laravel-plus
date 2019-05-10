@@ -18,14 +18,18 @@ git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
 
 composer update   // 更新软件包 （默认已安装 composer ）
 php artisan key:generate    // 更新 key
-php artisan storage:link // 软连接映射
 
+php artisan storage:link // 软连接映射【非必须】
+```
+[composer 国内地址](https://www.phpcomposer.com/)
 
+创建分层脚本
+```
  php artisan make:framework Test  // 创建分层架构
  php artisan make:framework Test --basis  // 创建基础分层架构（Service, Repository）
  php artisan make:framework Test --D // 删除分层架构 
 ```
-[composer 国内地址](https://www.phpcomposer.com/)
+
 
 ### 改动内容
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
