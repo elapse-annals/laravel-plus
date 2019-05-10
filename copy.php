@@ -33,7 +33,6 @@ $hidden_files = [
 foreach ($hidden_files as $hidden_file) {
     exec("cp LaravelPlus/{$hidden_file} {$product}/{$hidden_file}");
 }
-
 exec("cp {$product}/.env.example {$product}/.env");
 exec("cd {$product}");
 echo 'success' . PHP_EOL;
