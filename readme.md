@@ -6,7 +6,9 @@
 ### 使用方式
 
 ```php
-git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目，移动到对于自身项目中功能
+git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
+cp -a LaravelPlus/ yourProduct/    // 复制项目至自身项目
+
 cp .env.example .env    // 复制配置
 php artisan key:generate    // 更新 key
 php artisan storage:link // 软连接映射
