@@ -7,13 +7,19 @@
 
 ```php
 git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
-cp -a LaravelPlus/ yourProduct/    // 复制项目至自身项目
-rm composer.lock .env
+复制项目方案：
+    1.或运行复制脚本(推荐)
+    php LaravelPlus/copy.php YourProject
+    
+    2.复制项目至自身项目
+        cd YourProject
+        rm composer.lock .env
+        cp .env.example .env    // 复制配置
 
-cp .env.example .env    // 复制配置
+composer update   // 更新软件包 （默认已安装 composer ）
 php artisan key:generate    // 更新 key
 php artisan storage:link // 软连接映射
-composer update   // 更新软件包 （默认已安装 composer ）
+
 
  php artisan make:framework Test  // 创建分层架构
  php artisan make:framework Test --basis  // 创建基础分层架构（Service, Repository）
