@@ -14,6 +14,11 @@ use App\Formatters\TestFormatter;
 class TestController extends Controller
 {
     /**
+     * @var TestService
+     */
+    protected $service;
+
+    /**
      * TestController constructor.
      */
     public function __construct()
@@ -25,7 +30,7 @@ class TestController extends Controller
     /**
      *
      */
-    public function handle()
+    public function handle(): void
     {
 
     }
