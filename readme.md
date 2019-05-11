@@ -25,9 +25,9 @@ php artisan storage:link // 软连接映射【非必须】
 
 创建分层脚本
 ```
- php artisan make:framework Test  // 创建分层架构
- php artisan make:framework Test --basis  // 创建基础分层架构（Service, Repository）
- php artisan make:framework Test --D // 删除分层架构 
+ php artisan make:framework Test  // 创建分层结构
+ php artisan make:framework Test --basis  // 创建系统分层和主要分层结构（Controller, Service, Repository）
+ php artisan make:framework Test --D // 删除分层结构 
 ```
 
 
@@ -50,9 +50,9 @@ php artisan storage:link // 软连接映射【非必须】
    
  - 增加默认图片存储目录（storage/app/public/images)
  - 扩展结构分层 [来源](https://learnku.com/articles/19452?order_by=created_at&)
-  
+    - 系统分层
+        - controller 控制器层
     - 主要分层
-    
         - Service 业务服务层
         - Repository 数据仓库层
     - 扩展分层
