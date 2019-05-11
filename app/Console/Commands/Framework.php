@@ -49,6 +49,7 @@ class Framework extends Command
         $is_delete = $this->option('delete');
         $is_delete OR $is_delete = $this->option('D');
         $frameworks = [
+            'Controller',
             'Repository',
             'Service',
             'Presenter',
@@ -67,6 +68,10 @@ class Framework extends Command
             $bar->advance();
         }
         $bar->finish();
-        $this->info(PHP_EOL . 'create framework success');
+        $msg = 'create ';
+        if ($is_delete) {
+            $msg = 'delete ';
+        }
+        $this->info(PHP_EOL . $msg . 'framework success');
     }
 }

@@ -4,9 +4,45 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Class FrameworkController
+ * @package App\Http\Controllers
+ */
 class FrameworkController extends Controller
 {
+    /**
+     * @param $framework
+     * @param $framework_name
+     *
+     * @return array
+     */
+    public function init($framework, $framework_name): array
+    {
+        $framework_name = ucfirst($framework_name);
+        switch ($framework) {
+            case 'Controller':
+                $file_path = 'Http/Controllers';
+                break;
+            case 'Repository':
+                $file_path = 'Repositories';
+                break;
+            case 'Service':
+            case 'Presenter':
+            case 'Transformer':
+            case 'Formatter':
+                $file_path = $framework . 's';
+                break;
+        }
+        return [$framework_name, $file_path];
+    }
+
     //
+
+    /**
+     * @param $framework
+     * @param $framework_name
+     * @param $is_delete
+     */
     public function handle($framework, $framework_name, $is_delete)
     {
         if ($is_delete) {
@@ -16,6 +52,10 @@ class FrameworkController extends Controller
         }
     }
 
+    /**
+     * @param $framework
+     * @param $framework_name
+     */
     public function delete($framework, $framework_name)
     {
         list($framework_name, $file_path) = $this->init($framework, $framework_name);
@@ -40,28 +80,5 @@ class FrameworkController extends Controller
         $body = str_replace('Test', $framework_name, $body);
         file_put_contents(__DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php", $body);
         usleep(300000);
-    }
-
-    /**
-     * @param $framework
-     * @param $framework_name
-     *
-     * @return array
-     */
-    public function init($framework, $framework_name): array
-    {
-        $framework_name = ucfirst($framework_name);
-        switch ($framework) {
-            case 'Repository':
-                $file_path = 'Repositories';
-                break;
-            case 'Service':
-            case 'Presenter':
-            case 'Transformer':
-            case 'Formatter':
-                $file_path = $framework . 's';
-                break;
-        }
-        return [$framework_name, $file_path];
     }
 }
