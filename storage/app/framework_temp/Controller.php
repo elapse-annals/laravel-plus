@@ -22,8 +22,6 @@ class TestController extends Controller
         $this->service = new TestService();
     }
 
-    //
-
     /**
      *
      */
