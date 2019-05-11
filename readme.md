@@ -33,13 +33,14 @@ php artisan storage:link // 软连接映射【非必须】
 
 ### 改动内容
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
-- 增加加载软件包
- 
-  - respect/validation
-  - barryvdh/laravel-debugbar
-  - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
-  - reliese/laravel
-  - overtrue/laravel-query-logger"
+- 增加默认加载软件包
+    - develop
+      - respect/validation
+      - barryvdh/laravel-debugbar
+      - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper) ide 帮助    
+      - overtrue/laravel-query-logger"
+     - production
+        - reliese/laravel
   
  - 增加热切换配置（config/dynamic）
  
