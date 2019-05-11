@@ -11,6 +11,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $service;
+
     public function __construct()
     {
         $app_env = env('APP_ENV');
