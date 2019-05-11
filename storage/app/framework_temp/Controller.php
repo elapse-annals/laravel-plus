@@ -7,7 +7,6 @@ use App\Presenters\TestPresenter;
 use App\Transformers\TestTransformer;
 use App\Formatters\TestFormatter;
 
-
 class TestController extends Controller
 {
     //
