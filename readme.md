@@ -37,7 +37,7 @@ php artisan storage:link // 软连接映射【非必须】
  
   - respect/validation
   - barryvdh/laravel-debugbar
-  - barryvdh/laravel-ide-helper
+  - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
   - reliese/laravel
   - overtrue/laravel-query-logger"
   
