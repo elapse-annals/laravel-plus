@@ -3,7 +3,7 @@
 
 namespace App\Services;
 
-use App\Services\Service;
+use App\Presenters\Repository\TestRepository;
 
 class TestService extends Service
 {
