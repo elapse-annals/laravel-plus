@@ -67,6 +67,6 @@ class Framework extends Command
             $bar->advance();
         }
         $bar->finish();
-        $this->info(PHP_EOL . 'success');
+        $this->info(PHP_EOL . 'create framework success');
     }
 }
