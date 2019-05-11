@@ -78,7 +78,10 @@ class FrameworkController extends Controller
         $Storage = Storage::disk('local');
         $body = $Storage->get("framework_temp/{$framework}.php");
         $body = str_replace('Test', $framework_name, $body);
-        file_put_contents(__DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php", $body);
+        $filename = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
+        if (!is_file($filename)) {
+            file_put_contents($filename, $body);
+        }
         usleep(300000);
     }
 }
