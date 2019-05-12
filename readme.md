@@ -8,14 +8,17 @@
 ```php
 git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
 复制项目方案：
-    1.或运行复制脚本(推荐)
+    1.当前目录运行复制脚本(推荐)
     php LaravelPlus/copy.php YourProject
     
     2.复制项目至自身项目
+        cd LaravelPlus & rm -rf .git
+        cp LaravelPlus/* YourProject 
         cd YourProject
         rm composer.lock .env
         cp .env.example .env    // 复制配置
 
+进入 YourProject 项目中
 composer update   // 更新软件包 （默认已安装 composer ）
 php artisan key:generate    // 更新 key
 
