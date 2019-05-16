@@ -53,7 +53,7 @@ php artisan storage:link // 软连接映射【非必须】
    -  production 生产
    
  - 增加默认图片存储目录（storage/app/public/images)
- - 扩展结构分层 [来源](https://learnku.com/articles/19452?order_by=created_at&)
+ - 扩展结构分层 [想法来源](https://learnku.com/articles/19452?order_by=created_at&)
     - 系统分层
         - controller 控制器层
     - 主要分层
