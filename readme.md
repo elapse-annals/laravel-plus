@@ -13,13 +13,13 @@ git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
     
     2.复制项目至自身项目
         cd LaravelPlus & rm -rf .git
-        cp LaravelPlus/* YourProject 
+        cp LaravelPlus YourProject 
         cd YourProject
         rm composer.lock .env
         cp .env.example .env    // 复制配置
 
-进入 YourProject 项目中
-composer update   // 更新软件包 （默认已安装 composer ）
+cd YourProject //  进入 YourProject 项目中
+composer update   // 更新软件包 （请先已安装 composer ）
 php artisan key:generate    // 更新 key
 
 php artisan storage:link // 软连接映射【非必须】
