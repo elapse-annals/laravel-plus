@@ -1,12 +1,12 @@
 <?php
 
-
 namespace App\Presenters;
 
 use App\Services\TypeService;
 
 /**
  * Class WhereRepository
+ *
  * @package App\Presenters
  */
 class WhereRepository extends Repository
