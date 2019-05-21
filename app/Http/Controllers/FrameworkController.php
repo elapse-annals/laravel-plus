@@ -14,7 +14,6 @@ class FrameworkController extends Controller
     /**
      * @param $framework
      * @param $framework_name
-     *
      * @return array
      */
     public function init($framework, $framework_name): array
@@ -43,7 +42,6 @@ class FrameworkController extends Controller
      * @param $framework
      * @param $framework_name
      * @param $is_delete
-     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle($framework, $framework_name, $is_delete)
