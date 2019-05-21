@@ -1,12 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "elapse-annals/laravel-plus",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The Laravel Plus Framework.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel-plus"
     ],
-    "license": "MIT",
+    "license": "Apache-2.0",
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",

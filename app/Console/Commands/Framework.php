@@ -5,6 +5,10 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\FrameworkController;
 
+/**
+ * Class Framework
+ * @package App\Console\Commands
+ */
 class Framework extends Command
 {
     /**
@@ -23,6 +27,25 @@ class Framework extends Command
     protected $description = 'Command description';
 
     /**
+     * @var array
+     */
+    private $frameworks = [
+        'Controller',
+        'Repository',
+        'Service',
+        'Presenter',
+        'Transformer',
+        'Formatter',
+    ];
+    /**
+     * @var array
+     */
+    private $base_frameworks = [
+        'Repository',
+        'Service',
+    ];
+
+    /**
      * Framework constructor.
      */
     public function __construct()
@@ -35,24 +58,13 @@ class Framework extends Command
      */
     public function handle()
     {
-        //
         $framework_name = $this->argument('framework_name');
         $basis = $this->option('basis');
         $is_delete = $this->option('delete');
         $is_delete or $is_delete = $this->option('D');
-        $frameworks = [
-            'Controller',
-            'Repository',
-            'Service',
-            'Presenter',
-            'Transformer',
-            'Formatter',
-        ];
-        if (null != $basis || false != $basis) {
-            $frameworks = [
-                'Repository',
-                'Service',
-            ];
+        $frameworks = $this->frameworks;
+        if (null !== $basis || false !== $basis) {
+            $frameworks = $this->base_frameworks;
         }
         $bar = $this->output->createProgressBar(count($frameworks));
         foreach ($frameworks as $framework) {
