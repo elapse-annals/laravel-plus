@@ -13,6 +13,7 @@ git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
     
     2.复制项目至自身项目
         cd LaravelPlus & rm -rf .git
+        rm composer.lock
         cp LaravelPlus YourProject 
         cd YourProject
         rm composer.lock .env
