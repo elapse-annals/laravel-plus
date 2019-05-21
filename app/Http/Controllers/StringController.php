@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 /**
  * Class StringController
+ *
  * @package App\Http\Controllers
  */
 class StringController extends Controller

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class FrameworkController
+ *
  * @package App\Http\Controllers
  */
 class FrameworkController extends Controller

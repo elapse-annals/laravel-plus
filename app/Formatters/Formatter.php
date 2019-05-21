@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Formatters;
 
 /**
  * Class Formatter
+ *
  * @package App\Formatters
  */
 class Formatter
