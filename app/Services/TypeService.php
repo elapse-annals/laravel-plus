@@ -16,6 +16,5 @@ class TypeService extends Service
 
             return 'string';
         }
-
     }
 }

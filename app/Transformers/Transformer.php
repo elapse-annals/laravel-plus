@@ -13,6 +13,5 @@ class Transformer
      */
     public function __construct()
     {
-
     }
 }
