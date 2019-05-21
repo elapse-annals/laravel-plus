@@ -7,6 +7,7 @@ use App\Http\Controllers\FrameworkController;
 
 /**
  * Class Framework
+ * 
  * @package App\Console\Commands
  */
 class Framework extends Command
