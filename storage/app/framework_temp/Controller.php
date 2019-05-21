@@ -32,6 +32,5 @@ class TestController extends Controller
      */
     public function handle(): void
     {
-
     }
 }

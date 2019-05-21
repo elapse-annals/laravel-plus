@@ -15,4 +15,4 @@ Route::get('/', static function () {
     return view('welcome');
 });
 
-Route::get('plural', 'StringController@plural');
+Route::get('plural/{singular}', 'StringController@plural');

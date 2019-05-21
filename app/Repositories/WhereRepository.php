@@ -15,7 +15,7 @@ class WhereRepository extends Repository
      * @param $data
      * @return array
      */
-    public function JsonToArr($data): array
+    public function jsonToArr($data): array
     {
         $where_arr = [];
         $TypeService = new TypeService();
