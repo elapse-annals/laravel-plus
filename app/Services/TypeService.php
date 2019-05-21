@@ -4,6 +4,7 @@ namespace App\Services;
 
 /**
  * Class TypeService
+ *
  * @package App\Services
  */
 class TypeService extends Service

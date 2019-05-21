@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Presenters;
 
 /**
  * Class Repository
+ *
  * @package App\Presenters
  */
 class Repository
