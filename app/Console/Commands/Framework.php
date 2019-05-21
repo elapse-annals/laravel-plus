@@ -8,8 +8,6 @@ use App\Http\Controllers\FrameworkController;
 class Framework extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'make:framework
@@ -20,16 +18,12 @@ class Framework extends Command
                             ';
 
     /**
-     * The console command description.
-     *
      * @var string
      */
     protected $description = 'Command description';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * Framework constructor.
      */
     public function __construct()
     {
@@ -37,9 +31,7 @@ class Framework extends Command
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle()
     {
@@ -47,7 +39,7 @@ class Framework extends Command
         $framework_name = $this->argument('framework_name');
         $basis = $this->option('basis');
         $is_delete = $this->option('delete');
-        $is_delete OR $is_delete = $this->option('D');
+        $is_delete or $is_delete = $this->option('D');
         $frameworks = [
             'Controller',
             'Repository',
@@ -56,7 +48,7 @@ class Framework extends Command
             'Transformer',
             'Formatter',
         ];
-        if (true === $basis) {
+        if (null != $basis || false != $basis) {
             $frameworks = [
                 'Repository',
                 'Service',

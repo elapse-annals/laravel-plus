@@ -5,7 +5,6 @@ namespace App\Presenters;
 
 use App\Services\TypeService;
 
-
 /**
  * Class WhereRepository
  * @package App\Presenters
@@ -14,7 +13,6 @@ class WhereRepository extends Repository
 {
     /**
      * @param $data
-     *
      * @return array
      */
     public function JsonToArr($data): array
@@ -23,9 +21,9 @@ class WhereRepository extends Repository
         $TypeService = new TypeService();
         foreach ($data as $datum) {
             switch ($TypeService->check($datum)) {
-                case   'string':
+                case 'string':
                     break;
-                case   'array':
+                case 'array':
                     break;
             }
         }

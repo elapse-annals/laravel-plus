@@ -16,6 +16,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $app_env = env('APP_ENV');
+        $config_arr = [];
         switch ($app_env) {
             case 'develop':
             case 'local':

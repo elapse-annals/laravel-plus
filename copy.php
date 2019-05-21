@@ -6,14 +6,14 @@ exec("cd LaravelPlus");
 $basename = basename(__DIR__);
 if ('LaravelPlus' !== $basename) {
     echo 'error: 错误原始项目路径' . $basename . PHP_EOL;
-    die();
+    die;
 }
 if ($argv && isset($argv[1])) {
     $product = $argv[1];
 } else {
     echo 'error: 未设置项目名' . PHP_EOL;
     echo 'eg): php LaravelPlus/copy.php YourProject' . PHP_EOL;
-    die();
+    die;
 }
 if (is_file('LaravelPlus/composer.lock')) {
     exec("rm LaravelPlus/composer.lock");

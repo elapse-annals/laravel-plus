@@ -60,7 +60,7 @@ class FrameworkController extends Controller
      */
     public function delete($framework, $framework_name)
     {
-        list($framework_name, $file_path) = $this->init($framework, $framework_name);
+        [$framework_name, $file_path] = $this->init($framework, $framework_name);
         $file = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
         if (file_exists($file)) {
             unlink($file);
@@ -71,17 +71,16 @@ class FrameworkController extends Controller
     /**
      * @param $framework
      * @param $framework_name
-     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function create($framework, $framework_name): void
     {
-        list($framework_name, $file_path) = $this->init($framework, $framework_name);
+        [$framework_name, $file_path] = $this->init($framework, $framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("framework_temp/{$framework}.php");
         $body = str_replace('Test', $framework_name, $body);
         $filename = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
-        if (!is_file($filename)) {
+        if (! is_file($filename)) {
             file_put_contents($filename, $body);
         }
         usleep(300000);
