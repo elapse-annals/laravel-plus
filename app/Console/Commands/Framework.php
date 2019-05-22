@@ -63,7 +63,7 @@ class Framework extends Command
         $is_delete = $this->option('delete');
         $is_delete or $is_delete = $this->option('D');
         $frameworks = $this->frameworks;
-        if (null !== $basis || false !== $basis) {
+        if (true === $basis) {
             $frameworks = $this->base_frameworks;
         }
         $bar = $this->output->createProgressBar(count($frameworks));
