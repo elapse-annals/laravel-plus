@@ -9,6 +9,7 @@ use App\Formatters\TestFormatter;
 
 /**
  * Class TestController
+ *
  * @package App\Http\Controllers
  */
 class TestController extends Controller
