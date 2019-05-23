@@ -24,7 +24,7 @@ storage/*.key
 Homestead.yaml
 Homestead.json
 Envoy.blade.php
-tests/
+
 
 # Rocketeer PHP task runner and deployment package。
 .rocketeer/
