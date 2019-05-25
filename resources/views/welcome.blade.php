@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <style>
             html, body {
                 background-color: #fff;
@@ -93,7 +94,11 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <div>
+                    <example-component>1</example-component>
+                </div>
             </div>
         </div>
+    <script type="javascript" src="{{asset('js/app.js')}}"></script>
     </body>
 </html>

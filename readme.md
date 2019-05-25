@@ -52,6 +52,11 @@ npm run dev
 npm run prod
 ```
 
+本地服务开启
+```php
+php artisan serve
+```
+
 <hr />
 
 ### 改动内容
