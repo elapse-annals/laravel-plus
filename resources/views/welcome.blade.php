@@ -85,38 +85,40 @@
     <br/>
     <div class="content">
         <div class="title m-b-md">
-            Laravel
+            Laravel Plus
         </div>
 
         <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
+            <a href="https://laravel.com/docs">Laravel Docs</a>
             <a href="https://laracasts.com">Laracasts</a>
             <a href="https://laravel-news.com">News</a>
             <a href="https://blog.laravel.com">Blog</a>
             <a href="https://nova.laravel.com">Nova</a>
             <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
+            <a href="https://github.com/laravel/laravel">Laravel GitHub</a>
+            <a href="https://github.com/ElapseAnnals/LaravelPlus">Laravel Plus GitHub</a>
         </div>
-        <div>
-            <example-component></example-component>
-
-            <el-button :plain="true" @click="open">打开消息提示</el-button>
-            <el-switch
-                    v-model="value2"
-                    active-color="#13ce66"
-                    inactive-color="#ff4949">
+        <br>
+        <div v-cloak>
+            <label for="show_components">Vue 组件展示：</label>
+            <el-switch id="show_components"
+                       v-model="show_components"
+                       active-color="#13ce66"
+                       inactive-color="#ff4949">
             </el-switch>
+            <div v-show="show_components">
+                <example-component></example-component>
+                <el-button :plain="true" @click="open">@{{ alert_msg }}</el-button>
+            </div>
         </div>
-
-
     </div>
 </div>
 <script>
     var mixin = {
         data: function () {
             return {
-                value1: true,
-                value2: true
+                show_components: false,
+                alert_msg: '打开消息提示'
             }
         },
         methods: {
