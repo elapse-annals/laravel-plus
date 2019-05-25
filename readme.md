@@ -53,7 +53,8 @@ php artisan storage:link // 软连接映射【非必须】
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 帮助包    
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志包
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
-     
+      
+      - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具 
   
  - 增加热切换配置（config/dynamic）
  
