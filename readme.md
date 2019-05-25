@@ -73,20 +73,9 @@ php artisan storage:link // 软连接映射【非必须】
         - Presenter 固定业务中控层
         - Transformer 转化层/筛选层（筛选后在选择输出）
         - Formatter 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
-          
-     
-   
-  
-
-
-
-
-
-
 
 
 #### Todo
-
-   
+ 增加根据自动生成模型生成代码助手（    reliese/laravel => infyomlabs/laravel-generator）
         
         
