@@ -87,7 +87,6 @@
         <div class="title m-b-md">
             Laravel Plus
         </div>
-
         <div class="links">
             <a href="https://laravel.com/docs">Laravel Docs</a>
             <a href="https://laracasts.com">Laracasts</a>

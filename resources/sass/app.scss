@@ -4,10 +4,10 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
 // Vue
+@import 'vue';
+
+// Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
