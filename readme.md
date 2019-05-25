@@ -41,6 +41,18 @@ php artisan storage:link // 软连接映射【非必须】
  php artisan make:framework Test --D // 删除分层结构 
 ```
 
+前端样式构建
+
+ - 本地开发
+ ```php
+npm run dev
+```
+ - 线上部署
+ ```php
+npm run prod
+```
+
+<hr />
 
 ### 改动内容
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
@@ -55,6 +67,10 @@ php artisan storage:link // 软连接映射【非必须】
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
       
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具 
+  
+-  增加前端资源
+    - element-ui 样式框架
+    - iview 样式框架（可选方案）
   
  - 增加热切换配置（config/dynamic）
  
