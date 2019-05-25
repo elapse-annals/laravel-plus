@@ -12,7 +12,13 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "respect/validation": "^1.1"
+        "respect/validation": "^1.1",
+        "infyomlabs/laravel-generator": "5.8.x-dev",
+        "laravelcollective/html": "^5.8.0",
+        "infyomlabs/adminlte-templates": "5.8.x-dev",
+        "infyomlabs/swagger-generator": "dev-master",
+        "appointer/swaggervel": "dev-master",
+        "doctrine/dbal": "~2.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
