@@ -3407,24 +3407,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -92733,63 +92715,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c(
-          "el-row",
-          { attrs: { gutter: 20 } },
-          [
-            _c("el-col", { attrs: { span: 6 } }, [
-              _c("div", { staticClass: "grid-content bg-purple" }, [
-                _vm._v("66")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("el-col", { attrs: { span: 6 } }, [
-              _c("div", { staticClass: "grid-content bg-purple" }, [
-                _vm._v("555")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("el-col", { attrs: { span: 6 } }, [
-              _c("div", { staticClass: "grid-content bg-purple" }, [
-                _vm._v("444")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("el-col", { attrs: { span: 6 } }, [
-              _c("div", { staticClass: "grid-content bg-purple" }, [
-                _vm._v("333")
-              ])
-            ])
-          ],
-          1
-        )
-      ],
-      1
-    )
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "\n                    I'm an example component.\n                "
-            )
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Example Component")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _vm._v(
+                "\n                    I'm an example component.\n                "
+              )
+            ])
           ])
         ])
       ])

@@ -47,9 +47,13 @@ php artisan storage:link // 软连接映射【非必须】
  ```php
 npm run dev
 ```
- - 线上部署
+ - 线上部署时
  ```php
-npm run prod
+npm run prod  // 进行压缩
+```
+- 监视编译（开发时启用）
+```php
+npm run watch
 ```
 
 本地服务开启

@@ -11,24 +11,6 @@
                 </div>
             </div>
         </div>
-        <div>
-            <el-row :gutter="20">
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">66</div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">555</div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">444</div>
-                </el-col>
-                <el-col :span="6">
-                    <div class="grid-content bg-purple">333</div>
-                </el-col>
-            </el-row>
-
-
-        </div>
     </div>
 </template>
 

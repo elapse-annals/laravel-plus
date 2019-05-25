@@ -63,6 +63,8 @@
                 margin-bottom: 30px;
             }
         </style>
+
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -94,11 +96,35 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <div id="app">
+                    <example-component>11</example-component>
+                </div>
+
                 <div>
-                    <example-component>1</example-component>
+                    <el-row>
+                        <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+                        <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+                        <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+                        <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+                        <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+                    </el-row>
                 </div>
             </div>
         </div>
-    <script type="javascript" src="{{asset('js/app.js')}}"></script>
+        <script type="javascript" src="{{asset('js/app.js')}}"></script>
+        <script>
+            console.log(app);
+        </script>
     </body>
 </html>
