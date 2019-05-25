@@ -24,6 +24,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.config.devtools = true
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
