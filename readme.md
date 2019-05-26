@@ -86,7 +86,13 @@ php artisan serve
    -  test 测试环境（默认继承 develop 配置）
    -  local 本地环境 （默认继承 develop 配置）
    
-Tips：在继承基础上有重复属性，覆盖继承项
+.env 配置 DYNAMIC_IS_STRICT 控制热配是否严格模式（默认 false 关闭）
+- 严格模式下不会继承 production/develop，完全采用当前环境配置
+
+Tips：
+1. 默认在继承基础上有重复属性，覆盖继承项 
+2. 继承基础特有属性会被携带至当前配置 
+
 
 <hr />
 
