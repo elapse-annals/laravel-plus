@@ -61,6 +61,8 @@ npm run watch
 php artisan serve
 ```
 
+<b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
+
 <hr />
 
 ### 改动内容
