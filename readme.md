@@ -66,10 +66,10 @@ php artisan serve
 缓存清理
 - php artisan optimize:clear
     - php artisan view:clear
-    - php artisan cache:clear
+    - php artisan cache:clear // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存)
     - php artisan route:cache
     - php artisan config:clear
-    - php artisan clear-compiled
+    - php artisan clear-compiled // 清理编译
  php artisan debug:clear
 
 性能优化（生产环境使用）
