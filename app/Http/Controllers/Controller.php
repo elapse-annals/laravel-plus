@@ -19,18 +19,22 @@ class Controller extends BaseController
     }
 
     /**
-     * @return array
+     *
      */
     private function initDynamicConfig(): void
     {
         $app_env = env('APP_ENV');
         $config_arr = [];
+        $dynamic_is_strict = env('DYNAMIC_IS_STRICT');
         switch ($app_env) {
-            case 'test':
             case 'local':
+            case 'test':
             case 'develop':
                 $env_conf = config("dynamic.{$app_env}");
-                $develop_conf = config("dynamic.develop");
+                $develop_conf = [];
+                if (false === $dynamic_is_strict) {
+                    $develop_conf = config("dynamic.develop");
+                }
                 $config_arr['dynamic'] = (array)array_merge((array)$develop_conf, (array)$env_conf);
                 config($config_arr);
                 break;
@@ -38,6 +42,9 @@ class Controller extends BaseController
             case 'production':
                 $env_conf = config("dynamic.{$app_env}");
                 $production_conf = config("dynamic.production");
+                if (false === $dynamic_is_strict) {
+                    $production_conf = config("dynamic.develop");
+                }
                 $config_arr['dynamic'] = (array)array_merge((array)$production_conf, (array)$env_conf);
                 config($config_arr);
                 break;
