@@ -63,6 +63,13 @@ php artisan serve
 
 <b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
 
+性能优化（生产环境使用）
+- artisan config:cache
+- artisan route:cache
+- artisan optimize
+- composer dumpautoload
+
+
 <hr />
 
 ### 改动内容
