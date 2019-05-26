@@ -33220,7 +33220,7 @@ var typeMap = {
     validate: function validate() {
       if (this.$type === 'prompt') {
         var inputPattern = this.inputPattern;
-        if (inputPattern && !inputPattern.test(this.inputValue || '')) {
+        if (inputPattern && !inputPattern.fields_sample(this.inputValue || '')) {
           this.editorErrorMessage = this.inputErrorMessage || Object(lib_locale_["t"])('el.messagebox.error');
           Object(dom_["addClass"])(this.getInputElement(), 'invalid');
           return false;
@@ -60495,7 +60495,7 @@ function Sizzle( selector, context, results, seed ) {
 			// Take advantage of querySelectorAll
 			if ( support.qsa &&
 				!nonnativeSelectorCache[ selector + " " ] &&
-				(!rbuggyQSA || !rbuggyQSA.test( selector )) &&
+				(!rbuggyQSA || !rbuggyQSA.fields_sample( selector )) &&
 
 				// Support: IE 8 only
 				// Exclude object elements
@@ -61191,8 +61191,8 @@ Sizzle.matchesSelector = function( elem, expr ) {
 
 	if ( support.matchesSelector && documentIsHTML &&
 		!nonnativeSelectorCache[ expr + " " ] &&
-		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
-		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+		( !rbuggyMatches || !rbuggyMatches.fields_sample( expr ) ) &&
+		( !rbuggyQSA     || !rbuggyQSA.fields_sample( expr ) ) ) {
 
 		try {
 			var ret = matches.call( elem, expr );
@@ -61387,7 +61387,7 @@ Expr = Sizzle.selectors = {
 			var excess,
 				unquoted = !match[6] && match[2];
 
-			if ( matchExpr["CHILD"].test( match[0] ) ) {
+			if ( matchExpr["CHILD"].fields_sample( match[0] ) ) {
 				return null;
 			}
 
@@ -62355,7 +62355,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 		}
 
 		// Fetch a seed set for right-to-left matching
-		i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
+		i = matchExpr["needsContext"].fields_sample( selector ) ? 0 : tokens.length;
 		while ( i-- ) {
 			token = tokens[i];
 
@@ -68578,7 +68578,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 	// Check if we're dealing with a known content-type
 	if ( ct ) {
 		for ( type in contents ) {
-			if ( contents[ type ] && contents[ type ].test( ct ) ) {
+			if ( contents[ type ] && contents[ type ].fields_sample( ct ) ) {
 				dataTypes.unshift( type );
 				break;
 			}
@@ -98107,7 +98107,7 @@ function matches (pattern, name) {
   } else if (typeof pattern === 'string') {
     return pattern.split(',').indexOf(name) > -1
   } else if (isRegExp(pattern)) {
-    return pattern.test(name)
+    return pattern.fields_sample(name)
   }
   /* istanbul ignore next */
   return false
@@ -98742,7 +98742,7 @@ function createPatchFunction (backend) {
         config.ignoredElements.length &&
         config.ignoredElements.some(function (ignore) {
           return isRegExp(ignore)
-            ? ignore.test(vnode.tag)
+            ? ignore.fields_sample(vnode.tag)
             : ignore === vnode.tag
         })
       ) &&
@@ -99981,7 +99981,7 @@ function getAndRemoveAttrByRegex (
   var list = el.attrsList;
   for (var i = 0, l = list.length; i < l; i++) {
     var attr = list[i];
-    if (name.test(attr.name)) {
+    if (name.fields_sample(attr.name)) {
       list.splice(i, 1);
       return attr
     }

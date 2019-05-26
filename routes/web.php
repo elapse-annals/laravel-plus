@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', static function () {
-    return view('welcome');
-});
+Route::get('/', 'ClosureController@welcome');
 
 Route::get('plural/{singular}', 'StringController@plural');
