@@ -1,7 +1,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
 
 #### About
-[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 Laravel 增加一部分软件包初始安装和进行实际业务使用功能调整
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
 
 #### Version
 当前版本基于 
