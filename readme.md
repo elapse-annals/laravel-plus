@@ -1,9 +1,9 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
 
-#### About
+### About
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
 
-#### Version
+### Version
 当前版本基于 
 <b>PHP 版本：^7.1.3 ,
 Laravel 5.8.* 改造
@@ -34,14 +34,14 @@ php artisan storage:link // 软连接映射【非必须】
 ```
 [composer 国内地址](https://www.phpcomposer.com/)
 
-创建分层脚本
+#### 创建分层脚本
 ```
  php artisan make:framework Test  // 创建分层结构
  php artisan make:framework Test --basis  // 创建系统分层和主要分层结构（Controller, Service, Repository）
  php artisan make:framework Test --D // 删除分层结构 
 ```
 
-热切换配置使用（config/dynamic）
+#### 热切换配置使用（config/dynamic）
    -  production 生产环境 (必须配置)
    -  simulation 仿真环境 (默认继承 production 配置)
    -  develop 开发/测试环境 (必须配置)
@@ -58,7 +58,7 @@ Tips：
 
 <b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
 
-缓存清理
+#### 缓存清理
 - php artisan optimize:clear     // (慎用）
     - php artisan view:clear
     - php artisan cache:clear    // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存)
@@ -67,7 +67,7 @@ Tips：
     - php artisan clear-compiled    // 清理编译
  php artisan debug:clear
 
-性能优化（只建议生产环境使用）
+#### 性能优化（只建议生产环境使用）
 - php artisan optimize
     - php artisan config:cache
     - php artisan route:cache
@@ -75,7 +75,7 @@ Tips：
 - composer dumpautoload
 
 
-前端样式构建
+#### 前端样式构建
 
  ```php
 npm run dev    // 本地开发,开启 debug 模式
@@ -84,7 +84,7 @@ npm run prod    // 线上部署,进行压缩
 npm run watch   // 监视编译（开发时启用）
 ```
 
-本地服务开启
+#### 本地服务开启
 ```php
 php artisan serve
 ```
