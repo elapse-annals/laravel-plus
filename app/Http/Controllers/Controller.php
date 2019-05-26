@@ -15,13 +15,31 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        $this->initDynamicConfig();
+        dd(config('dynamic'));
+    }
+
+    /**
+     * @return array
+     */
+    private function initDynamicConfig(): void
+    {
         $app_env = env('APP_ENV');
         $config_arr = [];
         switch ($app_env) {
-            case 'develop':
+            case 'test':
             case 'local':
+            case 'develop':
+                $env_conf = config("dynamic.{$app_env}");
+                $develop_conf = config("dynamic.develop");
+                $config_arr['dynamic'] = (array)array_merge((array)$develop_conf, (array)$env_conf);
+                config($config_arr);
+                break;
+            case 'simulation':
             case 'production':
-                $config_arr['dynamic'] = config("dynamic.{$app_env}");
+                $env_conf = config("dynamic.{$app_env}");
+                $production_conf = config("dynamic.production");
+                $config_arr['dynamic'] = (array)array_merge((array)$production_conf, (array)$env_conf);
                 config($config_arr);
                 break;
         }

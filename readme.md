@@ -79,6 +79,14 @@ php artisan serve
 - php artisan view:cache
 - composer dumpautoload
 
+热切换配置使用（config/dynamic）
+   -  production 生产环境 (必须配置)
+   -  simulation 仿真环境 (默认继承 production 配置)
+   -  develop 开发/测试环境 (必须配置)
+   -  test 测试环境（默认继承 develop 配置）
+   -  local 本地环境 （默认继承 develop 配置）
+   
+Tips：在继承基础上有重复属性，覆盖继承项
 
 <hr />
 
@@ -101,11 +109,12 @@ php artisan serve
     - iview 样式框架（可选方案）
   
  - 增加热切换配置（config/dynamic）
- 
-   -  develop 开发/测试
-        - stage 测试 
-   -  local 本地
-   -  production 生产
+   -  production 生产环境 (必须配置)
+   -  simulation 仿真环境 (按需配置)
+   -  develop 开发/测试环境 (必须配置)
+   -  test 测试环境（按需配置）
+   -  local 本地环境 （按需配置）
+   
    
  - 增加默认图片存储目录（storage/app/public/images)
  - 扩展结构分层 [想法来源](https://learnku.com/articles/19452?order_by=created_at&)

@@ -4,5 +4,5 @@
  */
 
 return [
-    'env' => 'production',
+    'env' => 'simulation',
 ];

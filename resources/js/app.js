@@ -35,5 +35,5 @@ Vue.use(ElementUI);
 
 const app = new Vue({
     el: '#app',
-    mixins: [mixin]
+    mixins: [mixin],
 });
