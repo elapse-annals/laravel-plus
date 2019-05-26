@@ -30,7 +30,7 @@ cd YourProject //  进入 YourProject 项目中
 composer update   // 更新软件包 （请先已安装 composer ）
 php artisan key:generate    // 更新 key
 
-php artisan storage:link // 软连接映射【非必须】
+php artisan storage:link // 图片资源软连接映射【非必须】
 ```
 [composer 国内地址](https://www.phpcomposer.com/)
 
@@ -79,6 +79,7 @@ Tips：
 
  ```php
 npm run dev    // 本地开发,开启 debug 模式
+
 npm run prod    // 线上部署,进行压缩
 
 npm run watch   // 监视编译（开发时启用）
