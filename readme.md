@@ -43,16 +43,16 @@ php artisan storage:link // 图片资源软连接映射【非必须】
 
 #### 热切换配置使用（config/dynamic）
    -  production 生产环境 (必须配置)
-   -  simulation 仿真环境 (默认继承 production 配置)
-   -  develop 开发/测试环境 (必须配置)
-   -  test 测试环境（默认继承 develop 配置）
-   -  local 本地环境 （默认继承 develop 配置）
+        -  simulation 仿真环境 (默认继承 production 配置)
+ -  develop 开发/测试环境 (必须配置)
+    -  test 测试环境（默认继承 develop 配置）
+    -  local 本地环境 （默认继承 develop 配置）
    
 .env 配置 DYNAMIC_IS_STRICT 控制热配是否严格模式（默认 false 关闭）
 - 严格模式下不会继承 production/develop，完全采用当前环境配置
 
 Tips：
-1. 默认在继承基础上有重复属性，覆盖继承项 
+1. 默认在继承基础上有重复属性，会覆盖继承项 
 2. 继承基础特有属性会被携带至当前配置 
 
 
@@ -111,11 +111,11 @@ php artisan serve
     - iview 样式框架（可选方案）
   
  - 增加热切换配置（config/dynamic）
-   -  production 生产环境 (必须配置)
-   -  simulation 仿真环境 (按需配置)
-   -  develop 开发/测试环境 (必须配置)
-   -  test 测试环境（按需配置）
-   -  local 本地环境 （按需配置）
+   -  production 生产环境 
+        -  simulation 仿真环境
+   -  develop 开发/测试环境 
+        -  test 测试环境
+        -  local 本地环境
    
    
  - 增加默认图片存储目录（storage/app/public/images)
