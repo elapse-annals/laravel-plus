@@ -55,8 +55,8 @@ Tips：
 1. 默认在继承基础上有重复属性，会覆盖继承项 
 2. 继承基础特有属性会被携带至当前配置 
 
-
-<b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
+优化默认路由中闭包
+- 路由中禁止使用闭包，如有需要请在 ClosureController 中注册
 
 #### 缓存清理
 - php artisan optimize:clear     // (慎用）
