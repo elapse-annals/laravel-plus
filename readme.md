@@ -9,9 +9,8 @@
 Laravel 5.8.* 改造
 </b>
 
-### 使用方式
+### 项目创建
 
-##### 项目创建
 ```php
 git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
 复制项目方案：
