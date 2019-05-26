@@ -72,7 +72,7 @@ php artisan serve
     - php artisan clear-compiled // 清理编译
  php artisan debug:clear
 
-性能优化（生产环境使用）
+性能优化（只建议生产环境使用）
 - php artisan optimize
     - php artisan config:cache
     - php artisan route:cache
