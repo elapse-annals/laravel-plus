@@ -41,44 +41,6 @@ php artisan storage:link // 软连接映射【非必须】
  php artisan make:framework Test --D // 删除分层结构 
 ```
 
-前端样式构建
-
- - 本地开发
- ```php
-npm run dev
-```
- - 线上部署时
- ```php
-npm run prod  // 进行压缩
-```
-- 监视编译（开发时启用）
-```php
-npm run watch
-```
-
-本地服务开启
-```php
-php artisan serve
-```
-
-<b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
-
-缓存清理
-- php artisan optimize:clear
-    - php artisan view:clear
-    - php artisan cache:clear // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存)
-    - php artisan route:cache
-    - php artisan config:clear
-    - php artisan clear-compiled // 清理编译
- php artisan debug:clear
-
-性能优化（只建议生产环境使用）
-- php artisan optimize
-    - php artisan config:cache
-    - php artisan route:cache
-- php artisan view:cache
-- composer dumpautoload
-
 热切换配置使用（config/dynamic）
    -  production 生产环境 (必须配置)
    -  simulation 仿真环境 (默认继承 production 配置)
@@ -93,6 +55,39 @@ Tips：
 1. 默认在继承基础上有重复属性，覆盖继承项 
 2. 继承基础特有属性会被携带至当前配置 
 
+
+<b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
+
+缓存清理
+- php artisan optimize:clear     // (慎用）
+    - php artisan view:clear
+    - php artisan cache:clear    // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存)
+    - php artisan route:cache
+    - php artisan config:clear
+    - php artisan clear-compiled    // 清理编译
+ php artisan debug:clear
+
+性能优化（只建议生产环境使用）
+- php artisan optimize
+    - php artisan config:cache
+    - php artisan route:cache
+- php artisan view:cache
+- composer dumpautoload
+
+
+前端样式构建
+
+ ```php
+npm run dev    // 本地开发,开启 debug 模式
+npm run prod    // 线上部署,进行压缩
+
+npm run watch   // 监视编译（开发时启用）
+```
+
+本地服务开启
+```php
+php artisan serve
+```
 
 <hr />
 
