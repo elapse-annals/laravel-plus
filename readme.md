@@ -63,10 +63,20 @@ php artisan serve
 
 <b>路由中禁止使用闭包，如有需要请在 ClosureController 中注册</b>
 
+缓存清理
+- php artisan optimize:clear
+    - php artisan view:clear
+    - php artisan cache:clear
+    - php artisan route:cache
+    - php artisan config:clear
+    - php artisan clear-compiled
+ php artisan debug:clear
+
 性能优化（生产环境使用）
-- artisan config:cache
-- artisan route:cache
-- artisan optimize
+- php artisan optimize
+    - php artisan config:cache
+    - php artisan route:cache
+- php artisan view:cache
 - composer dumpautoload
 
 
