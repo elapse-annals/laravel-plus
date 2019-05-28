@@ -137,5 +137,5 @@ php artisan serve
 
 #### Todo
  增加根据自动生成模型生成代码助手（    reliese/laravel => infyomlabs/laravel-generator）
-        
+增加 jenssegers/rollbar
         
