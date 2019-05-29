@@ -125,7 +125,7 @@ php artisan serve
  - 增加默认图片存储目录（storage/app/public/images)
  - 扩展结构分层 [想法来源](https://learnku.com/articles/19452?order_by=created_at&)
     - 系统分层
-        - controller 控制器层
+        - Controller 控制器层
     - 主要分层
         - Service 业务服务层
         - Repository 数据仓库层
@@ -137,5 +137,5 @@ php artisan serve
 
 #### Todo
  增加根据自动生成模型生成代码助手（    reliese/laravel => infyomlabs/laravel-generator）
-增加 jenssegers/rollbar
+增加 rap2hpoutre/laravel-log-viewer
         
