@@ -41,9 +41,9 @@ class Controller extends BaseController
             case 'simulation':
             case 'production':
                 $env_conf = config("dynamic.{$app_env}");
-                $production_conf = config("dynamic.production");
+                $production_conf = [];
                 if (false === $dynamic_is_strict) {
-                    $production_conf = config("dynamic.develop");
+                    $production_conf = config("dynamic.production");
                 }
                 $config_arr['dynamic'] = (array)array_merge((array)$production_conf, (array)$env_conf);
                 config($config_arr);
