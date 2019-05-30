@@ -136,6 +136,12 @@ php artisan serve
 
 
 #### Todo
- 增加根据自动生成模型生成代码助手（    reliese/laravel => infyomlabs/laravel-generator）
+
 增加 rap2hpoutre/laravel-log-viewer
+
+引入 Es
+
+引入 reactphp ，增加默认多进程方案
+
+ 增加根据自动生成模型生成代码助手（    reliese/laravel => infyomlabs/laravel-generator）
         
