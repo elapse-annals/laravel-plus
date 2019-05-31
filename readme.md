@@ -139,7 +139,7 @@ php artisan serve
 
 增加 rap2hpoutre/laravel-log-viewer
 
-引入 Es
+引入 Es 引入
 
 引入 reactphp ，增加默认多进程方案
 
