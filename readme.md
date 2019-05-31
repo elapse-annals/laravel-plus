@@ -112,7 +112,7 @@ php artisan serve
   
 -  增加前端资源
     - element-ui 样式框架
-    - iview 样式框架（可选方案）
+        - iview 样式框架（可选方案）
   
  - 增加热切换配置（config/dynamic）
    -  production 生产环境 
