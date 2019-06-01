@@ -45,19 +45,25 @@ php artisan storage:link // 图片资源软连接映射【非必须】
  php artisan make:framework Test --D // 删除分层结构 
 ```
 
-##### 热切换配置使用（config/dynamic）
-   -  production 生产环境 (必须配置)
- -  develop 开发/测试环境 (必须配置)
-    -  test 测试环境（默认继承 develop 配置）
-    -  local 本地环境 （默认继承 develop 配置）
-    -  simulation 仿真环境 (默认继承 production 配置)
-   
-.env 配置 DYNAMIC_IS_STRICT 控制热配是否严格模式（默认 false 关闭）
-- 严格模式下不会继承 production/develop，完全采用当前环境配置
+##### 热切换配置使用（config/dynamic/）
+```php
+config('dynamic.env')
 
+```
+dynamic 目录文件说明
+   -  production 生产环境 (必须配置)
+ -  develop 开发/测试环境 (必须配置，以下配置继承 develop 配置)
+    -  test 测试环境
+    -  local 本地环境
+    -  simulation 仿真环境
+    
 Tips：
-1. 默认在继承基础上有重复属性，会覆盖继承项 
-2. 继承基础特有属性会被携带至当前配置 
+  
+1. .env 配置 DYNAMIC_IS_STRICT 控制热配是否严格模式（默认 false 关闭）
+    - 严格模式下不会继承 production/develop，完全采用当前环境配置
+2. 默认在继承基础上有重复属性，会覆盖继承项 
+3. 继承基础特有属性会被携带至当前配置 
+4. config/dynamic.php 为 IDEA 提示文件，使用空 key 即可
 
 优化默认路由中闭包
 - 路由中禁止使用闭包，如有需要请在 ClosureController 中注册
