@@ -1,12 +1,10 @@
+English | [中文](./README.md)
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
-
-
 
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
 [![License](https://img.shields.io/badge/license-apache2-blue.svg)](LICENSE)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/18532/badge.svg)](https://scan.coverity.com/projects/laravelplus) 
-
-English | [中文](./README.md)
 
 ### About
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
