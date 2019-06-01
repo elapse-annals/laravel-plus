@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 use React\EventLoop\Factory;
 use React\ChildProcess\Process;
 
@@ -26,14 +27,32 @@ class MainProcessController extends Controller
     {
         Log::info($this->global_mark . 'main_process_act');
         $data = [];
-        if (empty($data) || !is_array($data)) {
+        if (empty($data) || ! is_array($data)) {
             Log::error('无效数据');
             die();
         }
         $this->correctionProcessNumber(count($data));
-        $this->setChildProcessData();
+        $this->chunkChildProcessData($data);
         $this->produceChildProcess();
+        // end all child process ，main process to do
+
         Log::info($this->global_mark . 'main_process_end');
+    }
+
+    private function correctionProcessNumber($data_count)
+    {
+        if ($data_count < $this->process_number) {
+            $this->child_process_key = 1;
+        }
+    }
+
+    private function chunkChildProcessData($data)
+    {
+        $chunk_data = collect($data)->chunk($this->process_number);
+        for ($i = 0; $i < $this->process_number; $i++) {
+            $temp_child_process_key = $this->child_process_key . $i;
+            Redis::set($temp_child_process_key, $chunk_data[$i]);
+        }
     }
 
     public function produceChildProcess()
