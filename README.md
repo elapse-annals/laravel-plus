@@ -101,6 +101,7 @@ php artisan serve
 - 增加默认加载软件包
     - production  生产
         - [respect/validation](https://github.com/Respect/Validation) 验证包
+        - [react/react](https://github.com/reactphp/react) ReactPHP 多进程异步扩展（可以移除）
     - develop     开发
       - [reliese/laravel](https://github.com/reliese/laravel)         模型 code 代码生成包
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具包
@@ -141,7 +142,7 @@ php artisan serve
 
 引入 Es 引入
 
-引入 reactphp ，增加默认多进程方案
+增加默认多进程方案
 
 增加 predis 
 
