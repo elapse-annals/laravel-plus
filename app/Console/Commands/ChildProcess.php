@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\ChildProcessController;
 
 class ChildProcess extends Command
@@ -43,9 +42,8 @@ class ChildProcess extends Command
     {
         $child_process_key = $this->argument('child_process_key');
         if (empty($child_process_key)) {
-            die('无效错误进程 key');
+            die('invalid child_process_key');
         }
-        Log::info($child_process_key . ' child process pull up');
         (new ChildProcessController($child_process_key))->handle();
     }
 }

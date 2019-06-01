@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
+
 
 class ChildProcessController extends Controller
 {
@@ -17,6 +18,7 @@ class ChildProcessController extends Controller
 
     public function handle()
     {
+        Log::info($this->child_process_key . ' child process pull up');
         //        get main give data
         $this->getThisChildProcessData();
         //        run this business

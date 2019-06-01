@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use React\EventLoop\Factory;
@@ -28,7 +27,7 @@ class MainProcessController extends Controller
         Log::info($this->global_mark . 'main_process_act');
         $data = [];
         if (empty($data) || ! is_array($data)) {
-            Log::error('无效数据');
+            Log::error('invalid data');
             die();
         }
         $this->correctionProcessNumber(count($data));
