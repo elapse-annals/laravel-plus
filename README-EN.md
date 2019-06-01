@@ -6,10 +6,10 @@ English | [中文](./README.md)
 [![License](https://img.shields.io/badge/license-apache2-blue.svg)](LICENSE)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/18532/badge.svg)](https://scan.coverity.com/projects/laravelplus) 
 
-### About
+### 介绍
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
 
-### Version
+### 相关版本
 当前改造版本基于
  
 <b>
@@ -150,7 +150,7 @@ php artisan serve
         - Formatter 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
 
 
-#### Todo
+#### 代办事项
 
 增加多进程方案使用说明
 
