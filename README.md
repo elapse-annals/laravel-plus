@@ -47,10 +47,10 @@ php artisan storage:link // 图片资源软连接映射【非必须】
 
 ##### 热切换配置使用（config/dynamic）
    -  production 生产环境 (必须配置)
-        -  simulation 仿真环境 (默认继承 production 配置)
  -  develop 开发/测试环境 (必须配置)
     -  test 测试环境（默认继承 develop 配置）
     -  local 本地环境 （默认继承 develop 配置）
+    -  simulation 仿真环境 (默认继承 production 配置)
    
 .env 配置 DYNAMIC_IS_STRICT 控制热配是否严格模式（默认 false 关闭）
 - 严格模式下不会继承 production/develop，完全采用当前环境配置

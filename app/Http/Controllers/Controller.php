@@ -29,6 +29,7 @@ class Controller extends BaseController
         switch ($app_env) {
             case 'local':
             case 'test':
+            case 'simulation':
             case 'develop':
                 $env_conf = config("dynamic.{$app_env}");
                 $develop_conf = [];
@@ -38,7 +39,6 @@ class Controller extends BaseController
                 $config_arr['dynamic'] = (array)array_merge((array)$develop_conf, (array)$env_conf);
                 config($config_arr);
                 break;
-            case 'simulation':
             case 'production':
                 $env_conf = config("dynamic.{$app_env}");
                 $production_conf = [];
