@@ -25,6 +25,13 @@ class MainProcessController extends Controller
     public function handle()
     {
         Log::info($this->global_mark . 'main_process_act');
+        $data = [];
+        if (empty($data) || !is_array($data)) {
+            Log::error('无效数据');
+            die();
+        }
+        $this->correctionProcessNumber(count($data));
+        $this->setChildProcessData();
         $this->produceChildProcess();
         Log::info($this->global_mark . 'main_process_end');
     }
