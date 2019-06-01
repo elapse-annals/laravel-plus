@@ -138,15 +138,19 @@ php artisan serve
 
 #### Todo
 
+增加多进程方案使用说明
+
 增加 rap2hpoutre/laravel-log-viewer
 
 引入 Es 引入
 
-增加默认多进程方案
+
 
 增加 predis 
 
 扩展  php-redis 配置
+
+增加 controller 资源类型处理
 
  增加根据自动生成模型生成代码助手（    reliese/laravel => infyomlabs/laravel-generator）
         
