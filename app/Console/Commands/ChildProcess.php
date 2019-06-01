@@ -11,7 +11,9 @@ class ChildProcess extends Command
      *
      * @var string
      */
-    protected $signature = 'process:child';
+    protected $signature = 'process:child
+                            {child_process_key: child process key}
+                            ';
 
     /**
      * The console command description.

@@ -11,6 +11,7 @@ use React\ChildProcess\Process;
 class MainProcessController extends Controller
 {
     private $global_mark;
+    private $process_log_path;
     private $process_number = 1;
     private $child_process_key = 'child_process_';
 
@@ -18,6 +19,7 @@ class MainProcessController extends Controller
     {
         parent::__construct();
         $this->global_mark = md5(microtime()) . '_';
+        $this->process_log_path = __DIR__ . '/../../../storage/process_error.log';
     }
 
     public function handle()
@@ -28,12 +30,11 @@ class MainProcessController extends Controller
     }
 
     public function produceChildProcess()
-
     {
         $loop = Factory::create();
         for ($i = 0; $i < $this->process_number; $i++) {
             $temp_child_process_key = $this->child_process_key . $i;
-            $temp_cmd = "";
+            $temp_cmd = "php artisan process:child {$temp_child_process_key} >> {$this->process_log_path}";
             $$temp_child_process_key = new Process($temp_cmd);
             $$temp_child_process_key->start($loop);
             $$temp_child_process_key->stdout->on('data', function ($chunk) use ($temp_child_process_key) {
