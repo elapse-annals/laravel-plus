@@ -35,7 +35,7 @@ mv laravel-plus  LaravelPlus
 
 复制项目方案：
     1.当前目录运行复制脚本(推荐)
-    php LaravelPlus/copy.php YourProject
+    php LaravelPlus/create YourProject
     
     2.复制项目至自身项目
         cd LaravelPlus & rm -rf .git

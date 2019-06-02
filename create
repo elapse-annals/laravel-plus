@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * User: BenHuang
@@ -29,38 +30,37 @@ function testProjectStart(): void
 }
 
 /**
- * @param string $laravel_plus_basename
+ *
  */
-function checkProjectDirectory(string $laravel_plus_basename): void
+function checkProjectDirectory(): void
 {
-    if ("LaravelPlus" !== $laravel_plus_basename || "laravel-plus" !== $laravel_plus_basename) {
+    global $laravel_plus_basename;
+    if ("LaravelPlus" !== $laravel_plus_basename && "laravel-plus" !== $laravel_plus_basename) {
         echo "error: Error original project path " . $laravel_plus_basename . PHP_EOL;
         die;
     }
 }
 
 /**
- * @param string $laravel_plus_basename
- *
  * @return string
  */
-function checkRequestVariable(string $laravel_plus_basename): string
+function checkRequestVariable(): string
 {
-    global $argv;
+    global $argv,$laravel_plus_basename;
     if (empty($argv) || ! isset($argv[1]) || empty($argv[1])) {
         echo "error: No project name set" . PHP_EOL;
-        echo "eg): php {$laravel_plus_basename}/copy.php YourProject" . PHP_EOL;
+        echo "eg): php {$laravel_plus_basename}/create YourProject" . PHP_EOL;
         die;
     }
     return $argv[1];
 }
 
 /**
- * @param string $laravel_plus_basename
+ *
  */
-function removeExcessFileInNewProject(string $laravel_plus_basename): void
+function removeExcessFileInNewProject(): void
 {
-    global $remove_excess_files, $remove_excess_dirs;
+    global $remove_excess_files, $remove_excess_dirs, $laravel_plus_basename;
     foreach ($remove_excess_files as $remove_excess_file) {
         if (is_file("{$laravel_plus_basename}/{$remove_excess_file}")) {
             exec("rm {$laravel_plus_basename}/{$remove_excess_file}");
@@ -95,8 +95,8 @@ function copyHideFile(string $laravel_plus_basename, $product): void
  */
 function removeThisFile($product): void
 {
-    if (is_file("{$product}/copy.php")) {
-        exec("rm {$product}/copy.php");
+    if (is_file("{$product}/create")) {
+        exec("rm {$product}/create");
     }
 }
 
@@ -107,10 +107,13 @@ function handle(string $laravel_plus_basename)
 {
     testProjectStart();
     exec("cd {$laravel_plus_basename}");
-    checkProjectDirectory($laravel_plus_basename);
-    $product = checkRequestVariable($laravel_plus_basename);
-    removeExcessFileInNewProject($laravel_plus_basename);
-    exec("cp -r {$laravel_plus_basename}/* {$product}");
+    checkProjectDirectory();
+    $product = checkRequestVariable();
+    removeExcessFileInNewProject();
+    exec("cp -r {$laravel_plus_basename} {$product}");
+    if (! is_dir("{$product}")) {
+        die('Error: cp new project is error' . PHP_EOL);
+    }
     removeThisFile($product);
     copyHideFile($laravel_plus_basename, $product);
     exec("cd {$product}");
