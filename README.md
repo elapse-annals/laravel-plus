@@ -40,10 +40,9 @@ mv laravel-plus  LaravelPlus
     2.复制项目至自身项目
         cd LaravelPlus & rm -rf .git
         rm composer.lock
-        cp LaravelPlus/* YourProject 
-            // */
+        cp -r LaravelPlus YourProject
         cd YourProject
-        rm composer.lock .env
+        rm composer.lock .env .travis
         cp .env.example .env   
 
 cd YourProject //  进入 YourProject 项目中
