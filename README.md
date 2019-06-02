@@ -21,7 +21,12 @@ Laravel 5.8.* 改造
 ### 项目创建
 
 ```php
-git clone https://github.com/ElapseAnnals/LaravelPlus.git   // clone 项目
+// 下载项目
+git clone https://github.com/ElapseAnnals/LaravelPlus.git   
+或
+composer create-project elapse-annals/laravel-plus
+mv laravel-plus  LaravelPlus
+
 复制项目方案：
     1.当前目录运行复制脚本(推荐)
     php LaravelPlus/copy.php YourProject
