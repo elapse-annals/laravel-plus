@@ -10,12 +10,10 @@
 $laravel_plus_basename = basename(__DIR__);
 $remove_excess_files = [
     'composer.lock',
-    '.travis',
     '_config.yml',
+    'create',
 ];
 $remove_excess_dirs = [
-    'vendor',
-    '.github',
 ];
 
 
@@ -46,7 +44,7 @@ function checkProjectDirectory(): void
  */
 function checkRequestVariable(): string
 {
-    global $argv,$laravel_plus_basename;
+    global $argv, $laravel_plus_basename;
     if (empty($argv) || ! isset($argv[1]) || empty($argv[1])) {
         echo "error: No project name set" . PHP_EOL;
         echo "eg): php {$laravel_plus_basename}/create YourProject" . PHP_EOL;
@@ -58,17 +56,17 @@ function checkRequestVariable(): string
 /**
  *
  */
-function removeExcessFileInNewProject(): void
+function removeExcessFileInNewProject($product): void
 {
-    global $remove_excess_files, $remove_excess_dirs, $laravel_plus_basename;
+    global $remove_excess_files, $remove_excess_dirs;
     foreach ($remove_excess_files as $remove_excess_file) {
-        if (is_file("{$laravel_plus_basename}/{$remove_excess_file}")) {
-            exec("rm {$laravel_plus_basename}/{$remove_excess_file}");
+        if (is_file("{$product}/{$remove_excess_file}")) {
+            exec("rm {$product}/{$remove_excess_file}");
         }
     }
     foreach ($remove_excess_dirs as $remove_excess_dir) {
-        if (is_file("{$laravel_plus_basename}/{$remove_excess_dir}")) {
-            exec("rm {$laravel_plus_basename}/{$remove_excess_dir}/*");
+        if (is_file("{$product}/{$remove_excess_dir}")) {
+            exec("rm -rf {$product}/{$remove_excess_dir}/*");
         }
     }
 }
@@ -91,16 +89,6 @@ function copyHideFile(string $laravel_plus_basename, $product): void
 }
 
 /**
- * @param $product
- */
-function removeThisFile($product): void
-{
-    if (is_file("{$product}/create")) {
-        exec("rm {$product}/create");
-    }
-}
-
-/**
  * @param string $laravel_plus_basename
  */
 function handle(string $laravel_plus_basename)
@@ -109,19 +97,15 @@ function handle(string $laravel_plus_basename)
     exec("cd {$laravel_plus_basename}");
     checkProjectDirectory();
     $product = checkRequestVariable();
-    removeExcessFileInNewProject();
-    exec("cp -r {$laravel_plus_basename} {$product}");
+    exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
     if (! is_dir("{$product}")) {
         die('Error: cp new project is error' . PHP_EOL);
     }
-    removeThisFile($product);
+    removeExcessFileInNewProject($product);
     copyHideFile($laravel_plus_basename, $product);
     exec("cd {$product}");
-    echo "success" . PHP_EOL;
+    echo "Create {$product} project success" . PHP_EOL;
 }
 
 handle($laravel_plus_basename);
-
-
-
 
