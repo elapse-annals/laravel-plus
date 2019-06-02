@@ -68,7 +68,7 @@ config('dynamic.env')
 ```
 dynamic 目录文件说明
    -  production 生产环境 (必须配置)
- -  develop 开发/测试环境 (必须配置，以下配置继承 develop 配置)
+ -  develop 开发环境 (必须配置，以下配置继承 develop 配置)
     -  test 测试环境
     -  local 本地环境
     -  simulation 仿真环境
