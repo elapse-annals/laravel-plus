@@ -42,19 +42,17 @@ function checkProjectDirectory(string $laravel_plus_basename): void
 /**
  * @param string $laravel_plus_basename
  *
- * @return mixed
+ * @return string
  */
-function checkRequestVariable(string $laravel_plus_basename): mixed
+function checkRequestVariable(string $laravel_plus_basename): string
 {
     global $argv;
-    if ($argv && isset($argv[1])) {
-        $product = $argv[1];
-    } else {
+    if (empty($argv) || ! isset($argv[1]) || empty($argv[1])) {
         echo "error: No project name set" . PHP_EOL;
         echo "eg): php {$laravel_plus_basename}/copy.php YourProject" . PHP_EOL;
         die;
     }
-    return $product;
+    return $argv[1];
 }
 
 /**
@@ -104,8 +102,6 @@ function removeThisFile($product): void
 
 /**
  * @param string $laravel_plus_basename
- *
- * @return mixed
  */
 function handle(string $laravel_plus_basename)
 {
