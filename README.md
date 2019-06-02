@@ -6,7 +6,7 @@
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
 <img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
 <img class="total_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
-<img class="latest_unstable_version_img"
+<img class="latest_unstable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/unstable">
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
                      
@@ -166,7 +166,7 @@ php artisan serve
 
 引入 Es 引入
 
-
+兼容 laravel-plus 目录名
 
 增加 predis 
 
