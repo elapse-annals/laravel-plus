@@ -14,6 +14,8 @@
 ### 介绍
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
 
+[Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git) 
+
 ### 版本基础
 当前版本基于 
 <b>PHP 版本：^7.1.3 ,
@@ -118,7 +120,7 @@ php artisan serve
 
 <hr />
 
-### 改动内容
+### [改动内容](https://github.com/ElapseAnnals/LaravelPlus/wiki/3.-%E6%94%B9%E5%8A%A8%E5%86%85%E5%AE%B9)
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
 - 增加默认加载软件包
     - production  生产
