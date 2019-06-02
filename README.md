@@ -4,10 +4,12 @@
 
 
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
-[![License](https://img.shields.io/badge/license-apache2-blue.svg)](LICENSE)
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/18532/badge.svg)](https://scan.coverity.com/projects/laravelplus) 
-
-
+<img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
+<img class="total_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
+<img class="latest_unstable_version_img"
+[![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
+[![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
+                     
 
 ### About
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
