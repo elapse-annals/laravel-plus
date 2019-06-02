@@ -11,16 +11,16 @@
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
                      
 
-### About
+### 介绍
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
 
-### Version
+### 版本基础
 当前版本基于 
 <b>PHP 版本：^7.1.3 ,
 Laravel 5.8.* 改造
 </b>
 
-### 项目创建
+### 项目使用
 
 ```php
 // 下载项目
@@ -52,7 +52,7 @@ php artisan storage:link // 图片资源软连接映射【非必须】
 
 <hr>
 
-### 使用说明
+### 功能使用说明
 
 ##### 创建分层脚本
 ```
