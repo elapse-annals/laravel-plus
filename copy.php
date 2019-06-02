@@ -18,8 +18,17 @@ if ($argv && isset($argv[1])) {
 if (is_file('LaravelPlus/composer.lock')) {
     exec("rm LaravelPlus/composer.lock");
 }
+if (is_file('LaravelPlus/.travis')) {
+    exec("rm LaravelPlus/.travis");
+}
+if (is_file('LaravelPlus/_config.yml')) {
+    exec("rm LaravelPlus/_config.yml");
+}
 if (is_dir('LaravelPlus/vendor')) {
     exec("rm -rf LaravelPlus/vendor/*");
+}
+if (is_dir('LaravelPlus/.github')) {
+    exec("rm -rf LaravelPlus/.github/*");
 }
 exec("cp -r LaravelPlus/* {$product}");
 if (is_file("{$product}/copy.php")) {

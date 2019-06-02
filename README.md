@@ -17,6 +17,8 @@
 [Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git) 
 
 ### 版本基础
+待完成 Todo List 后自身文档版本考虑于 Laravel 版本一至 
+
 当前版本基于 
 <b>PHP 版本：^7.1.3 ,
 Laravel 5.8.* 改造
