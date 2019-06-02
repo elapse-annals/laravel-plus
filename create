@@ -93,10 +93,12 @@ function copyHideFile(string $laravel_plus_basename, $product): void
  */
 function handle(string $laravel_plus_basename)
 {
+    $product = checkRequestVariable();
+    echo "\033[34mLaravelPlus Build {$product} project \e[0m" . PHP_EOL . 'Loging ...' . PHP_EOL;
+    usleep(200000);
     testProjectStart();
     exec("cd {$laravel_plus_basename}");
     checkProjectDirectory();
-    $product = checkRequestVariable();
     exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
     if (! is_dir("{$product}")) {
         die('Error: cp new project is error' . PHP_EOL);
@@ -104,7 +106,7 @@ function handle(string $laravel_plus_basename)
     removeExcessFileInNewProject($product);
     copyHideFile($laravel_plus_basename, $product);
     exec("cd {$product}");
-    echo "Create {$product} project success" . PHP_EOL;
+    echo "\033[32mCreate {$product} project success" . PHP_EOL;
 }
 
 handle($laravel_plus_basename);
