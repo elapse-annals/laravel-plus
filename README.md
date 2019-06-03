@@ -3,6 +3,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)
+![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D5.8-red.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
 <img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
 <img class="total_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
@@ -20,6 +21,7 @@
 待完成 Todo List 后自身文档版本考虑于 Laravel 版本一至 
 
 当前版本基于 
+
 | PHP     | Laravel |
 |:-------:|:-------:|
 | >=7.1.3 | >=5.8    |
