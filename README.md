@@ -52,7 +52,7 @@ mv laravel-plus  LaravelPlus
         cp .env.example .env   
 
 cd YourProject //  进入 YourProject 项目中
-composer update   // 更新软件包 （请先已安装 composer ）
+composer install   // 更新软件包 （请先已安装 composer ）
 php artisan key:generate    // 更新 key
 
 php artisan storage:link // 图片资源软连接映射【非必须】

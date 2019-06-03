@@ -23,7 +23,7 @@
         </whitelist>
     </filter>
     <php>
-        <server name="APP_ENV" value="testing"/>
+        <server name="APP_ENV" value="base64:gxu5xPI5NliIpnGTfGOcgOX8RPkDbA8oSRqU5Cr4TIo="/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
