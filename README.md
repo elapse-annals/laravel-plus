@@ -141,7 +141,7 @@ php artisan serve
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志包
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
       - rap2hpoutre/laravel-log-viewer 日志展示 [访问 host/logs] 
-      
+      - predis/predis Redis 插件（建议使用 php-redis 方式
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具（可移除）
   
 -  增加前端资源
@@ -175,7 +175,7 @@ php artisan serve
 
 引入 Es 引入
 
-增加 predis 
+
 
 扩展  php-redis 配置
 
