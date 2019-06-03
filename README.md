@@ -26,7 +26,7 @@
 |:-------:|:-------:|
 | >=7.1.3 | >=5.8    |
 
-## Documentation
+## 文档
 
 Please see [Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git) 
 
