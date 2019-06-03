@@ -57,7 +57,8 @@ php artisan key:generate    // 更新 key
 
 php artisan storage:link // 图片资源软连接映射【非必须】
 ```
-[composer 国内地址](https://www.phpcomposer.com/)
+Tips:
+1. 兼容 laravel-plus 目录名
 
 <hr>
 
@@ -139,6 +140,7 @@ php artisan serve
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 帮助包    
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志包
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
+      - rap2hpoutre/laravel-log-viewer 日志展示 [访问 host/logs] 
       
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具（可移除）
   
@@ -171,11 +173,7 @@ php artisan serve
 
 增加多进程方案使用说明
 
-增加 rap2hpoutre/laravel-log-viewer
-
 引入 Es 引入
-
-兼容 laravel-plus 目录名
 
 增加 predis 
 
