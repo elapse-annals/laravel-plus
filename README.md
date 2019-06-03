@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
 
-
+![php-badge](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
 <img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
 <img class="total_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
@@ -11,20 +11,24 @@
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 <a href="https://beerpay.io/ElapseAnnals/LaravelPlus"><img src="https://beerpay.io/ElapseAnnals/LaravelPlus/make-wish.svg?style=flat" /></a>
 
-### 介绍
+## 介绍
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
 
-[Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git) 
 
-### 版本基础
+
+## 版本基础
 待完成 Todo List 后自身文档版本考虑于 Laravel 版本一至 
 
 当前版本基于 
-<b>PHP 版本：^7.1.3 ,
-Laravel 5.8.* 改造
-</b>
+| PHP     | Laravel |
+|:-------:|:-------:|
+| >=7.1.3 | >=5.8    |
 
-### 项目使用
+## Documentation
+
+Please see [Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git) 
+
+## 项目使用
 
 ```php
 // 下载项目
@@ -55,7 +59,7 @@ php artisan storage:link // 图片资源软连接映射【非必须】
 
 <hr>
 
-### 功能使用说明
+## 功能使用说明
 
 ##### 创建分层脚本
 ```
@@ -161,7 +165,7 @@ php artisan serve
         - Formatter 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
 
 
-#### Todo
+## Todo
 
 增加多进程方案使用说明
 
