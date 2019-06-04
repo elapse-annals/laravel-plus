@@ -181,10 +181,6 @@ php artisan serve
 
 
 
-扩展  php-redis 配置
-
-
-
 简化介绍，完善 wiki
 
         
