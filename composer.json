@@ -19,6 +19,7 @@
         "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.0",
+        "php-amqplib/php-amqplib": "^2.9",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.1",
         "react/child-process": "^0.6.1",

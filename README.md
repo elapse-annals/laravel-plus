@@ -185,10 +185,6 @@ php artisan serve
 
 
 
-增加 redis 集群查询接口（/ demo 中可满足
-
-增加 mq 扩展
-
 简化介绍，完善 wiki
 
         
