@@ -162,15 +162,15 @@ php artisan serve
  - 增加默认图片存储目录（storage/app/public/images)
  - 扩展结构分层 [想法来源](https://learnku.com/articles/19452?order_by=created_at&)
     - 系统分层
-        - Controller 控制器层
+        - Controllers 控制器层
     - 主要分层
-        - Service 业务服务层
-        - Repository 数据仓库层
-        - Model 模型层（通过模型创建）
+        - Services 业务服务层
+        - Repositories Repository 数据仓库层
+        - Models 模型层（无需创建，默认通过模型工具创建）
     - 扩展分层
-        - Presenter 固定业务中控层
-        - Transformer 转化层/筛选层（筛选后在选择输出）
-        - Formatter 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
+        - Presenters 固定业务主持中控层
+        - Transformers 转化层/筛选层（筛选后在选择输出）
+        - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
 
 
 ## Todo

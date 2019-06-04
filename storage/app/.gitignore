@@ -1,4 +1,4 @@
-*
 !public/
 !tmpl/
+!tmpl/framework
 !.gitignore
