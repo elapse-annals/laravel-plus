@@ -1,6 +1,6 @@
 [English](./README-EN.md) | 中文
 
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><span align="center">Plus</span> </p>
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">Plus</b> </p>
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D5.8-red.svg)
@@ -13,7 +13,7 @@
 <a href="https://beerpay.io/ElapseAnnals/LaravelPlus"><img src="https://beerpay.io/ElapseAnnals/LaravelPlus/make-wish.svg?style=flat" /></a>
 
 ## 介绍
-[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加一部分软件包初始安装和进行实际业务使用功能调整
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，为创建一个开箱即用的应用
 
 
 
