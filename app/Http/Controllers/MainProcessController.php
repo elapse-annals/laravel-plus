@@ -85,7 +85,7 @@ class MainProcessController extends Controller
     {
         $chunk_data = collect($data)->chunk($this->process_number);
         for ($i = 0; $i < $this->process_number; $i++) {
-            $temp_child_process_key = $this->child_process_key . $i;
+            $temp_child_process_key = $this->getChildProcessKey($i);
             Redis::set($temp_child_process_key, $chunk_data[$i]);
         }
     }
@@ -97,7 +97,7 @@ class MainProcessController extends Controller
     {
         $loop = Factory::create();
         for ($i = 0; $i < $this->process_number; $i++) {
-            $temp_child_process_key = $this->child_process_key . $i;
+            $temp_child_process_key = $this->getChildProcessKey($i);
             $temp_cmd = "php artisan process:child {$temp_child_process_key} >> {$this->process_log_path}";
             $$temp_child_process_key = new Process($temp_cmd);
             $$temp_child_process_key->start($loop);
@@ -107,4 +107,14 @@ class MainProcessController extends Controller
         }
         $loop->run();
     }
+
+    /**
+     * @param $i
+     *
+     * @return string
+     */
+    private function getChildProcessKey($i): string
+    {
+        return $this->business_name . '_' . $this->child_process_key . $i;
+}
 }
