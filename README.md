@@ -141,12 +141,12 @@ php artisan serve
         - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
     - develop     开发环境
-      - [reliese/laravel](https://github.com/reliese/laravel)         模型 code 代码生成包
-      - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具包
-      - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 帮助包    
-      - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志包
+      - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
+      - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
+      - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具    
+      - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
-      - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具（可移除）
+      - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可移除）
   
 -  增加前端资源
     - element-ui 样式框架（可选方案 iview）
@@ -166,6 +166,7 @@ php artisan serve
     - 主要分层
         - Service 业务服务层
         - Repository 数据仓库层
+        - Model 模型层（通过模型创建）
     - 扩展分层
         - Presenter 固定业务中控层
         - Transformer 转化层/筛选层（筛选后在选择输出）
