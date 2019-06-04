@@ -8,25 +8,55 @@ use React\EventLoop\Factory;
 use React\ChildProcess\Process;
 
 
+/**
+ * Class MainProcessController
+ *
+ * @package App\Http\Controllers
+ */
 class MainProcessController extends Controller
 {
+    /**
+     * @var string
+     */
     private $global_mark;
+    /**
+     * @var string
+     */
     private $process_log_path;
+    /**
+     * @var int
+     */
     private $process_number = 1;
+    /**
+     * @var
+     */
+    private $business_name;
+    /**
+     * @var string
+     */
     private $child_process_key = 'child_process_';
 
-    public function __construct()
+    /**
+     * MainProcessController constructor.
+     */
+    public function __construct($business_name)
     {
         parent::__construct();
         $this->global_mark = md5(microtime()) . '_';
         $this->process_log_path = __DIR__ . '/../../../storage/process_error.log';
+        $this->business_name = $business_name;
     }
 
+    /**
+     *
+     */
     public function handle()
     {
         Log::info($this->global_mark . 'main_process_act');
-        $data = [];
-        if (empty($data) || ! is_array($data)) {
+        // Run main app business, get data
+        $mainProcessClass = "\App\Http\Controllers\{$this->business_name}Action";
+        $data = (new $mainProcessClass())->getData();
+        if (empty($data) || !is_array($data)) {
             Log::error('invalid data');
             die();
         }
@@ -38,6 +68,9 @@ class MainProcessController extends Controller
         Log::info($this->global_mark . 'main_process_end');
     }
 
+    /**
+     * @param $data_count
+     */
     private function correctionProcessNumber($data_count)
     {
         if ($data_count < $this->process_number) {
@@ -45,6 +78,9 @@ class MainProcessController extends Controller
         }
     }
 
+    /**
+     * @param $data
+     */
     private function chunkChildProcessData($data)
     {
         $chunk_data = collect($data)->chunk($this->process_number);
@@ -54,6 +90,9 @@ class MainProcessController extends Controller
         }
     }
 
+    /**
+     *
+     */
     public function produceChildProcess()
     {
         $loop = Factory::create();

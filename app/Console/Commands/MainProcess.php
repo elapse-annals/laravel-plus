@@ -12,7 +12,8 @@ class MainProcess extends Command
      *
      * @var string
      */
-    protected $signature = 'process:main';
+    protected $signature = 'process:main
+                            {business_name: run business name}';
 
     /**
      * The console command description.
@@ -38,6 +39,10 @@ class MainProcess extends Command
      */
     public function handle()
     {
-        (new MainProcessController())->handle();
+        $business_name = $this->argument('business_name');
+        if (empty($business_name)) {
+            die('invalid business_name');
+        }
+        (new MainProcessController($business_name))->handle();
     }
 }

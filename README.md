@@ -175,8 +175,6 @@ php artisan serve
 
 引入 Es 引入
 
-
-
 扩展  php-redis 配置
 
 增加 controller 资源类型处理
