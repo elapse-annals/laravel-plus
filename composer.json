@@ -16,12 +16,14 @@
         "infyomlabs/laravel-generator": "5.8.x-dev",
         "infyomlabs/swagger-generator": "dev-master",
         "laravel/framework": "5.8.*",
+        "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.0",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.1",
         "react/react": "^0.4.2",
-        "respect/validation": "^1.1"
+        "respect/validation": "^1.1",
+        "tamayo/laravel-scout-elastic": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

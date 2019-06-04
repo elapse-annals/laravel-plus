@@ -171,21 +171,21 @@ php artisan serve
 
 ## Todo
 
-增加多进程方案使用说明
+增加 controller 资源类型处理
 
 引入 Es 引入
+    laravel/scout
+        tamayo/laravel-scout-elastic
 
 扩展  php-redis 配置
-
-增加 controller 资源类型处理
 
 增加业务同步/异步（api/mq）模式
 
 增加 redis 集群查询接口（/ demo 中可满足
 
-处理路由多文件
+增加 mq 扩展
 
-处理 mq 异步监听
+增加 mq 异步监听
 
 
 
