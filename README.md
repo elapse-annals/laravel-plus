@@ -134,19 +134,21 @@ php artisan serve
     - production  生产
         - [respect/validation](https://github.com/Respect/Validation) 验证包
         - [react/react](https://github.com/reactphp/react) ReactPHP 多进程异步扩展（可以移除）
+        - laravel/scout tamayo/laravel-scout-elastic 引入 Es 引入
+        - elastic/elasticsearch-php (可选)
+        - rap2hpoutre/laravel-log-viewer 日志展示 [访问 host/logs] 
+        - predis/predis Redis 插件（建议使用 php-redis 方式）
     - develop     开发
       - [reliese/laravel](https://github.com/reliese/laravel)         模型 code 代码生成包
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具包
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 帮助包    
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志包
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
-      - rap2hpoutre/laravel-log-viewer 日志展示 [访问 host/logs] 
-      - predis/predis Redis 插件（建议使用 php-redis 方式
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具（可移除）
   
 -  增加前端资源
     - element-ui 样式框架
-        - iview 样式框架（可选方案）
+    - iview 样式框架（可选方案）
   
  - 增加热切换配置（config/dynamic）
    -  production 生产环境 
@@ -173,9 +175,7 @@ php artisan serve
 
 增加 controller 资源类型处理
 
-引入 Es 引入
-    laravel/scout
-        tamayo/laravel-scout-elastic
+
 
 扩展  php-redis 配置
 
