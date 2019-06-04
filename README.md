@@ -131,14 +131,16 @@ php artisan serve
 ### [改动内容](https://github.com/ElapseAnnals/LaravelPlus/wiki/3.-%E6%94%B9%E5%8A%A8%E5%86%85%E5%AE%B9)
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
 - 增加默认加载软件包
-    - production  生产
+    - production  生产环境
         - [respect/validation](https://github.com/Respect/Validation) 验证包
         - [react/react](https://github.com/reactphp/react) ReactPHP 多进程异步扩展（可以移除）
-        - laravel/scout tamayo/laravel-scout-elastic 引入 Es 引入
-        - elastic/elasticsearch-php (可选)
-        - rap2hpoutre/laravel-log-viewer 日志展示 [访问 host/logs] 
-        - predis/predis Redis 插件（建议使用 php-redis 方式）
-    - develop     开发
+        - 引入 ElasticSearch For scout
+            - [laravel/scout](https://github.com/laravel/scout) 
+            - [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)
+        - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (可选)
+        - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
+        - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
+    - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型 code 代码生成包
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具包
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 帮助包    
@@ -147,15 +149,14 @@ php artisan serve
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     代码生成工具（可移除）
   
 -  增加前端资源
-    - element-ui 样式框架
-    - iview 样式框架（可选方案）
+    - element-ui 样式框架（可选方案 iview）
   
  - 增加热切换配置（config/dynamic）
-   -  production 生产环境 
-        -  simulation 仿真环境
-   -  develop 开发/测试环境 
-        -  test 测试环境
+   -  production 生产环境
+   -  develop 开发环境 
         -  local 本地环境
+        -  test 测试环境
+        -  simulation 仿真环境
    
    
  - 增加默认图片存储目录（storage/app/public/images)
