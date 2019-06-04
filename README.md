@@ -180,13 +180,15 @@ php artisan serve
 
 扩展  php-redis 配置
 
-增加业务同步/异步（api/mq）模式
+
 
 增加 redis 集群查询接口（/ demo 中可满足
 
 增加 mq 扩展
 
-增加 mq 异步监听
+
+
+简化介绍，完善 wiki
 
 
 
