@@ -24,7 +24,8 @@
         "react/child-process": "^0.6.1",
         "react/event-loop": "^1.1",
         "respect/validation": "^1.1",
-        "tamayo/laravel-scout-elastic": "^5.0"
+        "tamayo/laravel-scout-elastic": "^5.0",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^8.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
