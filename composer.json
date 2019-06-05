@@ -19,11 +19,14 @@
         "laravel/scout": "^7.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.0",
+        "php-amqplib/php-amqplib": "^2.9",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.1",
-        "react/react": "^0.4.2",
+        "react/child-process": "^0.6.1",
+        "react/event-loop": "^1.1",
         "respect/validation": "^1.1",
-        "tamayo/laravel-scout-elastic": "^5.0"
+        "tamayo/laravel-scout-elastic": "^5.0",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^8.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

@@ -137,7 +137,9 @@ php artisan serve
         - 引入 ElasticSearch For scout
             - [laravel/scout](https://github.com/laravel/scout) 
             - [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)
-        - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (可选)
+             - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (可选)
+        - rabbitMQ 扩展
+            - vladimir-yuldashev/laravel-queue-rabbitmq          - php-amqplib/php-amqplib 原生（可选）
         - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
     - develop     开发环境
@@ -179,18 +181,6 @@ php artisan serve
 
 
 
-扩展  php-redis 配置
-
-
-
-增加 redis 集群查询接口（/ demo 中可满足
-
-增加 mq 扩展
-
-
-
 简化介绍，完善 wiki
-
-
 
         
