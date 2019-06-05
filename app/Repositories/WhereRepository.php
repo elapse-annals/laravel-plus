@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Repositories;
 
 use App\Services\TypeService;
 

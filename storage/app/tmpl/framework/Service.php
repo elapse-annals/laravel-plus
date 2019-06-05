@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Respositories\TestRepository;
+use App\Repositories\TestRepository;
 
 /**
  * Class TestService
