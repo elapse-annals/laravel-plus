@@ -177,7 +177,6 @@ return [
 
         // add pack
 
-        // InfyOmGenerator
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
