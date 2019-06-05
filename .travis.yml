@@ -18,7 +18,7 @@ before_script:
   - cp .env.travis .env
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus ;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - php artisan migrate
 
-script: phpunit
+script: vendor/bin/phpunit
