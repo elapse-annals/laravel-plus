@@ -3,11 +3,11 @@
 namespace App\Repositories;
 
 /**
- * Class TestRepository
+ * Class TempRepository
  *
  * @package App\Presenters
  */
-class TestRepository extends Repository
+class TempRepository extends Repository
 {
 
 }

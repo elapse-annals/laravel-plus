@@ -77,7 +77,7 @@ class FrameworkController extends Controller
         [$framework_name, $file_path] = $this->init($framework, $framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework}.php");
-        $body = str_replace('Test', $framework_name, $body);
+        $body = str_replace('Temp', $framework_name, $body);
         $filename = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
         if (! is_file($filename)) {
             file_put_contents($filename, $body);

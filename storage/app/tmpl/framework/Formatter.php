@@ -3,11 +3,11 @@
 namespace App\Formatters;
 
 /**
- * Class TestFormatter
+ * Class TempFormatter
  *
  * @package App\Formatters
  */
-class TestFormatter extends Formatter
+class TempFormatter extends Formatter
 {
 
 }

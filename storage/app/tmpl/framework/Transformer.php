@@ -3,11 +3,11 @@
 namespace App\Transformers;
 
 /**
- * Class TestTransformer
+ * Class TempTransformer
  *
  * @package App\Transformers
  */
-class TestTransformer extends Transformer
+class TempTransformer extends Transformer
 {
 
 }

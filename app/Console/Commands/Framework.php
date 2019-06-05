@@ -19,6 +19,8 @@ class Framework extends Command
                             {--basis : only basis framework}
                             {--delete : delete framework}
                             {--D : delete framework}
+                            {--non-auto :non auto mapping model}
+                            {--non-map :non auto mapping model}
                             ';
 
     /**
@@ -59,9 +61,7 @@ class Framework extends Command
     public function handle()
     {
         $framework_name = $this->argument('framework_name');
-        $basis = $this->option('basis');
-        $is_delete = $this->option('delete');
-        $is_delete or $is_delete = $this->option('D');
+        list($basis, $is_delete) = $this->initOption();
         $frameworks = $this->frameworks;
         if (true === $basis) {
             $frameworks = $this->base_frameworks;
@@ -77,5 +77,18 @@ class Framework extends Command
             $msg = 'delete ';
         }
         $this->info(PHP_EOL . $msg . 'framework success');
+    }
+
+    /**
+     * @return array
+     */
+    private function initOption(): array
+    {
+        $basis = $this->option('basis');
+        $is_delete = $this->option('delete');
+        $is_delete or $is_delete = $this->option('D');
+        $is_non_auto = $this->option('non-auto');
+        $is_non_auto or $is_non_auto = $this->option('non-map');
+        return array($basis, $is_delete);
     }
 }

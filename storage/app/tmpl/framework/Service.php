@@ -2,27 +2,27 @@
 
 namespace App\Services;
 
-use App\Repositories\TestRepository;
+use App\Repositories\TempRepository;
 
 /**
- * Class TestService
+ * Class TempService
  *
  * @package App\Services
  */
-class TestService extends Service
+class TempService extends Service
 {
     /**
-     * @var TestRepository
+     * @var TempRepository
      */
     protected $repository;
 
     /**
-     * TestService constructor.
+     * TempService constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new TestRepository();
+        $this->repository = new TempRepository();
     }
 
 }
