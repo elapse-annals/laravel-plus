@@ -1,7 +1,17 @@
 language: php
 
-php:
-  - 7.1
+matrix:
+  fast_finish: true
+  include:
+  - php: 7.1
+  - php: 7.1
+    env: SETUP=lowest
+  - php: 7.2
+  - php: 7.2
+    env: SETUP=lowest
+  - php: 7.3
+  - php: 7.3
+    env: SETUP=lowest
 
 cache:
   directories:
