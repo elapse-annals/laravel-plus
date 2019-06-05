@@ -4,14 +4,6 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
-    - php: 7.1
-      env: SETUP=lowest
-    - php: 7.2
-    - php: 7.2
-      env: SETUP=lowest
-    - php: 7.3
-    - php: 7.3
-      env: SETUP=lowest
 
 cache:
   directories:
@@ -27,8 +19,8 @@ before_script:
   - composer dump-autoload
   - cp .env.travis .env
   - php artisan key:generate
-  - php artisan vendor:publish
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS jokes ;'
+  - php artisan vendor:publish --tag=0
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus ;'
   - php artisan migrate
 
 script: phpunit
