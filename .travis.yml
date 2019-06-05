@@ -1,14 +1,34 @@
 language: php
-php:
-- 7.1
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.1
+    - php: 7.1
+      env: SETUP=lowest
+    - php: 7.2
+    - php: 7.2
+      env: SETUP=lowest
+    - php: 7.3
+    - php: 7.3
+      env: SETUP=lowest
+
+cache:
+  directories:
+  - $HOME/.composer/cache
+
 service:
-- mysql
+  - memcached
+  - redis-server
+  - mysql
+
 before_script:
-- composer install
-- composer dump-autoload
-- cp .env.travis .env
-- php artisan key:generate
-- php artisan vendor:publish
-- mysql -e 'CREATE DATABASE IF NOT EXISTS jokes ;'
-- php artisan migrate
+  - composer install
+  - composer dump-autoload
+  - cp .env.travis .env
+  - php artisan key:generate
+  - php artisan vendor:publish
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS jokes ;'
+  - php artisan migrate
+
 script: phpunit
