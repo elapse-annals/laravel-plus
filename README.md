@@ -10,7 +10,6 @@
 <img class="latest_unstable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/unstable">
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
-<a href="https://beerpay.io/ElapseAnnals/LaravelPlus"><img src="https://beerpay.io/ElapseAnnals/LaravelPlus/make-wish.svg?style=flat" /></a>
 
 ## 介绍
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，为创建一个开箱即用的应用
