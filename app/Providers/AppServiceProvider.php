@@ -27,5 +27,38 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        if (env('ENABLE_HOT_SWITCHING') && true === env('ENABLE_HOT_SWITCHING')) {
+            $this->initDynamicConfig();
+        }
+    }
+
+    private function initDynamicConfig(): void
+    {
+        $app_env = env('APP_ENV');
+        $config_arr = [];
+        $dynamic_is_strict = env('DYNAMIC_IS_STRICT');
+        switch ($app_env) {
+            case 'local':
+            case 'test':
+            case 'simulation':
+            case 'develop':
+                $env_conf = config("dynamic.{$app_env}");
+                $develop_conf = [];
+                if (false === $dynamic_is_strict) {
+                    $develop_conf = config("dynamic.develop");
+                }
+                $config_arr['dynamic'] = (array)array_merge((array)$develop_conf, (array)$env_conf);
+                config($config_arr);
+                break;
+            case 'production':
+                $env_conf = config("dynamic.{$app_env}");
+                $production_conf = [];
+                if (false === $dynamic_is_strict) {
+                    $production_conf = config("dynamic.production");
+                }
+                $config_arr['dynamic'] = (array)array_merge((array)$production_conf, (array)$env_conf);
+                config($config_arr);
+                break;
+        }
     }
 }
