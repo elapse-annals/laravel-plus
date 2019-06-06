@@ -14,6 +14,7 @@ class FrameworkController extends Controller
     /**
      * @param $framework
      * @param $framework_name
+     *
      * @return array
      */
     public function init($framework, $framework_name): array
@@ -42,6 +43,7 @@ class FrameworkController extends Controller
      * @param $framework
      * @param $framework_name
      * @param $is_delete
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle($framework, $framework_name, $is_delete)
@@ -60,9 +62,13 @@ class FrameworkController extends Controller
     public function delete($framework, $framework_name)
     {
         [$framework_name, $file_path] = $this->init($framework, $framework_name);
-        $file = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
+        $file = app_path("{$file_path}/{$framework_name}{$framework}.php");
         if (file_exists($file)) {
             unlink($file);
+        }
+        if ('Controller' === $framework) {
+            $new_directory = base_path("resources/views/{$framework_name}");
+            exec("rm -rf {$new_directory}");
         }
         usleep(300000);
     }
@@ -70,6 +76,7 @@ class FrameworkController extends Controller
     /**
      * @param $framework
      * @param $framework_name
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function create($framework, $framework_name): void
@@ -78,9 +85,14 @@ class FrameworkController extends Controller
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework}.php");
         $body = str_replace('Temp', $framework_name, $body);
-        $filename = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
-        if (! is_file($filename)) {
-            file_put_contents($filename, $body);
+        $file = app_path("{$file_path}/{$framework_name}{$framework}.php");
+        if (!is_file($file)) {
+            file_put_contents($file, $body);
+        }
+        if ('Controller' === $framework) {
+            $old_directory = storage_path("app/tmpl/views");
+            $new_directory = base_path("resources/views/{$framework_name}");
+            exec("cp -r {$old_directory} {$new_directory}");
         }
         usleep(300000);
     }

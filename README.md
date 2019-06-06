@@ -66,6 +66,12 @@ Tips:
 ## 功能使用说明
 
 ##### 创建分层脚本
+
+引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度略慢本项目）
+```php
+composer require php-tool/laravel-plus-make
+```
+或直接使用本项目内容
 ```
  php artisan make:framework Test  // 创建分层结构
  php artisan make:framework Test --basis  // 创建系统分层和主要分层结构（Controller, Service, Repository）
@@ -143,6 +149,8 @@ php artisan serve
             - vladimir-yuldashev/laravel-queue-rabbitmq          - php-amqplib/php-amqplib 原生（可选）
         - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
+        - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包（可单独引用）
+        - [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) Http 请求包
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
