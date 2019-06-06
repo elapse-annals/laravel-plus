@@ -72,9 +72,9 @@ class Framework extends Command
             $bar->advance();
         }
         $bar->finish();
-        $msg = 'create ';
+        $msg = 'create';
         if ($is_delete) {
-            $msg = 'delete ';
+            $msg = 'delete';
         }
         $this->info(PHP_EOL . " {$msg} framework \e[31m{$framework_name}\e[0m \e[32msuccess");
     }
