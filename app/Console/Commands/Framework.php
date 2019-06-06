@@ -76,7 +76,7 @@ class Framework extends Command
         if ($is_delete) {
             $msg = 'delete ';
         }
-        $this->info(PHP_EOL . $msg . 'framework success');
+        $this->info(PHP_EOL . " {$msg} framework \e[31m{$framework_name}\e[0m \e[32msuccess");
     }
 
     /**
