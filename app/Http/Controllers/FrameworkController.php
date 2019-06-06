@@ -60,7 +60,7 @@ class FrameworkController extends Controller
     public function delete($framework, $framework_name)
     {
         [$framework_name, $file_path] = $this->init($framework, $framework_name);
-        $file = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
+        $file = app_path("{$file_path}/{$framework_name}{$framework}.php");
         if (file_exists($file)) {
             unlink($file);
         }
@@ -78,9 +78,9 @@ class FrameworkController extends Controller
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework}.php");
         $body = str_replace('Temp', $framework_name, $body);
-        $filename = __DIR__ . "/../../{$file_path}/{$framework_name}{$framework}.php";
-        if (! is_file($filename)) {
-            file_put_contents($filename, $body);
+        $file = app_path("{$file_path}/{$framework_name}{$framework}.php");
+        if (! is_file($file)) {
+            file_put_contents($file, $body);
         }
         usleep(300000);
     }
