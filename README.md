@@ -54,6 +54,8 @@ cd YourProject //  进入 YourProject 项目中
 composer install   // 更新软件包 （请先已安装 composer ）
 php artisan key:generate    // 更新 key
 
+php artisan vendor:publish // 发布扩展包的资源
+php artisan migrate  // 迁移
 php artisan storage:link // 图片资源软连接映射【非必须】
 ```
 Tips:
@@ -147,7 +149,7 @@ php artisan serve
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具    
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
-      - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可移除）
+      - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可选）
   
 -  增加前端资源
     - element-ui 样式框架（可选方案 iview）
