@@ -67,7 +67,7 @@ class FrameworkController extends Controller
             unlink($file);
         }
         if ('Controller' === $framework) {
-            $new_directory = resources_path("views/{$framework_name}");
+            $new_directory = base_path("resources/views/{$framework_name}");
             exec("rm -rf {$new_directory}");
         }
         usleep(300000);
@@ -91,7 +91,7 @@ class FrameworkController extends Controller
         }
         if ('Controller' === $framework) {
             $old_directory = storage_path("app/tmpl/views");
-            $new_directory = resources_path("views/{$framework_name}");
+            $new_directory = base_path("resources/views/{$framework_name}");
             exec("cp -r {$old_directory} {$new_directory}");
         }
         usleep(300000);
