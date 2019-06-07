@@ -151,6 +151,7 @@ php artisan serve
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
         - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包（可单独引用）
         - [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) Http 请求包
+        - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       - [doctrine/dbal] 
