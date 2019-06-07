@@ -1,4 +1,4 @@
-@extends('temp.layout')
+@extends('temp._layout')
 
 @section('content')
     @parent
