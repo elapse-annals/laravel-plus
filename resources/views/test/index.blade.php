@@ -1,9 +1,18 @@
 @extends('test._layout')
 
 @section('content')
-    @include('test._search')
-    @include('test._table')
-    @include('test._page')
+    <div class="search">
+        @include('test._search')
+    </div>
+    <div class="stripe">
+        @include('test._stripe')
+    </div>
+    <div class="table">
+        @include('test._table')
+    </div>
+    <div class="page">
+        @include('test._page')
+    </div>
 @endsection
 
 @section('script')
@@ -12,6 +21,7 @@
         var mixin = {
             data: {
                 'data': js_data.data,
+                'table_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
             },

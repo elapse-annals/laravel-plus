@@ -22,9 +22,5 @@
                 <el-option label="@lang('form.drop_down_box_key',['key'=>2])" value="beijing"></el-option>
             </el-select>
         </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="onSubmit">查询</el-button>
-            <el-button @click="resetForm('search')">重置</el-button>
-        </el-form-item>
     </div>
 </el-form>

@@ -1,10 +1,10 @@
 <!doctype html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('test._head')
 </head>
 <body>
-<div id="app" class="container">
+<div id="app" class="container v-cloak">
     <header class="row">
         @include('test._header')
     </header>

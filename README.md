@@ -184,13 +184,13 @@ php artisan serve
         - Presenters 固定业务主持中控层
         - Transformers 转化层/筛选层（筛选后在选择输出）
         - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
-
+- 增加 redis 多语言配置
 
 ## Todo
 
 增加 controller 资源类型处理
 
-增加多语言库，增加 redis 语言读取
+增加多语言库，
 
 
 简化介绍，完善 wiki

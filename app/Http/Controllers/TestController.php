@@ -39,15 +39,37 @@ class TestController extends Controller
     {
         $this->service->index();
         $view_data = [
-            'info'    => [
+            'info'       => [
                 'description' => 'xxx',
                 'author'      => 'Ben',
                 'title'       => 'index title',
             ],
-            'js_data' => [
-                'data' => [],
+            'js_data'    => [
+                'data' => [
+                    [
+                        'id'   => 1,
+                        'name' => 'ben',
+                        'sex'  => 'man',
+                    ], [
+                        'id'   => 2,
+                        'name' => 'test',
+                        'sex'  => 'woman',
+                    ],
+                ],
                 'page' => [
                     "current_page" => 1,
+                ],
+            ],
+            'table_data' => [
+                [
+                    'prop'  => 'id',
+                    'label' => 'ID',
+                ], [
+                    'prop'  => 'name',
+                    'label' => '名字',
+                ], [
+                    'prop'  => 'sex',
+                    'label' => '性别',
                 ],
             ],
         ];
