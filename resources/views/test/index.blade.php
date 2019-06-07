@@ -1,8 +1,8 @@
 @extends('test._layout')
 
 @section('content')
-    @parent
-    <p>index page</p>
+    @include('test._search')
+    @include('test._table')
     @include('test._page')
 @endsection
 
@@ -21,7 +21,18 @@
                 },
                 handleCurrentChange(val) {
                     console.log(`当前页: ${val}`);
-                }
+                },
+                onSubmit() {
+                    console.log(this.search);
+                },
+                resetForm(formName) {
+                    if (this.$refs[formName] !== undefined) {
+                        this.$refs[formName].resetFields();
+                    } else {
+                        console.log(this)
+                        this.search = {};
+                    }
+                },
             }
         }
     </script>

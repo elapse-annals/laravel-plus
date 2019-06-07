@@ -190,6 +190,7 @@ php artisan serve
 
 增加 controller 资源类型处理
 
+增加多语言库，增加 redis 语言读取
 
 
 简化介绍，完善 wiki

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,8 +28,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        if (env('ENABLE_HOT_SWITCHING') && true === env('ENABLE_HOT_SWITCHING')) {
+        if (true === env('ENABLE_HOT_SWITCHING')) {
             $this->initDynamicConfig();
+        }
+        if (true === env('LANG_REDIS_CONFIGURE')) {
+            $locale = app()->getLocale();
+            $lang_configure = Redis::get('LANG_' . $locale);
+            app('translator')->addLines($lang_configure, $locale);
         }
     }
 
