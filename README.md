@@ -190,8 +190,9 @@ php artisan serve
 
 增加 controller 资源类型处理
 
-增加多语言库，
+增加多语言数据库，和迁移
 
+增加动态视图模式和静态视图模式（渲染后生成 view）
 
 简化介绍，完善 wiki
 
