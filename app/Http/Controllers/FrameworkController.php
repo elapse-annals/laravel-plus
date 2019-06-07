@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use mysql_xdevapi\Exception;
 
 /**
  * Class FrameworkController
@@ -12,88 +13,137 @@ use Illuminate\Support\Facades\Storage;
 class FrameworkController extends Controller
 {
     /**
-     * @param $framework
-     * @param $framework_name
-     *
-     * @return array
+     * @var
      */
-    public function init($framework, $framework_name): array
+    private $file;
+    /**
+     * @var string
+     */
+    private $framework_name;
+    /**
+     * @var
+     */
+    private $file_path;
+
+    /**
+     * FrameworkController constructor.
+     *
+     * @param $framework_name
+     */
+    public function __construct($framework_name)
     {
-        $framework_name = ucfirst($framework_name);
-        switch ($framework) {
+        parent::__construct();
+        $this->framework_name = ucfirst($framework_name);
+    }
+
+    /**
+     * @param $framework_file_type
+     * @param $framework_name
+     */
+    public function init($framework_file_type, $framework_name): void
+    {
+        switch ($framework_file_type) {
             case 'Controller':
-                $file_path = 'Http/Controllers';
+                $this->file_path = 'Http/Controllers';
                 break;
             case 'Repository':
-                $file_path = 'Repositories';
+                $this->file_path = 'Repositories';
                 break;
             case 'Service':
             case 'Presenter':
             case 'Transformer':
             case 'Formatter':
-                $file_path = $framework . 's';
+                $this->file_path = $framework_file_type . 's';
                 break;
         }
-        return [$framework_name, $file_path];
     }
 
-    //
-
     /**
-     * @param $framework
-     * @param $framework_name
+     * @param $framework_file_type
      * @param $is_delete
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function handle($framework, $framework_name, $is_delete)
+    public function handle($framework_file_type, $is_delete)
     {
+        $this->init($framework_file_type, $this->framework_name);
+        $this->file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if ($is_delete) {
-            $this->delete($framework, $framework_name);
+            $this->delete($framework_file_type);
         } else {
-            $this->create($framework, $framework_name);
+            $this->checkFileExistence($framework_file_type);
+            $this->create($framework_file_type);
         }
     }
 
     /**
-     * @param $framework
-     * @param $framework_name
+     *
      */
-    public function delete($framework, $framework_name)
+    private function checkFileExistence($framework_file_type)
     {
-        [$framework_name, $file_path] = $this->init($framework, $framework_name);
-        $file = app_path("{$file_path}/{$framework_name}{$framework}.php");
+        if (is_file($this->file)) {
+            throw new \Exception("{$this->framework_name}{$framework_file_type}.php existing!");
+        }
+    }
+
+    /**
+     * @param $framework_file_type
+     */
+    public function delete($framework_file_type)
+    {
+        $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if (file_exists($file)) {
             unlink($file);
         }
-        if ('Controller' === $framework) {
-            $new_directory = base_path("resources/views/{$framework_name}");
+        if ('Controller' === $framework_file_type) {
+            $new_directory = base_path("resources/views/{$this->framework_name}");
             exec("rm -rf {$new_directory}");
+            $this->deleteRoute();
+        }
+        usleep(300000);
+    }
+
+    private function deleteRoute()
+    {
+        $route_web_path = base_path('routes/web.php');
+        $framework_name_low = strtolower($this->framework_name);
+        $route_string = "Route::resource('{$framework_name_low}', '{$this->framework_name}Controller');";
+        $file_get_contents = file_get_contents($route_web_path);
+        $file_get_contents = str_replace($route_string, '', $file_get_contents);
+        file_put_contents($route_web_path, $file_get_contents);
+    }
+
+    /**
+     * @param $framework_file_type
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function create($framework_file_type): void
+    {
+        $Storage = Storage::disk('local');
+        $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
+        $body = str_replace('Temp', $this->framework_name, $body);
+        $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
+        if (! is_file($file)) {
+            file_put_contents($file, $body);
+        }
+        if ('Controller' === $framework_file_type) {
+            $old_directory = storage_path("app/tmpl/views");
+            $new_directory = base_path("resources/views/{$this->framework_name}");
+            exec("cp -r {$old_directory} {$new_directory}");
+            $this->insertRoute($this->framework_name);
         }
         usleep(300000);
     }
 
     /**
-     * @param $framework
-     * @param $framework_name
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function create($framework, $framework_name): void
+    private function insertRoute(): void
     {
-        [$framework_name, $file_path] = $this->init($framework, $framework_name);
-        $Storage = Storage::disk('local');
-        $body = $Storage->get("tmpl/framework/{$framework}.php");
-        $body = str_replace('Temp', $framework_name, $body);
-        $file = app_path("{$file_path}/{$framework_name}{$framework}.php");
-        if (!is_file($file)) {
-            file_put_contents($file, $body);
-        }
-        if ('Controller' === $framework) {
-            $old_directory = storage_path("app/tmpl/views");
-            $new_directory = base_path("resources/views/{$framework_name}");
-            exec("cp -r {$old_directory} {$new_directory}");
-        }
-        usleep(300000);
+        $route_web_path = base_path('routes/web.php');
+        $framework_name_low = strtolower($this->framework_name);
+        $route_string = "Route::resource('{$framework_name_low}', '{$this->framework_name}Controller');";
+        file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
 }
