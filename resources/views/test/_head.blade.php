@@ -9,7 +9,7 @@
 <!-- load bootstrap from a cdn -->
 <link rel="stylesheet" href="{{asset('css/app.css')}}">
 <style>
-    .search, .stripe, .page {
+    .search, .stripe, .page, .detail {
         width: 100%;
     }
 

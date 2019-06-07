@@ -20,7 +20,6 @@
         var js_data = @json($js_data);
         var mixin = {
             data: {
-                'data': js_data.data,
                 'table_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
