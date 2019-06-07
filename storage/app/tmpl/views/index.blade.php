@@ -1,9 +1,18 @@
-@extends('test._layout')
+@extends('temp._layout')
 
 @section('content')
-    @parent
-    <p>index page</p>
-    @include('test._page')
+    <div class="search">
+        @include('temp._search')
+    </div>
+    <div class="stripe">
+        @include('temp._stripe')
+    </div>
+    <div class="table">
+        @include('temp._table')
+    </div>
+    <div class="page">
+        @include('temp._page')
+    </div>
 @endsection
 
 @section('script')
@@ -12,6 +21,7 @@
         var mixin = {
             data: {
                 'data': js_data.data,
+                'table_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
             },
@@ -21,7 +31,18 @@
                 },
                 handleCurrentChange(val) {
                     console.log(`当前页: ${val}`);
-                }
+                },
+                onSubmit() {
+                    console.log(this.search);
+                },
+                resetForm(formName) {
+                    if (this.$refs[formName] !== undefined) {
+                        this.$refs[formName].resetFields();
+                    } else {
+                        console.log(this)
+                        this.search = {};
+                    }
+                },
             }
         }
     </script>

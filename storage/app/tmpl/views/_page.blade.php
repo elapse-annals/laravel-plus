@@ -1,6 +1,5 @@
 <template>
     <div class="block">
-        <span class="demonstration">完整功能</span>
         <el-pagination
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
