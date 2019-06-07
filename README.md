@@ -153,6 +153,7 @@ php artisan serve
         - [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) Http 请求包
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
+      - [doctrine/dbal] 
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具    
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具

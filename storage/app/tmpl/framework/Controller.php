@@ -31,45 +31,45 @@ class TempController extends Controller
     /**
      *
      */
-    public function handle(): void
+    public function handle()
     {
     }
 
-    public function index(): void
+    public function index()
     {
         $this->service->index();
         return view('temp.index');
     }
 
-    public function store(Request $request): void
+    public function store(Request $request)
     {
         $this->service->store();
     }
 
-    public function create(): void
+    public function create()
     {
         $this->service->create();
         return view('temp.create');
     }
 
-    public function show($id): void
+    public function show($id)
     {
         $this->service->show($id);
         return view('temp.show');
     }
 
-    public function update(Request $request, $id): void
+    public function update(Request $request, $id)
     {
         $this->service->update();
 
     }
 
-    public function destroy($id): void
+    public function destroy($id)
     {
         $this->service->destroy($id);
     }
 
-    public function edit($id): void
+    public function edit($id)
     {
         $this->service->edit($id);
         return view('temp.edit');

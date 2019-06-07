@@ -99,7 +99,7 @@ class FrameworkController extends Controller
             exec("rm -rf {$new_directory}");
             $this->deleteRoute();
         }
-        usleep(300000);
+        usleep(100000);
     }
 
     private function deleteRoute()
@@ -122,17 +122,28 @@ class FrameworkController extends Controller
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
         $body = str_replace('Temp', $this->framework_name, $body);
+        $framework_name_low = strtolower($this->framework_name);
+        $body = str_replace('temp', $framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if (! is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
-            $old_directory = storage_path("app/tmpl/views");
-            $new_directory = base_path("resources/views/{$this->framework_name}");
-            exec("cp -r {$old_directory} {$new_directory}");
+            $tmpl_resources_directory = storage_path("app/tmpl/views");
+            $resources_directory = base_path("resources/views/{$framework_name_low}");
+            exec("cp -r {$tmpl_resources_directory} {$resources_directory}");
             $this->insertRoute($this->framework_name);
+            $framework_view_files = scandir($resources_directory);
+            foreach ($framework_view_files as $framework_view_file) {
+                if (! in_array($framework_view_file, ['.', '..'])) {
+                    $route_web_path = $resources_directory . '/' . $framework_view_file;
+                    $file_get_contents = file_get_contents($route_web_path);
+                    $file_get_contents = str_replace('temp', $framework_name_low, $file_get_contents);
+                    file_put_contents($route_web_path, $file_get_contents);
+                }
+            }
         }
-        usleep(300000);
+        usleep(100000);
     }
 
     /**
