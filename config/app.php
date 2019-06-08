@@ -176,11 +176,10 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // add other pack
-
         Overtrue\LaravelLang\TranslationServiceProvider::class,
 
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
 
         // Elastic Search
         Laravel\Scout\ScoutServiceProvider::class,

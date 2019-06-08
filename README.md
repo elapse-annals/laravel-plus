@@ -156,7 +156,8 @@ php artisan serve
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       - [doctrine/dbal] 
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
-      - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具    
+      - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
+            ```php artisan ide-helper:generate``` 
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可选）
