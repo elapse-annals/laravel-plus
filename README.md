@@ -65,7 +65,7 @@ Tips:
 
 ## 功能使用说明
 
-##### 创建分层脚本
+##### 创建分层脚本和[资源映射](https://learnku.com/docs/laravel/5.8/controllers/1296#resource-controllers)
 
 引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度略慢本项目）
 ```php
@@ -190,6 +190,7 @@ php artisan serve
 ## Todo
 
 增加 controller 资源类型处理
+https://learnku.com/docs/laravel/5.8/controllers/1296#resource-controllers
 
 增加多语言数据库，和迁移
 

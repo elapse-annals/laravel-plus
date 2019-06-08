@@ -164,12 +164,12 @@ class TestController extends Controller
     {
         $this->service->edit($id);
         $view_data = [
-            'info'       => [
+            'info'        => [
                 'description' => 'xxx',
                 'author'      => 'Ben',
                 'title'       => 'index title',
             ],
-            'js_data'    => [
+            'js_data'     => [
                 'data' => [
                     [
                         'id'   => 1,
@@ -185,17 +185,10 @@ class TestController extends Controller
                     "current_page" => 1,
                 ],
             ],
-            'table_data' => [
-                [
-                    'prop'  => 'id',
-                    'label' => 'ID',
-                ], [
-                    'prop'  => 'name',
-                    'label' => '名字',
-                ], [
-                    'prop'  => 'sex',
-                    'label' => '性别',
-                ],
+            'detail_data' => [
+                'id',
+                'name',
+                'sex',
             ],
         ];
         return view('test.edit', $view_data);

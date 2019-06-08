@@ -38,7 +38,42 @@ class TempController extends Controller
     public function index()
     {
         $this->service->index();
-        return view('temp.index');
+        $view_data = [
+            'info'       => [
+                'description' => 'xxx',
+                'author'      => 'Ben',
+                'title'       => 'index title',
+            ],
+            'js_data'    => [
+                'data' => [
+                    [
+                        'id'   => 1,
+                        'name' => 'ben',
+                        'sex'  => 'man',
+                    ], [
+                        'id'   => 2,
+                        'name' => 'Temp',
+                        'sex'  => 'woman',
+                    ],
+                ],
+                'page' => [
+                    "current_page" => 1,
+                ],
+            ],
+            'table_data' => [
+                [
+                    'prop'  => 'id',
+                    'label' => 'ID',
+                ], [
+                    'prop'  => 'name',
+                    'label' => '名字',
+                ], [
+                    'prop'  => 'sex',
+                    'label' => '性别',
+                ],
+            ],
+        ];
+        return view('temp.index', $view_data);
     }
 
     public function store(Request $request)
@@ -49,13 +84,69 @@ class TempController extends Controller
     public function create()
     {
         $this->service->create();
-        return view('temp.create');
+        $view_data = [
+            'info'       => [
+                'description' => 'xxx',
+                'author'      => 'Ben',
+                'title'       => 'index title',
+            ],
+            'js_data'    => [
+                'data' => [
+                    [
+                        'id'   => 1,
+                        'name' => 'ben',
+                        'sex'  => 'man',
+                    ], [
+                        'id'   => 2,
+                        'name' => 'Temp',
+                        'sex'  => 'woman',
+                    ],
+                ],
+                'page' => [
+                    "current_page" => 1,
+                ],
+            ],
+            'detail_data' => [
+                'id',
+                'name',
+                'sex',
+            ],
+        ];
+        return view('temp.create', $view_data);
     }
 
     public function show($id)
     {
         $this->service->show($id);
-        return view('temp.show');
+        $view_data = [
+            'info'        => [
+                'description' => 'xxx',
+                'author'      => 'Ben',
+                'title'       => 'index title',
+            ],
+            'js_data'     => [
+                'data' => [
+                    [
+                        'id'   => 1,
+                        'name' => 'ben',
+                        'sex'  => 'man',
+                    ], [
+                        'id'   => 2,
+                        'name' => 'Temp',
+                        'sex'  => 'woman',
+                    ],
+                ],
+                'page' => [
+                    "current_page" => 1,
+                ],
+            ],
+            'detail_data' => [
+                'id',
+                'name',
+                'sex',
+            ],
+        ];
+        return view('temp.show', $view_data);
     }
 
     public function update(Request $request, $id)
@@ -72,6 +163,34 @@ class TempController extends Controller
     public function edit($id)
     {
         $this->service->edit($id);
-        return view('temp.edit');
+        $view_data = [
+            'info'        => [
+                'description' => 'xxx',
+                'author'      => 'Ben',
+                'title'       => 'index title',
+            ],
+            'js_data'     => [
+                'data' => [
+                    [
+                        'id'   => 1,
+                        'name' => 'ben',
+                        'sex'  => 'man',
+                    ], [
+                        'id'   => 2,
+                        'name' => 'Temp',
+                        'sex'  => 'woman',
+                    ],
+                ],
+                'page' => [
+                    "current_page" => 1,
+                ],
+            ],
+            'detail_data' => [
+                'id',
+                'name',
+                'sex',
+            ],
+        ];
+        return view('temp.edit', $view_data);
     }
 }
