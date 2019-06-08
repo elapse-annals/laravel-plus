@@ -104,7 +104,7 @@ Tips：
 ##### 缓存清理
 - php artisan optimize:clear     // (慎用）
     - php artisan view:clear
-    - php artisan cache:clear    // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存)
+    - php artisan cache:clear    // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存[file/db/redis 等])
     - php artisan route:cache
     - php artisan config:clear
     - php artisan clear-compiled    // 清理编译
@@ -117,6 +117,13 @@ Tips：
 - php artisan view:cache  // 视图缓存
 - composer dump-autoload --optimize //
 - 开启 OpCache
+    ```php
+        $ sudo vim /etc/php/7.2/fpm/php.ini
+        // set opcache.enable=1 ...
+        $ sudo service php5.6-fpm restart
+        $ sudo service nginx restart
+    ```
+
 
 
 ##### 前端样式构建

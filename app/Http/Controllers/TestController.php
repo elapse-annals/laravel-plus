@@ -6,6 +6,7 @@ use App\Services\TestService;
 use App\Presenters\TestPresenter;
 use App\Transformers\TestTransformer;
 use App\Formatters\TestFormatter;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Class TestController
@@ -42,7 +43,7 @@ class TestController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->service = new TestService();
+        $this->service = new TestService(Request::all());
         if ($this->enable_transformer) {
             $this->transformer = new TestTransformer();
             $this->formatter = new TestFormatter();
@@ -197,7 +198,7 @@ class TestController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->transformer_functions)) {
+        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
             $this->transformer->index(
                 $this->formatter->index()
             );
@@ -211,7 +212,7 @@ class TestController extends Controller
      * @param Request $request
      * @param         $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $this->service->update();
     }
