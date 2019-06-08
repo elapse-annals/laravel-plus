@@ -19,3 +19,5 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
 
+
+Route::resource('temp', 'TempController');
