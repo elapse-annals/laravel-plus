@@ -12,12 +12,16 @@
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
 ## 介绍
-[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，为创建一个开箱即用的应用
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用
 
-
+## 目的
+为了减少重复 CURD 和新项目的配置麻烦等问题，如：
+* 现有的 infyomlabs/laravel-generator CODE 生成工具虽然好用，但是不太喜欢样式和代码结构。
+* 有些本地，测试，线上的配置需要频繁改动的需要。
+* 多个项目构建引入包，配置扩展等重复性操作
 
 ## 版本基础
-待完成 Todo List 后,版本考虑于 Laravel 版本一致
+待完成 Todo List 后,考虑与 Laravel 中版本号一致
 
 当前版本基于 
 
@@ -27,36 +31,45 @@
 
 ## 文档
 
-Please see [Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git) 
+具体 [Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git)  （待完善）
 
 ## 项目使用
 
+#### 1.下载项目
 ```php
-// 下载项目
-git clone https://github.com/ElapseAnnals/LaravelPlus.git   
-或
-composer create-project elapse-annals/laravel-plus
-mv laravel-plus  LaravelPlus
+// 1. github （推荐）
+$ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
 
-复制项目方案：
-    1.当前目录运行复制脚本(推荐)
-    php LaravelPlus/create YourProject
-    
-    2.复制项目至自身项目
-        cd LaravelPlus
-        rm composer.lock
-        rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/ LaravelPlus/* YourProject               // */         
-        cd YourProject
-        rm composer.lock .env .travis
-        cp .env.example .env   
+// 或
 
-cd YourProject //  进入 YourProject 项目中
-composer install   // 更新软件包 （请先已安装 composer ）
-php artisan key:generate    // 更新 key
+// 2. composer
+$ composer create-project elapse-annals/laravel-plus
+$ mv laravel-plus  LaravelPlus
+```
+ #### 2.复制项目
+```php
+//  1.在当前目录运行自动复制脚本 (推荐)
+$ php LaravelPlus/create YourProject
 
-php artisan vendor:publish // 发布扩展包的资源
-php artisan migrate  // 迁移
-php artisan storage:link // 图片资源软连接映射【非必须】
+// 或
+ 
+//  2.在当前目录手动复制项目至自身项目
+$ cd LaravelPlus
+$ rm composer.lock
+$ rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/ LaravelPlus/* YourProject             
+					//  为消除对称  */         
+$ cd YourProject
+$ rm composer.lock .env .travis
+$ cp .env.example .env   
+```
+#### 3.项目初始化
+```php
+$ cd YourProject //  进入 YourProject 项目中
+$ composer install   // 更新软件包 （请先已安装 composer ）
+$ php artisan key:generate    // 更新 key
+$ php artisan vendor:publish // 发布扩展包的资源
+$ php artisan migrate  // 迁移
+$ php artisan storage:link // 图片资源软连接映射【非必须】
 ```
 Tips:
 1. 兼容 laravel-plus 目录名
@@ -65,26 +78,36 @@ Tips:
 
 ## 功能使用说明
 
-##### 创建分层脚本和[资源映射](https://learnku.com/docs/laravel/5.8/controllers/1296#resource-controllers)
+##### 创建分层脚本和[资源映射:想法来源](https://learnku.com/docs/laravel/5.8/controllers/1296#resource-controllers)
 
-引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度略慢本项目）
+framework 脚本创建内容：
+- Controller, Service, Repository 等文件和对应关联关系
+- Route 资源路由增加
+- Controller 中资源类型代码和模型数据处理（开发中）
+
+
+直接使用本项目内容（推荐）
+```
+ $ php artisan make:framework Test  // 创建分层结构（推荐）
+ $ php artisan make:framework Test --basis  // 创建系统分层和主要分层结构（Controller, Service, Repository）
+ $ php artisan make:framework Test --D // 删除分层结构 
+```
+
+或引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度略慢本项目）
 ```php
-composer require php-tool/laravel-plus-make
-```
-或直接使用本项目内容
-```
- php artisan make:framework Test  // 创建分层结构
- php artisan make:framework Test --basis  // 创建系统分层和主要分层结构（Controller, Service, Repository）
- php artisan make:framework Test --D // 删除分层结构 
+$ composer require php-tool/laravel-plus-make
 ```
 
 ##### 热切换配置使用（config/dynamic/）
-```php
-config('dynamic.env')
+在 .env 中设置 ENABLE_HOT_SWITCHING=true 后，会在   AppServiceProvider 进行 dynamic 映射（对性能有一定影响，慎用）
 
+使用方式:
+```php
+<?php
+$env = config('dynamic.env');
 ```
 dynamic 目录文件说明
-   -  production 生产环境 (必须配置)
+ -  production 生产环境 (必须配置)
  -  develop 开发环境 (必须配置，以下配置继承 develop 配置)
     -  test 测试环境
     -  local 本地环境
@@ -104,24 +127,25 @@ Tips：
 ##### 缓存清理
 - php artisan optimize:clear     // (慎用）
     - php artisan view:clear
-    - php artisan cache:clear    // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存[file/db/redis 等])
+    - php artisan cache:clear    // 应用程序缓存清理(慎用- 会清理 config.cache 中启用缓存(file/db/redis 等))
     - php artisan route:cache
     - php artisan config:clear
     - php artisan clear-compiled    // 清理编译
  php artisan debug:clear
 
 ## 性能优化（只建议生产环境使用）
-- php artisan optimize // 类映射加载优化（高版本自动缓存 config/route）
+- php artisan optimize // 类映射加载优化（该命令会自动缓存 config/route）
     - php artisan config:cache  // 配置缓存
     - php artisan route:cache   // 路由
 - php artisan view:cache  // 视图缓存
 - composer dump-autoload --optimize //
 - 开启 OpCache
     ```php
-        $ sudo vim /etc/php/7.2/fpm/php.ini
-        // set opcache.enable=1 ...
-        $ sudo service php5.6-fpm restart
-        $ sudo service nginx restart
+    $ sudo vim /etc/php/7.2/fpm/php.ini
+    // set opcache.enable=1
+    // ...
+    $ sudo service php5.6-fpm restart
+    $ sudo service nginx restart
     ```
 
 
@@ -131,7 +155,7 @@ Tips：
  ```php
 npm run dev    // 本地开发,开启 debug 模式
 
-npm run prod    // 线上部署,进行压缩
+npm run prod    // 线上部署（进行压缩资源）
 
 npm run watch   // 监视编译（开发时启用）
 ```
@@ -175,16 +199,9 @@ php artisan serve
   
 -  增加前端资源
     - element-ui 样式框架（可选方案 iview）
-  
- - 增加热切换配置（config/dynamic）
-   -  production 生产环境
-   -  develop 开发环境 
-        -  local 本地环境
-        -  test 测试环境
-        -  simulation 仿真环境
-   
    
  - 增加默认图片存储目录（storage/app/public/images)
+ 
  - 扩展结构分层 [想法来源](https://learnku.com/articles/19452?order_by=created_at&)
     - 系统分层
         - Controllers 控制器层
@@ -196,9 +213,9 @@ php artisan serve
         - Presenters 固定业务主持中控层
         - Transformers 转化层/筛选层（筛选后在选择输出）
         - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
-- 增加 redis 多语言配置
+- 增加 redis 多语言配置读取
 
-## Todo
+## 待办
 
 完善资源功能
 
