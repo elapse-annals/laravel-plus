@@ -99,6 +99,10 @@ framework 脚本创建内容：
 $ composer require php-tool/laravel-plus-make
 ```
 
+Tips:
+- 注意文件被其它服务占用问题，可进行重启尝试
+    （Failed to clear cache. Make sure you have the appropriate permissions.）
+
 ##### 热切换配置使用（config/dynamic/）
 在 .env 中设置 ENABLE_HOT_SWITCHING=true 后，会在   AppServiceProvider 进行 dynamic 映射（对性能有一定影响，慎用）
 
