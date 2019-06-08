@@ -19,9 +19,22 @@ class TestController extends Controller
      */
     protected $service;
     /**
+     * @var TestTransformer
+     */
+    protected $transformer;
+    /**
+     * @var TestFormatter
+     */
+    protected $formatter;
+
+    /**
+     * @var bool
+     */
+    private $enable_transformer = false;
+    /**
      * @var array
      */
-    private $enable_transformers = ['index' , 'show', 'edit'];
+    private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
      * TestController constructor.
@@ -30,6 +43,10 @@ class TestController extends Controller
     {
         parent::__construct();
         $this->service = new TestService();
+        if ($this->enable_transformer) {
+            $this->transformer = new TestTransformer();
+            $this->formatter = new TestFormatter();
+        }
     }
 
     /**
@@ -82,9 +99,9 @@ class TestController extends Controller
                 ],
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('test.index', $view_data);
@@ -134,9 +151,9 @@ class TestController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('test.create', $view_data);
@@ -180,9 +197,9 @@ class TestController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if (in_array('index', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('test.show', $view_data);
@@ -247,9 +264,9 @@ class TestController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if ($this->enable_transformer && in_array('edit', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('test.edit', $view_data);
