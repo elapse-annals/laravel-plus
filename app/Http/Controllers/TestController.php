@@ -18,6 +18,10 @@ class TestController extends Controller
      * @var TestService
      */
     protected $service;
+    /**
+     * @var array
+     */
+    private $enable_transformers = ['index' , 'show', 'edit'];
 
     /**
      * TestController constructor.
@@ -35,6 +39,11 @@ class TestController extends Controller
     {
     }
 
+    /**
+     * show list view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $this->service->index();
@@ -73,24 +82,37 @@ class TestController extends Controller
                 ],
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('test.index', $view_data);
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $this->service->store();
     }
 
+    /**
+     * create view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $this->service->create();
         $view_data = [
-            'info'       => [
+            'info'        => [
                 'description' => 'xxx',
                 'author'      => 'Ben',
                 'title'       => 'index title',
             ],
-            'js_data'    => [
+            'js_data'     => [
                 'data' => [
                     [
                         'id'   => 1,
@@ -112,9 +134,21 @@ class TestController extends Controller
                 'sex',
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('test.create', $view_data);
     }
 
+    /**
+     * show one view
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $this->service->show($id);
@@ -146,20 +180,42 @@ class TestController extends Controller
                 'sex',
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('test.show', $view_data);
     }
 
+    /**
+     * update one
+     *
+     * @param Request $request
+     * @param         $id
+     */
     public function update(Request $request, $id)
     {
         $this->service->update();
-
     }
 
+    /**
+     * delete one
+     *
+     * @param $id
+     */
     public function destroy($id)
     {
         $this->service->destroy($id);
     }
 
+    /**
+     * update one view
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $this->service->edit($id);
@@ -191,6 +247,11 @@ class TestController extends Controller
                 'sex',
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('test.edit', $view_data);
     }
 }

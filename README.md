@@ -17,7 +17,7 @@
 
 
 ## 版本基础
-待完成 Todo List 后自身文档版本考虑于 Laravel 版本一致
+待完成 Todo List 后,版本考虑于 Laravel 版本一致
 
 当前版本基于 
 

@@ -18,6 +18,10 @@ class TempController extends Controller
      * @var TempService
      */
     protected $service;
+    /**
+     * @var array
+     */
+    private $enable_transformers = ['index', 'store', 'create', 'show', 'update', 'destroy', 'edit'];
 
     /**
      * TempController constructor.
@@ -35,6 +39,9 @@ class TempController extends Controller
     {
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $this->service->index();
@@ -73,24 +80,35 @@ class TempController extends Controller
                 ],
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('temp.index', $view_data);
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $this->service->store();
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $this->service->create();
         $view_data = [
-            'info'       => [
+            'info'        => [
                 'description' => 'xxx',
                 'author'      => 'Ben',
                 'title'       => 'index title',
             ],
-            'js_data'    => [
+            'js_data'     => [
                 'data' => [
                     [
                         'id'   => 1,
@@ -112,9 +130,19 @@ class TempController extends Controller
                 'sex',
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('temp.create', $view_data);
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $this->service->show($id);
@@ -146,20 +174,38 @@ class TempController extends Controller
                 'sex',
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('temp.show', $view_data);
     }
 
+    /**
+     * @param Request $request
+     * @param         $id
+     */
     public function update(Request $request, $id)
     {
         $this->service->update();
-
     }
 
+    /**
+     * DELETE
+     *
+     * @param $id
+     */
     public function destroy($id)
     {
         $this->service->destroy($id);
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $this->service->edit($id);
@@ -191,6 +237,11 @@ class TempController extends Controller
                 'sex',
             ],
         ];
+        if (in_array('index', $this->enable_transformers)) {
+            $this->Transformers->index(
+                $this->Formatters->index()
+            );
+        }
         return view('temp.edit', $view_data);
     }
 }
