@@ -110,12 +110,13 @@ Tips：
     - php artisan clear-compiled    // 清理编译
  php artisan debug:clear
 
-##### 性能优化（只建议生产环境使用）
-- php artisan optimize
-    - php artisan config:cache
-    - php artisan route:cache
-- php artisan view:cache
-- composer dumpautoload
+## 性能优化（只建议生产环境使用）
+- php artisan optimize // 类映射加载优化（高版本自动缓存 config/route）
+    - php artisan config:cache  // 配置缓存
+    - php artisan route:cache   // 路由
+- php artisan view:cache  // 视图缓存
+- composer dump-autoload --optimize //
+- 开启 OpCache
 
 
 ##### 前端样式构建
