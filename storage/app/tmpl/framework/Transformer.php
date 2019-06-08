@@ -9,5 +9,18 @@ namespace App\Transformers;
  */
 class TempTransformer extends Transformer
 {
+    public function index()
+    {
 
+    }
+
+    public function show()
+    {
+
+    }
+
+    public function edit()
+    {
+
+    }
 }

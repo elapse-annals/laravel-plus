@@ -19,9 +19,22 @@ class TempController extends Controller
      */
     protected $service;
     /**
+     * @var TempTransformer
+     */
+    protected $transformer;
+    /**
+     * @var TempFormatter
+     */
+    protected $formatter;
+
+    /**
+     * @var bool
+     */
+    private $enable_transformer = false;
+    /**
      * @var array
      */
-    private $enable_transformers = ['index', 'store', 'create', 'show', 'update', 'destroy', 'edit'];
+    private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
      * TempController constructor.
@@ -30,6 +43,10 @@ class TempController extends Controller
     {
         parent::__construct();
         $this->service = new TempService();
+        if ($this->enable_transformer) {
+            $this->transformer = new TempTransformer();
+            $this->formatter = new TempFormatter();
+        }
     }
 
     /**
@@ -40,6 +57,8 @@ class TempController extends Controller
     }
 
     /**
+     * show list view
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
@@ -80,9 +99,9 @@ class TempController extends Controller
                 ],
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('temp.index', $view_data);
@@ -97,6 +116,8 @@ class TempController extends Controller
     }
 
     /**
+     * create view
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
@@ -130,15 +151,17 @@ class TempController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('temp.create', $view_data);
     }
 
     /**
+     * show one view
+     *
      * @param $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -174,15 +197,17 @@ class TempController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if (in_array('index', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('temp.show', $view_data);
     }
 
     /**
+     * update one
+     *
      * @param Request $request
      * @param         $id
      */
@@ -192,7 +217,7 @@ class TempController extends Controller
     }
 
     /**
-     * DELETE
+     * delete one
      *
      * @param $id
      */
@@ -202,6 +227,8 @@ class TempController extends Controller
     }
 
     /**
+     * update one view
+     *
      * @param $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -237,9 +264,9 @@ class TempController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->enable_transformers)) {
-            $this->Transformers->index(
-                $this->Formatters->index()
+        if ($this->enable_transformer && in_array('edit', $this->transformer_functions)) {
+            $this->transformer->index(
+                $this->formatter->index()
             );
         }
         return view('temp.edit', $view_data);

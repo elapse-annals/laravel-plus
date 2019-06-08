@@ -154,6 +154,9 @@ php artisan serve
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
+      ```php
+        php artisan code:models --table=tb_name
+      ```
       - [doctrine/dbal] 
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
