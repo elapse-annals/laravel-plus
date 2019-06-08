@@ -39,6 +39,7 @@
 ```php
 // 1. github （推荐）
 $ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
+$ git checkout v5.8.0 // 切换至当前最新稳定版本
 
 // 或
 
