@@ -6,6 +6,7 @@ use App\Services\TempService;
 use App\Presenters\TempPresenter;
 use App\Transformers\TempTransformer;
 use App\Formatters\TempFormatter;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Class TempController
@@ -42,7 +43,7 @@ class TempController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->service = new TempService();
+        $this->service = new TempService(Request::all());
         if ($this->enable_transformer) {
             $this->transformer = new TempTransformer();
             $this->formatter = new TempFormatter();
@@ -197,7 +198,7 @@ class TempController extends Controller
                 'sex',
             ],
         ];
-        if (in_array('index', $this->transformer_functions)) {
+        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
             $this->transformer->index(
                 $this->formatter->index()
             );
@@ -211,7 +212,7 @@ class TempController extends Controller
      * @param Request $request
      * @param         $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $this->service->update();
     }
