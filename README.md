@@ -200,12 +200,11 @@ php artisan serve
 
 ## Todo
 
-增加 controller 资源类型处理
-https://learnku.com/docs/laravel/5.8/controllers/1296#resource-controllers
+完善资源功能
 
 增加多语言数据库，和迁移
 
-增加动态视图模式和静态视图模式（渲染后生成 view）
+增加动态视图模式和静态视图模式切换（渲染后生成 view）
 
 简化介绍，完善 wiki
 
