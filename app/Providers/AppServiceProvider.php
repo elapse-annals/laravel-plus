@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        is mysql version < 5.77
+//        Schema::defaultStringLength(191);
         if (true === env('ENABLE_HOT_SWITCHING')) {
             $this->initDynamicConfig();
         }
