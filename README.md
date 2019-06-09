@@ -175,6 +175,14 @@ npm run watch   // 监视编译（开发时启用）
 php artisan serve
 ```
 
+##### 数据库迁移
+中文配置
+```php
+use Faker\Factory as Factory;
+
+$  $faker = Factory::create('zh_CN');
+```
+
 <hr />
 
 ### [改动内容](https://github.com/ElapseAnnals/LaravelPlus/wiki/3.-%E6%94%B9%E5%8A%A8%E5%86%85%E5%AE%B9)
