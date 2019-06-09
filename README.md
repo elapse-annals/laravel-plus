@@ -49,12 +49,12 @@ $ mv laravel-plus  LaravelPlus
 ```
  #### 2.复制项目
 ```php
-//  1.在当前目录运行自动复制脚本 (推荐)
+//  A.在当前目录运行自动复制脚本 (推荐)
 $ php LaravelPlus/create YourProject
-
-// 或
- 
-//  2.在当前目录手动复制项目至自身项目
+```
+ 或 
+```
+//  B.在当前目录手动复制项目至自身项目
 $ cd LaravelPlus
 $ rm composer.lock
 $ rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/ LaravelPlus/* YourProject             
@@ -98,6 +98,9 @@ framework 脚本创建内容：
 ```php
 $ composer require php-tool/laravel-plus-make
 ```
+
+效果图：
+![image](https://github.com/ElapseAnnals/LaravelPlus/tree/master/storage/app/public/images/readme/frameworrk_index.png)
 
 Tips:
 - 注意文件被其它服务占用问题，可进行重启尝试
