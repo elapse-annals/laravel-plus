@@ -176,7 +176,7 @@ php artisan serve
 ```
 
 ##### 数据库迁移
-中文配置
+设置数据工厂填充中文配置
 ```php
 use Faker\Factory as Factory;
 
