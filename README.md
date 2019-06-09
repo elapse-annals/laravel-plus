@@ -23,6 +23,8 @@
 ## 版本基础
 待完成 Todo List 后,考虑与 Laravel 中版本号一致
 
+当前稳定版本：<img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
+
 当前版本基于 
 
 | PHP     | Laravel |
@@ -37,13 +39,13 @@
 
 #### 1.下载项目
 ```php
-// 1. github （推荐）
+// A. github （推荐）
 $ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
 $ git checkout v5.8.0 // 切换至当前最新稳定版本
-
-// 或
-
-// 2. composer
+```
+或
+```php
+// B. composer
 $ composer create-project elapse-annals/laravel-plus
 $ mv laravel-plus  LaravelPlus
 ```
