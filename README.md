@@ -183,6 +183,7 @@ use Faker\Factory as Factory;
 $  $faker = Factory::create('zh_CN');
 ```
 
+
 <hr />
 
 ### [改动内容](https://github.com/ElapseAnnals/LaravelPlus/wiki/3.-%E6%94%B9%E5%8A%A8%E5%86%85%E5%AE%B9)
@@ -233,6 +234,12 @@ $  $faker = Factory::create('zh_CN');
         - Transformers 转化层/筛选层（筛选后在选择输出）
         - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
 - 增加 redis 多语言配置读取
+- 设置默认 Schema index 长度
+
+    使用 Schema 注意 MySQL 版本低于 5.7.7 需设置默认 index 长度小于 191
+  ```php
+  Schema::defaultStringLength(191);
+  ```
 
 ## 待办
 

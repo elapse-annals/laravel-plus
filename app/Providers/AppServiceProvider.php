@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        is mysql version < 5.77
-//        Schema::defaultStringLength(191);
+// if mysql version < 5.7.7
+        Schema::defaultStringLength(191);
+
         if (true === env('ENABLE_HOT_SWITCHING')) {
             $this->initDynamicConfig();
         }
