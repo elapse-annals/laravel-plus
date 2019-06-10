@@ -143,6 +143,19 @@ Tips：
     - php artisan clear-compiled    // 清理编译
  php artisan debug:clear
 
+##### 本地服务开启
+```php
+php artisan serve
+```
+
+##### 数据库迁移
+设置数据工厂填充中文配置
+```php
+use Faker\Factory as Factory;
+
+$  $faker = Factory::create('zh_CN');
+```
+
 ## 性能优化（只建议生产环境使用）
 - php artisan optimize // 类映射加载优化（该命令会自动缓存 config/route）
     - php artisan config:cache  // 配置缓存
@@ -159,28 +172,28 @@ Tips：
     ```
 
 
-
-##### 前端样式构建
+## 前端处理
+##### 样式构建
 
  ```php
 npm run dev    // 本地开发,开启 debug 模式
-
 npm run prod    // 线上部署（进行压缩资源）
 
 npm run watch   // 监视编译（开发时启用）
 ```
-
-##### 本地服务开启
-```php
-php artisan serve
-```
-
-##### 数据库迁移
-设置数据工厂填充中文配置
-```php
-use Faker\Factory as Factory;
-
-$  $faker = Factory::create('zh_CN');
+##### 模板使用
+使用 mixin 注入 vue 组件
+```html
+<script>
+    var js_data = @json($js_data);
+    var mixin = {
+        data: {
+        },
+        methods: {
+        }
+    }
+</script>
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 ```
 
 
