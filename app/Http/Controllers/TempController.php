@@ -6,7 +6,7 @@ use App\Services\TempService;
 use App\Presenters\TempPresenter;
 use App\Transformers\TempTransformer;
 use App\Formatters\TempFormatter;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 /**
  * Class TempController
@@ -40,10 +40,10 @@ class TempController extends Controller
     /**
      * TempController constructor.
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         parent::__construct();
-        $this->service = new TempService(Request::all());
+        $this->service = new TempService($request);
         if ($this->enable_transformer) {
             $this->transformer = new TempTransformer();
             $this->formatter = new TempFormatter();
@@ -58,29 +58,31 @@ class TempController extends Controller
     }
 
     /**
-     * show list view
+     * api / web return different
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     *
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->service->index();
         $view_data = [
-            'info'       => [
+            'info' => [
                 'description' => 'xxx',
-                'author'      => 'Ben',
-                'title'       => 'index title',
+                'author' => 'Ben',
+                'title' => 'index title',
             ],
-            'js_data'    => [
+            'js_data' => [
                 'data' => [
                     [
-                        'id'   => 1,
+                        'id' => 1,
                         'name' => 'ben',
-                        'sex'  => 'man',
+                        'sex' => 'man',
                     ], [
-                        'id'   => 2,
+                        'id' => 2,
                         'name' => 'Temp',
-                        'sex'  => 'woman',
+                        'sex' => 'woman',
                     ],
                 ],
                 'page' => [
@@ -89,13 +91,13 @@ class TempController extends Controller
             ],
             'table_data' => [
                 [
-                    'prop'  => 'id',
+                    'prop' => 'id',
                     'label' => 'ID',
                 ], [
-                    'prop'  => 'name',
+                    'prop' => 'name',
                     'label' => '名字',
                 ], [
-                    'prop'  => 'sex',
+                    'prop' => 'sex',
                     'label' => '性别',
                 ],
             ],
@@ -104,6 +106,9 @@ class TempController extends Controller
             $this->transformer->index(
                 $this->formatter->index()
             );
+        }
+        if (0 === strpos($request->getRequestUri(), '/api/')) {
+            return $view_data;
         }
         return view('temp.index', $view_data);
     }
@@ -125,21 +130,21 @@ class TempController extends Controller
     {
         $this->service->create();
         $view_data = [
-            'info'        => [
+            'info' => [
                 'description' => 'xxx',
-                'author'      => 'Ben',
-                'title'       => 'index title',
+                'author' => 'Ben',
+                'title' => 'index title',
             ],
-            'js_data'     => [
+            'js_data' => [
                 'data' => [
                     [
-                        'id'   => 1,
+                        'id' => 1,
                         'name' => 'ben',
-                        'sex'  => 'man',
+                        'sex' => 'man',
                     ], [
-                        'id'   => 2,
+                        'id' => 2,
                         'name' => 'Temp',
-                        'sex'  => 'woman',
+                        'sex' => 'woman',
                     ],
                 ],
                 'page' => [
@@ -171,21 +176,21 @@ class TempController extends Controller
     {
         $this->service->show($id);
         $view_data = [
-            'info'        => [
+            'info' => [
                 'description' => 'xxx',
-                'author'      => 'Ben',
-                'title'       => 'index title',
+                'author' => 'Ben',
+                'title' => 'index title',
             ],
-            'js_data'     => [
+            'js_data' => [
                 'data' => [
                     [
-                        'id'   => 1,
+                        'id' => 1,
                         'name' => 'ben',
-                        'sex'  => 'man',
+                        'sex' => 'man',
                     ], [
-                        'id'   => 2,
+                        'id' => 2,
                         'name' => 'Temp',
-                        'sex'  => 'woman',
+                        'sex' => 'woman',
                     ],
                 ],
                 'page' => [
@@ -238,21 +243,21 @@ class TempController extends Controller
     {
         $this->service->edit($id);
         $view_data = [
-            'info'        => [
+            'info' => [
                 'description' => 'xxx',
-                'author'      => 'Ben',
-                'title'       => 'index title',
+                'author' => 'Ben',
+                'title' => 'index title',
             ],
-            'js_data'     => [
+            'js_data' => [
                 'data' => [
                     [
-                        'id'   => 1,
+                        'id' => 1,
                         'name' => 'ben',
-                        'sex'  => 'man',
+                        'sex' => 'man',
                     ], [
-                        'id'   => 2,
+                        'id' => 2,
                         'name' => 'Temp',
-                        'sex'  => 'woman',
+                        'sex' => 'woman',
                     ],
                 ],
                 'page' => [

@@ -12,4 +12,4 @@
 */
 
 Route::middleware('auth:api')->get('/user', 'ClosureController@user');
-Route::apiResource('temp', 'TempController');
+Route::apiResource('temps', 'TempController');
