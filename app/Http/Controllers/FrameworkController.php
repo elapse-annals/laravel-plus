@@ -97,16 +97,30 @@ class FrameworkController extends Controller
         if ('Controller' === $framework_file_type) {
             $new_directory = base_path("resources/views/{$this->framework_name}");
             exec("rm -rf {$new_directory}");
-            $this->deleteRoute();
+            $route_types = ['web', 'api'];
+            foreach ($route_types as $route_type) {
+                $this->deleteRoute($route_type);
+            }
         }
         usleep(100000);
     }
 
-    private function deleteRoute()
+    /**
+     * @param $route_type
+     */
+    private function deleteRoute($route_type): void
     {
-        $route_web_path = base_path('routes/web.php');
+        switch ($route_type) {
+            case 'web':
+                $resource_type = 'resource';
+                break;
+            case 'api':
+                $resource_type = 'apiResource';
+                break;
+        }
+        $route_web_path = base_path("routes/{$route_type}.php");
         $framework_name_low = strtolower($this->framework_name);
-        $route_string = "Route::resource('{$framework_name_low}', '{$this->framework_name}Controller');";
+        $route_string = "Route::{$resource_type}('{$framework_name_low}', '{$this->framework_name}Controller');";
         $file_get_contents = file_get_contents($route_web_path);
         $file_get_contents = str_replace($route_string, '', $file_get_contents);
         file_put_contents($route_web_path, $file_get_contents);
@@ -125,17 +139,20 @@ class FrameworkController extends Controller
         $framework_name_low = strtolower($this->framework_name);
         $body = str_replace('temp', $framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
-        if (! is_file($file)) {
+        if (!is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
             $tmpl_resources_directory = storage_path("app/tmpl/views");
             $resources_directory = base_path("resources/views/{$framework_name_low}");
             exec("cp -r {$tmpl_resources_directory} {$resources_directory}");
-            $this->insertRoute($this->framework_name);
+            $route_types = ['web', 'api'];
+            foreach ($route_types as $route_type) {
+                $this->insertRoute($route_type);
+            }
             $framework_view_files = scandir($resources_directory);
             foreach ($framework_view_files as $framework_view_file) {
-                if (! in_array($framework_view_file, ['.', '..'])) {
+                if (!in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace('temp', $framework_name_low, $file_get_contents);
@@ -149,11 +166,19 @@ class FrameworkController extends Controller
     /**
      *
      */
-    private function insertRoute(): void
+    private function insertRoute($route_type): void
     {
-        $route_web_path = base_path('routes/web.php');
+        switch ($route_type) {
+            case 'web':
+                $resource_type = 'resource';
+                break;
+            case 'api':
+                $resource_type = 'apiResource';
+                break;
+        }
+        $route_web_path = base_path("routes/{$route_type}.php");
         $framework_name_low = strtolower($this->framework_name);
-        $route_string = "Route::resource('{$framework_name_low}', '{$this->framework_name}Controller');";
+        $route_string = "Route::{$resource_type}('{$framework_name_low}', '{$this->framework_name}Controller');";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
 }

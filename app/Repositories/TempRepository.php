@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
+use App\Models\Temp;
 
 /**
  * Class TempRepository
@@ -13,7 +13,7 @@ class TempRepository extends Repository
 {
     public function getList()
     {
-        return User::all();
+        return Temp::all();
     }
 
     /**
@@ -24,7 +24,7 @@ class TempRepository extends Repository
      */
     public function save(int $id, array $save): int
     {
-        return User::find($id)
+        return Temp::find($id)
             ->save($save);
     }
 }
