@@ -73,7 +73,14 @@ $ composer install   // 安装依赖软件包 （请先已安装 composer ）
 $ php artisan key:generate    // 更新 key
 $ php artisan vendor:publish // 发布扩展包的资源
 $ php artisan migrate  // 迁移数据库
-$ php artisan storage:link // 图片资源软连接映射【非必须】
+
+// 以下非必须
+$ php artisan storage:link // 图片资源软连接映射
+$ php artisan clear-compiled // 清理编译
+$ php artisan ide-helper:generate // 生成 ide 辅助提示
+$ php artisan vendor:publish --provider="Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" --tag=config // 加入配置
+$ php artisan ide-helper:meta  // 生成 PHPStorm 辅助提示(重启 PHPStorm)
+$ php artisan ide-helper:models //  生成模型辅助提示
 ```
 Tips:
 1. 兼容 laravel-plus 目录名

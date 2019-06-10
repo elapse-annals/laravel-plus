@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * Class FrameworkController
@@ -119,7 +120,7 @@ class FrameworkController extends Controller
                 break;
         }
         $route_web_path = base_path("routes/{$route_type}.php");
-        $framework_name_low = strtolower($this->framework_name);
+        $framework_name_low = Str::plural(strtolower($this->framework_name));
         $route_string = "Route::{$resource_type}('{$framework_name_low}', '{$this->framework_name}Controller');";
         $file_get_contents = file_get_contents($route_web_path);
         $file_get_contents = str_replace($route_string, '', $file_get_contents);
@@ -177,7 +178,7 @@ class FrameworkController extends Controller
                 break;
         }
         $route_web_path = base_path("routes/{$route_type}.php");
-        $framework_name_low = strtolower($this->framework_name);
+        $framework_name_low = Str::plural(strtolower($this->framework_name));
         $route_string = "Route::{$resource_type}('{$framework_name_low}', '{$this->framework_name}Controller');";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
