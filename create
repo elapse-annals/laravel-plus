@@ -1,0 +1,115 @@
+#!/usr/bin/env php
+<?php
+/**
+ * User: BenHuang
+ * Email: benhuang1024@gmail.com
+ * Date: 2019-01-01
+ * Time: 00:01
+ */
+
+$laravel_plus_basename = basename(__DIR__);
+$remove_excess_files = [
+    'composer.lock',
+    '_config.yml',
+    'create',
+];
+$remove_excess_dirs = [
+];
+
+
+/**
+ *
+ */
+function testProjectStart(): void
+{
+    if (is_file(__DIR__ . ".env")) {
+        die("error: have .env file" . PHP_EOL);
+    }
+}
+
+/**
+ *
+ */
+function checkProjectDirectory(): void
+{
+    global $laravel_plus_basename;
+    if ("LaravelPlus" !== $laravel_plus_basename && "laravel-plus" !== $laravel_plus_basename) {
+        echo "error: Error original project path " . $laravel_plus_basename . PHP_EOL;
+        die;
+    }
+}
+
+/**
+ * @return string
+ */
+function checkRequestVariable(): string
+{
+    global $argv, $laravel_plus_basename;
+    if (empty($argv) || ! isset($argv[1]) || empty($argv[1])) {
+        echo "error: No project name set" . PHP_EOL;
+        echo "eg): php {$laravel_plus_basename}/create YourProject" . PHP_EOL;
+        die;
+    }
+    return $argv[1];
+}
+
+/**
+ *
+ */
+function removeExcessFileInNewProject($product): void
+{
+    global $remove_excess_files, $remove_excess_dirs;
+    foreach ($remove_excess_files as $remove_excess_file) {
+        if (is_file("{$product}/{$remove_excess_file}")) {
+            exec("rm {$product}/{$remove_excess_file}");
+        }
+    }
+    foreach ($remove_excess_dirs as $remove_excess_dir) {
+        if (is_file("{$product}/{$remove_excess_dir}")) {
+            exec("rm -rf {$product}/{$remove_excess_dir}/*");
+        }
+    }
+}
+
+/**
+ * @param string $laravel_plus_basename
+ * @param        $product
+ */
+function copyHideFile(string $laravel_plus_basename, $product): void
+{
+    $hidden_files = [
+        ".env.example",
+        ".gitattributes",
+        ".gitignore",
+    ];
+    foreach ($hidden_files as $hidden_file) {
+        exec("cp {$laravel_plus_basename}/{$hidden_file} {$product}/{$hidden_file}");
+    }
+    exec("cp {$product}/.env.example {$product}/.env");
+}
+
+/**
+ * @param string $laravel_plus_basename
+ */
+function handle(string $laravel_plus_basename)
+{
+    $product = checkRequestVariable();
+    echo "\033[34mLaravelPlus Build \033[31m{$product}\e[0m \e[34mproject\e[0m" . PHP_EOL;
+    usleep(100000);
+    echo 'Loging ...' . PHP_EOL;
+    usleep(100000);
+    testProjectStart();
+    exec("cd {$laravel_plus_basename}");
+    checkProjectDirectory();
+    exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
+    if (! is_dir("{$product}")) {
+        die('Error: cp new project is error' . PHP_EOL);
+    }
+    removeExcessFileInNewProject($product);
+    copyHideFile($laravel_plus_basename, $product);
+    exec("cd {$product}");
+    echo "\033[32mCreate \033[31m{$product}\e[0m \e[32mproject success" . PHP_EOL;
+}
+
+handle($laravel_plus_basename);
+

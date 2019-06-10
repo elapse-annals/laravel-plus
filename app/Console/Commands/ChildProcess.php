@@ -13,6 +13,7 @@ class ChildProcess extends Command
      * @var string
      */
     protected $signature = 'process:child
+                            {business_name: run business name}
                             {child_process_key: child process key}
                             ';
 
@@ -40,10 +41,23 @@ class ChildProcess extends Command
      */
     public function handle()
     {
+        list($business_name, $child_process_key) = $this->inspectArgumentInput();
+        (new ChildProcessController($business_name, $child_process_key))->handle();
+    }
+
+    /**
+     * @return array
+     */
+    private function inspectArgumentInput(): array
+    {
+        $business_name = $this->argument('business_name');
+        if (empty($business_name)) {
+            die('invalid business_name');
+        }
         $child_process_key = $this->argument('child_process_key');
         if (empty($child_process_key)) {
             die('invalid child_process_key');
         }
-        (new ChildProcessController($child_process_key))->handle();
+        return array($business_name, $child_process_key);
     }
 }

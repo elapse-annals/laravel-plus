@@ -14,6 +14,7 @@ class StringController extends Controller
 {
     /**
      * @param Request $request
+     *
      * @return string
      */
     public function plural(Request $request)
