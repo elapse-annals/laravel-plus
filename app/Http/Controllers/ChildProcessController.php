@@ -42,8 +42,9 @@ class ChildProcessController extends Controller
     {
         Log::info($this->child_process_key . ' child process pull up');
         $temp_data = $this->getThisChildProcessData();
+
         //  Run child app business
-        $ChildProcessClass = "\App\Http\Controllers\{$this->business_name}Action";
+        $ChildProcessClass = "\App\Http\Controllers\{$this->business_name}ProcessAction";
         (new $ChildProcessClass())->run($temp_data);
     }
 

@@ -53,9 +53,11 @@ class MainProcessController extends Controller
     public function handle()
     {
         Log::info($this->global_mark . 'main_process_act');
+
         // Run main app business, get data
         $mainProcessClass = "\App\Http\Controllers\{$this->business_name}Action";
         $data = (new $mainProcessClass())->getData();
+
         if (empty($data) || !is_array($data)) {
             Log::error('invalid data');
             die();

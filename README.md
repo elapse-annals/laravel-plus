@@ -19,6 +19,7 @@
 * 现有的 infyomlabs/laravel-generator CODE 生成工具虽然好用，但是不太喜欢样式和代码结构。
 * 有些本地，测试，线上的配置需要频繁改动的需要。
 * 多个项目构建引入包，配置扩展等重复性操作
+* 多进程使用
 
 ## 版本基础
 待完成 Todo List 后,考虑与 Laravel 中版本号一致
@@ -68,10 +69,10 @@ $ cp .env.example .env
 #### 3.项目初始化
 ```php
 $ cd YourProject //  进入 YourProject 项目中
-$ composer install   // 更新软件包 （请先已安装 composer ）
+$ composer install   // 安装依赖软件包 （请先已安装 composer ）
 $ php artisan key:generate    // 更新 key
 $ php artisan vendor:publish // 发布扩展包的资源
-$ php artisan migrate  // 迁移
+$ php artisan migrate  // 迁移数据库
 $ php artisan storage:link // 图片资源软连接映射【非必须】
 ```
 Tips:
@@ -156,6 +157,35 @@ use Faker\Factory as Factory;
 $  $faker = Factory::create('zh_CN');
 ```
 
+##### 多进程使用
+通过 MainProcess 控制 ChildProcess 进程（仅能在 CLI 模式下运行）
+
+定时执行在 Console/Kernel.php 中 schedule 配置
+
+运行流程
+```php
+MainProcess(主进程调度) => MainProcessController（主进程执行任务，拆分子进程） => 
+ChildProcess（子进程调度） => ChildProcessController （子进程任务） =>
+  MainProcessController（接收子进程） => MainProcess（主进程结束）
+```
+业务任务名
+
+$this->business_name 
+
+主进程业务逻辑和数据请求
+```php
+（new \App\Http\Controllers\{$this->business_name}Action())->getData();
+
+（new \App\Http\Controllers\{$this->business_name}Action())->run();
+```
+
+子进程运行业务逻辑
+```php
+(new \App\Http\Controllers\{$this->business_name}ProcessAction()->run();
+``` 
+
+
+
 ## 性能优化（只建议生产环境使用）
 - php artisan optimize // 类映射加载优化（该命令会自动缓存 config/route）
     - php artisan config:cache  // 配置缓存
@@ -173,7 +203,7 @@ $  $faker = Factory::create('zh_CN');
 
 
 ## 前端处理
-##### 样式构建
+##### 资源构建
 
  ```php
 npm run dev    // 本地开发,开启 debug 模式
@@ -263,5 +293,3 @@ npm run watch   // 监视编译（开发时启用）
 增加动态视图模式和静态视图模式切换（渲染后生成 view）
 
 简化介绍，完善 wiki
-
-处理版本
