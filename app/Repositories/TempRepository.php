@@ -11,13 +11,15 @@ use App\Models\Temp;
  */
 class TempRepository extends Repository
 {
+    public $per_page = 10;
+
     public function getList()
     {
-        return Temp::all();
+        return Temp::paginate($this->per_page);
     }
 
     /**
-     * @param int   $id
+     * @param int $id
      * @param array $save
      *
      * @return int
