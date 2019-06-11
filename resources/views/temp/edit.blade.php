@@ -18,14 +18,20 @@
 
 @section('script')
     <script>
+        var js_data = @json($js_data);
         var mixin = {
             data: {
                 'detail_data': {},
-                'is_disabled': false,
+                'is_disabled_edit': false,
+                'form': {}
             },
             methods: {
                 onSubmit() {
                     console.log('submit!');
+                },
+                onCancel() {
+                    // @todo 处理引用传递问题
+                    history.go(0);
                 }
             }
         }

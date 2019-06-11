@@ -140,21 +140,20 @@ class TempController extends Controller
     }
 
     /**
-     * show one view
+     * @param Request $request
+     * @param         $id
      *
-     * @param $id
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
         try {
-            $this->validationShowRequest($request);
-            $temp = $this->service->getIdInfo($request->id);
+            $this->validationShowRequest($id);
+            $temp = $this->service->getIdInfo($id);
             $view_data = [
                 'info'        => $this->getInfo(),
                 'js_data'     => [
-                    'data' => $temp
+                    'detail_data' => $temp,
                 ],
                 'detail_data' => [
                     'id',
@@ -172,12 +171,15 @@ class TempController extends Controller
             }
             return view('temp.show', $view_data);
         } catch (\Exception $exception) {
+            return response($exception->getMessage(), 500);
         }
     }
 
-    private function validationShowRequest($data)
+    private function validationShowRequest($id)
     {
-
+        if (empty($id)) {
+            throw new \Exception(trans('request id is null'));
+        }
     }
 
     /**
@@ -210,24 +212,11 @@ class TempController extends Controller
      */
     public function edit($id)
     {
-        $this->service->edit($id);
+        $temp = $this->service->getIdInfo($id);
         $view_data = [
             'info'        => $this->getInfo(),
             'js_data'     => [
-                'data' => [
-                    [
-                        'id'   => 1,
-                        'name' => 'ben',
-                        'sex'  => 'man',
-                    ], [
-                        'id'   => 2,
-                        'name' => 'Temp',
-                        'sex'  => 'woman',
-                    ],
-                ],
-                'page' => [
-                    "current_page" => 1,
-                ],
+                'detail_data' => $temp,
             ],
             'detail_data' => [
                 'id',
