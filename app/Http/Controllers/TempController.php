@@ -66,51 +66,55 @@ class TempController extends Controller
      */
     public function index(Request $request)
     {
-        $this->service->index();
-        $view_data = [
-            'info' => [
-                'description' => 'xxx',
-                'author' => 'Ben',
-                'title' => 'index title',
-            ],
-            'js_data' => [
-                'data' => [
-                    [
-                        'id' => 1,
-                        'name' => 'ben',
-                        'sex' => 'man',
-                    ], [
-                        'id' => 2,
-                        'name' => 'Temp',
-                        'sex' => 'woman',
+        try {
+
+            $view_data = $this->service->index();
+            $view_data = [
+                'info' => [
+                    'description' => 'xxx',
+                    'author' => 'Ben',
+                    'title' => 'index title',
+                ],
+                'js_data' => [
+                    'data' => [
+                        [
+                            'id' => 1,
+                            'name' => 'ben',
+                            'sex' => 'man',
+                        ], [
+                            'id' => 2,
+                            'name' => 'Temp',
+                            'sex' => 'woman',
+                        ],
+                    ],
+                    'page' => [
+                        "current_page" => 1,
                     ],
                 ],
-                'page' => [
-                    "current_page" => 1,
+                'table_data' => [
+                    [
+                        'prop' => 'id',
+                        'label' => 'ID',
+                    ], [
+                        'prop' => 'name',
+                        'label' => '名字',
+                    ], [
+                        'prop' => 'sex',
+                        'label' => '性别',
+                    ],
                 ],
-            ],
-            'table_data' => [
-                [
-                    'prop' => 'id',
-                    'label' => 'ID',
-                ], [
-                    'prop' => 'name',
-                    'label' => '名字',
-                ], [
-                    'prop' => 'sex',
-                    'label' => '性别',
-                ],
-            ],
-        ];
-        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
-            $this->transformer->index(
-                $this->formatter->index()
-            );
+            ];
+            if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+                $this->transformer->index(
+                    $this->formatter->index()
+                );
+            }
+            if (0 === strpos($request->getRequestUri(), '/api/')) {
+                return $view_data;
+            }
+            return view('temp.index', $view_data);
+        } catch (\Exception $exception) {
         }
-        if (0 === strpos($request->getRequestUri(), '/api/')) {
-            return $view_data;
-        }
-        return view('temp.index', $view_data);
     }
 
     /**
@@ -172,43 +176,55 @@ class TempController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $this->service->show($id);
-        $view_data = [
-            'info' => [
-                'description' => 'xxx',
-                'author' => 'Ben',
-                'title' => 'index title',
-            ],
-            'js_data' => [
-                'data' => [
-                    [
-                        'id' => 1,
-                        'name' => 'ben',
-                        'sex' => 'man',
-                    ], [
-                        'id' => 2,
-                        'name' => 'Temp',
-                        'sex' => 'woman',
+        try {
+            $this->validationShowRequest($request);
+            $this->service->show($request->id);
+            $view_data = [
+                'info' => [
+                    'description' => 'xxx',
+                    'author' => 'Ben',
+                    'title' => 'index title',
+                ],
+                'js_data' => [
+                    'data' => [
+                        [
+                            'id' => 1,
+                            'name' => 'ben',
+                            'sex' => 'man',
+                        ], [
+                            'id' => 2,
+                            'name' => 'Temp',
+                            'sex' => 'woman',
+                        ],
+                    ],
+                    'page' => [
+                        "current_page" => 1,
                     ],
                 ],
-                'page' => [
-                    "current_page" => 1,
+                'detail_data' => [
+                    'id',
+                    'name',
+                    'sex',
                 ],
-            ],
-            'detail_data' => [
-                'id',
-                'name',
-                'sex',
-            ],
-        ];
-        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
-            $this->transformer->index(
-                $this->formatter->index()
-            );
+            ];
+            if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+                $this->transformer->index(
+                    $this->formatter->index()
+                );
+            }
+            if (0 === strpos($request->getRequestUri(), '/api/')) {
+                return $view_data;
+            }
+            return view('temp.show', $view_data);
+        } catch (\Exception $exception) {
         }
-        return view('temp.show', $view_data);
+    }
+
+    private function validationShowRequest($data)
+    {
+
     }
 
     /**

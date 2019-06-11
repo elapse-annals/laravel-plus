@@ -50,7 +50,7 @@ $ git checkout v5.8.0 // 切换至当前最新稳定版本
 $ composer create-project elapse-annals/laravel-plus
 $ mv laravel-plus  LaravelPlus
 ```
- #### 2.复制项目
+ #### 2.创建新项目
 ```php
 //  A.在当前目录运行自动复制脚本 (推荐)
 $ php LaravelPlus/create YourProject
@@ -66,7 +66,7 @@ $ cd YourProject
 $ rm composer.lock .env .travis
 $ cp .env.example .env   
 ```
-#### 3.项目初始化
+#### 3.新项目初始化
 ```php
 $ cd YourProject //  进入 YourProject 项目中
 $ composer install   // 安装依赖软件包 （请先已安装 composer ）
