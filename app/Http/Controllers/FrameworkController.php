@@ -128,16 +128,22 @@ class FrameworkController extends Controller
     }
 
     /**
+     * @todo  抽象替换函数
+     *
      * @param $framework_file_type
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function create($framework_file_type): void
     {
+        $framework_name_plural =  Str::plural($this->framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
+        $body = str_replace('Temps', $framework_name_plural, $body);
         $body = str_replace('Temp', $this->framework_name, $body);
         $framework_name_low = strtolower($this->framework_name);
+        $framework_name_low_plural =  Str::plural($framework_name_low);
+        $body = str_replace('temps', $framework_name_low_plural, $body);
         $body = str_replace('temp', $framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if (!is_file($file)) {
@@ -156,6 +162,7 @@ class FrameworkController extends Controller
                 if (!in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
+                    $file_get_contents = str_replace('temps', $framework_name_low_plural, $file_get_contents);
                     $file_get_contents = str_replace('temp', $framework_name_low, $file_get_contents);
                     file_put_contents($route_web_path, $file_get_contents);
                 }

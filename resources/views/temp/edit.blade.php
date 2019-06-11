@@ -7,7 +7,9 @@
             <div class="operation">
                 <el-button type="primary" @click="onSubmit">修改</el-button>
                 <el-button @click="onCancel">取消</el-button>
-                <el-button @click="onReturn">返回</el-button>
+                <a href="/temps">
+                    <el-button>返回</el-button>
+                </a>
             </div>
         </el-form>
     </div>

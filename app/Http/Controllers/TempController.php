@@ -70,15 +70,15 @@ class TempController extends Controller
             $temps = $this->service->getList();
 
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'       => $this->getInfo(),
+                'js_data'    => [
                     'data' => $temps->items(),
                     'page' => [
                         "current_page" => $temps->currentPage(),
                     ],
                 ],
                 'table_data' => $this->getTableCommentMap(),
-                'temps' => $temps,
+                'temps'      => $temps,
             ];
             if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
                 $this->transformer->index(
@@ -102,7 +102,7 @@ class TempController extends Controller
         $messages = [
             'page' => '分页',
         ];
-//        $this->validate($request, $rules, $messages);
+        //        $this->validate($request, $rules, $messages);
     }
 
     /**
@@ -120,24 +120,10 @@ class TempController extends Controller
      */
     public function create()
     {
-        $this->service->create();
         $view_data = [
-            'info' => $this->getInfo(),
-            'js_data' => [
-                'data' => [
-                    [
-                        'id' => 1,
-                        'name' => 'ben',
-                        'sex' => 'man',
-                    ], [
-                        'id' => 2,
-                        'name' => 'Temp',
-                        'sex' => 'woman',
-                    ],
-                ],
-                'page' => [
-                    "current_page" => 1,
-                ],
+            'info'        => $this->getInfo(),
+            'js_data'     => [
+                'data' => [],
             ],
             'detail_data' => [
                 'id',
@@ -164,24 +150,11 @@ class TempController extends Controller
     {
         try {
             $this->validationShowRequest($request);
-            $this->service->show($request->id);
+            $temp = $this->service->getIdInfo($request->id);
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
-                    'data' => [
-                        [
-                            'id' => 1,
-                            'name' => 'ben',
-                            'sex' => 'man',
-                        ], [
-                            'id' => 2,
-                            'name' => 'Temp',
-                            'sex' => 'woman',
-                        ],
-                    ],
-                    'page' => [
-                        "current_page" => 1,
-                    ],
+                'info'        => $this->getInfo(),
+                'js_data'     => [
+                    'data' => $temp
                 ],
                 'detail_data' => [
                     'id',
@@ -239,17 +212,17 @@ class TempController extends Controller
     {
         $this->service->edit($id);
         $view_data = [
-            'info' => $this->getInfo(),
-            'js_data' => [
+            'info'        => $this->getInfo(),
+            'js_data'     => [
                 'data' => [
                     [
-                        'id' => 1,
+                        'id'   => 1,
                         'name' => 'ben',
-                        'sex' => 'man',
+                        'sex'  => 'man',
                     ], [
-                        'id' => 2,
+                        'id'   => 2,
                         'name' => 'Temp',
-                        'sex' => 'woman',
+                        'sex'  => 'woman',
                     ],
                 ],
                 'page' => [
@@ -277,8 +250,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
@@ -289,13 +262,13 @@ class TempController extends Controller
     {
         return [
             [
-                'prop' => 'id',
+                'prop'  => 'id',
                 'label' => 'ID',
             ], [
-                'prop' => 'name',
+                'prop'  => 'name',
                 'label' => '名字',
             ], [
-                'prop' => 'sex',
+                'prop'  => 'sex',
                 'label' => '性别',
             ],
         ];

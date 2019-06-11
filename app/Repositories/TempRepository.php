@@ -18,8 +18,13 @@ class TempRepository extends Repository
         return Temp::paginate($this->per_page);
     }
 
+    public function find($id)
+    {
+        return Temp::find($id);
+    }
+
     /**
-     * @param int $id
+     * @param int   $id
      * @param array $save
      *
      * @return int
@@ -29,4 +34,6 @@ class TempRepository extends Repository
         return Temp::find($id)
             ->save($save);
     }
+
+
 }

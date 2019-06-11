@@ -42,8 +42,9 @@ class TempService extends Service
     {
     }
 
-    public function show($id)
+    public function getIdInfo($id)
     {
+       return $this->repository->find($id);
     }
 
     public function update()

@@ -42,6 +42,9 @@
                         this.search = {};
                     }
                 },
+                alertThis(temp_this){
+                    console.log(temp_this)
+                }
             }
         }
     </script>

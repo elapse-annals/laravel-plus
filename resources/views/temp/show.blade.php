@@ -5,7 +5,9 @@
         <el-form ref="form" :model="form" label-width="80px">
             @include('temp._detail')
             <div class="operation">
-                <el-button @click="onReturn">返回</el-button>
+                <a href="/temps">
+                    <el-button @click="onReturn">返回</el-button>
+                </a>
             </div>
         </el-form>
     </div>
