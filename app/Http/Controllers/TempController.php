@@ -75,10 +75,11 @@ class TempController extends Controller
                     'data' => $temps->items(),
                     'page' => [
                         "current_page" => $temps->currentPage(),
+                        "sizes" => [10, 50, 100, 300],
+                        "per_page" => $temps->perPage(),
                     ],
                 ],
                 'table_data' => $this->getTableCommentMap(),
-                'temps' => $temps,
             ];
             if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
                 $this->transformer->index(
