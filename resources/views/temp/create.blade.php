@@ -18,7 +18,7 @@
         var mixin = {
             data: {
                 'detail_data': {},
-                'is_disabled': false,
+                'is_disabled_edit': false,
             },
             methods: {
                 onSubmit() {
