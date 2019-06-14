@@ -11,9 +11,16 @@ use App\Models\Temp;
  */
 class TempRepository extends Repository
 {
+    public $per_page = 10;
+
     public function getList()
     {
-        return Temp::all();
+        return Temp::paginate($this->per_page);
+    }
+
+    public function find($id)
+    {
+        return Temp::find($id);
     }
 
     /**
@@ -27,4 +34,6 @@ class TempRepository extends Repository
         return Temp::find($id)
             ->save($save);
     }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Presenters\TempPresenter;
 use App\Repositories\TempRepository;
 
 /**
@@ -21,14 +22,13 @@ class TempService extends Service
     /**
      * TempService constructor.
      */
-    public function __construct($request_data)
+    public function __construct()
     {
         parent::__construct();
-        $this->request_data = $request_data;
         $this->repository = new TempRepository();
     }
 
-    public function index()
+    public function getList()
     {
         return $this->repository
             ->getList();
@@ -42,8 +42,9 @@ class TempService extends Service
     {
     }
 
-    public function show($id)
+    public function getIdInfo($id)
     {
+       return $this->repository->find($id);
     }
 
     public function update()

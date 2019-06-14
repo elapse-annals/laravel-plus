@@ -5,7 +5,9 @@
         <el-form ref="form" :model="form" label-width="80px">
             @include('temp._detail')
             <div class="operation">
-                <el-button @click="onReturn">返回</el-button>
+                <a href="/temps">
+                    <el-button @click="onReturn">返回</el-button>
+                </a>
             </div>
         </el-form>
     </div>
@@ -14,10 +16,11 @@
 
 @section('script')
     <script>
+        var js_data = @json($js_data);
         var mixin = {
             data: {
-                'detail_data': {},
-                'is_disabled': true,
+                'detail_data': js_data.detail_data,
+                'is_disabled_edit': true,
             },
             methods: {
                 onSubmit() {

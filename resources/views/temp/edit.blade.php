@@ -7,7 +7,9 @@
             <div class="operation">
                 <el-button type="primary" @click="onSubmit">修改</el-button>
                 <el-button @click="onCancel">取消</el-button>
-                <el-button @click="onReturn">返回</el-button>
+                <a href="/temps">
+                    <el-button>返回</el-button>
+                </a>
             </div>
         </el-form>
     </div>
@@ -16,14 +18,20 @@
 
 @section('script')
     <script>
+        var js_data = @json($js_data);
         var mixin = {
             data: {
                 'detail_data': {},
-                'is_disabled': false,
+                'is_disabled_edit': false,
+                'form': {}
             },
             methods: {
                 onSubmit() {
                     console.log('submit!');
+                },
+                onCancel() {
+                    // @todo 处理引用传递问题
+                    history.go(0);
                 }
             }
         }
