@@ -200,12 +200,15 @@ phpunit
 
 
 
-dusk （若功夫不足请勿安装）
+dusk 
 ```php
 composer require --dev laravel/dusk
-php artisan dusk:install
+php artisan dusk:install  // 需要网络
 ```
+无网络时解决方案
 
+从 [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
+手动重命名移动至 LaravelPlus/vendor/laravel/dusk/bin/chromedriver-mac
 
 
 ## 性能优化（只建议生产环境使用）
