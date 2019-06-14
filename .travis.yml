@@ -3,19 +3,19 @@ language: php
 matrix:
   fast_finish: true
   include:
-  - php: 7.1
-  - php: 7.1
-    env: SETUP=lowest
-  - php: 7.2
-  - php: 7.2
-    env: SETUP=lowest
-  - php: 7.3
-  - php: 7.3
-    env: SETUP=lowest
+    - php: 7.1
+    - php: 7.1
+      env: SETUP=lowest
+    - php: 7.2
+    - php: 7.2
+      env: SETUP=lowest
+    - php: 7.3
+    - php: 7.3
+      env: SETUP=lowest
 
 cache:
   directories:
-  - $HOME/.composer/cache
+    - $HOME/.composer/cache
 
 service:
   - memcached
@@ -23,12 +23,13 @@ service:
   - mysql
 
 before_script:
+  - cp .env.travis .env
   - composer install
   - composer dump-autoload
-  - cp .env.travis .env
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
   - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - php artisan migrate
 
-script: vendor/bin/phpunit
+script:
+  - vendor/bin/phpunit
