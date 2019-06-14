@@ -195,6 +195,16 @@ $this->business_name
 ```php
 (new \App\Http\Controllers\{$this->business_name}ProcessAction()->run();
 ``` 
+## 测试驱动开发（TDD）
+phpunit
+
+
+
+dusk （若功夫不足请勿安装）
+```php
+composer require --dev laravel/dusk
+php artisan dusk:install
+```
 
 
 
