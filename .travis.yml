@@ -24,6 +24,7 @@ service:
 
 before_script:
   - cp .env.travis .env
+  - composer global require hirak/prestissimo
   - composer install
   - composer dump-autoload
   - php artisan key:generate
