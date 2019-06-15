@@ -211,6 +211,7 @@ php artisan dusk:install  // 需要网络
 手动重命名移动至 LaravelPlus/vendor/laravel/dusk/bin/chromedriver-mac
 
 
+
 ## 性能优化（只建议生产环境使用）
 - php artisan optimize // 类映射加载优化（该命令会自动缓存 config/route）
     - php artisan config:cache  // 配置缓存
