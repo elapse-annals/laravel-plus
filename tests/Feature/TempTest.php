@@ -17,7 +17,7 @@ class TempTest extends TestCase
     {
         $response = $this->get('temps');
         \Log::info('$response', [$response]);
-        $data = ['js_data','info','table_data','js_data.page'];
+        $data = ['js_data', 'info', 'table_data'];
         $response->assertViewHasAll($data);
 
     }
