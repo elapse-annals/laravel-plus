@@ -8,13 +8,5 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TempTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
+
 }
