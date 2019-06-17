@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Services\TempService;
 use App\Transformers\TempTransformer;
@@ -57,18 +58,16 @@ class TempController extends Controller
     }
 
     /**
-     * api / web return different
-     *
      * @param Request $request
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
         try {
-            $this->validationIndexRequest($request);
+            $data = $request->input();
+            $this->validationIndexRequest($data);
             $temps = $this->service->getList();
-
             $view_data = [
                 'info' => $this->getInfo(),
                 'js_data' => [
@@ -90,12 +89,12 @@ class TempController extends Controller
                 return $temps;
             }
             return view('temp.index', $view_data);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
         }
     }
 
-    private function validationIndexRequest(Request $request)
+    private function validationIndexRequest($data)
     {
         $rules = [
             'page' => '',
@@ -108,10 +107,26 @@ class TempController extends Controller
 
     /**
      * @param Request $request
+     *
+     * @return array|void
      */
     public function store(Request $request)
     {
-        $this->service->store();
+        try {
+            $data = $request->input();
+            $this->validateStoreRequest($data);
+            $res = $this->service->store($data);
+            return $res;
+        } catch (Exception $exception) {
+            return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
+        }
+    }
+
+    /**
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    private function validateStoreRequest($data)
+    {
     }
 
     /**
@@ -121,23 +136,27 @@ class TempController extends Controller
      */
     public function create()
     {
-        $view_data = [
-            'info'        => $this->getInfo(),
-            'js_data'     => [
-                'data' => [],
-            ],
-            'detail_data' => [
-                'id',
-                'name',
-                'sex',
-            ],
-        ];
-        if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
-            $this->transformer->index(
-                $this->formatter->index()
-            );
+        try {
+
+            $view_data = [
+                'info' => $this->getInfo(),
+                'js_data' => [
+                    'data' => [],
+                ],
+                'detail_data' => [
+                    'id',
+                    'name',
+                    'sex',
+                ],
+            ];
+            if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+                $this->transformer->index(
+                    $this->formatter->index()
+                );
+            }
+            return view('temp.create', $view_data);
+        } catch (Exception $exception) {
         }
-        return view('temp.create', $view_data);
     }
 
     /**
@@ -152,8 +171,8 @@ class TempController extends Controller
             $this->validationShowRequest($id);
             $temp = $this->service->getIdInfo($id);
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'detail_data' => $temp,
                 ],
                 'detail_data' => [
@@ -171,7 +190,7 @@ class TempController extends Controller
                 return $view_data;
             }
             return view('temp.show', $view_data);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return response($exception->getMessage(), 500);
         }
     }
@@ -179,19 +198,33 @@ class TempController extends Controller
     private function validationShowRequest($id)
     {
         if (empty($id)) {
-            throw new \Exception(trans('request id is null'));
+            throw new Exception(trans('request id is null'));
         }
     }
 
     /**
-     * update one
-     *
      * @param Request $request
-     * @param         $id
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $this->service->update();
+        try {
+            $data = $request->input();
+            $this->validateUpdateRequest($data, $id);
+            $this->service->update($data);
+        } catch (Exception $exception) {
+            return response($exception->getMessage(), 500);
+        }
+    }
+
+    private function validateUpdateRequest($data, $id)
+    {
+        if (empty($id)) {
+            throw new Exception('id is empty');
+        }
+
     }
 
     /**
@@ -201,7 +234,18 @@ class TempController extends Controller
      */
     public function destroy($id)
     {
-        $this->service->destroy($id);
+        try {
+            $this->service->destroy($id);
+        } catch (Exception $exception) {
+
+        }
+    }
+
+    private function validateDestroy($id)
+    {
+        if (empty($id)) {
+            throw new Exception('id is empty');
+        }
     }
 
     /**
@@ -215,8 +259,8 @@ class TempController extends Controller
     {
         $temp = $this->service->getIdInfo($id);
         $view_data = [
-            'info'        => $this->getInfo(),
-            'js_data'     => [
+            'info' => $this->getInfo(),
+            'js_data' => [
                 'detail_data' => $temp,
             ],
             'detail_data' => [
@@ -240,8 +284,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author'      => 'Ben',
-            'title'       => 'index title',
+            'author' => 'Ben',
+            'title' => 'index title',
         ];
     }
 
@@ -252,13 +296,13 @@ class TempController extends Controller
     {
         return [
             [
-                'prop'  => 'id',
+                'prop' => 'id',
                 'label' => 'ID',
             ], [
-                'prop'  => 'name',
+                'prop' => 'name',
                 'label' => '名字',
             ], [
-                'prop'  => 'sex',
+                'prop' => 'sex',
                 'label' => '性别',
             ],
         ];

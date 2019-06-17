@@ -17,6 +17,9 @@ class TempService extends Service
      */
     protected $repository;
 
+    /**
+     * @var
+     */
     private $request_data;
 
     /**
@@ -28,38 +31,59 @@ class TempService extends Service
         $this->repository = new TempRepository();
     }
 
+    /**
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getList()
     {
         return $this->repository
             ->getList();
     }
 
-    public function store(Request $request)
+    /**
+     * @param $data
+     *
+     * @return int
+     */
+    public function store($data)
     {
+        return $this->repository->updateOrCreate($data);
     }
 
+    /**
+     *
+     */
     public function create()
     {
     }
 
+    /**
+     * @param $id
+     *
+     * @return \App\Models\Temp|\App\Models\Temp[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
     public function getIdInfo($id)
     {
-       return $this->repository->find($id);
+        return $this->repository->find($id);
     }
 
-    public function update()
+    /**
+     * @param $data
+     *
+     * @return int
+     */
+    public function update($data)
     {
-        $id = $this->request_data->id;
-        return $this->repository
-            ->save();
+        return $this->repository->updateOrCreate($data);
     }
 
+    /**
+     * @param $id
+     */
     public function destroy($id)
     {
-        $this->service->destroy($id);
+        $this->repository->destroy($id);
     }
 
-    public function edit($id)
-    {
-    }
+
 }
