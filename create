@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * User: BenHuang
+ * User: ben
  * Email: benhuang1024@gmail.com
  * Date: 2019-01-01
  * Time: 00:01
@@ -45,7 +45,7 @@ function checkProjectDirectory(): void
 function checkRequestVariable(): string
 {
     global $argv, $laravel_plus_basename;
-    if (empty($argv) || ! isset($argv[1]) || empty($argv[1])) {
+    if (empty($argv) || !isset($argv[1]) || empty($argv[1])) {
         echo "error: No project name set" . PHP_EOL;
         echo "eg): php {$laravel_plus_basename}/create YourProject" . PHP_EOL;
         die;
@@ -95,14 +95,14 @@ function handle(string $laravel_plus_basename)
 {
     $product = checkRequestVariable();
     echo "\033[34mLaravelPlus Build \033[31m{$product}\e[0m \e[34mproject\e[0m" . PHP_EOL;
-    usleep(100000);
+    usleep(1000);
     echo 'Loging ...' . PHP_EOL;
-    usleep(100000);
     testProjectStart();
     exec("cd {$laravel_plus_basename}");
     checkProjectDirectory();
+    echo 'Cloning ...' . PHP_EOL;
     exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
-    if (! is_dir("{$product}")) {
+    if (!is_dir("{$product}")) {
         die('Error: cp new project is error' . PHP_EOL);
     }
     removeExcessFileInNewProject($product);
