@@ -95,13 +95,11 @@ function handle(string $laravel_plus_basename)
 {
     $product = checkRequestVariable();
     echo "\033[34mLaravelPlus Build \033[31m{$product}\e[0m \e[34mproject\e[0m" . PHP_EOL;
-    usleep(1000);
-    echo 'Loging ...' . PHP_EOL;
     testProjectStart();
     exec("cd {$laravel_plus_basename}");
     checkProjectDirectory();
-    echo 'Cloning ...' . PHP_EOL;
-    exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
+    echo 'Cloning ... ()' . PHP_EOL;
+    exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  node_modules/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
     if (!is_dir("{$product}")) {
         die('Error: cp new project is error' . PHP_EOL);
     }
