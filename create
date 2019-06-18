@@ -12,6 +12,7 @@ $remove_excess_files = [
     'composer.lock',
     '_config.yml',
     'create',
+    '_ide_helper.php',
 ];
 $remove_excess_dirs = [
 ];
