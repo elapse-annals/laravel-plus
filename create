@@ -98,7 +98,7 @@ function handle(string $laravel_plus_basename)
     testProjectStart();
     exec("cd {$laravel_plus_basename}");
     checkProjectDirectory();
-    echo 'Cloning ... ()' . PHP_EOL;
+    echo 'Loading ... ' . PHP_EOL;
     exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  node_modules/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
     if (!is_dir("{$product}")) {
         die('Error: cp new project is error' . PHP_EOL);
