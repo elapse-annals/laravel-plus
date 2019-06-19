@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use App\Http\Controllers\FrameworkController;
 
@@ -56,7 +57,7 @@ class Framework extends Command
     }
 
     /**
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
      */
     public function handle()
     {
@@ -79,7 +80,7 @@ class Framework extends Command
                 $msg = 'delete';
             }
             $stdout_string = PHP_EOL . " {$msg} framework \e[31m{$framework_name}\e[0m \e[32msuccess";
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $stdout_string = " \e[31m{$exception->getMessage()}\e[0m \e[32min file {$exception->getFile()} line {$exception->getLine()}";
         }
         $this->info($stdout_string);

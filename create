@@ -17,7 +17,6 @@ $remove_excess_files = [
 $remove_excess_dirs = [
 ];
 
-
 /**
  *
  */
@@ -111,4 +110,3 @@ function handle(string $laravel_plus_basename)
 }
 
 handle($laravel_plus_basename);
-

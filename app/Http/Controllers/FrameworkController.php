@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -38,9 +39,8 @@ class FrameworkController extends Controller
 
     /**
      * @param $framework_file_type
-     * @param $framework_name
      */
-    public function init($framework_file_type, $framework_name): void
+    public function init($framework_file_type): void
     {
         switch ($framework_file_type) {
             case 'Controller':
@@ -66,7 +66,7 @@ class FrameworkController extends Controller
      */
     public function handle($framework_file_type, $is_delete)
     {
-        $this->init($framework_file_type, $this->framework_name);
+        $this->init($framework_file_type);
         $this->file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if ($is_delete) {
             $this->delete($framework_file_type);
@@ -77,12 +77,14 @@ class FrameworkController extends Controller
     }
 
     /**
+     * @param $framework_file_type
      *
+     * @throws Exception
      */
     private function checkFileExistence($framework_file_type)
     {
         if (is_file($this->file)) {
-            throw new \Exception("{$this->framework_name}{$framework_file_type}.php existing!");
+            throw new Exception("{$this->framework_name}{$framework_file_type}.php existing!");
         }
     }
 
@@ -112,12 +114,12 @@ class FrameworkController extends Controller
     private function deleteRoute($route_type): void
     {
         switch ($route_type) {
-            case 'web':
-                $resource_type = 'resource';
-                break;
             case 'api':
                 $resource_type = 'apiResource';
                 break;
+            case 'web':
+            default:
+                $resource_type = 'resource';
         }
         $route_web_path = base_path("routes/{$route_type}.php");
         $framework_name_low = Str::plural(strtolower($this->framework_name));
@@ -136,13 +138,13 @@ class FrameworkController extends Controller
      */
     public function create($framework_file_type): void
     {
-        $framework_name_plural =  Str::plural($this->framework_name);
+        $framework_name_plural = Str::plural($this->framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
         $body = str_replace('Temps', $framework_name_plural, $body);
         $body = str_replace('Temp', $this->framework_name, $body);
         $framework_name_low = strtolower($this->framework_name);
-        $framework_name_low_plural =  Str::plural($framework_name_low);
+        $framework_name_low_plural = Str::plural($framework_name_low);
         $body = str_replace('temps', $framework_name_low_plural, $body);
         $body = str_replace('temp', $framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
@@ -172,7 +174,7 @@ class FrameworkController extends Controller
     }
 
     /**
-     *
+     * @param $route_type
      */
     private function insertRoute($route_type): void
     {

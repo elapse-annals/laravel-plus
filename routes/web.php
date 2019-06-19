@@ -13,11 +13,12 @@
 
 Route::get('/', 'ClosureController@welcome');
 
-Route::get('plural/{singular}', 'StringController@plural');
-
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+Route::get('plural/{singular}', 'StringController@plural');
 
-
+Route::prefix('test')->group(function () {
+    Route::get('exception', 'testController@exception');
+});
 
 Route::resource('temps', 'TempController');
