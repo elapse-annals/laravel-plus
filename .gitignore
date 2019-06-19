@@ -33,3 +33,6 @@ Envoy.blade.php
 
 # Laravel Box
 samples/
+
+# PHPUnit
+.phpunit.result.cache
