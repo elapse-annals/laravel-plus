@@ -4,8 +4,7 @@ namespace App\Repositories;
 
 /**
  * Class Repository
- *
- * @package App\Presenters
+ * @package App\Repositories
  */
 class Repository
 {

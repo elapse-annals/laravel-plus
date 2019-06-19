@@ -11,17 +11,13 @@ class TempFormatter extends Formatter
 {
     public function index()
     {
-
     }
 
     public function show()
     {
-
     }
 
     public function edit()
     {
-
     }
-
 }

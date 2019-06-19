@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Exceptions\FrameworkException;
 
 class TestController extends Controller
 {
-    //
-    public function exception()
+    /**
+     * @throws FrameworkException
+     */
+    public function exception(): void
     {
         throw new FrameworkException('xxxx');
     }
