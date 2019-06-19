@@ -15,7 +15,7 @@ Route::get('/', 'ClosureController@welcome');
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('plural/{singular}', 'StringController@plural');
+Route::get('plural/{singular}', 'StringPresenter@plural');
 
 Route::prefix('test')->group(function () {
     Route::get('exception', 'testController@exception');

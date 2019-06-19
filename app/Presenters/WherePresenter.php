@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Presenters;
 
-use App\Services\TypeService;
-
-/**
- * Class WhereRepository
- *
+/**\
+ * Class WherePresenter
  * @package App\Presenters
  */
-class WhereRepository extends Repository
+class WherePresenter extends Presenter
 {
     /**
-     * @param $data
+     * @param array $data
+     *
      * @return array
      */
-    public function jsonToArr($data): array
+    public function jsonToArray(array $data): array
     {
         $where_arr = [];
-        $TypeService = new TypeService();
+        $TypePresenter = new TypePresenter();
         foreach ($data as $datum) {
-            switch ($TypeService->check($datum)) {
+            switch ($TypePresenter->check($datum)) {
                 case 'string':
                     break;
                 case 'array':
@@ -29,4 +27,5 @@ class WhereRepository extends Repository
         }
         return $where_arr;
     }
+
 }

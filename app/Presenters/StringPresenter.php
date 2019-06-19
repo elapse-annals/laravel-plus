@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Presenters;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
  *
  * @package App\Http\Controllers
  */
-class StringController extends Controller
+class StringPresenter extends Presenter
 {
     /**
      * @param Request $request
      *
      * @return string
      */
-    public function plural(Request $request)
+    public function plural(Request $request): string
     {
         return Str::plural($request->singular);
     }
