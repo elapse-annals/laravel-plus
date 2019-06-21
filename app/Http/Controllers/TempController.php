@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Services\TempService;
 use App\Transformers\TempTransformer;
 use App\Formatters\TempFormatter;
@@ -20,18 +21,19 @@ class TempController extends Controller
      */
     protected $service;
     /**
-     * @var TempTransformer
-     */
-    private $transformer;
-    /**
+     * TempFormatter
      * @var TempFormatter
      */
     private $formatter;
+    /**
+     * @var TempTransformer
+     */
+    private $transformer;
 
     /**
      * @var bool
      */
-    private $enable_transformer = false;
+    private $enable_filter = true;
     /**
      * @var array
      */
@@ -44,9 +46,9 @@ class TempController extends Controller
     {
         parent::__construct();
         $this->service = new TempService();
-        if ($this->enable_transformer) {
-            $this->transformer = new TempTransformer();
+        if ($this->enable_filter) {
             $this->formatter = new TempFormatter();
+            $this->transformer = new TempTransformer();
         }
     }
 
@@ -68,32 +70,19 @@ class TempController extends Controller
             $data = $request->input();
             $this->validationIndexRequest($data);
             $temps = $this->service->getList();
-            $view_data = [
-                'info'       => $this->getInfo(),
-                'js_data'    => [
-                    'data' => $temps->items(),
-                    'page' => [
-                        "current_page" => $temps->currentPage(),
-                        "sizes"        => [10, 50, 100, 300],
-                        "per_page"     => $temps->perPage(),
-                    ],
-                ],
-                'table_data' => $this->getTableCommentMap(),
-            ];
-            if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
-                $this->transformer->index(
-                    $this->formatter->index()
-                );
-            }
             if (0 === strpos($request->getRequestUri(), '/api/')) {
                 return $temps;
             }
+            $view_data = $this->filter(['info' => $this->getInfo(), 'temps' => $this->service->getList()], __FUNCTION__);
             return view('temp.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
         }
     }
 
+    /**
+     * @param array $data
+     */
     private function validationIndexRequest(array $data): void
     {
         $rules = [
@@ -145,9 +134,9 @@ class TempController extends Controller
                     'sex',
                 ],
             ];
-            if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+            if ($this->enable_filter && in_array('index', $this->transformer_functions)) {
                 $this->transformer->index(
-                    $this->formatter->index()
+                    $this->formatter->formatterIndex()
                 );
             }
             return view('temp.create', $view_data);
@@ -177,7 +166,7 @@ class TempController extends Controller
                     'sex',
                 ],
             ];
-            if ($this->enable_transformer && in_array('index', $this->transformer_functions)) {
+            if ($this->enable_filter && in_array('index', $this->transformer_functions)) {
                 $this->transformer->index(
                     $this->formatter->index()
                 );
@@ -191,6 +180,11 @@ class TempController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @throws Exception
+     */
     private function validationShowRequest($id)
     {
         if (empty($id)) {
@@ -215,6 +209,12 @@ class TempController extends Controller
         }
     }
 
+    /**
+     * @param $data
+     * @param $id
+     *
+     * @throws Exception
+     */
     private function validateUpdateRequest($data, $id)
     {
         if (empty($id)) {
@@ -233,6 +233,11 @@ class TempController extends Controller
         }
     }
 
+    /**
+     * @param int $id
+     *
+     * @throws Exception
+     */
     private function validateDestroy(int $id)
     {
         if (empty($id)) {
@@ -261,7 +266,7 @@ class TempController extends Controller
                 'sex',
             ],
         ];
-        if ($this->enable_transformer && in_array('edit', $this->transformer_functions)) {
+        if ($this->enable_filter && in_array('edit', $this->transformer_functions)) {
             $this->transformer->index(
                 $this->formatter->index()
             );
@@ -298,5 +303,23 @@ class TempController extends Controller
                 'label' => '性别',
             ],
         ];
+    }
+
+    /**
+     * @param        $data
+     * @param string $controller_function
+     *
+     * @return mixed
+     */
+    private function filter($data, string $controller_function)
+    {
+        if ($this->enable_filter && in_array($controller_function, $this->transformer_functions)) {
+            $controller_plural = Str::plural($controller_function);
+            $formatterKey = 'formatter' . $controller_plural;
+            $transformKey = 'transform' . $controller_plural;
+            return $this->transformer->$transformKey(
+                $this->formatter->$formatterKey($data)
+            );
+        }
     }
 }
