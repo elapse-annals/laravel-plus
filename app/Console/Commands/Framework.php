@@ -64,6 +64,9 @@ class Framework extends Command
         try {
             $framework_name = $this->argument('framework_name');
             list($basis, $is_delete) = $this->initOption();
+            if ($is_delete && !$this->confirm('Do you wish to continue? [y|N]')) {
+                throw new Exception('Continue Delete');
+            }
             $framework_file_types = $this->framework_file_types;
             if (true === $basis) {
                 $framework_file_types = $this->base_frameworks;
