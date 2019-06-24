@@ -21,12 +21,13 @@
         var js_data = @json($js_data);
         var mixin = {
             data: {
-                'detail_data': {},
+                'detail_data': js_data.detail_data,
                 'is_disabled_edit': false,
                 'form': {}
             },
             methods: {
                 onSubmit() {
+                    // @todo 处理提交
                     console.log('submit!');
                 },
                 onCancel() {

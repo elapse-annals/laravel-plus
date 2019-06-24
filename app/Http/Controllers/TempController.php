@@ -149,11 +149,12 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param         $id
+     * @param int $id
+     * @param bool $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, int $id, $is_edit = false)
     {
         try {
             $this->validationShowRequest($id);
@@ -172,7 +173,7 @@ class TempController extends Controller
                 ],
                 __FUNCTION__
             );
-            if (0 === strpos($request->getRequestUri(), '/api/')) {
+            if (0 === strpos($request->getRequestUri(), '/api/') || $is_edit) {
                 return $view_data;
             }
             return view('temp.show', $view_data);
@@ -242,34 +243,19 @@ class TempController extends Controller
     private function validateDestroy(int $id)
     {
         if (empty($id)) {
-            throw new Exception('id is empty');
+            throw new Exception('request id is empty');
         }
     }
 
     /**
-     * update one view
-     *
+     * @param Request $request
      * @param $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $temp = $this->service->getIdInfo($id);
-        $view_data = $this->filter(
-            [
-                'info' => $this->getInfo(),
-                'js_data' => [
-                    'detail_data' => $temp,
-                ],
-                'detail_data' => [
-                    'id',
-                    'name',
-                    'sex',
-                ],
-            ],
-            __FUNCTION__
-        );
+        $view_data = $this->show($request, $id, true);
         return view('temp.edit', $view_data);
     }
 
@@ -305,12 +291,12 @@ class TempController extends Controller
     }
 
     /**
-     * @param        $data
+     * @param array $data
      * @param string $controller_function
      *
-     * @return mixed
+     * @return array
      */
-    private function filter($data, string $controller_function)
+    private function filter(array $data, string $controller_function): array
     {
         if ($this->enable_filter && in_array($controller_function, $this->transformer_functions)) {
             $controller_plural = ucfirst($controller_function);

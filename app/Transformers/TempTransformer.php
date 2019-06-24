@@ -10,26 +10,22 @@ namespace App\Transformers;
 class TempTransformer extends Transformer
 {
     /**
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return array
      */
-    public function transformIndex($data)
+    public function transformIndex(array $data): array
     {
         return $data;
     }
 
     /**
+     * @param array $data
      *
+     * @return array
      */
-    public function show()
+    public function transformShow(array $data): array
     {
-    }
-
-    /**
-     *
-     */
-    public function edit()
-    {
+        return $data;
     }
 }

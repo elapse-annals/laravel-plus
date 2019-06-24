@@ -10,11 +10,11 @@ namespace App\Formatters;
 class TempFormatter extends Formatter
 {
     /**
-     * @param $data
+     * @param array $data
      *
      * @return array
      */
-    public function formatIndex($data): array
+    public function formatIndex(array $data): array
     {
         return [
             'info' => $data['info'],
@@ -31,16 +31,14 @@ class TempFormatter extends Formatter
     }
 
     /**
+     * @param array $data
      *
+     * @return array
      */
-    public function show()
+    public function formatShow(array $data): array
     {
+        return $data;
     }
 
-    /**
-     *
-     */
-    public function edit()
-    {
-    }
+
 }
