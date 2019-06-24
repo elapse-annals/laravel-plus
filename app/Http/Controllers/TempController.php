@@ -22,6 +22,7 @@ class TempController extends Controller
     protected $service;
     /**
      * TempFormatter
+     *
      * @var TempFormatter
      */
     private $formatter;
@@ -73,7 +74,14 @@ class TempController extends Controller
             if (0 === strpos($request->getRequestUri(), '/api/')) {
                 return $temps;
             }
-            $view_data = $this->filter(['info' => $this->getInfo(), 'temps' => $this->service->getList()], __FUNCTION__);
+            $view_data = $this->filter(
+                [
+                    'info' => $this->getInfo(),
+                    'temps' => $this->service->getList(),
+                    'table_data' => $this->getTableCommentMap(),
+                ],
+                __FUNCTION__
+            );
             return view('temp.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
@@ -124,8 +132,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'data' => [],
                 ],
                 'detail_data' => [
@@ -134,11 +142,6 @@ class TempController extends Controller
                     'sex',
                 ],
             ];
-            if ($this->enable_filter && in_array('index', $this->transformer_functions)) {
-                $this->transformer->index(
-                    $this->formatter->formatterIndex()
-                );
-            }
             return view('temp.create', $view_data);
         } catch (Exception $exception) {
         }
@@ -155,22 +158,20 @@ class TempController extends Controller
         try {
             $this->validationShowRequest($id);
             $temp = $this->service->getIdInfo($id);
-            $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
-                    'detail_data' => $temp,
+            $view_data = $this->filter(
+                [
+                    'info' => $this->getInfo(),
+                    'js_data' => [
+                        'detail_data' => $temp,
+                    ],
+                    'detail_data' => [
+                        'id',
+                        'name',
+                        'sex',
+                    ],
                 ],
-                'detail_data' => [
-                    'id',
-                    'name',
-                    'sex',
-                ],
-            ];
-            if ($this->enable_filter && in_array('index', $this->transformer_functions)) {
-                $this->transformer->index(
-                    $this->formatter->index()
-                );
-            }
+                __FUNCTION__
+            );
             if (0 === strpos($request->getRequestUri(), '/api/')) {
                 return $view_data;
             }
@@ -255,22 +256,20 @@ class TempController extends Controller
     public function edit($id)
     {
         $temp = $this->service->getIdInfo($id);
-        $view_data = [
-            'info'        => $this->getInfo(),
-            'js_data'     => [
-                'detail_data' => $temp,
+        $view_data = $this->filter(
+            [
+                'info' => $this->getInfo(),
+                'js_data' => [
+                    'detail_data' => $temp,
+                ],
+                'detail_data' => [
+                    'id',
+                    'name',
+                    'sex',
+                ],
             ],
-            'detail_data' => [
-                'id',
-                'name',
-                'sex',
-            ],
-        ];
-        if ($this->enable_filter && in_array('edit', $this->transformer_functions)) {
-            $this->transformer->index(
-                $this->formatter->index()
-            );
-        }
+            __FUNCTION__
+        );
         return view('temp.edit', $view_data);
     }
 
@@ -281,8 +280,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author'      => 'Ben',
-            'title'       => 'index title',
+            'author' => 'Ben',
+            'title' => 'index title',
         ];
     }
 
@@ -293,13 +292,13 @@ class TempController extends Controller
     {
         return [
             [
-                'prop'  => 'id',
+                'prop' => 'id',
                 'label' => 'ID',
             ], [
-                'prop'  => 'name',
+                'prop' => 'name',
                 'label' => '名字',
             ], [
-                'prop'  => 'sex',
+                'prop' => 'sex',
                 'label' => '性别',
             ],
         ];
@@ -314,11 +313,11 @@ class TempController extends Controller
     private function filter($data, string $controller_function)
     {
         if ($this->enable_filter && in_array($controller_function, $this->transformer_functions)) {
-            $controller_plural = Str::plural($controller_function);
-            $formatterKey = 'formatter' . $controller_plural;
+            $controller_plural = ucfirst($controller_function);
+            $formatterKey = 'format' . $controller_plural;
             $transformKey = 'transform' . $controller_plural;
-            return $this->transformer->$transformKey(
-                $this->formatter->$formatterKey($data)
+            return $this->transformer->{$transformKey}(
+                $this->formatter->{$formatterKey}($data)
             );
         }
     }

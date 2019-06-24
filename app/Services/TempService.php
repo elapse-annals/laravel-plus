@@ -47,7 +47,8 @@ class TempService extends Service
      */
     public function store($data)
     {
-        return $this->repository->updateOrCreate($data);
+        return $this->repository
+            ->updateOrCreate($data);
     }
 
     /**
