@@ -84,11 +84,15 @@ $ php artisan ide-helper:models //  生成模型辅助提示
 ```
 Tips:
 1. 兼容 laravel-plus 目录名
-2. composer 加速工具 prestissimo 引入
-
+2. Composer  加速工具 prestissimo 引入
 ```php
 composer global require hirak/prestissimo
 ```
+3. [Composer 镜像](https://learnku.com/composer/t/4484/composer-mirror-use-help)
+```php
+ $ composer config -g repo.packagist composer https://packagist.laravel-china.org
+ ```
+
 
 <hr>
 
