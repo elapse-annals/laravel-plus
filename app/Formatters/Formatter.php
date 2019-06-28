@@ -29,7 +29,7 @@ class Formatter
         [$current_dimension_change_keys, $next_dimension_change_keys] = $this->splitDimension($change_keys);
         foreach ($data as $key => &$datum) {
             if (is_array($datum)) {
-                $datum = $this->numberFormatAuto($datum, $is_auto, $change_keys, $dacimals);
+                $datum = $this->numberFormatAuto($datum, $is_auto, $next_dimension_change_keys, $dacimals);
             }
             if ($is_auto && (is_int($datum) || is_float($datum))) {
                 $datum = number_format($datum, $dacimals);
