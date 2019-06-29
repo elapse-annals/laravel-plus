@@ -186,7 +186,7 @@ class TempController extends Controller
             }
             return view('temp.show', $view_data);
         } catch (Exception $exception) {
-            return response($exception->getMessage(), 500);
+            return $this->catchException($exception);
         }
     }
 

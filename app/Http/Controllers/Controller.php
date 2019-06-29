@@ -17,9 +17,18 @@ class Controller extends BaseController
     {
     }
 
-    public function catchException($exception)
+    /**
+     * @param \Exception $exception
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function catchException(\Exception $exception)
     {
-        $status = 500;
+        if ($exception->getCode()) {
+            $status = $exception->getCode();
+        } else {
+            $status = 500;
+        }
         return response($exception->getMessage(), $status);
     }
 }
