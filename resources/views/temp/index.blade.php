@@ -47,19 +47,21 @@
                 },
                 deleteRow(id) {
                     axios.delete('/temps/' + id)
-                        .then(
-                            (response) => {
-                                this.$message({
-                                    message: 'success',
-                                    type: 'success'
-                                });
-                                this.reload();
-                            }
-                        )
-                        .catch(error => console.log(error));
+                      .then(
+                        (response) => {
+                            this.$message({
+                                message: 'success',
+                                type: 'success'
+                            });
+                            this.reload();
+                        }
+                      )
+                      .catch(error => console.log(error));
                 },
                 reload() {
 
+                },
+                handleSelectionChange() {
                 }
             }
         }

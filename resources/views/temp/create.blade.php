@@ -10,19 +10,29 @@
             </div>
         </el-form>
     </div>
-
 @endsection
 
 @section('script')
     <script>
         var mixin = {
             data: {
+                'form': {},
                 'detail_data': {},
                 'is_disabled_edit': false,
             },
             methods: {
                 onSubmit() {
-                    console.log('submit!');
+                    axios.post('/temps')
+                      .then((response) => {
+                          this.$message({
+                              message: 'success',
+                              type: 'success'
+                          });
+                      })
+                      .catch(error => console.log(error));
+                },
+                onCancel() {
+
                 }
             }
         }

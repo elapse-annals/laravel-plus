@@ -76,8 +76,8 @@ class TempController extends Controller
             }
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'temps' => $this->service->getList(),
+                    'info'       => $this->getInfo(),
+                    'temps'      => $this->service->getList(),
                     'table_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__
@@ -120,9 +120,17 @@ class TempController extends Controller
 
     /**
      * @param $data
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function validateStoreRequest($data)
     {
+        $rules = [];
+        $messages = [];
+
+        if (! empty($rules)) {
+            $this->validate($data, $rules, $messages);
+        }
     }
 
     /**
@@ -132,8 +140,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
                 'detail_data' => [
@@ -149,8 +157,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -161,8 +169,8 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'js_data' => [
+                    'info'        => $this->getInfo(),
+                    'js_data'     => [
                         'detail_data' => $temp,
                     ],
                     'detail_data' => [
@@ -249,7 +257,7 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
+     * @param         $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -266,8 +274,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
@@ -278,20 +286,20 @@ class TempController extends Controller
     {
         return [
             [
-                'prop' => 'id',
+                'prop'  => 'id',
                 'label' => 'ID',
             ], [
-                'prop' => 'name',
+                'prop'  => 'name',
                 'label' => '名字',
             ], [
-                'prop' => 'sex',
+                'prop'  => 'sex',
                 'label' => '性别',
             ],
         ];
     }
 
     /**
-     * @param array $data
+     * @param array  $data
      * @param string $controller_function
      *
      * @return array

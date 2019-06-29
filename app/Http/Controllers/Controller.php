@@ -16,4 +16,10 @@ class Controller extends BaseController
     public function __construct()
     {
     }
+
+    public function catchException($exception)
+    {
+        $status = 500;
+        return response($exception->getMessage(), $status);
+    }
 }
