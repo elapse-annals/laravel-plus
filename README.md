@@ -113,7 +113,7 @@ framework 脚本创建内容：
  $ php artisan make:framework Test --D // 删除分层结构 
 ```
 
-或引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度略慢本项目）
+或引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度慢）
 ```php
 $ composer require php-tool/laravel-plus-make
 ```
@@ -324,4 +324,4 @@ npm run watch   // 监视编译（开发时启用）
 
 简化介绍，完善 wiki
 
-增加 formatter 基础过滤
+增加 formatter 基础过滤(待提交)
