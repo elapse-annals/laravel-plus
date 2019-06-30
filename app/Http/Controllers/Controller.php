@@ -19,16 +19,24 @@ class Controller extends BaseController
 
     /**
      * @param \Exception $exception
+     * @param null       $type
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function catchException(\Exception $exception)
+    public function catchException(\Exception $exception, $type = null)
     {
         if ($exception->getCode()) {
-            $status = $exception->getCode();
+            $code = $exception->getCode();
         } else {
-            $status = 500;
+            $code = 500;
         }
-        return response($exception->getMessage(), $status);
+        if ('api' == $type) {
+            return [
+                'code' => $code,
+                'data' => ['error_file' => $exception->getFile() . ':' . $exception->getLine()],
+                'msg'  => $exception->getMessage(),
+            ];
+        }
+        return response($exception->getMessage(), $code);
     }
 }

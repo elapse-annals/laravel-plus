@@ -110,7 +110,7 @@ class TempController extends Controller
             $this->validateStoreRequest($data);
             return $this->service->store($data);
         } catch (Exception $exception) {
-            return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
+            return $this->catchException($exception, 'api');
         }
     }
 

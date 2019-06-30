@@ -28,7 +28,13 @@
             methods: {
                 onSubmit() {
                     // @todo 处理提交
-                    console.log('submit!');
+                    axios.put('temps/2/edit').then((response) => {
+                        console.log(response)
+                        this.$message({
+                            message: 'success',
+                            type: 'success'
+                        });
+                    }).catch(error => console.log(error));
                 },
                 onCancel() {
                     // @todo 处理引用传递问题

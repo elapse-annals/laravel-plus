@@ -22,7 +22,7 @@
             },
             methods: {
                 onSubmit() {
-                    axios.post('/temps')
+                    axios.post('/temps', this.detail_data)
                       .then((response) => {
                           this.$message({
                               message: 'success',

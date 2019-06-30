@@ -41,9 +41,12 @@ class TempRepository extends Repository
      */
     public function updateOrCreate(array $save): int
     {
-        $attributes = [
-            'id' => $save['id'],
-        ];
+        $attributes = [];
+        if ($save['id']) {
+            $attributes = [
+                'id' => $save['id'],
+            ];
+        }
         return Temp::updateOrCreate($attributes, $save);
     }
 
