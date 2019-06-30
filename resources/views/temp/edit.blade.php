@@ -28,7 +28,7 @@
             methods: {
                 onSubmit() {
                     // @todo 处理提交
-                    axios.put('temps/2/edit').then((response) => {
+                    axios.put('/api/temps/2', this.detail_data).then((response) => {
                         console.log(response)
                         this.$message({
                             message: 'success',

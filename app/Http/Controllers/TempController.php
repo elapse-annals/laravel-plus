@@ -208,9 +208,12 @@ class TempController extends Controller
         try {
             $data = $request->input();
             $this->validateUpdateRequest($data, $id);
-            $this->service->update($data);
+            $res_db = $this->service->update($data, $id);
+            if ($request->is('api/*')) {
+                return $res_db;
+            }
         } catch (Exception $exception) {
-            return response($exception->getMessage(), 500);
+            return $this->catchException($exception);
         }
     }
 

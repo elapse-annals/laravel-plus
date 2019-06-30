@@ -61,11 +61,10 @@ class TempRepository extends Repository
      *
      * @return Temp|\Illuminate\Database\Eloquent\Model
      */
-    public function update(array $save)
+    public function update(array $save, $id)
     {
-        $attributes['id'] = $save['id'];
         $attributes['updated_at'] = $save['updated_at'];
-        return Temp::update($attributes, $save);
+        return Temp::find($id)->update($attributes, $save);
     }
 
     /**

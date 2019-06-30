@@ -73,9 +73,9 @@ class TempService extends Service
      *
      * @return int
      */
-    public function update($data)
+    public function update($data, $id)
     {
-        return $this->repository->updateOrCreate($data);
+        return $this->repository->update($data, $id);
     }
 
     /**
