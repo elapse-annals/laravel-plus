@@ -123,7 +123,6 @@ class TempController extends Controller
     {
         $rules = [];
         $messages = [];
-
         if (! empty($rules)) {
             $this->validate($data, $rules, $messages);
         }

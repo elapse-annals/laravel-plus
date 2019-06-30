@@ -12,6 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $service;
+    const ERROR_CODE = 500;
 
     public function __construct()
     {
@@ -25,10 +26,9 @@ class Controller extends BaseController
      */
     public function catchException(\Exception $exception, $type = null)
     {
+        $code = self::ERROR_CODE;
         if ($exception->getCode()) {
             $code = $exception->getCode();
-        } else {
-            $code = 500;
         }
         if ('api' == $type) {
             return [

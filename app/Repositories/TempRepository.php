@@ -34,20 +34,38 @@ class TempRepository extends Repository
         return Temp::find($id);
     }
 
+    public function create(array $save)
+    {
+        return Temp::create($save);
+    }
+
     /**
      * @param array $save
      *
-     * @return int
+     * @return Temp|\Illuminate\Database\Eloquent\Model
      */
-    public function updateOrCreate(array $save): int
+    public function updateOrCreate(array $save)
     {
         $attributes = [];
-        if ($save['id']) {
-            $attributes = [
-                'id' => $save['id'],
-            ];
+        if (isset($save['id'])) {
+            $attributes['id'] = $save['id'];
+        }
+        if (isset($save['updated_at'])) {
+            $attributes['updated_at'] = $save['updated_at'];
         }
         return Temp::updateOrCreate($attributes, $save);
+    }
+
+    /**
+     * @param array $save
+     *
+     * @return Temp|\Illuminate\Database\Eloquent\Model
+     */
+    public function update(array $save)
+    {
+        $attributes['id'] = $save['id'];
+        $attributes['updated_at'] = $save['updated_at'];
+        return Temp::update($attributes, $save);
     }
 
     /**
