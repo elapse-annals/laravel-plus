@@ -54,13 +54,6 @@ class TempController extends Controller
     }
 
     /**
-     *
-     */
-    public function handle()
-    {
-    }
-
-    /**
      * @param Request $request
      *
      * @return array|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -71,7 +64,7 @@ class TempController extends Controller
             $data = $request->input();
             $this->validationIndexRequest($data);
             $temps = $this->service->getList();
-            if (0 === strpos($request->getRequestUri(), '/api/')) {
+            if ($request->is('api/*')) {
                 return $temps;
             }
             $view_data = $this->filter(
@@ -90,16 +83,19 @@ class TempController extends Controller
 
     /**
      * @param array $data
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function validationIndexRequest(array $data): void
     {
         $rules = [
-            'page' => '',
         ];
         $messages = [
             'page' => '分页',
         ];
-        //        $this->validate($request, $rules, $messages);
+        if ($rules) {
+            $this->validate($data, $rules, $messages);
+        }
     }
 
     /**
@@ -181,7 +177,7 @@ class TempController extends Controller
                 ],
                 __FUNCTION__
             );
-            if (0 === strpos($request->getRequestUri(), '/api/') || $is_edit) {
+            if ($request->is('api/*') || $is_edit) {
                 return $view_data;
             }
             return view('temp.show', $view_data);
@@ -220,16 +216,14 @@ class TempController extends Controller
     }
 
     /**
-     * @param $data
      * @param $id
+     * @param $data
      *
      * @throws Exception
      */
     private function validateUpdateRequest($data, $id)
     {
-        if (empty($id)) {
-            throw new Exception('id is empty');
-        }
+        $this->validateRequestId($id);
     }
 
     /**
@@ -238,6 +232,7 @@ class TempController extends Controller
     public function destroy(int $id)
     {
         try {
+            $this->validateDestroy($id);
             $this->service->destroy($id);
         } catch (Exception $exception) {
         }
@@ -250,9 +245,7 @@ class TempController extends Controller
      */
     private function validateDestroy(int $id)
     {
-        if (empty($id)) {
-            throw new Exception('request id is empty');
-        }
+        $this->validateRequestId($id);
     }
 
     /**
@@ -315,4 +308,18 @@ class TempController extends Controller
             );
         }
     }
+
+    /**
+     * @param int $id
+     *
+     * @throws Exception
+     */
+    private function validateRequestId(int $id): void
+    {
+        if (empty($id)) {
+            throw new Exception('request id is empty');
+        }
+    }
+
+
 }

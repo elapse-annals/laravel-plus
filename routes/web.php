@@ -19,6 +19,7 @@ Route::get('plural/{singular}', 'StringPresenter@plural');
 
 Route::prefix('test')->group(function () {
     Route::get('exception', 'testController@exception');
+    Route::any('test', 'testController@test');
 });
 
 Route::resource('temps', 'TempController');
