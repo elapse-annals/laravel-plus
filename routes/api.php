@@ -12,4 +12,8 @@
 */
 
 Route::middleware('auth:api')->get('/user', 'ClosureController@user');
+Route::prefix('test')->group(function () {
+    Route::any('test', 'testController@test');
+    Route::get('exception', 'testController@exception');
+});
 Route::apiResource('temps', 'TempController');

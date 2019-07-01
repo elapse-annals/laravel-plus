@@ -18,6 +18,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('plural/{singular}', 'StringPresenter@plural');
 
 Route::prefix('test')->group(function () {
+    Route::any('test', 'testController@test');
     Route::get('exception', 'testController@exception');
 });
 
