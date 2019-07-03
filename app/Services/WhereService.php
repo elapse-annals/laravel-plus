@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Services;
 
 /**\
  * Class WherePresenter
  * @package App\Presenters
  */
-class WherePresenter extends Presenter
+class WhereService extends Service
 {
     /**
      * @param array $data
@@ -16,7 +16,7 @@ class WherePresenter extends Presenter
     public function jsonToArray(array $data): array
     {
         $where_arr = [];
-        $TypePresenter = new TypePresenter();
+        $TypePresenter = new TypeService();
         foreach ($data as $datum) {
             switch ($TypePresenter->check($datum)) {
                 case 'string':

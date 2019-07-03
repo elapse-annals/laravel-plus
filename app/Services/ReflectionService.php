@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Services;
 
 /**
  * Class Presenter
  *
  * @package App\Presenters
  */
-class ReflectionPresenter extends Presenter
+class ReflectionService extends Service
 {
 
 }

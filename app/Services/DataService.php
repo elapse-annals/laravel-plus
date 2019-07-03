@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Services;
 
 /**
  * Class TempPresenter
  *
  * @package App\Presenters
  */
-class DataPresenter extends Presenter
+class DataService extends Service
 {
     /**
      * @param array $data

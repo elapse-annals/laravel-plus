@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
  *
  * @package App\Http\Controllers
  */
-class StringPresenter extends Presenter
+class StringService extends Presenter
 {
     /**
      * @param Request $request
