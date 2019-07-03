@@ -310,9 +310,10 @@ npm run watch   // 监视编译（开发时启用）
         - Repositories Repository 数据仓库层
         - Models 模型层（无需创建，默认通过模型工具创建）
     - 扩展分层
-        - Presenters 固定业务主持中控层
+        - Presenters 固定业务主持中控层(做视图的逻辑处理：[参考](https://blog.csdn.net/markely/article/details/53000968),更适用于 blade)
+            - 减少在 blade 用 @if...@else...@endif 
         - Transformers 转化层/筛选层（筛选后在选择输出）
-        - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
+        - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版展示
 - 增加 redis 多语言配置读取
 - 设置默认 Schema index 长度
 
