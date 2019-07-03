@@ -3,8 +3,8 @@
 namespace App\Services;
 
 /**
- * Class TypePresenter
- * @package App\Presenters
+ * Class TypeService
+ * @package App\Services
  */
 class TypeService extends Service
 {

@@ -27,5 +27,4 @@ class WhereService extends Service
         }
         return $where_arr;
     }
-
 }

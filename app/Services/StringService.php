@@ -6,11 +6,10 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 /**
- * Class StringController
- *
- * @package App\Http\Controllers
+ * Class StringService
+ * @package App\Services
  */
-class StringService extends Presenter
+class StringService extends Service
 {
     /**
      * @param Request $request

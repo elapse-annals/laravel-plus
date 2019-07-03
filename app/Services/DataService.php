@@ -3,9 +3,8 @@
 namespace App\Services;
 
 /**
- * Class TempPresenter
- *
- * @package App\Presenters
+ * Class DataService
+ * @package App\Services
  */
 class DataService extends Service
 {
