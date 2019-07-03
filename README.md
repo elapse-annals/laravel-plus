@@ -89,8 +89,15 @@ Tips:
 composer global require hirak/prestissimo
 ```
 3. [Composer 镜像](https://learnku.com/composer/t/4484/composer-mirror-use-help)
+
+laravel-china
 ```php
  $ composer config -g repo.packagist composer https://packagist.laravel-china.org
+ ```
+ 
+ aliyun
+ ```php
+ $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
  ```
 
 
@@ -324,4 +331,3 @@ npm run watch   // 监视编译（开发时启用）
 
 简化介绍，完善 wiki
 
-增加 formatter 基础过滤(待提交)
