@@ -262,7 +262,10 @@ npm run watch   // 监视编译（开发时启用）
 </script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 ```
-
+##### 路由 web/api 使用区别和场景
+web 经过权限，csrf 等中间件和 Session
+api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors)
+若非单纯 api ，建议使用 web
 
 <hr />
 

@@ -23,3 +23,7 @@ Route::prefix('test')->group(function () {
 });
 
 Route::resource('temps', 'TempController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
