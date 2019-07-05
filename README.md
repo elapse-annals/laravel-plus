@@ -90,9 +90,9 @@ composer global require hirak/prestissimo
 ```
 3. [Composer 镜像](https://learnku.com/composer/t/4484/composer-mirror-use-help)
 
-laravel-china
+cnpkg
 ```php
- $ composer config -g repo.packagist composer https://packagist.laravel-china.org
+ $ composer config -g repos.packagist composer https://php.cnpkg.org
  ```
  
  aliyun
@@ -100,6 +100,10 @@ laravel-china
  $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
  ```
 
+ laravel-china [待删除，请弃用]
+```php
+ $ composer config -g repo.packagist composer https://packagist.laravel-china.org
+ ```
 
 <hr>
 
