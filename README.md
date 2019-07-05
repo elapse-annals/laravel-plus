@@ -100,7 +100,7 @@ cnpkg
  $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
  ```
 
- laravel-china [待删除，请弃用]
+ <del>laravel-china </del>[待删除，请弃用](https://learnku.com/articles/30758)
 ```php
  $ composer config -g repo.packagist composer https://packagist.laravel-china.org
  ```
