@@ -22,8 +22,13 @@
         var mixin = {
             data: {
                 'detail_data': js_data.detail_data,
+                'init_table_data': {},
                 'is_disabled_edit': false,
                 'form': {}
+            },
+            created:function(){
+                let _this = this
+                this.init_table_data = _this.table_data
             },
             methods: {
                 onSubmit() {
@@ -38,7 +43,7 @@
                 },
                 onCancel() {
                     // @todo 处理引用传递问题
-                    history.go(0);
+                    this.detail_data = this.init_table_data
                 }
             }
         }
