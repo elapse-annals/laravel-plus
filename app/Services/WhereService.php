@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-/**\
- * Class WherePresenter
+/**
+ * Class WhereService
  *
- * @package App\Presenters
+ * @package App\Services
  */
 class WhereService extends Service
 {
@@ -46,22 +46,47 @@ class WhereService extends Service
         return [$where, $limit];
     }
 
+    /**
+     * @param $date_key
+     * @param $start_date
+     * @param $end_date
+     *
+     * @return array
+     */
     public static function getBetweenDate($date_key, $start_date, $end_date)
     {
+        $where_between = [];
         if (!empty($start_date) && !empty($end_date)) {
             $start_date = DateModel::toYmd($start_date) . ' 00:00:00';
             $end_date = DateModel::toYmd($end_date) . ' 23:59:59';
-            $where_between = ['BETWEEN', [$start_date, $end_date]];
+            $where_between = [$date_key, [$start_date, $end_date]];
         } elseif (empty($start_date) && !empty($end_date)) {
             $end_date = DateModel::toYmd($end_date) . ' 23:59:59';
-            $where[$date_key] = array('ELT', $end_date);
+            $where_between = [$date_key, [null, $end_date]];
         } elseif (empty($end_date) && !empty($start_date)) {
             $start_date = DateModel::toYmd($start_date) . ' 00:00:00';
-            $where[$date_key] = array('EGT', $start_date);
+            $where_between = [$date_key, [$start_date, null]];
         }
         return $where_between;
     }
 
+    /**
+     * @param array $request_data
+     *
+     * @return array
+     */
+    private static function joinPage(array $request_data)
+    {
+        if (!$request_data['pages'] && $request_data['page']) {
+            $request_data['pages'] = $request_data['page'];
+        }
+        if ($request_data['pages']) {
+            $limit = [($request_data['pages']['current_page'] - 1) * $request_data['pages']['per_page'], $request_data['pages']['per_page']];
+        } else {
+            $limit = [0, 10];
+        }
+        return $limit;
+    }
 
     /**
      * @param array $data
