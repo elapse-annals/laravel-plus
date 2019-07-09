@@ -7,8 +7,6 @@
 
 namespace App\Models;
 
-use Reliese\Database\Eloquent\Model as Eloquent;
-
 /**
  * Class Temp
  *
@@ -28,14 +26,14 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Temp extends Eloquent
+class Temp extends Model
 {
-	protected $casts = [
-		'sex' => 'int'
-	];
+    protected $casts = [
+        'sex' => 'int'
+    ];
 
-	protected $fillable = [
-		'name',
-		'sex'
-	];
+    protected $fillable = [
+        'name',
+        'sex'
+    ];
 }
