@@ -57,14 +57,14 @@ class WhereService extends Service
     {
         $where_between = [];
         if (!empty($start_date) && !empty($end_date)) {
-            $start_date = DateModel::toYmd($start_date) . ' 00:00:00';
-            $end_date = DateModel::toYmd($end_date) . ' 23:59:59';
+            $start_date = DateService::toYmd($start_date) . ' 00:00:00';
+            $end_date = DateService::toYmd($end_date) . ' 23:59:59';
             $where_between = [$date_key, [$start_date, $end_date]];
         } elseif (empty($start_date) && !empty($end_date)) {
-            $end_date = DateModel::toYmd($end_date) . ' 23:59:59';
+            $end_date = DateService::toYmd($end_date) . ' 23:59:59';
             $where_between = [$date_key, [null, $end_date]];
         } elseif (empty($end_date) && !empty($start_date)) {
-            $start_date = DateModel::toYmd($start_date) . ' 00:00:00';
+            $start_date = DateService::toYmd($start_date) . ' 00:00:00';
             $where_between = [$date_key, [$start_date, null]];
         }
         return $where_between;
