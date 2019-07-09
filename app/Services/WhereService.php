@@ -9,6 +9,9 @@ namespace App\Services;
  */
 class WhereService extends Service
 {
+    const MIN_TIME = '1970-01-01 07:00:00';
+    const MAX_TIME = '2038-01-19 03:14:07';
+
     /**
      * @param array $request_data
      * @param array $search_map
@@ -47,26 +50,22 @@ class WhereService extends Service
     }
 
     /**
-     * @param $date_key
+     * @param $column
      * @param $start_date
      * @param $end_date
      *
      * @return array
      */
-    public static function getBetweenDate($date_key, $start_date, $end_date)
+    public static function getBetweenDate($column, $start_date, $end_date)
     {
-        $where_between = [];
-        if (!empty($start_date) && !empty($end_date)) {
-            $start_date = DateService::toYmd($start_date) . ' 00:00:00';
-            $end_date = DateService::toYmd($end_date) . ' 23:59:59';
-            $where_between = [$date_key, [$start_date, $end_date]];
-        } elseif (empty($start_date) && !empty($end_date)) {
-            $end_date = DateService::toYmd($end_date) . ' 23:59:59';
-            $where_between = [$date_key, [null, $end_date]];
+        if (empty($start_date) && !empty($end_date)) {
+            $start_date = self::MIN_TIME;
         } elseif (empty($end_date) && !empty($start_date)) {
-            $start_date = DateService::toYmd($start_date) . ' 00:00:00';
-            $where_between = [$date_key, [$start_date, null]];
+            $end_date = self::MAX_TIME;
         }
+        $start_date = DateService::toYmd($start_date) . ' 00:00:00';
+        $end_date = DateService::toYmd($end_date) . ' 23:59:59';
+        $where_between = [$column, [$start_date, $end_date]];
         return $where_between;
     }
 
@@ -95,13 +94,13 @@ class WhereService extends Service
                 if (((is_string($value) && '' != $value) || (is_array($value) && !empty($value))) && $search_map[$key]) {
                     switch ($key) {
                         case 'created_at':
-                            $where .= self::getBetweenDateStr($value['start'], $value['end'], '', $search_map[$key]);
+                            $where .= self::getBetweenDateString($value['start'], $value['end'], '', $search_map[$key]);
                             break;
                         case 'updated_at':
-                            $where .= self::getBetweenDateStr($value['start'], $value['end'], '', $search_map[$key]);
+                            $where .= self::getBetweenDateString($value['start'], $value['end'], '', $search_map[$key]);
                             break;
                         case 'verification_at':
-                            $where .= self::getBetweenDateStr($value['start'], $value['end'], '', $search_map[$key]);
+                            $where .= self::getBetweenDateString($value['start'], $value['end'], '', $search_map[$key]);
                             break;
                         default:
                             if (is_array($value)) {
