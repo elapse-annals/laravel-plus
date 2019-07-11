@@ -34,11 +34,16 @@
                 onSubmit() {
                     // @todo 处理提交
                     axios.put('/api/temps/2', this.detail_data).then((response) => {
-                        console.log(response)
-                        this.$message({
-                            message: 'success',
-                            type: 'success'
-                        });
+                        var message_type = 'error';
+                          if (200 == response.data.code) {
+                              var message_type = 'success';
+                          } else {
+                              console.log(response);
+                          }
+                          this.$message({
+                              message: response.data.msg,
+                              type: message_type
+                          });
                     }).catch(error => console.log(error));
                 },
                 onCancel() {

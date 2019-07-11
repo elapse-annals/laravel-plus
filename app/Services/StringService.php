@@ -20,4 +20,13 @@ class StringService extends Service
     {
         return Str::plural($request->singular);
     }
+
+    /**
+     * 
+     */
+    public static function removeKilometer(string $data):float
+    {
+        return str_replace(',','',$data);
+    }
+
 }
