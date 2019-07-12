@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Services\TempService;
@@ -106,10 +107,14 @@ class TempController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTranscaction();
             $data = $request->input();
             $this->validateStoreRequest($data);
-            return $this->service->store($data);
+            $store_status = $this->service->store($data);
+            DB::commit();
+            return $store_status;
         } catch (Exception $exception) {
+            DB::rollBack();
             return $this->catchException($exception, 'api');
         }
     }
@@ -206,13 +211,16 @@ class TempController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            DB::beginTranscaction();
             $data = $request->input();
             $this->validateUpdateRequest($data, $id);
-            $res_db = $this->service->update($data, $id);
+            $res_db = $this->service->update($data, $id);            
+            DB::commit();
             if ($request->is('api/*')) {
                 return $res_db;
             }
         } catch (Exception $exception) {
+            DB::rollBack();
             return $this->catchException($exception);
         }
     }
@@ -233,10 +241,14 @@ class TempController extends Controller
      */
     public function destroy(int $id)
     {
-        try {
+        try {        
+            DB::beginTranscaction();
             $this->validateDestroy($id);
-            $this->service->destroy($id);
-        } catch (Exception $exception) {
+            $this->service->destroy($id);            
+            DB::commit();
+        } catch (Exception $exception) {            
+            DB::rollBack();
+            return $this->catchException($exception);
         }
     }
 

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
  */
 class StringService extends Service
 {
+    
     /**
      * @param Request $request
      *
