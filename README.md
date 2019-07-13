@@ -37,8 +37,16 @@
 
 具体 [Wiki](https://github.com/ElapseAnnals/LaravelPlus/wiki)  （待完善）
 
-## 项目使用
 
+## 运行环境要求
+- 已安装 PHP
+- 脚本前置要求
+    - *unix 环境
+    - 在 homestead 中
+    - Windows 下安装 cmder 
+
+
+## 项目使用
 
 #### 1.下载项目
 ```php
@@ -52,13 +60,7 @@ $ git checkout 5.8.0 // 切换至当前最新稳定版本或直接使用 master 
 $ composer create-project elapse-annals/laravel-plus
 $ mv laravel-plus  LaravelPlus
 ```
- #### 2.创建新项目
- 运行方式
- 
-- *unix 环境运行
-- 在 homestead 中运行
-- Windows 下安装 cmder 运行
- 
+ #### 2.创建新项目 
  
 ```php
 //  A.在当前目录运行自动复制脚本 （ 推荐）
