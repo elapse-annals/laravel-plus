@@ -43,7 +43,8 @@
 - 脚本运行前置要求（任意一种）
     - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中(推荐)
     - *unix 环境
-    - Windows 下安装 [cmder](https://cmder.net/) [下载] 或 cmd
+    - Windows 下安装 [cmder](https://cmder.net/) [下载地址]
+    - cmd 运行未进行兼容（现有异常会不过滤和清理部分文件） (不推荐)
 
 ## 项目使用
 
