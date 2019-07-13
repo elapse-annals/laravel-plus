@@ -37,13 +37,22 @@
 
 具体 [Wiki](https://github.com/ElapseAnnals/LaravelPlus/wiki)  （待完善）
 
+
+## 运行环境要求
+- 已安装 PHP
+- 脚本前置要求（任意一种）
+    - *unix 环境
+    - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中
+    - Windows 下安装 [cmder](https://cmder.net/) [下载](https://cmder.en.softonic.com/download) 且安装 rsync (不推荐)
+
+
 ## 项目使用
 
 #### 1.下载项目
 ```php
 // A. github （推荐）
 $ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
-$ git checkout 5.8.0 // 切换至当前最新稳定版本
+$ git checkout 5.8.0 // 切换至当前最新稳定版本或直接使用 master 版本
 ```
 或
 ```php
@@ -51,9 +60,10 @@ $ git checkout 5.8.0 // 切换至当前最新稳定版本
 $ composer create-project elapse-annals/laravel-plus
 $ mv laravel-plus  LaravelPlus
 ```
- #### 2.创建新项目
+ #### 2.创建新项目 
+ 
 ```php
-//  A.在当前目录运行自动复制脚本 (推荐)
+//  A.在当前目录运行自动复制脚本 （ 推荐）
 $ php LaravelPlus/create YourProject
 ```
  或 
