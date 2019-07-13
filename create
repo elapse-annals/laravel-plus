@@ -12,6 +12,7 @@ $remove_excess_files = [
     'composer.lock',
     '_config.yml',
     'create',
+    'create_win',
     '_ide_helper.php',
 ];
 $remove_excess_dirs = [
@@ -92,14 +93,18 @@ function copyHideFile(string $laravel_plus_basename, $product): void
  * @param string $laravel_plus_basename
  */
 function handle(string $laravel_plus_basename)
-{
+{  
     $product = checkRequestVariable();
     echo "\033[34mLaravelPlus Build \033[31m{$product}\e[0m \e[34mproject\e[0m" . PHP_EOL;
     testProjectStart();
     exec("cd {$laravel_plus_basename}");
     checkProjectDirectory();
     echo 'Loading ... ' . PHP_EOL;
-    exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  node_modules/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        exec("php LaravelPlus/create_win {$product} > create_win_log.txt");      
+    }else{
+        exec("rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  node_modules/ --exclude  .github/  {$laravel_plus_basename}/* {$product}");
+    }    
     if (!is_dir("{$product}")) {
         die('Error: cp new project is error' . PHP_EOL);
     }

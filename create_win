@@ -7,29 +7,34 @@
  * Time: 00:01
  */
 
-/**
- * 文件夹文件拷贝
- *
- * @param string $src 来源文件夹
- * @param string $dst 目的地文件夹
- * @return bool
- */
+$filter_folder = [
+    '.git/',
+    'vendor/',
+    'node_modules/',
+    '.github/ ',
+];
+
+$product = __DIR__.'/../'.checkRequestVariable();
+$laravel_plus_patch = __DIR__; 
+dirCopy($laravel_plus_patch,$product);
+
 function dirCopy($src = '', $dst = '')
 {
+    global $filter_folder;
     if (empty($src) || empty($dst))
     {
         return false;
     }
  
     $dir = opendir($src);
-    dir_mkdir($dst);
+    dirMkdir($dst);
     while (false !== ($file = readdir($dir)))
     {
-        if (($file != '.') && ($file != '..'))
+        if (($file != '.') && ($file != '..') && !in_array($file,$filter_folder))
         {
             if (is_dir($src . '/' . $file))
             {
-                dir_copy($src . '/' . $file, $dst . '/' . $file);
+                dirCopy($src . '/' . $file, $dst . '/' . $file);
             }
             else
             {
@@ -42,15 +47,8 @@ function dirCopy($src = '', $dst = '')
     return true;
 }
  
-/**
- * 创建文件夹
- *
- * @param string $path 文件夹路径
- * @param int $mode 访问权限
- * @param bool $recursive 是否递归创建
- * @return bool
- */
-function dirkdir($path = '', $mode = 0777, $recursive = true)
+
+function dirMkdir($path = '', $mode = 0777, $recursive = true)
 {
     clearstatcache();
     if (!is_dir($path))
@@ -60,4 +58,15 @@ function dirkdir($path = '', $mode = 0777, $recursive = true)
     }
  
     return true;
+}
+
+function checkRequestVariable(): string
+{
+    global $argv, $laravel_plus_basename;
+    if (empty($argv) || !isset($argv[1]) || empty($argv[1])) {
+        echo "error: No project name set" . PHP_EOL;
+        echo "eg): php {$laravel_plus_basename}/create YourProject" . PHP_EOL;
+        die;
+    }
+    return $argv[1];
 }
