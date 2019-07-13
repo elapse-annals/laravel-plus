@@ -13,7 +13,7 @@ $remove_excess_files = [
     '_config.yml',
     'create',
     'create_win',
-    '_ide_helper.php',
+    '_ide_helper.php',    
 ];
 $remove_excess_dirs = [
 ];
