@@ -340,6 +340,9 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
   Schema::defaultStringLength(191);
   ```
 
+## 进展
+- 开发 SwiftCMS 实际应用以进行完善
+
 ## 待办
 
 完善资源功能
