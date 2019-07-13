@@ -12,6 +12,9 @@ $filter_folder = [
     'vendor',
     'node_modules',
     '.github',
+    '.styleci.yml',
+    '.travis.yml',
+    
 ];
 
 $product = __DIR__.'/../'.checkRequestVariable();
