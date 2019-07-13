@@ -295,7 +295,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
             - [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)
              - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (可选)
         - rabbitMQ 扩展
-            - vladimir-yuldashev/laravel-queue-rabbitmq          - php-amqplib/php-amqplib 原生（可选）
+            - vladimir-yuldashev/laravel-queue-rabbitmq         
+            - php-amqplib/php-amqplib 原生（可选）
         - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
         - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包（可单独引用）
