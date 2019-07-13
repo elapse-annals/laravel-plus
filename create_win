@@ -8,10 +8,10 @@
  */
 
 $filter_folder = [
-    '.git/',
-    'vendor/',
-    'node_modules/',
-    '.github/ ',
+    '.git',
+    'vendor',
+    'node_modules',
+    '.github',
 ];
 
 $product = __DIR__.'/../'.checkRequestVariable();
@@ -32,6 +32,7 @@ function dirCopy($src = '', $dst = '')
     {
         if (($file != '.') && ($file != '..') && !in_array($file,$filter_folder))
         {
+            echo $file.PHP_EOL;
             if (is_dir($src . '/' . $file))
             {
                 dirCopy($src . '/' . $file, $dst . '/' . $file);
