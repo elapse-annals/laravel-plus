@@ -8,6 +8,7 @@
  */
 
 $laravel_plus_basename = basename(__DIR__);
+
 $remove_excess_files = [
     'composer.lock',
     '_config.yml',
@@ -15,6 +16,9 @@ $remove_excess_files = [
     'create_win',
     '_ide_helper.php',    
 ];
+
+$remove_excess_dirs  =[];
+
 $filter_excess_dirs = [
     '.',
     '..',
