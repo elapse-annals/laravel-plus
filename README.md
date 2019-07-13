@@ -42,11 +42,11 @@
 
 #### 1.下载项目
 ```php
-// A. github （*unix 环境使用或 Windows 下安装 cmder 使用，推荐）
+// A. github （推荐）
 $ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
 $ git checkout 5.8.0 // 切换至当前最新稳定版本或直接使用 master 版本
 ```
-或（windows 环境使用）
+或
 ```php
 // B. composer
 $ composer create-project elapse-annals/laravel-plus
@@ -54,12 +54,12 @@ $ mv laravel-plus  LaravelPlus
 ```
  #### 2.创建新项目
 ```php
-//  A.在当前目录运行自动复制脚本 (推荐)
+//  A.在当前目录运行自动复制脚本 （*unix 环境使用或 Windows 下安装 cmder 使用或在 homestead 中使用 | 推荐）
 $ php LaravelPlus/create YourProject
 ```
  或 
 ```
-//  B.在当前目录手动复制项目至自身项目
+//  B.在当前目录手动复制项目至自身项目（windows 环境使用）
 $ cd LaravelPlus
 $ rm composer.lock
 $ rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/ LaravelPlus/* YourProject             
