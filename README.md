@@ -53,13 +53,20 @@ $ composer create-project elapse-annals/laravel-plus
 $ mv laravel-plus  LaravelPlus
 ```
  #### 2.创建新项目
+ 运行方式
+ 
+- *unix 环境运行
+- 在 homestead 中运行
+- Windows 下安装 cmder 运行
+ 
+ 
 ```php
-//  A.在当前目录运行自动复制脚本 （*unix 环境使用或 Windows 下安装 cmder 使用或在 homestead 中使用 | 推荐）
+//  A.在当前目录运行自动复制脚本 （ 推荐）
 $ php LaravelPlus/create YourProject
 ```
  或 
 ```
-//  B.在当前目录手动复制项目至自身项目（windows 环境使用）
+//  B.在当前目录手动复制项目至自身项目
 $ cd LaravelPlus
 $ rm composer.lock
 $ rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/ LaravelPlus/* YourProject             
