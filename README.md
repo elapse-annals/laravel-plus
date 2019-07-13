@@ -43,7 +43,7 @@
 - 脚本前置要求（任意一种）
     - *unix 环境
     - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中
-    - Windows 下安装 [cmder](https://cmder.net/)
+    - Windows 下安装 [cmder](https://cmder.net/) [下载](https://cmder.en.softonic.com/download)
 
 
 ## 项目使用
