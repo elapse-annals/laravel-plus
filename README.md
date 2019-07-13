@@ -40,10 +40,10 @@
 
 ## 运行环境要求
 - 已安装 PHP
-- 脚本前置要求
+- 脚本前置要求（任意一种）
     - *unix 环境
-    - 在 homestead 中
-    - Windows 下安装 cmder 
+    - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中
+    - Windows 下安装 [cmder](https://cmder.net/)
 
 
 ## 项目使用
