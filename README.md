@@ -229,11 +229,11 @@ phpunit
 dusk 
 ```php
 composer require --dev laravel/dusk
-php artisan dusk:install  // 需要网络
+php artisan dusk:install  // 需要翻墙
 ```
-无网络时解决方案
 
-从 [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
+
+ [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
 手动重命名移动至 LaravelPlus/vendor/laravel/dusk/bin/chromedriver-mac
 
 
