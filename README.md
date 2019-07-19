@@ -12,7 +12,12 @@
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
 ## 介绍
-[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
+
+拓展功能
+- 自动 laravel 与 vue 基于基础模型的代码生成器。
+- 多进程使用
+- 环境配置切换
 
 ## 目的
 为了减少重复 CURD 和新项目的配置麻烦等问题，如：
