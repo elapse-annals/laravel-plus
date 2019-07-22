@@ -12,7 +12,12 @@
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
 ## 介绍
-[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
+
+拓展功能
+- 自动 laravel 与 vue 基于基础模型的代码生成器。
+- 多进程使用
+- 环境配置切换
 
 ## 目的
 为了减少重复 CURD 和新项目的配置麻烦等问题，如：
@@ -43,7 +48,7 @@
 - 脚本运行前置要求（任意一种）
     - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中(推荐)
     - *unix 环境
-    - Windows 下安装 [cmder](https://cmder.net/) [下载地址](https://cmder.en.softonic.com/)
+    - Windows 下安装 [cmder](https://cmder.net/) - [下载地址](https://cmder.en.softonic.com/)
     - cmd 运行未进行兼容（现有异常会不过滤和清理部分文件） (不推荐)
 
 ## 项目使用
@@ -229,11 +234,11 @@ phpunit
 dusk 
 ```php
 composer require --dev laravel/dusk
-php artisan dusk:install  // 需要网络
+php artisan dusk:install  // 需要翻墙
 ```
-无网络时解决方案
 
-从 [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
+
+ [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
 手动重命名移动至 LaravelPlus/vendor/laravel/dusk/bin/chromedriver-mac
 
 
@@ -307,7 +312,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       ```php
-        php artisan code:models --table=tb_name
+        php artisan code:models --table=tb_name   // 指定表 
+        php artisan code:models --connection=mysql  // 指定数据库连接
       ```
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
