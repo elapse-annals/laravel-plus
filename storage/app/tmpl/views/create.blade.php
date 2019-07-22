@@ -7,22 +7,41 @@
             <div class="operation">
                 <el-button type="primary" @click="onSubmit">立即创建</el-button>
                 <el-button @click="onCancel">取消</el-button>
+                <a href="/temps">
+                    <el-button>返回</el-button>
+                </a>
             </div>
         </el-form>
     </div>
-
 @endsection
 
 @section('script')
     <script>
         var mixin = {
             data: {
+                'form': {},
                 'detail_data': {},
-                'is_disabled': false,
+                'is_disabled_edit': false,
             },
             methods: {
                 onSubmit() {
-                    console.log('submit!');
+                    axios.post('/temps', this.detail_data)
+                      .then((response) => {
+                          var message_type = 'error';
+                          if (200 == response.data.code) {
+                              var message_type = 'success';
+                          } else {
+                              console.log(response);
+                          }
+                          this.$message({
+                              message: response.data.msg,
+                              type: message_type
+                          });
+                      })
+                      .catch(error => console.log(error));
+                },
+                onCancel() {
+                    history.go(0);
                 }
             }
         }

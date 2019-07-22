@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 use App\Services\TempService;
 use App\Transformers\TempTransformer;
 use App\Formatters\TempFormatter;
@@ -213,7 +213,7 @@ class TempController extends Controller
             DB::beginTranscaction();
             $data = $request->input();
             $this->validateUpdateRequest($data, $id);
-            $res_db = $this->service->update($data, $id);            
+            $res_db = $this->service->update($data, $id);
             DB::commit();
             if ($request->is('api/*')) {
                 return $res_db;
@@ -240,12 +240,12 @@ class TempController extends Controller
      */
     public function destroy(int $id)
     {
-        try {        
+        try {
             DB::beginTranscaction();
             $this->validateDestroy($id);
-            $this->service->destroy($id);            
+            $this->service->destroy($id);
             DB::commit();
-        } catch (Exception $exception) {            
+        } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception);
         }

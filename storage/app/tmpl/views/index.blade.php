@@ -42,6 +42,27 @@
                         this.search = {};
                     }
                 },
+                alertThis(temp_this) {
+                    console.log(temp_this)
+                },
+                deleteRow(id) {
+                    axios.delete('/temps/' + id)
+                      .then(
+                        (response) => {
+                            this.$message({
+                                message: 'success',
+                                type: 'success'
+                            });
+                            this.reload();
+                        }
+                      )
+                      .catch(error => console.log(error));
+                },
+                reload() {
+
+                },
+                handleSelectionChange() {
+                }
             }
         }
     </script>

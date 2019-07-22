@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Presenters\TempPresenter;
 use App\Repositories\TempRepository;
 
 /**
@@ -16,49 +17,74 @@ class TempService extends Service
      */
     protected $repository;
 
+    /**
+     * @var
+     */
     private $request_data;
 
     /**
      * TempService constructor.
      */
-    public function __construct($request_data)
+    public function __construct()
     {
         parent::__construct();
-        $this->request_data = $request_data;
         $this->repository = new TempRepository();
     }
 
-    public function index()
+    /**
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getList()
     {
         return $this->repository
             ->getList();
     }
 
-    public function store(Request $request)
+    /**
+     * @param $data
+     *
+     * @return int
+     */
+    public function store($data)
     {
+        return $this->repository
+            ->create($data);
     }
 
+    /**
+     *
+     */
     public function create()
     {
     }
 
-    public function show($id)
+    /**
+     * @param $id
+     *
+     * @return \App\Models\Temp|\App\Models\Temp[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
+    public function getIdInfo($id)
     {
+        return $this->repository->find($id);
     }
 
-    public function update()
+    /**
+     * @param $data
+     *
+     * @return int
+     */
+    public function update($data, $id)
     {
-        $id = $this->request_data->id;
-        return $this->repository
-            ->save();
+        return $this->repository->update($data, $id);
     }
 
+    /**
+     * @param $id
+     */
     public function destroy($id)
     {
-        $this->service->destroy($id);
+        $this->repository->destroy($id);
     }
 
-    public function edit($id)
-    {
-    }
+
 }
