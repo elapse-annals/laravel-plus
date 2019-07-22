@@ -352,7 +352,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 
 ## 待办
 
-完善资源功能
+完善资源功能 - 列表翻页
 
 增加多语言数据库，和迁移
 
