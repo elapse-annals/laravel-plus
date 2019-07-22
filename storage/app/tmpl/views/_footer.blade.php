@@ -1,1 +1,1 @@
-@extends('frameworks.frameworks._footer')
+@extends('frameworks._footer')
