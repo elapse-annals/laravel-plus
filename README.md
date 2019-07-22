@@ -312,7 +312,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       ```php
-        php artisan code:models --table=tb_name
+        php artisan code:models --table=tb_name   // 指定表 
+        php artisan code:models --connection=mysql  // 指定数据库连接
       ```
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
