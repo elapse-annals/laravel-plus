@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 use App\Services\TempService;
 use App\Transformers\TempTransformer;
 use App\Formatters\TempFormatter;
+use Illuminate\Support\Str;
 
 /**
  * Class TempController
@@ -69,8 +70,8 @@ class TempController extends Controller
             }
             $view_data = $this->filter(
                 [
-                    'info'       => $this->getInfo(),
-                    'temps'      => $this->service->getList(),
+                    'info' => $this->getInfo(),
+                    'temps' => $this->service->getList(),
                     'table_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__
@@ -127,7 +128,7 @@ class TempController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (! empty($rules)) {
+        if (!empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -139,8 +140,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'data' => [],
                 ],
                 'detail_data' => [
@@ -156,8 +157,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $id
-     * @param bool    $is_edit
+     * @param int $id
+     * @param bool $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -168,8 +169,8 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info'        => $this->getInfo(),
-                    'js_data'     => [
+                    'info' => $this->getInfo(),
+                    'js_data' => [
                         'detail_data' => $temp,
                     ],
                     'detail_data' => [
@@ -213,7 +214,7 @@ class TempController extends Controller
             DB::beginTranscaction();
             $data = $request->input();
             $this->validateUpdateRequest($data, $id);
-            $res_db = $this->service->update($data, $id);            
+            $res_db = $this->service->update($data, $id);
             DB::commit();
             if ($request->is('api/*')) {
                 return $res_db;
@@ -240,12 +241,12 @@ class TempController extends Controller
      */
     public function destroy(int $id)
     {
-        try {        
+        try {
             DB::beginTranscaction();
             $this->validateDestroy($id);
-            $this->service->destroy($id);            
+            $this->service->destroy($id);
             DB::commit();
-        } catch (Exception $exception) {            
+        } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception);
         }
@@ -280,8 +281,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author'      => 'Ben',
-            'title'       => 'index title',
+            'author' => 'Ben',
+            'title' => 'index title',
         ];
     }
 
@@ -290,22 +291,32 @@ class TempController extends Controller
      */
     private function getTableCommentMap(): array
     {
-        return [
-            [
-                'prop'  => 'id',
-                'label' => 'ID',
-            ], [
-                'prop'  => 'name',
-                'label' => '名字',
-            ], [
-                'prop'  => 'sex',
-                'label' => '性别',
-            ],
-        ];
+        $table_maps = Cache::remember('map_TbSystemAbnormalSentinel', 60, function () {
+            $table = Str::str_plural(Str::snake_case('TbSystemAbnormalSentinel'));
+            $table_column_dbs = DB::connection('mysql')->select("show full columns from {$table}");
+            $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
+            $filter_words = [
+                'deleted_by',
+                'deleted_at',
+            ];
+            foreach ($table_columns as $key => $table_column) {
+                if (empty($table_column)) {
+                    $table_column = $key;
+                }
+                if (!in_array($key, $filter_words)) {
+                    $show_columns[] = [
+                        'prop' => $key,
+                        'label' => $table_column
+                    ];
+                }
+            }
+            return serialize($show_columns);
+        });
+        return unserialize($table_maps);
     }
 
     /**
-     * @param array  $data
+     * @param array $data
      * @param string $controller_function
      *
      * @return array
