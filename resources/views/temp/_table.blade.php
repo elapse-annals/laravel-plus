@@ -18,7 +18,7 @@
         <el-table-column
                 fixed="right"
                 label="操作"
-                width="200"
+                width="160"
                 header-align="center"
         >
             <template slot-scope="scope">
