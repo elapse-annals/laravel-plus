@@ -107,7 +107,7 @@ class TempController extends Controller
     public function store(Request $request)
     {
         try {
-            DB::beginTranscaction();
+            DB::beginTransaction();
             $data = $request->input();
             $this->validateStoreRequest($data);
             $store_status = $this->service->store($data);
@@ -196,14 +196,15 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param         $id
+     * @param $id
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|int
+     * @throws Exception
      */
     public function update(Request $request, $id)
     {
         try {
-            DB::beginTranscaction();
+            DB::beginTransaction();
             $data = $request->input();
             $this->validateUpdateRequest($data, $id);
             $res_db = $this->service->update($data, $id);
@@ -234,7 +235,7 @@ class TempController extends Controller
     public function destroy(int $id)
     {
         try {
-            DB::beginTranscaction();
+            DB::beginTransaction();
             $this->validateDestroy($id);
             $this->service->destroy($id);
             DB::commit();
