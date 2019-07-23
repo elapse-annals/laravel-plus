@@ -144,11 +144,7 @@ class TempController extends Controller
                 'js_data' => [
                     'data' => [],
                 ],
-                'detail_data' => [
-                    'id',
-                    'name',
-                    'sex',
-                ],
+                'detail_data' => array_column($this->getTableCommentMap(), 'prop'),
             ];
             return view('temp.create', $view_data);
         } catch (Exception $exception) {
@@ -173,11 +169,7 @@ class TempController extends Controller
                     'js_data' => [
                         'detail_data' => $temp,
                     ],
-                    'detail_data' => [
-                        'id',
-                        'name',
-                        'sex',
-                    ],
+                    'detail_data' => array_column($this->getTableCommentMap(), 'prop'),
                 ],
                 __FUNCTION__
             );
@@ -291,7 +283,7 @@ class TempController extends Controller
      */
     private function getTableCommentMap(): array
     {
-        $table_maps = Cache::remember('map_TbSystemAbnormalSentinel', 60, function () {
+        $table_maps = Cache::remember('map_TbSystemAbnormalSentinel', 1440, function () {
             $table = Str::str_plural(Str::snake_case('TbSystemAbnormalSentinel'));
             $table_column_dbs = DB::connection('mysql')->select("show full columns from {$table}");
             $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
