@@ -144,7 +144,7 @@ class TempController extends Controller
                 'js_data' => [
                     'data' => [],
                 ],
-                'detail_data' => array_column($this->getTableCommentMap(), 'prop'),
+                'detail_data' => $this->getTableCommentMap(),
             ];
             return view('temp.create', $view_data);
         } catch (Exception $exception) {
@@ -169,7 +169,7 @@ class TempController extends Controller
                     'js_data' => [
                         'detail_data' => $temp,
                     ],
-                    'detail_data' => array_column($this->getTableCommentMap(), 'prop'),
+                    'detail_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__
             );
