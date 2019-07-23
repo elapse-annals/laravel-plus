@@ -23,10 +23,18 @@
                 'table_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
+                fullscreenLoading: false
             },
             methods: {
                 handleSizeChange(val) {
-                    console.log(`每页 ${val} 条`);
+                    let per_page = `${val}`;
+                    let _this = this
+                    _this.page.per_page = per_page;
+                    this.fullscreenLoading = true;
+                    setTimeout(() => {
+                        this.fullscreenLoading = false;
+                    }, 2000);
+                    console.log(per_page);
                 },
                 handleCurrentChange(val) {
                     console.log(`当前页: ${val}`);
