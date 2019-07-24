@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Formatters\TempFormatter;
+use App\Transformers\TempTransformer;
+use App\Services\TempService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Services\TempService;
-use App\Transformers\TempTransformer;
-use App\Formatters\TempFormatter;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class TempController
