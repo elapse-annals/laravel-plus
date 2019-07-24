@@ -8,7 +8,7 @@
         @include('temp._stripe')
     </div>
     <div class="table">
-        @include('temp._table')
+        @include('temp._list')
     </div>
     <div class="page">
         @include('temp._page')
