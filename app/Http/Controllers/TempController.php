@@ -214,7 +214,7 @@ class TempController extends Controller
             }
         } catch (Exception $exception) {
             DB::rollBack();
-            return $this->catchException($exception);
+            return $this->catchException($exception, 'api');
         }
     }
 
@@ -231,17 +231,21 @@ class TempController extends Controller
 
     /**
      * @param int $id
+     *
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws Exception
      */
     public function destroy(int $id)
     {
         try {
             DB::beginTransaction();
             $this->validateDestroy($id);
-            $this->service->destroy($id);
+            $res_db = $this->service->destroy($id);
+            return $this->successReturn($res_db);
             DB::commit();
         } catch (Exception $exception) {
             DB::rollBack();
-            return $this->catchException($exception);
+            return $this->catchException($exception, 'api');
         }
     }
 
