@@ -64,9 +64,14 @@ class TempController extends Controller
     {
         try {
             $data = $request->input();
+            if (true == $request->input('api')) {
+                $data = array_map(function ($datum) {
+                    return json_decode($datum, true);
+                }, $data);
+            }
             $this->validationIndexRequest($data);
             $temps = $this->service->getList();
-            if ($request->is('api/*')) {
+            if ($request->is('api/*') || true == $request->input('api')) {
                 return $temps;
             }
             $view_data = $this->filter(
@@ -174,7 +179,7 @@ class TempController extends Controller
                 ],
                 __FUNCTION__
             );
-            if ($request->is('api/*') || $is_edit) {
+            if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
             return view('temp.show', $view_data);

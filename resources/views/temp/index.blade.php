@@ -64,7 +64,26 @@
                         .catch(error => console.log(error));
                 },
                 reload() {
-
+                    let _this = this;
+                    let request_parameter = {
+                        api: true,
+                        search: _this.search,
+                        page: _this.page
+                    };
+                    axios.get('/temps/', {params: request_parameter})
+                        .then((response) => {
+                            var message_type = 'reload error';
+                            let response_parameter = response.data;
+                            if (200 == response_parameter.code) {
+                                _this.table_data = response_parameter.data
+                            } else {
+                                this.$message({
+                                    message: response_parameter.msg,
+                                    type: message_type
+                                });
+                            }
+                        })
+                        .catch(error => console.log(error));
                 }
             }
         }
