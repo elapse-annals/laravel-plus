@@ -20,6 +20,7 @@ class CreateTempTable extends Migration
             $table->timestamps();
             $table->index(['name', 'sex']);
         });
+        DB::statement("ALTER TABLE 'temps' comment'内置'");
     }
 
     /**
