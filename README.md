@@ -355,7 +355,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 
 完善资源功能 - 列表翻页
 
-增加多语言数据库，和迁移
+增加多语言数据库，和迁移，自动更新功能
 
 增加动态视图模式和静态视图模式切换（渲染后生成 view）
 
