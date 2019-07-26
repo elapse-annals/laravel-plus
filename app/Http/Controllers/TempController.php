@@ -76,8 +76,8 @@ class TempController extends Controller
             }
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'temps' => $this->service->getList(),
+                    'info'       => $this->getInfo(),
+                    'temps'      => $this->service->getList(),
                     'table_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__
@@ -134,7 +134,7 @@ class TempController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (!empty($rules)) {
+        if (! empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -146,8 +146,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -159,8 +159,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -171,8 +171,8 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'js_data' => [
+                    'info'        => $this->getInfo(),
+                    'js_data'     => [
                         'detail_data' => $temp,
                     ],
                     'detail_data' => $this->getTableCommentMap(),
@@ -202,7 +202,7 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
+     * @param         $id
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|int
      * @throws Exception
@@ -284,8 +284,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
@@ -294,8 +294,8 @@ class TempController extends Controller
      */
     private function getTableCommentMap(): array
     {
-        $table_maps = Cache::remember('map_TbSystemAbnormalSentinel', 1440, function () {
-            $table = Str::str_plural(Str::snake_case('TbSystemAbnormalSentinel'));
+        $table_maps = Cache::remember('map_Temps', 1, function () {
+            $table = Str::plural(Str::snake('Temps'));
             $table_column_dbs = DB::connection('mysql')->select("show full columns from {$table}");
             $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
             $filter_words = [
@@ -306,10 +306,10 @@ class TempController extends Controller
                 if (empty($table_column)) {
                     $table_column = $key;
                 }
-                if (!in_array($key, $filter_words)) {
+                if (! in_array($key, $filter_words)) {
                     $show_columns[] = [
-                        'prop' => $key,
-                        'label' => $table_column
+                        'prop'  => $key,
+                        'label' => $table_column,
                     ];
                 }
             }
@@ -319,7 +319,7 @@ class TempController extends Controller
     }
 
     /**
-     * @param array $data
+     * @param array  $data
      * @param string $controller_function
      *
      * @return array
