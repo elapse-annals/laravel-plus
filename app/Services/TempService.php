@@ -34,8 +34,11 @@ class TempService extends Service
     /**
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getList()
+    public function getList($data)
     {
+        if (isset($data['per_page'])) {
+            $this->repository->per_page = $data['per_page'];
+        }
         return $this->repository
             ->getList();
     }

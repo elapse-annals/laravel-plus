@@ -70,14 +70,14 @@ class TempController extends Controller
                 }, $data);
             }
             $this->validationIndexRequest($data);
-            $temps = $this->service->getList();
+            $temps = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
                 return $temps;
             }
             $view_data = $this->filter(
                 [
                     'info'       => $this->getInfo(),
-                    'temps'      => $this->service->getList(),
+                    'temps'      => $temps,
                     'table_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__

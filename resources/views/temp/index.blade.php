@@ -17,7 +17,7 @@
 
 @section('script')
     <script>
-        var js_data = @json($js_data);
+        var js_data =@json($js_data);
         var mixin = {
             data: {
                 'table_data': js_data.data,
@@ -52,38 +52,39 @@
                 },
                 deleteRow(id) {
                     axios.delete('/temps/' + id)
-                        .then(
-                            (response) => {
-                                this.$message({
-                                    message: 'success',
-                                    type: 'success'
-                                });
-                                this.reload();
-                            }
-                        )
-                        .catch(error => console.log(error));
+                      .then(
+                        (response) => {
+                            this.$message({
+                                message: 'success',
+                                type: 'success'
+                            });
+                            this.reload();
+                        }
+                      )
+                      .catch(error => console.log(error));
                 },
                 reload() {
                     let _this = this;
                     let request_parameter = {
-                        api: true,
                         search: _this.search,
-                        page: _this.page
+                        current_page: _this.page.current_page,
+                        per_page: _this.page.per_page,
+                        api: true
                     };
                     axios.get('/temps/', {params: request_parameter})
-                        .then((response) => {
-                            var message_type = 'reload error';
-                            let response_parameter = response.data;
-                            if (200 == response_parameter.code) {
-                                _this.table_data = response_parameter.data
-                            } else {
-                                this.$message({
-                                    message: response_parameter.msg,
-                                    type: message_type
-                                });
-                            }
-                        })
-                        .catch(error => console.log(error));
+                      .then((response) => {
+                          var message_type = 'reload error';
+                          let response_parameter = response.data;
+                          if (200 == response_parameter.code) {
+                              _this.table_data = response_parameter.data
+                          } else {
+                              this.$message({
+                                  message: response_parameter.msg,
+                                  type: message_type
+                              });
+                          }
+                      })
+                      .catch(error => console.log(error));
                 }
             }
         }

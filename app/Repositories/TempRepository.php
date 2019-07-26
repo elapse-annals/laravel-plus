@@ -21,7 +21,7 @@ class TempRepository extends Repository
      */
     public function getList()
     {
-        return Temp::paginate($this->per_page);
+        return Temp::simplePaginate($this->per_page);
     }
 
     /**
