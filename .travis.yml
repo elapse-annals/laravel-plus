@@ -23,7 +23,7 @@ before_script:
   - composer dump-autoload
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
-  - mysql -e 'CREATE DATABASE forge;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - php artisan migrate
 
 script:
