@@ -18,12 +18,13 @@ service:
 
 before_script:
   - cp .env.travis .env
-  - mysql -e 'CREATE DATABASE  laravel_plus;'
   - composer global require hirak/prestissimo
   - composer install
   - composer dump-autoload
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
+  - sleep 3
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - php artisan migrate
 
 script:
