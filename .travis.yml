@@ -13,17 +13,17 @@ cache:
 
 service:
   - memcached
-  - redis-server
   - mysql
+  - redis-server
 
 before_script:
   - cp .env.travis .env
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - composer global require hirak/prestissimo
   - composer install
   - composer dump-autoload
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - php artisan migrate
 
 script:
