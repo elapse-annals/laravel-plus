@@ -39,8 +39,10 @@ class TempService extends Service
         if (isset($data['per_page'])) {
             $this->repository->per_page = $data['per_page'];
         }
-        return $this->repository
-            ->getList();
+        if ('{}' == $data['search']) {
+            $data['search'] = [];
+        }
+        return $this->repository->getList($data['search']);
     }
 
     /**

@@ -38,7 +38,7 @@
                     this.reload();
                 },
                 onSubmit() {
-                    console.log(this.search);
+                    this.reload();
                 },
                 resetForm(formName) {
                     if (this.$refs[formName] !== undefined) {
@@ -89,10 +89,14 @@
                                   message: response_parameter.msg,
                                   type: message_type
                               });
+                              _this.table_data = [];
+                              _this.page = {};
                           }
                       })
                       .catch(error => {
                           _this.fullscreenLoading = false;
+                          _this.table_data = [];
+                          _this.page = {};
                           console.log('error', error);
                       });
                 },
