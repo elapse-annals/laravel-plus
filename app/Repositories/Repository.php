@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Model;
 use App\Services\DateService;
-use Illuminate\Support\Facades\Date;
 
 /**
  * Class Repository
@@ -33,6 +32,7 @@ class Repository
             if (empty($datum)) {
                 contains();
             }
+            $datum = trim($datum);
             $temp_key = $table_maps[$key] ?? $key;
             switch ($key) {
                 case 'created_at':
@@ -50,7 +50,7 @@ class Repository
                                 $temp_datum = '%' . $temp_datum;
                             case 'left':
                                 $temp_datum = $temp_datum . '%';
-                                $model = $model->when($datum, function ($query, $temp_datum) use ($temp_key) {
+                                $model = $model->when($datum, function ($query) use ($temp_key, $temp_datum) {
                                     return $query->where($temp_key, 'like', $temp_datum);
                                 });
                                 break;
