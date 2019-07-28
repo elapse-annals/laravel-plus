@@ -64,20 +64,24 @@
                       .catch(error => console.log(error));
                 },
                 reload() {
-                    let _this = this;
+                    var _this = this;
+                    _this.fullscreenLoading = true
                     let request_parameter = {
                         search: _this.search,
-                        current_page: _this.page.current_page,
+                        page: _this.page.current_page,
                         per_page: _this.page.per_page,
                         api: true
                     };
                     axios.get('/temps/', {params: request_parameter})
                       .then((response) => {
+                          _this.fullscreenLoading = false;
                           var message_type = 'reload error';
                           let response_parameter = response.data;
+                          console.log(response)
                           if (200 == response_parameter.code) {
-                              _this.table_data = response_parameter.data
+                              _this.table_data = response_parameter.data.data
                           } else {
+                              _this.fullscreenLoading = false;
                               this.$message({
                                   message: response_parameter.msg,
                                   type: message_type

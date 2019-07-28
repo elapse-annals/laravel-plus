@@ -72,7 +72,7 @@ class TempController extends Controller
             $this->validationIndexRequest($data);
             $temps = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $temps;
+                return $this->successReturn($temps);
             }
             $view_data = $this->filter(
                 [
