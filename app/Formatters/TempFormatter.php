@@ -17,7 +17,6 @@ class TempFormatter extends Formatter
     public function formatIndex(array $data): array
     {
         return [
-            'temps' => $data['temps'],
             'info' => $data['info'],
             'js_data' => [
                 'data' => $data['temps']->items(),
