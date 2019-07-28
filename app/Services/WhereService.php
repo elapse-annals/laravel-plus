@@ -67,8 +67,8 @@ class WhereService extends Service
         } elseif (empty($end_date) && ! empty($start_date)) {
             $end_date = self::MAX_TIME;
         }
-        $start_date = DateService::toYmd($start_date) . ' 00:00:00';
-        $end_date = DateService::toYmd($end_date) . ' 23:59:59';
+        $start_date = DateService::format($start_date) . ' 00:00:00';
+        $end_date = DateService::format($end_date) . ' 23:59:59';
         $where_between = [$column, [$start_date, $end_date]];
         return $where_between;
     }

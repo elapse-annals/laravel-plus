@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Model;
 use App\Services\DateService;
+use Illuminate\Support\Facades\Date;
 
 /**
  * Class Repository
@@ -69,20 +70,24 @@ class Repository
     }
 
     /**
-     * @param null $start_date
-     * @param null $end_date
+     * @param null $start_datetime
+     * @param null $end_datetime
      *
      * @return array
      */
-    public function getBetweenDate($start_date = null, $end_date = null): array
+    public function getBetweenDate($start_datetime = null, $end_datetime = null): array
     {
-        if (empty($start_date) && ! empty($end_date)) {
-            $start_date = self::MIN_TIME;
-        } elseif (empty($end_date) && ! empty($start_date)) {
-            $end_date = self::MAX_TIME;
+        if (empty($start_datetime) && ! empty($end_datetime)) {
+            $start_datetime = self::MIN_TIME;
+        } elseif (empty($end_datetime) && ! empty($start_datetime)) {
+            $end_datetime = self::MAX_TIME;
         }
-        $start_date = DateService::toYmd($start_date) . ' 00:00:00';
-        $end_date = DateService::toYmd($end_date) . ' 23:59:59';
-        return [$start_date, $end_date];
+        if (0 == DateService::format($start_datetime, 'time_only')) {
+            $start_datetime = DateService::format($start_datetime) . ' 00:00:00';
+        }
+        if (0 == DateService::format($end_datetime, 'time_only')) {
+            $end_datetime = DateService::format($end_datetime) . ' 23:59:59';
+        }
+        return [$start_datetime, $end_datetime];
     }
 }

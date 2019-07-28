@@ -6,7 +6,7 @@
                 <label>{{$table_datum['label']}}：</label>
                 <el-date-picker
                         v-model="search.{{$table_datum['prop']}}"
-                        type="daterange"
+                        type="datetimerange"
                         start-placeholder="@lang('form.start_date')"
                         end-placeholder="@lang('form.end_date')"
                         value-format="yyyy-MM-dd HH:mm"

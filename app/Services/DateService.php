@@ -10,7 +10,7 @@ namespace App\Services;
 class DateService extends Service
 {
     /**
-     * @param $date
+     * @param        $date
      * @param string $format
      *
      * @return bool
@@ -25,16 +25,19 @@ class DateService extends Service
     }
 
     /**
-     * @param $date
+     * @param        $date
      * @param string $type
      *
      * @return false|string
      */
-    public static function toYmd($date, $type = 'underline')
+    public static function format($date, $type = 'underline')
     {
         switch ($type) {
             case   'underline':
                 $date_type = 'Y-m-d';
+                break;
+            case   'time_only':
+                $date_type = 'His';
                 break;
             default:
                 $date_type = 'Ymd';
