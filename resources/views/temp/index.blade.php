@@ -77,10 +77,11 @@
                           _this.fullscreenLoading = false;
                           var message_type = 'reload error';
                           let response_parameter = response.data;
-                          console.log(response)
                           if (200 == response_parameter.code) {
                               _this.table_data = response_parameter.data;
                               _this.page = response_parameter.page;
+                              let go_url = '#' + _this.getUrl(response.request.responseURL)
+                              window.history.pushState({reload: 'reload'}, 'title', go_url);
                           } else {
                               _this.fullscreenLoading = false;
                               this.$message({
@@ -91,8 +92,15 @@
                       })
                       .catch(error => {
                           _this.fullscreenLoading = false;
-                          console.log(error);
+                          console.log('error', error);
                       });
+                },
+                getUrl(url) {
+                    let indexOf = url.indexOf("?");
+                    if (indexOf != -1) {
+                        return url.substr(indexOf);
+                    }
+                    return null;
                 }
             }
         }
