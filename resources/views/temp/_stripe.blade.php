@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="20">
-            <a href="temps/create">
+            <a href="/temps/create">
                 <el-button type="primary" plain="true">
                     新增
                 </el-button>

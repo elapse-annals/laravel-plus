@@ -319,6 +319,8 @@ class TempController extends Controller
     }
 
     /**
+     * @todo 过度抽象
+     *
      * @param array  $data
      * @param string $controller_function
      *
