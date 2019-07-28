@@ -26,30 +26,29 @@
                 'is_disabled_edit': false,
                 'form': {}
             },
-            created:function(){
+            created: function () {
                 let _this = this
                 this.init_table_data = _this.table_data
             },
             methods: {
                 onSubmit() {
-                    // @todo 处理提交
-                    axios.put('/api/temps/2', this.detail_data).then((response) => {
+                    axios.put('/temps/' + this.detail_data.id, this.detail_data).then((response) => {
                         var message_type = 'error';
-                          if (200 == response.data.code) {
-                              var message_type = 'success';
-                          } else {
-                              console.log(response);
-                          }
-                          this.$message({
-                              message: response.data.msg,
-                              type: message_type
-                          });
+                        if (200 == response.data.code) {
+                            var message_type = 'success';
+                        } else {
+                            console.log(response);
+                        }
+                        this.$message({
+                            message: response.data.msg,
+                            type: message_type
+                        });
                     }).catch(error => console.log(error));
                 },
                 onCancel() {
                     // @todo 处理引用传递问题
                     this.detail_data = this.init_table_data
-                }
+                },
             }
         }
     </script>

@@ -42,7 +42,7 @@
                 },
                 onCancel() {
                     history.go(0);
-                }
+                },
             }
         }
     </script>

@@ -4,7 +4,7 @@
     @include('temp._head')
 </head>
 <body>
-<div id="app" class="container v-cloak">
+<div id="app" class="container v-cloak" v-loading.fullscreen.lock="fullscreenLoading">
     <header class="row">
         @include('temp._header')
     </header>
