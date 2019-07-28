@@ -17,7 +17,8 @@
 
 @section('script')
     <script>
-        var js_data =@json($js_data);
+        var js_data = null;
+        js_data = @json($js_data);
         var mixin = {
             data: {
                 'table_data': js_data.data,
