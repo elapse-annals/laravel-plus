@@ -4,9 +4,8 @@
 @import 'variables';
 // Vue
 @import 'vue';
-
 // Bootstrap
-//@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
   background-color: #fff;
@@ -21,6 +20,7 @@
 
 .search, .stripe, .page, .detail {
   width: 100%;
+  margin-top: 10px;
 }
 
 .el-row {
