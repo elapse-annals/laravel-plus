@@ -33,24 +33,26 @@ class Controller extends BaseController
     }
 
     /**
-     * @param null $data
+     * @param null   $data
      * @param string $message
+     * @param array  $page
      *
      * @return array
      */
-    protected function successReturn($data = null, $message = 'success'): array
+    protected function successReturn($data = null, $message = 'success', $page = []): array
     {
         $arr = [
             'code' => 200,
-            'msg' => $message,
+            'msg'  => $message,
             'data' => $data,
+            'page' => $page,
         ];
         return $arr;
     }
 
     /**
      * @param \Exception $exception
-     * @param null $type
+     * @param null       $type
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
@@ -64,7 +66,7 @@ class Controller extends BaseController
             return [
                 'code' => $code,
                 'data' => ['error_file' => $exception->getFile() . ':' . $exception->getLine()],
-                'msg' => $exception->getMessage(),
+                'msg'  => $exception->getMessage(),
             ];
         }
         return response($exception->getMessage(), $code);

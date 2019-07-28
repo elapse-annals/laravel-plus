@@ -79,7 +79,8 @@
                           let response_parameter = response.data;
                           console.log(response)
                           if (200 == response_parameter.code) {
-                              _this.table_data = response_parameter.data.data
+                              _this.table_data = response_parameter.data;
+                              _this.page = response_parameter.page;
                           } else {
                               _this.fullscreenLoading = false;
                               this.$message({
@@ -88,7 +89,10 @@
                               });
                           }
                       })
-                      .catch(error => console.log(error));
+                      .catch(error => {
+                          _this.fullscreenLoading = false;
+                          console.log(error);
+                      });
                 }
             }
         }
