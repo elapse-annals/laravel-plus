@@ -17,7 +17,7 @@
 
 @section('script')
     <script>
-        var js_data = null;
+        var js_data = [];
         js_data = @json($js_data);
         var mixin = {
             data: {
@@ -44,7 +44,6 @@
                     if (this.$refs[formName] !== undefined) {
                         this.$refs[formName].resetFields();
                     } else {
-                        console.log(this)
                         this.search = {};
                     }
                 },
@@ -55,6 +54,7 @@
                     axios.delete('/temps/' + id)
                       .then(
                         (response) => {
+                            console.log(response);
                             this.$message({
                                 message: 'success',
                                 type: 'success'
@@ -66,7 +66,7 @@
                 },
                 reload() {
                     var _this = this;
-                    _this.fullscreenLoading = true
+                    _this.fullscreenLoading = true;
                     let request_parameter = {
                         search: _this.search,
                         page: _this.page.current_page,
@@ -81,7 +81,7 @@
                           if (200 == response_parameter.code) {
                               _this.table_data = response_parameter.data;
                               _this.page = response_parameter.page;
-                              let go_url = '#' + _this.getUrl(response.request.responseURL)
+                              let go_url = '#' + _this.getUrl(response.request.responseURL);
                               window.history.pushState({reload: 'reload'}, 'title', go_url);
                           } else {
                               _this.fullscreenLoading = false;
@@ -98,7 +98,7 @@
                 },
                 getUrl(url) {
                     let indexOf = url.indexOf("?");
-                    if (indexOf != -1) {
+                    if (-1 != indexOf) {
                         return url.substr(indexOf);
                     }
                     return null;
