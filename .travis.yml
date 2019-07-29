@@ -11,6 +11,9 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+services:
+  - mysql
+
 service:
   - memcached
   - mysql
