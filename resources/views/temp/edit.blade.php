@@ -24,11 +24,12 @@
                 'detail_data': js_data.detail_data,
                 'init_table_data': {},
                 'is_disabled_edit': false,
+                'disabled_array': ['id'],
                 'form': {}
             },
             created: function () {
-                let _this = this
-                this.init_table_data = _this.table_data
+                let _this = this;
+                this.init_table_data = _this.table_data;
             },
             methods: {
                 onSubmit() {
