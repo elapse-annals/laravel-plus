@@ -33,7 +33,8 @@
                 this.init_table_data = _this.table_data;
             },
             mounted() {
-
+                $('#id').attr('disabled', 'disabled');
+                $("#id").parent().addClass('is-disabled');
             },
             methods: {
                 onSubmit() {
