@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Formatters\TempFormatter;
+use App\Transformers\TempTransformer;
+use App\Services\TempService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use App\Services\TempService;
-use App\Transformers\TempTransformer;
-use App\Formatters\TempFormatter;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Class TempController
@@ -54,13 +56,6 @@ class TempController extends Controller
     }
 
     /**
-     *
-     */
-    public function handle()
-    {
-    }
-
-    /**
      * @param Request $request
      *
      * @return array|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -69,15 +64,20 @@ class TempController extends Controller
     {
         try {
             $data = $request->input();
+            if (true == $request->input('api')) {
+                $data = array_map(function ($datum) {
+                    return json_decode($datum, true);
+                }, $data);
+            }
             $this->validationIndexRequest($data);
-            $temps = $this->service->getList();
-            if (0 === strpos($request->getRequestUri(), '/api/')) {
-                return $temps;
+            $temps = $this->service->getList($data);
+            if ($request->is('api/*') || true == $request->input('api')) {
+                return $this->successReturn($temps->items(), 'success', $this->formatter->assemblyPage($temps));
             }
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'temps' => $this->service->getList(),
+                    'info'       => $this->getInfo(),
+                    'temps'      => $temps,
                     'table_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__
@@ -90,16 +90,19 @@ class TempController extends Controller
 
     /**
      * @param array $data
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function validationIndexRequest(array $data): void
     {
         $rules = [
-            'page' => '',
         ];
         $messages = [
             'page' => '分页',
         ];
-        //        $this->validate($request, $rules, $messages);
+        if ($rules) {
+            $this->validate($data, $rules, $messages);
+        }
     }
 
     /**
@@ -110,19 +113,30 @@ class TempController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
             $data = $request->input();
             $this->validateStoreRequest($data);
-            return $this->service->store($data);
+            $store_status = $this->service->store($data);
+            DB::commit();
+            return $store_status;
         } catch (Exception $exception) {
-            return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
+            DB::rollBack();
+            return $this->catchException($exception, 'api');
         }
     }
 
     /**
      * @param $data
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function validateStoreRequest($data)
     {
+        $rules = [];
+        $messages = [];
+        if (! empty($rules)) {
+            $this->validate($data, $rules, $messages);
+        }
     }
 
     /**
@@ -132,15 +146,11 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
-                'detail_data' => [
-                    'id',
-                    'name',
-                    'sex',
-                ],
+                'detail_data' => $this->getTableCommentMap(),
             ];
             return view('temp.create', $view_data);
         } catch (Exception $exception) {
@@ -149,8 +159,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -161,24 +171,20 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'js_data' => [
+                    'info'        => $this->getInfo(),
+                    'js_data'     => [
                         'detail_data' => $temp,
                     ],
-                    'detail_data' => [
-                        'id',
-                        'name',
-                        'sex',
-                    ],
+                    'detail_data' => $this->getTableCommentMap(),
                 ],
                 __FUNCTION__
             );
-            if (0 === strpos($request->getRequestUri(), '/api/') || $is_edit) {
+            if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
             return view('temp.show', $view_data);
         } catch (Exception $exception) {
-            return response($exception->getMessage(), 500);
+            return $this->catchException($exception);
         }
     }
 
@@ -198,40 +204,54 @@ class TempController extends Controller
      * @param Request $request
      * @param         $id
      *
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|int
+     * @throws Exception
      */
     public function update(Request $request, $id)
     {
         try {
+            DB::beginTransaction();
             $data = $request->input();
             $this->validateUpdateRequest($data, $id);
-            $this->service->update($data);
+            $res_db = $this->service->update($data, $id);
+            DB::commit();
+            if ($request->is('api/*')) {
+                return $res_db;
+            }
         } catch (Exception $exception) {
-            return response($exception->getMessage(), 500);
+            DB::rollBack();
+            return $this->catchException($exception, 'api');
         }
     }
 
     /**
-     * @param $data
      * @param $id
+     * @param $data
      *
      * @throws Exception
      */
     private function validateUpdateRequest($data, $id)
     {
-        if (empty($id)) {
-            throw new Exception('id is empty');
-        }
+        $this->validateRequestId($id);
     }
 
     /**
      * @param int $id
+     *
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws Exception
      */
     public function destroy(int $id)
     {
         try {
-            $this->service->destroy($id);
+            DB::beginTransaction();
+            $this->validateDestroy($id);
+            $res_db = $this->service->destroy($id);
+            return $this->successReturn($res_db);
+            DB::commit();
         } catch (Exception $exception) {
+            DB::rollBack();
+            return $this->catchException($exception, 'api');
         }
     }
 
@@ -242,14 +262,12 @@ class TempController extends Controller
      */
     private function validateDestroy(int $id)
     {
-        if (empty($id)) {
-            throw new Exception('request id is empty');
-        }
+        $this->validateRequestId($id);
     }
 
     /**
      * @param Request $request
-     * @param $id
+     * @param         $id
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -266,8 +284,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
@@ -276,25 +294,37 @@ class TempController extends Controller
      */
     private function getTableCommentMap(): array
     {
-        return [
-            [
-                'prop' => 'id',
-                'label' => 'ID',
-            ], [
-                'prop' => 'name',
-                'label' => '名字',
-            ], [
-                'prop' => 'sex',
-                'label' => '性别',
-            ],
-        ];
+        $table_maps = Cache::remember('map_Temps', 1, function () {
+            $table = Str::plural(Str::snake('Temps'));
+            $table_column_dbs = DB::connection('mysql')->select("show full columns from {$table}");
+            $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
+            $filter_words = [
+                'deleted_by',
+                'deleted_at',
+            ];
+            foreach ($table_columns as $key => $table_column) {
+                if (empty($table_column)) {
+                    $table_column = $key;
+                }
+                if (! in_array($key, $filter_words)) {
+                    $show_columns[] = [
+                        'prop'  => $key,
+                        'label' => $table_column,
+                    ];
+                }
+            }
+            return serialize($show_columns);
+        });
+        return unserialize($table_maps);
     }
 
     /**
-     * @param array $data
+     * @param array  $data
      * @param string $controller_function
      *
      * @return array
+     * @todo 过度抽象
+     *
      */
     private function filter(array $data, string $controller_function): array
     {
@@ -307,4 +337,18 @@ class TempController extends Controller
             );
         }
     }
+
+    /**
+     * @param int $id
+     *
+     * @throws Exception
+     */
+    private function validateRequestId(int $id): void
+    {
+        if (empty($id)) {
+            throw new Exception('request id is empty');
+        }
+    }
+
+
 }

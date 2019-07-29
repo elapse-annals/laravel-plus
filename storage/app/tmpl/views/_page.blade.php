@@ -4,10 +4,10 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="page.current_page"
-                :page-sizes="[10, 50, 100, 300]"
-                :page-size="10"
+                :page-sizes="page.sizes"
+                :page-size="page.per_page"
                 layout="total, sizes, prev, pager, next, jumper"
-                :total="400">
+                :total="page.total">
         </el-pagination>
     </div>
 </template>

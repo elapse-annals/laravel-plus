@@ -15,10 +15,11 @@ class CreateTempTable extends Migration
     {
         Schema::create('temps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->tinyInteger('sex');
+            $table->string('name')->unique()->comment('名称');
+            $table->tinyInteger('sex')->comment('性别');
             $table->timestamps();
             $table->index(['name', 'sex']);
+            $table->comment = '内置';
         });
     }
 

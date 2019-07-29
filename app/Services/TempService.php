@@ -32,12 +32,19 @@ class TempService extends Service
     }
 
     /**
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param array $data
+     *
+     * @return mixed
      */
-    public function getList()
+    public function getList($data = [])
     {
-        return $this->repository
-            ->getList();
+        if (isset($data['per_page'])) {
+            $this->repository->per_page = $data['per_page'];
+        }
+        if (! isset($data['search']) || '{}' == $data['search']) {
+            $data['search'] = [];
+        }
+        return $this->repository->getList($data['search']);
     }
 
     /**
@@ -48,7 +55,7 @@ class TempService extends Service
     public function store($data)
     {
         return $this->repository
-            ->updateOrCreate($data);
+            ->create($data);
     }
 
     /**
@@ -73,9 +80,9 @@ class TempService extends Service
      *
      * @return int
      */
-    public function update($data)
+    public function update($data, $id)
     {
-        return $this->repository->updateOrCreate($data);
+        return $this->repository->update($data, $id);
     }
 
     /**

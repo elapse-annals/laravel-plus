@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
+use App\Models\Temp;
 
 /**
  * Class TempRepository
@@ -11,20 +11,70 @@ use App\Models\User;
  */
 class TempRepository extends Repository
 {
+    /**
+     * @var int
+     */
+    public $per_page = 10;
+
+    /**
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getList()
     {
-        return User::all();
+        return Temp::paginate($this->per_page);
     }
 
     /**
-     * @param int   $id
+     * @param $id
+     *
+     * @return Temp|Temp[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
+    public function find($id)
+    {
+        return Temp::find($id);
+    }
+
+    public function create(array $save)
+    {
+        return Temp::create($save);
+    }
+
+    /**
      * @param array $save
+     *
+     * @return Temp|\Illuminate\Database\Eloquent\Model
+     */
+    public function updateOrCreate(array $save)
+    {
+        $attributes = [];
+        if (isset($save['id'])) {
+            $attributes['id'] = $save['id'];
+        }
+        if (isset($save['updated_at'])) {
+            $attributes['updated_at'] = $save['updated_at'];
+        }
+        return Temp::updateOrCreate($attributes, $save);
+    }
+
+    /**
+     * @param array $save
+     *
+     * @return Temp|\Illuminate\Database\Eloquent\Model
+     */
+    public function update(array $save, $id)
+    {
+        $attributes['updated_at'] = $save['updated_at'];
+        return Temp::find($id)->update($attributes, $save);
+    }
+
+    /**
+     * @param int $id
      *
      * @return int
      */
-    public function save(int $id, array $save): int
+    public function destroy(int $id)
     {
-        return User::find($id)
-            ->save($save);
+        return Temp::destroy($id);
     }
+
 }

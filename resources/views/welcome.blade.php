@@ -99,22 +99,27 @@
         </div>
         <br>
         <div v-cloak>
-            <label for="show_components">Vue 组件展示：</label>
-            <el-switch id="show_components"
-                       v-model="show_components"
-                       active-color="#13ce66"
-                       inactive-color="#ff4949">
-            </el-switch>
-            <div v-show="show_components">
-                <example-component></example-component>
-                <el-button :plain="true" @click="open">@{{ alert_msg }}</el-button>
+            <div>
+                <label for="show_components">Vue 组件展示：</label>
+                <el-switch id="show_components"
+                           v-model="show_components"
+                           active-color="#13ce66"
+                           inactive-color="#ff4949">
+                </el-switch>
+                <div v-show="show_components">
+                    <example-component></example-component>
+                    <el-button :plain="true" @click="open">@{{ alert_msg }}</el-button>
+                </div>
+            </div>
+            <div>
+                <el-link href="temps" type="primary" target="_blank">temps 测试地址</el-link>
             </div>
         </div>
     </div>
 </div>
 <script>
     var mixin = {
-        data: function () {
+        data(){
             return {
                 show_components: false,
                 alert_msg: '打开消息提示'

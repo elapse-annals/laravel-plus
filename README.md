@@ -5,14 +5,19 @@
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D5.8-red.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
-<img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
-<img class="total_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
-<img class="latest_unstable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/unstable">
+<img class="latest_stable_version_img" title="latest stable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
+<img class="total_img" title="total" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
+<img class="latest_unstable_version_img" title="latest unstable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/unstable">
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
 ## 介绍
-[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
+
+拓展功能
+- 自动 Laravel 与 Vue/Element UI 基于基础模型的代码生成器。
+- 多进程使用
+- 环境配置切换
 
 ## 目的
 为了减少重复 CURD 和新项目的配置麻烦等问题，如：
@@ -20,9 +25,10 @@
 * 有些本地，测试，线上的配置需要频繁改动的需要。
 * 多个项目构建引入包，配置扩展等重复性操作
 * 基于 ReactPHP 多进程使用
+* Where 条件语句自动生成
 
 ## 版本基础
-待完成 Todo List 后,考虑与 Laravel 中版本号一致
+待完成 Todo List 后,考虑与 Laravel 中版本号一致,暂时以 master 为主
 
 当前稳定版本：<img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
 
@@ -34,7 +40,16 @@
 
 ## 文档
 
-具体 [Wiki](https://github.com/ElapseAnnals/LaravelPlus.wiki.git)  （待完善）
+具体 [Wiki](https://github.com/ElapseAnnals/LaravelPlus/wiki)  （待完善）
+
+
+## 运行环境要求
+- 已安装 PHP
+- 脚本运行前置要求（任意一种）
+    - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中(推荐)
+    - *unix 环境
+    - Windows 下安装 [cmder](https://cmder.net/) - [下载地址](https://cmder.en.softonic.com/)
+    - cmd 运行未进行兼容（现有异常会不过滤和清理部分文件） (不推荐)
 
 ## 项目使用
 
@@ -42,7 +57,7 @@
 ```php
 // A. github （推荐）
 $ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
-$ git checkout v5.8.0 // 切换至当前最新稳定版本
+$ git checkout 5.8.0 // 切换至当前最新稳定版本或直接使用 master 版本
 ```
 或
 ```php
@@ -50,9 +65,10 @@ $ git checkout v5.8.0 // 切换至当前最新稳定版本
 $ composer create-project elapse-annals/laravel-plus
 $ mv laravel-plus  LaravelPlus
 ```
- #### 2.创建新项目
+ #### 2.创建新项目 
+ 
 ```php
-//  A.在当前目录运行自动复制脚本 (推荐)
+//  A.在当前目录运行自动复制脚本 （ 推荐）
 $ php LaravelPlus/create YourProject
 ```
  或 
@@ -84,11 +100,26 @@ $ php artisan ide-helper:models //  生成模型辅助提示
 ```
 Tips:
 1. 兼容 laravel-plus 目录名
-2. composer 加速工具 prestissimo 引入
-
+2. Composer  加速工具 prestissimo 引入
 ```php
 composer global require hirak/prestissimo
 ```
+3. [Composer 镜像](https://learnku.com/composer/t/4484/composer-mirror-use-help)
+
+cnpkg
+```php
+ $ composer config -g repos.packagist composer https://php.cnpkg.org
+ ```
+ 
+ aliyun
+ ```php
+ $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+ ```
+
+ <del>laravel-china </del>[待删除，请弃用](https://learnku.com/articles/30758)
+```php
+ $ composer config -g repo.packagist composer https://packagist.laravel-china.org
+ ```
 
 <hr>
 
@@ -109,7 +140,7 @@ framework 脚本创建内容：
  $ php artisan make:framework Test --D // 删除分层结构 
 ```
 
-或引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度略慢本项目）
+或引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度慢）
 ```php
 $ composer require php-tool/laravel-plus-make
 ```
@@ -203,11 +234,11 @@ phpunit
 dusk 
 ```php
 composer require --dev laravel/dusk
-php artisan dusk:install  // 需要网络
+php artisan dusk:install  // 需要翻墙
 ```
-无网络时解决方案
 
-从 [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
+
+ [chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源
 手动重命名移动至 LaravelPlus/vendor/laravel/dusk/bin/chromedriver-mac
 
 
@@ -251,7 +282,10 @@ npm run watch   // 监视编译（开发时启用）
 </script>
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 ```
-
+##### 路由 web/api 使用区别和场景
+web 经过权限，csrf 等中间件和 Session
+api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://github.com/barryvdh/laravel-cors)
+若非单纯 api ，建议使用 web
 
 <hr />
 
@@ -266,7 +300,8 @@ npm run watch   // 监视编译（开发时启用）
             - [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)
              - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (可选)
         - rabbitMQ 扩展
-            - vladimir-yuldashev/laravel-queue-rabbitmq          - php-amqplib/php-amqplib 原生（可选）
+            - vladimir-yuldashev/laravel-queue-rabbitmq         
+            - php-amqplib/php-amqplib 原生（可选）
         - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
         - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包（可单独引用）
@@ -277,13 +312,15 @@ npm run watch   // 监视编译（开发时启用）
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       ```php
-        php artisan code:models --table=tb_name
+        php artisan code:models --table=tb_name   // 指定表 
+        php artisan code:models --connection=mysql  // 指定数据库连接
       ```
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
             ```php artisan ide-helper:generate``` 
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
+      - [nunomaduro/larastan]() 增加 laravel 静态检测工具
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可选）
   
 -  增加前端资源
@@ -295,13 +332,14 @@ npm run watch   // 监视编译（开发时启用）
     - 系统分层
         - Controllers 控制器层
     - 主要分层
-        - Services 业务服务层
-        - Repositories Repository 数据仓库层
+        - Services 业务服务层（处理业务逻辑）
+        - Repositories Repository 数据仓库层（处理数据库逻辑）
         - Models 模型层（无需创建，默认通过模型工具创建）
     - 扩展分层
-        - Presenters 固定业务主持中控层
+        - Presenters 固定业务主持中控层(处理视图的逻辑：[参考](https://blog.csdn.net/markely/article/details/53000968),更适用于 blade)
+            - 减少在 blade 用 @if...@else...@endif 
         - Transformers 转化层/筛选层（筛选后在选择输出）
-        - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版渲染与展示
+        - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版展示
 - 增加 redis 多语言配置读取
 - 设置默认 Schema index 长度
 
@@ -310,15 +348,12 @@ npm run watch   // 监视编译（开发时启用）
   Schema::defaultStringLength(191);
   ```
 
+## 进展
+- 开发 SwiftCMS 实际应用以进行完善
+
 ## 待办
 
-完善资源功能
-
-增加多语言数据库，和迁移
-
-增加动态视图模式和静态视图模式切换（渲染后生成 view）
+增加多语言数据库，和迁移，自动更新功能
 
 简化介绍，完善 wiki
 
-##wiki
-api 路由允许幂等

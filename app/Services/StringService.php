@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Presenters;
+namespace App\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 /**
- * Class StringController
- *
- * @package App\Http\Controllers
+ * Class StringService
+ * @package App\Services
  */
-class StringPresenter extends Presenter
+class StringService extends Service
 {
+    
     /**
      * @param Request $request
      *
@@ -21,4 +21,13 @@ class StringPresenter extends Presenter
     {
         return Str::plural($request->singular);
     }
+
+    /**
+     * 
+     */
+    public static function removeKilometer(string $data):float
+    {
+        return str_replace(',','',$data);
+    }
+
 }

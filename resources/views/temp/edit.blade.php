@@ -21,19 +21,40 @@
         var js_data = @json($js_data);
         var mixin = {
             data: {
-                'detail_data': js_data.detail_data,
+                'fullscreenLoading': false,
                 'is_disabled_edit': false,
+                'detail_data': js_data.detail_data,
+                'init_table_data': {},
+                'disabled_array': ['id'],
                 'form': {}
+            },
+            created() {
+                let _this = this;
+                this.init_table_data = _this.table_data;
+            },
+            mounted() {
+                $('#id').attr('disabled', 'disabled');
+                $("#id").parent().addClass('is-disabled');
             },
             methods: {
                 onSubmit() {
-                    // @todo 处理提交
-                    console.log('submit!');
+                    axios.put('/temps/' + this.detail_data.id, this.detail_data).then((response) => {
+                        var message_type = 'error';
+                        if (200 == response.data.code) {
+                            var message_type = 'success';
+                        } else {
+                            console.log(response);
+                        }
+                        this.$message({
+                            message: response.data.msg,
+                            type: message_type
+                        });
+                    }).catch(error => console.log(error));
                 },
                 onCancel() {
                     // @todo 处理引用传递问题
-                    history.go(0);
-                }
+                    this.detail_data = this.init_table_data
+                },
             }
         }
     </script>

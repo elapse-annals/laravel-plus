@@ -20,6 +20,11 @@ Route::get('plural/{singular}', 'StringPresenter@plural');
 Route::prefix('test')->group(function () {
     Route::any('test', 'testController@test');
     Route::get('exception', 'testController@exception');
+    Route::any('test', 'testController@test');
 });
 
 Route::resource('temps', 'TempController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

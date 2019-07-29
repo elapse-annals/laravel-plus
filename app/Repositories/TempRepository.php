@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Temp;
+use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Class TempRepository
@@ -17,11 +18,17 @@ class TempRepository extends Repository
     public $per_page = 10;
 
     /**
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param array $data
+     *
+     * @return mixed
      */
-    public function getList()
+    public function getList(array $data = [])
     {
-        return Temp::paginate($this->per_page);
+        $Temp = new Temp();
+        if (! empty($data)) {
+            $Temp = $this->assembvlyWhere($Temp, $data);
+        }
+        return $Temp->Paginate($this->per_page);
     }
 
     /**
@@ -34,17 +41,37 @@ class TempRepository extends Repository
         return Temp::find($id);
     }
 
+    public function create(array $save)
+    {
+        return Temp::create($save);
+    }
+
     /**
      * @param array $save
      *
-     * @return int
+     * @return Temp|\Illuminate\Database\Eloquent\Model
      */
-    public function updateOrCreate(array $save): int
+    public function updateOrCreate(array $save)
     {
-        $attributes = [
-            'id' => $save['id'],
-        ];
+        $attributes = [];
+        if (isset($save['id'])) {
+            $attributes['id'] = $save['id'];
+        }
+        if (isset($save['updated_at'])) {
+            $attributes['updated_at'] = $save['updated_at'];
+        }
         return Temp::updateOrCreate($attributes, $save);
+    }
+
+    /**
+     * @param array $save
+     *
+     * @return Temp|\Illuminate\Database\Eloquent\Model
+     */
+    public function update(array $save, $id)
+    {
+        $attributes['updated_at'] = $save['updated_at'];
+        return Temp::find($id)->update($attributes, $save);
     }
 
     /**
