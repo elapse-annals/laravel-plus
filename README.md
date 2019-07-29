@@ -28,7 +28,6 @@
 * Where 条件语句自动生成
 
 ## 版本基础
-待完成 Todo List 后,考虑与 Laravel 中版本号一致,暂时以 master 为主
 
 当前稳定版本：<img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
 
