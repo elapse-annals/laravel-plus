@@ -15,7 +15,7 @@
 [LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
 
 拓展功能
-- 自动 laravel 与 vue 基于基础模型的代码生成器。
+- 自动 Laravel 与 Vue/Element UI 基于基础模型的代码生成器。
 - 多进程使用
 - 环境配置切换
 
@@ -353,11 +353,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 
 ## 待办
 
-完善资源功能 - 列表翻页
-
 增加多语言数据库，和迁移，自动更新功能
-
-增加动态视图模式和静态视图模式切换（渲染后生成 view）
 
 简化介绍，完善 wiki
 
