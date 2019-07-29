@@ -119,7 +119,7 @@
 </div>
 <script>
     var mixin = {
-        data: function () {
+        data(){
             return {
                 show_components: false,
                 alert_msg: '打开消息提示'

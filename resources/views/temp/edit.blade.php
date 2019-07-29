@@ -21,15 +21,19 @@
         var js_data = @json($js_data);
         var mixin = {
             data: {
+                'fullscreenLoading': false,
+                'is_disabled_edit': false,
                 'detail_data': js_data.detail_data,
                 'init_table_data': {},
-                'is_disabled_edit': false,
                 'disabled_array': ['id'],
                 'form': {}
             },
-            created: function () {
+            created() {
                 let _this = this;
                 this.init_table_data = _this.table_data;
+            },
+            mounted() {
+
             },
             methods: {
                 onSubmit() {
