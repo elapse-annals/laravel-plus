@@ -19,8 +19,8 @@ class CreateTempTable extends Migration
             $table->tinyInteger('sex')->comment('性别');
             $table->timestamps();
             $table->index(['name', 'sex']);
+            $table->comment = '内置';
         });
-        DB::statement("ALTER TABLE 'temps' comment'内置'");
     }
 
     /**
