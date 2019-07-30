@@ -76,25 +76,25 @@ class TempController extends Controller
             }
             $table_comment_map = $this->getTableCommentMap();
             array_push($table_comment_map, [
-                'prop' => 'info',
-                'label' => 'info',
-                'is_array' => true,
+                'prop'      => 'info',
+                'label'     => 'info',
+                'is_array'  => true,
                 'child_map' => [
                     [
-                        'prop' => 'hobby',
+                        'prop'  => 'hobby',
                         'label' => 'hobby',
                     ],
                     [
-                        'prop' => 'created_at',
+                        'prop'  => 'created_at',
                         'label' => 'created_at',
                     ],
-                ]
+                ],
             ]);
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'temps' => $temps,
-                    'list_map' => $table_comment_map,
+                    'info'       => $this->getInfo(),
+                    'temps'      => $temps,
+                    'list_map'   => $table_comment_map,
                     'search_map' => $table_comment_map,
                 ],
                 __FUNCTION__
@@ -151,7 +151,7 @@ class TempController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (!empty($rules)) {
+        if (! empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -163,8 +163,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -176,8 +176,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -188,8 +188,8 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info' => $this->getInfo(),
-                    'js_data' => [
+                    'info'        => $this->getInfo(),
+                    'js_data'     => [
                         'detail_data' => $temp,
                     ],
                     'detail_data' => $this->getTableCommentMap(),
@@ -301,8 +301,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
@@ -323,9 +323,9 @@ class TempController extends Controller
                 if (empty($table_column)) {
                     $table_column = $key;
                 }
-                if (!in_array($key, $filter_words)) {
+                if (! in_array($key, $filter_words)) {
                     $show_columns[] = [
-                        'prop' => $key,
+                        'prop'  => $key,
                         'label' => $table_column,
                     ];
                 }
@@ -336,7 +336,7 @@ class TempController extends Controller
     }
 
     /**
-     * @param array $data
+     * @param array  $data
      * @param string $controller_function
      *
      * @return array
@@ -366,5 +366,10 @@ class TempController extends Controller
         }
     }
 
+    public function export()
+    {
+        $excel_name = 'temp.xls';
+        return Excel::download(new TempExport, $excel_name);
+    }
 
 }

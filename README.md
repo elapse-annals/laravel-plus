@@ -303,7 +303,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
         - [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) Http 请求包
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
         - [doctrine/dbal](https://github.com/doctrine/dbal)   数据库抽象层
-
+        - [maatwebsite/excel]() 增加 excel 组件
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       ```php
