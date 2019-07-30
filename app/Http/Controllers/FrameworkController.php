@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Route;
 
 /**
  * Class FrameworkController
@@ -130,11 +131,11 @@ class FrameworkController extends Controller
     }
 
     /**
-     * @todo  抽象替换函数
-     *
      * @param $framework_file_type
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @todo  抽象替换函数
+     *
      */
     public function create($framework_file_type): void
     {
@@ -148,7 +149,7 @@ class FrameworkController extends Controller
         $body = str_replace('temps', $framework_name_low_plural, $body);
         $body = str_replace('temp', $framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
-        if (!is_file($file)) {
+        if (! is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
@@ -161,7 +162,7 @@ class FrameworkController extends Controller
             }
             $framework_view_files = scandir($resources_directory);
             foreach ($framework_view_files as $framework_view_file) {
-                if (!in_array($framework_view_file, ['.', '..'])) {
+                if (! in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace('temps', $framework_name_low_plural, $file_get_contents);

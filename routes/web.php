@@ -10,12 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', 'ClosureController@welcome');
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('plural/{singular}', 'StringPresenter@plural');
+
+Route::prefix('export')->group(function(){
+    Route::resource('temps', 'TempController@export');
+});
 
 Route::prefix('test')->group(function () {
     Route::get('exception', 'testController@exception');
@@ -23,7 +30,3 @@ Route::prefix('test')->group(function () {
 });
 
 Route::resource('temps', 'TempController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
