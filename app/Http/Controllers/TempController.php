@@ -78,6 +78,17 @@ class TempController extends Controller
             array_push($table_comment_map, [
                 'prop' => 'info',
                 'label' => 'info',
+                'is_array' => true,
+                'child_map' => [
+                    [
+                        'prop' => 'hobby',
+                        'label' => 'hobby',
+                    ],
+                    [
+                        'prop' => 'created_at',
+                        'label' => 'created_at',
+                    ],
+                ]
             ]);
             $view_data = $this->filter(
                 [
