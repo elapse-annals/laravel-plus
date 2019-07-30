@@ -39,6 +39,7 @@ class Framework extends Command
         'Presenter',
         'Transformer',
         'Formatter',
+        'Export',
     ];
     /**
      * @var array
