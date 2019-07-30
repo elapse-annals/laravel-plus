@@ -8,7 +8,7 @@
                 type="selection"
                 width="55">
         </el-table-column>
-        @foreach ($list_data as $table_datum)
+        @foreach ($search_map as $table_datum)
             @if(isset($table_datum['is_array']) && true === $table_datum['is_array'])
                 <el-table-column
                         min-width="180"

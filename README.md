@@ -347,7 +347,9 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 - 开发 SwiftCMS 实际应用以进行完善
 
 ## 待办
-增加多模型支持
+增加 excel 导出
+
+优化多么模型关联
 
 增加多语言数据库，和迁移，自动更新功能
 

@@ -94,7 +94,8 @@ class TempController extends Controller
                 [
                     'info' => $this->getInfo(),
                     'temps' => $temps,
-                    'list_data' => $table_comment_map,
+                    'list_map' => $table_comment_map,
+                    'search_map' => $table_comment_map,
                 ],
                 __FUNCTION__
             );
