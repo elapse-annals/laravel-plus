@@ -115,10 +115,6 @@ cnpkg
  $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
  ```
 
- <del>laravel-china </del>[待删除，请弃用](https://learnku.com/articles/30758)
-```php
- $ composer config -g repo.packagist composer https://packagist.laravel-china.org
- ```
 
 <hr>
 
@@ -351,6 +347,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 - 开发 SwiftCMS 实际应用以进行完善
 
 ## 待办
+增加多模型支持
 
 增加多语言数据库，和迁移，自动更新功能
 
