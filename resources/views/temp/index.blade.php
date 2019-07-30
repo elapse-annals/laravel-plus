@@ -17,8 +17,7 @@
 
 @section('script')
     <script>
-        var js_data = [];
-        js_data = @json($js_data);
+        let js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
                 'table_data': js_data.data,
