@@ -74,11 +74,16 @@ class TempController extends Controller
             if ($request->is('api/*') || true == $request->input('api')) {
                 return $this->successReturn($temps->items(), 'success', $this->formatter->assemblyPage($temps));
             }
+            $table_comment_map = $this->getTableCommentMap();
+            array_push($table_comment_map, [
+                'prop' => 'info',
+                'label' => 'info',
+            ]);
             $view_data = $this->filter(
                 [
-                    'info'       => $this->getInfo(),
-                    'temps'      => $temps,
-                    'table_data' => $this->getTableCommentMap(),
+                    'info' => $this->getInfo(),
+                    'temps' => $temps,
+                    'list_data' => $table_comment_map,
                 ],
                 __FUNCTION__
             );
@@ -134,7 +139,7 @@ class TempController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (! empty($rules)) {
+        if (!empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -146,8 +151,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -159,8 +164,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $id
-     * @param bool    $is_edit
+     * @param int $id
+     * @param bool $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -171,8 +176,8 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info'        => $this->getInfo(),
-                    'js_data'     => [
+                    'info' => $this->getInfo(),
+                    'js_data' => [
                         'detail_data' => $temp,
                     ],
                     'detail_data' => $this->getTableCommentMap(),
@@ -284,8 +289,8 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author'      => 'Ben',
-            'title'       => 'index title',
+            'author' => 'Ben',
+            'title' => 'index title',
         ];
     }
 
@@ -306,9 +311,9 @@ class TempController extends Controller
                 if (empty($table_column)) {
                     $table_column = $key;
                 }
-                if (! in_array($key, $filter_words)) {
+                if (!in_array($key, $filter_words)) {
                     $show_columns[] = [
-                        'prop'  => $key,
+                        'prop' => $key,
                         'label' => $table_column,
                     ];
                 }
@@ -319,12 +324,11 @@ class TempController extends Controller
     }
 
     /**
-     * @param array  $data
+     * @param array $data
      * @param string $controller_function
      *
      * @return array
      * @todo 过度抽象
-     *
      */
     private function filter(array $data, string $controller_function): array
     {

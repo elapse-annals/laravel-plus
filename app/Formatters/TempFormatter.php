@@ -16,13 +16,14 @@ class TempFormatter extends Formatter
      */
     public function formatIndex(array $data): array
     {
+        $items = collect($data['temps']->items())->toArray();
         return [
-            'info'       => $data['info'],
-            'js_data'    => [
-                'data' => $data['temps']->items(),
+            'info' => $data['info'],
+            'js_data' => [
+                'data' => $items,
                 'page' => $this->assemblyPage($data['temps']),
             ],
-            'table_data' => $data['table_data'],
+            'list_data' => $data['list_data'],
         ];
     }
 

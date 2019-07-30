@@ -36,4 +36,9 @@ class Temp extends Model
         'name',
         'sex'
     ];
+
+    public function info()
+    {
+        return $this->hasOne('App\Models\Info');
+    }
 }

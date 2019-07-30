@@ -14,10 +14,12 @@ class CreateTempTable extends Migration
     public function up()
     {
         Schema::create('temps', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name')->unique()->comment('名称');
             $table->tinyInteger('sex')->comment('性别');
             $table->timestamps();
+            $table->string('created_by', 80)->comment('创建人');
+            $table->string('updated_by', 80)->comment('修改人');
             $table->index(['name', 'sex']);
             $table->comment = '内置';
         });

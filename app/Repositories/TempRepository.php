@@ -25,10 +25,10 @@ class TempRepository extends Repository
     public function getList(array $data = [])
     {
         $Temp = new Temp();
-        if (! empty($data)) {
+        if (!empty($data)) {
             $Temp = $this->assembvlyWhere($Temp, $data);
         }
-        return $Temp->Paginate($this->per_page);
+        return $Temp->with('info')->Paginate($this->per_page);
     }
 
     /**

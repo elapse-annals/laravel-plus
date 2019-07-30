@@ -24,13 +24,13 @@
                 'fullscreenLoading': false,
                 'is_disabled_edit': false,
                 'detail_data': js_data.detail_data,
-                'init_table_data': {},
+                'init_list_data': {},
                 'disabled_array': ['id'],
                 'form': {}
             },
             created() {
                 let _this = this;
-                this.init_table_data = _this.table_data;
+                this.init_list_data = _this.list_data;
             },
             mounted() {
                 $('#id').attr('disabled', 'disabled');
@@ -53,7 +53,7 @@
                 },
                 onCancel() {
                     // @todo 处理引用传递问题
-                    this.detail_data = this.init_table_data
+                    this.detail_data = this.init_list_data
                 },
             }
         }

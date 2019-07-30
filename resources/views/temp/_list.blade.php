@@ -1,19 +1,21 @@
 <template>
     <el-table
-            :data="table_data"
+            :data="list_data"
             style="width: 100%"
+            row-key="id"
+            show-summary
             @selection-change="handleSelectionChange">
         <el-table-column
                 type="selection"
                 width="55">
         </el-table-column>
-        @foreach ($table_data as $table_datum)
-            <el-table-column
-                    prop="{{$table_datum['prop']}}"
-                    label="{{$table_datum['label']}}"
-                    min-width="180"
-            >
-            </el-table-column>
+        @foreach ($list_data as $table_datum)
+                <el-table-column
+                        prop="{{$table_datum['prop']}}"
+                        label="{{$table_datum['label']}}"
+                        min-width="180"
+                >
+                </el-table-column>
         @endforeach
         <el-table-column
                 fixed="right"
@@ -34,4 +36,6 @@
             </template>
         </el-table-column>
     </el-table>
+
+
 </template>

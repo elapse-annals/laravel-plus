@@ -17,13 +17,13 @@
 
 @section('script')
     <script>
-        let js_data = JSON.parse('@json($js_data)');
+        var js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
-                'table_data': js_data.data,
+                'list_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
-                fullscreenLoading: false
+                fullscreenLoading: false,
             },
             methods: {
                 handleSelectionChange() {
@@ -78,7 +78,7 @@
                           var message_type = 'reload error';
                           let response_parameter = response.data;
                           if (200 == response_parameter.code) {
-                              _this.table_data = response_parameter.data;
+                              _this.list_data = response_parameter.data;
                               _this.page = response_parameter.page;
                               let go_url = '#' + _this.getUrl(response.request.responseURL);
                               window.history.pushState({reload: 'reload'}, 'title', go_url);
@@ -88,13 +88,13 @@
                                   message: response_parameter.msg,
                                   type: message_type
                               });
-                              _this.table_data = [];
+                              _this.list_data = [];
                               _this.page = {};
                           }
                       })
                       .catch(error => {
                           _this.fullscreenLoading = false;
-                          _this.table_data = [];
+                          _this.list_data = [];
                           _this.page = {};
                           console.log('error', error);
                       });
