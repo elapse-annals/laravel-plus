@@ -25,9 +25,9 @@ class Formatter
     {
         return [
             "current_page" => $data->currentPage(),
-            "sizes"        => [10, 50, 100, 300],
-            "per_page"     => (int)$data->perPage(),
-            "total"        => $data->total(),
+            "sizes" => [10, 50, 100, 300],
+            "per_page" => (int)$data->perPage(),
+            "total" => $data->total(),
         ];
     }
 }

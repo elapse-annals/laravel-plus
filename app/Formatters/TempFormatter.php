@@ -17,6 +17,9 @@ class TempFormatter extends Formatter
     public function formatIndex(array $data): array
     {
         $items = collect($data['temps']->items())->toArray();
+        foreach ($items as &$item) {
+            $item['info'] = [$item['info']];
+        }
         return [
             'info' => $data['info'],
             'js_data' => [

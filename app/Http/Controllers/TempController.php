@@ -72,7 +72,7 @@ class TempController extends Controller
             $this->validationIndexRequest($data);
             $temps = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $this->successReturn($temps->items(), 'success', $this->formatter->assemblyPage($temps));
+                return $this->successReturn($temps, 'success', $this->formatter->assemblyPage($temps));
             }
             $table_comment_map = $this->getTableCommentMap();
             array_push($table_comment_map, [

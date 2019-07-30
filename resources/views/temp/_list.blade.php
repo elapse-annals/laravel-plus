@@ -10,12 +10,14 @@
         </el-table-column>
         @foreach ($list_data as $table_datum)
             @if(isset($table_datum['is_array']) && true === $table_datum['is_array'])
-                <el-table-column>
+                <el-table-column
+                        min-width="180"
+                >
                     <template slot-scope="scope" width="200">
                         <el-table
                                 :data="scope.row.info"
                                 style="width: 100%"
-                                >
+                        >
                             @foreach($table_datum['child_map'] as $item)
                                 <el-table-column
                                         prop="{{$item['prop']}}"
