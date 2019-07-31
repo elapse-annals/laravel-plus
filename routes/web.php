@@ -21,7 +21,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('plural/{singular}', 'StringPresenter@plural');
 
 Route::prefix('export')->group(function(){
-    Route::resource('temps', 'TempController@export');
+    Route::get('temps', 'TempController@export');
 });
 
 Route::prefix('test')->group(function () {
