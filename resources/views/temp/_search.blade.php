@@ -1,7 +1,6 @@
 <el-form :inline="true" :model="search" class="demo-form-inline">
     <div class="block">
-
-        @foreach ($list_map as $table_datum)
+        @foreach ($search_map as $table_datum)
             @if (0 === substr_compare($table_datum['prop'],'_at',-strlen('_at')))
                 <label>{{$table_datum['label']}}：</label>
                 <el-date-picker

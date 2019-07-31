@@ -26,7 +26,8 @@ class TempFormatter extends Formatter
                 'data' => $items,
                 'page' => $this->assemblyPage($data['temps']),
             ],
-            'list_data' => $data['list_data'],
+            'list_map' => $data['list_map'],
+            'search_map' => $data['search_map'],
         ];
     }
 
