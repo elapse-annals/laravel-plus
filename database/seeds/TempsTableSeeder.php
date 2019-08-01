@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Temp;
 
-class TempSeeder extends Seeder
+class TempsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -24,7 +24,7 @@ class CreateTempTable extends Migration
             );
             $table->string('updated_by', 80);
             $table->timestamp('deleted_at')->nullable();
-            $table->string('deleted_by', 80);
+            $table->string('deleted_by', 80)->nullable();
             $table->index(['name', 'sex']);
             $table->comment = '内置';
         });
