@@ -18,8 +18,10 @@ class CreateTempTable extends Migration
             $table->string('name')->unique()->comment('名称');
             $table->tinyInteger('sex')->comment('性别');
             $table->timestamps();
-            $table->string('created_by', 80)->comment('创建人');
-            $table->string('updated_by', 80)->comment('修改人');
+            $table->timestamp('deleted_at');
+            $table->string('created_by', 80);
+            $table->string('updated_by', 80);
+            $table->string('deleted_by', 80);
             $table->index(['name', 'sex']);
             $table->comment = '内置';
         });

@@ -108,7 +108,7 @@
                 </el-switch>
                 <div v-show="show_components">
                     <example-component></example-component>
-                    <el-button :plain="true" @click="open">@{{ alert_msg }}</el-button>
+                    <el-button plain @click="open">@{{ alert_msg }}</el-button>
                 </div>
             </div>
             <div>

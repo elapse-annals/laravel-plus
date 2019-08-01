@@ -47,13 +47,13 @@
         >
             <template slot-scope="scope">
                 <a :href="'/temps/'+scope.row.id">
-                    <el-button size="small" type="primary" plain="true"
+                    <el-button size="small" type="primary" plain
                                icon="el-icon-zoom-in"></el-button>
                 </a>
                 <a :href="'/temps/'+scope.row.id+'/edit'">
-                    <el-button size="small" type="primary" plain="true" icon="el-icon-edit"></el-button>
+                    <el-button size="small" type="primary" plain icon="el-icon-edit"></el-button>
                 </a>
-                <el-button size="small" type="danger" plain="true" icon="el-icon-delete"
+                <el-button size="small" type="danger" plain icon="el-icon-delete"
                            @click="deleteRow(scope.row.id)"></el-button>
             </template>
         </el-table-column>
