@@ -17,10 +17,13 @@ class CreateTempTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique()->comment('名称');
             $table->tinyInteger('sex')->comment('性别');
-            $table->timestamps();
-            $table->timestamp('deleted_at');
+            $table->timestamp('created_at')->useCurrent();
             $table->string('created_by', 80);
+            $table->timestamp('updated_at')->default(
+                DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+            );
             $table->string('updated_by', 80);
+            $table->timestamp('deleted_at')->nullable();
             $table->string('deleted_by', 80);
             $table->index(['name', 'sex']);
             $table->comment = '内置';
