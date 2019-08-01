@@ -3,7 +3,6 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Models\Temp;
-use Faker\Generator as Faker;
 use Faker\Factory as Factory;
 
 $factory->define(Temp::class, function () {
