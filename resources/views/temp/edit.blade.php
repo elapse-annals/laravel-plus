@@ -24,7 +24,7 @@
                 'detail_data': js_data.detail_data,
                 'disabled_array': ['id'],
                 'form': {},
-                'fullscreenLoading': false,
+                'fullscreen_loading': false,
                 'is_disabled_edit': false,
                 'init_list_data': {}
             },

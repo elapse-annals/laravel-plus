@@ -20,7 +20,7 @@
         var mixin = {
             data: {
                 'detail_data': js_data.detail_data,
-                'fullscreenLoading': false,
+                'fullscreen_loading': false,
                 'is_disabled_edit': true,
             },
             methods: {

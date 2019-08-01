@@ -20,7 +20,7 @@
         var js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
-                'fullscreenLoading': false,
+                'fullscreen_loading': false,
                 'list_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
@@ -66,7 +66,7 @@
                 },
                 reload() {
                     var _this = this;
-                    _this.fullscreenLoading = true;
+                    _this.fullscreen_loading = true;
                     let request_parameter = {
                         search: _this.search,
                         page: _this.page.current_page,
@@ -75,7 +75,7 @@
                     };
                     axios.get('/temps/', {params: request_parameter})
                         .then((response) => {
-                            _this.fullscreenLoading = false;
+                            _this.fullscreen_loading = false;
                             var message_type = 'reload error';
                             let response_parameter = response.data;
                             if (200 == response_parameter.code) {
@@ -84,7 +84,7 @@
                                 let go_url = '#' + _this.getUrl(response.request.responseURL);
                                 window.history.pushState({reload: 'reload'}, 'title', go_url);
                             } else {
-                                _this.fullscreenLoading = false;
+                                _this.fullscreen_loading = false;
                                 this.$message({
                                     message: response_parameter.msg,
                                     type: message_type
@@ -94,7 +94,7 @@
                             }
                         })
                         .catch(error => {
-                            _this.fullscreenLoading = false;
+                            _this.fullscreen_loading = false;
                             _this.list_data = [];
                             _this.page = {};
                             console.log('error', error);
