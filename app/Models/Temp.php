@@ -2,10 +2,12 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sun, 09 Jun 2019 16:16:38 +0000.
+ * Date: Thu, 01 Aug 2019 05:40:48 +0000.
  */
 
 namespace App\Models;
+
+use Reliese\Database\Eloquent\Model as Eloquent;
 
 /**
  * Class Temp
@@ -14,27 +16,27 @@ namespace App\Models;
  * @property string $name
  * @property int $sex
  * @property \Carbon\Carbon $created_at
+ * @property string $created_by
  * @property \Carbon\Carbon $updated_at
+ * @property string $updated_by
+ * @property string $deleted_at
+ * @property string $deleted_by
  * @package App\Models
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp whereSex($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Temp whereUpdatedAt($value)
- * @mixin \Eloquent
  */
-class Temp extends Model
+class Temp extends Eloquent
 {
+    use \Illuminate\Database\Eloquent\SoftDeletes;
+
     protected $casts = [
         'sex' => 'int'
     ];
 
     protected $fillable = [
         'name',
-        'sex'
+        'sex',
+        'created_by',
+        'updated_by',
+        'deleted_by'
     ];
 
     public function info()
