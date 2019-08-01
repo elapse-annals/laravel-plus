@@ -19,26 +19,27 @@
     <script>
         var mixin = {
             data: {
-                'form': {},
                 'detail_data': {},
+                'fullscreenLoading': false,
+                'form': {},
                 'is_disabled_edit': false,
             },
             methods: {
                 onSubmit() {
                     axios.post('/temps', this.detail_data)
-                      .then((response) => {
-                          var message_type = 'error';
-                          if (200 == response.data.code) {
-                              var message_type = 'success';
-                          } else {
-                              console.log(response);
-                          }
-                          this.$message({
-                              message: response.data.msg,
-                              type: message_type
-                          });
-                      })
-                      .catch(error => console.log(error));
+                        .then((response) => {
+                            var message_type = 'error';
+                            if (200 == response.data.code) {
+                                var message_type = 'success';
+                            } else {
+                                console.log(response);
+                            }
+                            this.$message({
+                                message: response.data.msg,
+                                type: message_type
+                            });
+                        })
+                        .catch(error => console.log(error));
                 },
                 onCancel() {
                     history.go(0);

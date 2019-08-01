@@ -19,8 +19,8 @@
         let js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
-                'fullscreenLoading': false,
                 'detail_data': js_data.detail_data,
+                'fullscreenLoading': false,
                 'is_disabled_edit': true,
             },
             methods: {

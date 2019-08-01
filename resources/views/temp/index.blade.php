@@ -20,10 +20,10 @@
         var js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
+                'fullscreenLoading': false,
                 'list_data': js_data.data,
                 'page': js_data.page,
                 'search': {},
-                fullscreenLoading: false,
             },
             methods: {
                 handleSelectionChange() {

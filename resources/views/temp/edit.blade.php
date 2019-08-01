@@ -21,12 +21,12 @@
         let js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
+                'detail_data': js_data.detail_data,
+                'disabled_array': ['id'],
+                'form': {},
                 'fullscreenLoading': false,
                 'is_disabled_edit': false,
-                'detail_data': js_data.detail_data,
-                'init_list_data': {},
-                'disabled_array': ['id'],
-                'form': {}
+                'init_list_data': {}
             },
             created() {
                 let _this = this;
