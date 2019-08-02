@@ -1,1 +1,1 @@
-@extends('frameworks._header')
+@includeFirst(['tmpl._header', 'frameworks._header']);

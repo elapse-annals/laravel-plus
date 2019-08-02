@@ -1,1 +1,1 @@
-@extends('frameworks._header')
+@includeFirst(['temp._header', 'frameworks._header']);

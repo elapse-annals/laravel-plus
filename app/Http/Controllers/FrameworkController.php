@@ -155,10 +155,10 @@ class FrameworkController extends Controller
         $framework_name_plural = Str::plural($this->framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
-        $body = str_replace('Temps', $framework_name_plural, $body);
-        $body = str_replace('Temp', $this->framework_name, $body);
-        $body = str_replace('temps', $this->framework_name_low_plural, $body);
-        $body = str_replace('temp', $this->framework_name_low, $body);
+        $body = str_replace('Tmpls', $framework_name_plural, $body);
+        $body = str_replace('Tmpl', $this->framework_name, $body);
+        $body = str_replace('tmpls', $this->framework_name_low_plural, $body);
+        $body = str_replace('tmpl', $this->framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if (!is_file($file)) {
             file_put_contents($file, $body);
@@ -176,8 +176,8 @@ class FrameworkController extends Controller
                 if (!in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
-                    $file_get_contents = str_replace('temps', $this->framework_name_low_plural, $file_get_contents);
-                    $file_get_contents = str_replace('temp', $this->framework_name_low, $file_get_contents);
+                    $file_get_contents = str_replace('tmpls', $this->framework_name_low_plural, $file_get_contents);
+                    $file_get_contents = str_replace('tmpl', $this->framework_name_low, $file_get_contents);
                     file_put_contents($route_web_path, $file_get_contents);
                 }
             }

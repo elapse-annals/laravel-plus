@@ -1,17 +1,17 @@
-@extends('temp._layout')
+@extends('tmpl._layout')
 
 @section('content')
     <div class="search">
-        @include('temp._search')
+        @include('tmpl._search')
     </div>
     <div class="stripe">
-        @include('temp._stripe')
+        @include('tmpl._stripe')
     </div>
     <div class="table">
-        @include('temp._list')
+        @include('tmpl._list')
     </div>
     <div class="page">
-        @include('temp._page')
+        @include('tmpl._page')
     </div>
 @endsection
 
@@ -47,11 +47,11 @@
                     }
                     this.reload();
                 },
-                alertThis(temp_this) {
-                    console.log(temp_this)
+                alertThis(tmpl_this) {
+                    console.log(tmpl_this)
                 },
                 deleteRow(id) {
-                    axios.delete('/temps/' + id)
+                    axios.delete('/tmpls/' + id)
                         .then(
                             (response) => {
                                 console.log(response);
@@ -73,7 +73,7 @@
                         per_page: _this.page.per_page,
                         api: true
                     };
-                    axios.get('/temps/', {params: request_parameter})
+                    axios.get('/tmpls/', {params: request_parameter})
                         .then((response) => {
                             _this.fullscreen_loading = false;
                             var message_type = 'reload error';

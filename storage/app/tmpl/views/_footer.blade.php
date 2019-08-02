@@ -1,1 +1,1 @@
-@extends('frameworks._footer')
+@includeFirst(['tmpl._footer', 'frameworks._footer']);

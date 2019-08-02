@@ -1,13 +1,13 @@
-@extends('temp._layout')
+@extends('tmpl._layout')
 
 @section('content')
     <div class="detail">
         <el-form ref="form" :model="form" label-width="80px">
-            @include('temp._detail')
+            @include('tmpl._detail')
             <div class="operation">
                 <el-button type="primary" @click="onSubmit">立即创建</el-button>
                 <el-button @click="onCancel">取消</el-button>
-                <a href="/temps">
+                <a href="/tmpls">
                     <el-button>返回</el-button>
                 </a>
             </div>
@@ -27,7 +27,7 @@
             },
             methods: {
                 onSubmit() {
-                    axios.post('/temps', this.detail_data)
+                    axios.post('/tmpls', this.detail_data)
                         .then((response) => {
                             var message_type = 'error';
                             if (200 == response.data.code) {

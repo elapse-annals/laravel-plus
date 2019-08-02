@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div>
-                <el-link href="temps" type="primary" target="_blank">temps 测试地址</el-link>
+                <el-link href="tmpls" type="primary" target="_blank">tmpls 测试地址</el-link>
             </div>
         </div>
     </div>
