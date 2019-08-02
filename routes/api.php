@@ -19,5 +19,3 @@ Route::prefix('test')->group(function () {
 });
 
 Route::apiResource('temps', 'TempController');
-
-Route::apiResource('infos', 'InfoController');
