@@ -253,8 +253,8 @@ class TempController extends Controller
             DB::beginTransaction();
             $this->validateDestroy($id);
             $res_db = $this->service->destroy($id);
-            return $this->successReturn($res_db);
             DB::commit();
+            return $this->successReturn($res_db);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
