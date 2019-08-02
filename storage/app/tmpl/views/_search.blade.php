@@ -1,14 +1,12 @@
 <el-form :inline="true" :model="search" class="demo-form-inline">
     <div class="block">
-
-        @foreach ($table_data as $table_datum)
+        @foreach ($search_map as $table_datum)
             @if (0 === substr_compare($table_datum['prop'],'_at',-strlen('_at')))
-                <label>{{$table_datum['label']}}：</label>
                 <el-date-picker
                         v-model="search.{{$table_datum['prop']}}"
                         type="datetimerange"
-                        start-placeholder="@lang('form.start_date')"
-                        end-placeholder="@lang('form.end_date')"
+                        start-placeholder="{{$table_datum['label']}} @lang('form.start_date')"
+                        end-placeholder="{{$table_datum['label']}} @lang('form.end_date')"
                         value-format="yyyy-MM-dd HH:mm"
                         format="yyyy-MM-dd HH:mm"
                         :default-time="['00:00:00', '23:59:59']">

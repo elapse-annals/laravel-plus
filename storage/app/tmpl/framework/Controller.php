@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TempExport;
 use App\Formatters\TempFormatter;
 use App\Transformers\TempTransformer;
 use App\Services\TempService;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
+
 
 /**
  * Class TempController
@@ -72,13 +75,30 @@ class TempController extends Controller
             $this->validationIndexRequest($data);
             $temps = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $this->successReturn($temps->items(), 'success', $this->formatter->assemblyPage($temps));
+                return $this->successReturn($temps, 'success', $this->formatter->assemblyPage($temps));
             }
+            $table_comment_map = $this->getTableCommentMap();
+            array_push($table_comment_map, [
+                'prop'      => 'info',
+                'label'     => 'info',
+                'is_array'  => true,
+                'child_map' => [
+                    [
+                        'prop'  => 'hobby',
+                        'label' => 'hobby',
+                    ],
+                    [
+                        'prop'  => 'created_at',
+                        'label' => 'created_at',
+                    ],
+                ],
+            ]);
             $view_data = $this->filter(
                 [
                     'info'       => $this->getInfo(),
                     'temps'      => $temps,
-                    'table_data' => $this->getTableCommentMap(),
+                    'list_map'   => $table_comment_map,
+                    'search_map' => $table_comment_map,
                 ],
                 __FUNCTION__
             );
@@ -324,7 +344,6 @@ class TempController extends Controller
      *
      * @return array
      * @todo 过度抽象
-     *
      */
     private function filter(array $data, string $controller_function): array
     {
@@ -350,5 +369,10 @@ class TempController extends Controller
         }
     }
 
+    public function export()
+    {
+        $excel_name = 'temp.xls';
+        return Excel::download(new TempExport, $excel_name);
+    }
 
 }

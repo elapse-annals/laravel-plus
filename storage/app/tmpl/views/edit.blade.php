@@ -18,17 +18,23 @@
 
 @section('script')
     <script>
-        var js_data = @json($js_data);
+        let js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
                 'detail_data': js_data.detail_data,
-                'init_table_data': {},
+                'disabled_array': ['id'],
+                'form': {},
+                'fullscreen_loading': false,
                 'is_disabled_edit': false,
-                'form': {}
+                'init_list_data': {}
             },
-            created: function () {
-                let _this = this
-                this.init_table_data = _this.table_data
+            created() {
+                let _this = this;
+                this.init_list_data = _this.list_data;
+            },
+            mounted() {
+                $('#id').attr('disabled', 'disabled');
+                $("#id").parent().addClass('is-disabled');
             },
             methods: {
                 onSubmit() {
@@ -47,7 +53,7 @@
                 },
                 onCancel() {
                     // @todo 处理引用传递问题
-                    this.detail_data = this.init_table_data
+                    this.detail_data = this.init_list_data
                 },
             }
         }

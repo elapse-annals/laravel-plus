@@ -16,10 +16,11 @@
 
 @section('script')
     <script>
-        var js_data = @json($js_data);
+        let js_data = JSON.parse('@json($js_data)');
         var mixin = {
             data: {
                 'detail_data': js_data.detail_data,
+                'fullscreen_loading': false,
                 'is_disabled_edit': true,
             },
             methods: {

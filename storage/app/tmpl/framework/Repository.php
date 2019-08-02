@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Temp;
+use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Class TempRepository
@@ -17,11 +18,19 @@ class TempRepository extends Repository
     public $per_page = 10;
 
     /**
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * if this model associate other models need ->with('')
+     *
+     * @param array $data
+     *
+     * @return mixed
      */
-    public function getList()
+    public function getList(array $data = [])
     {
-        return Temp::paginate($this->per_page);
+        $Temp = new Temp();
+        if (!empty($data)) {
+            $Temp = $this->assembvlyWhere($Temp, $data);
+        }
+        return $Temp->Paginate($this->per_page);
     }
 
     /**

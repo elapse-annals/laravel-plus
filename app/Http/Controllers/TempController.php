@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TempExport;
 use App\Formatters\TempFormatter;
 use App\Transformers\TempTransformer;
 use App\Services\TempService;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
-use App\Exports\TempExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 
 /**
