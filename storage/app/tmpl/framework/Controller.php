@@ -78,26 +78,12 @@ class TempController extends Controller
                 return $this->successReturn($temps, 'success', $this->formatter->assemblyPage($temps));
             }
             $table_comment_map = $this->getTableCommentMap();
-            array_push($table_comment_map, [
-                'prop'      => 'info',
-                'label'     => 'info',
-                'is_array'  => true,
-                'child_map' => [
-                    [
-                        'prop'  => 'hobby',
-                        'label' => 'hobby',
-                    ],
-                    [
-                        'prop'  => 'created_at',
-                        'label' => 'created_at',
-                    ],
-                ],
-            ]);
+            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = $this->filter(
                 [
-                    'info'       => $this->getInfo(),
-                    'temps'      => $temps,
-                    'list_map'   => $table_comment_map,
+                    'info' => $this->getInfo(),
+                    'temps' => $temps,
+                    'list_map' => $table_comment_map,
                     'search_map' => $table_comment_map,
                 ],
                 __FUNCTION__
@@ -154,7 +140,7 @@ class TempController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (! empty($rules)) {
+        if (!empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -166,8 +152,8 @@ class TempController extends Controller
     {
         try {
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -179,8 +165,8 @@ class TempController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $id
-     * @param bool    $is_edit
+     * @param int $id
+     * @param bool $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -191,8 +177,8 @@ class TempController extends Controller
             $temp = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
-                    'info'        => $this->getInfo(),
-                    'js_data'     => [
+                    'info' => $this->getInfo(),
+                    'js_data' => [
                         'detail_data' => $temp,
                     ],
                     'detail_data' => $this->getTableCommentMap(),
@@ -304,42 +290,48 @@ class TempController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author'      => 'Ben',
-            'title'       => 'index title',
+            'author' => 'Ben',
+            'title' => 'index title',
         ];
     }
 
     /**
+     * @param string $table_name
+     * @param string $connection_name
+     *
      * @return array
      */
-    private function getTableCommentMap(): array
+    private function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
     {
-        $table_maps = Cache::remember('map_Temps', 1, function () {
-            $table = Str::plural(Str::snake('Temps'));
-            $table_column_dbs = DB::connection('mysql')->select("show full columns from {$table}");
-            $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
-            $filter_words = [
-                'deleted_by',
-                'deleted_at',
-            ];
-            foreach ($table_columns as $key => $table_column) {
-                if (empty($table_column)) {
-                    $table_column = $key;
+        $table_maps = Cache::remember('map_Temps', 1,
+            function () use ($table_name, $connection_name) {
+                if (empty($table_name)) {
+                    $table_name = Str::plural(Str::snake('Temps'));
                 }
-                if (! in_array($key, $filter_words)) {
-                    $show_columns[] = [
-                        'prop'  => $key,
-                        'label' => $table_column,
-                    ];
+                $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
+                $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
+                $filter_words = [
+                    'deleted_by',
+                    'deleted_at',
+                ];
+                foreach ($table_columns as $key => $table_column) {
+                    if (empty($table_column)) {
+                        $table_column = $key;
+                    }
+                    if (!in_array($key, $filter_words)) {
+                        $show_columns[] = [
+                            'prop' => $key,
+                            'label' => $table_column,
+                        ];
+                    }
                 }
-            }
-            return serialize($show_columns);
-        });
+                return serialize($show_columns);
+            });
         return unserialize($table_maps);
     }
 
     /**
-     * @param array  $data
+     * @param array $data
      * @param string $controller_function
      *
      * @return array
@@ -373,6 +365,33 @@ class TempController extends Controller
     {
         $excel_name = 'temp.xls';
         return Excel::download(new TempExport, $excel_name);
+    }
+
+    /**
+     * @todo 根据 Model 反射生成关联模型
+     *
+     * @param array $table_comment_map
+     *
+     * @return array
+     */
+    private function appendAssociationModelMap(array $table_comment_map): array
+    {
+        array_push($table_comment_map, [
+            'prop' => 'info',
+            'label' => 'info',
+            'is_array' => true,
+            'child_map' => [
+                [
+                    'prop' => 'hobby',
+                    'label' => '爱好',
+                ],
+                [
+                    'prop' => 'created_at',
+                    'label' => '创建时间',
+                ],
+            ],
+        ]);
+        return $table_comment_map;
     }
 
 }

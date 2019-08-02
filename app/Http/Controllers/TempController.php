@@ -296,31 +296,37 @@ class TempController extends Controller
     }
 
     /**
+     * @param string $table_name
+     * @param string $connection_name
+     *
      * @return array
      */
-    private function getTableCommentMap(): array
+    private function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
     {
-        $table_maps = Cache::remember('map_Temps', 1, function () {
-            $table = Str::plural(Str::snake('Temps'));
-            $table_column_dbs = DB::connection('mysql')->select("show full columns from {$table}");
-            $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
-            $filter_words = [
-                'deleted_by',
-                'deleted_at',
-            ];
-            foreach ($table_columns as $key => $table_column) {
-                if (empty($table_column)) {
-                    $table_column = $key;
+        $table_maps = Cache::remember('map_Temps', 1,
+            function () use ($table_name, $connection_name) {
+                if (empty($table_name)) {
+                    $table_name = Str::plural(Str::snake('Temps'));
                 }
-                if (!in_array($key, $filter_words)) {
-                    $show_columns[] = [
-                        'prop' => $key,
-                        'label' => $table_column,
-                    ];
+                $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
+                $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
+                $filter_words = [
+                    'deleted_by',
+                    'deleted_at',
+                ];
+                foreach ($table_columns as $key => $table_column) {
+                    if (empty($table_column)) {
+                        $table_column = $key;
+                    }
+                    if (!in_array($key, $filter_words)) {
+                        $show_columns[] = [
+                            'prop' => $key,
+                            'label' => $table_column,
+                        ];
+                    }
                 }
-            }
-            return serialize($show_columns);
-        });
+                return serialize($show_columns);
+            });
         return unserialize($table_maps);
     }
 
