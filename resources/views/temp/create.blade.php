@@ -20,6 +20,7 @@
         var mixin = {
             data: {
                 'detail_data': {},
+                'disabled_array': ['id'],
                 'fullscreen_loading': false,
                 'form': {},
                 'is_disabled_edit': false,

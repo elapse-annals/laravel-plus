@@ -79,7 +79,7 @@
                             var message_type = 'reload error';
                             let response_parameter = response.data;
                             if (200 == response_parameter.code) {
-                                _this.list_data = response_parameter.data;
+                                _this.list_data = response_parameter.data.data;
                                 _this.page = response_parameter.page;
                                 let go_url = '#' + _this.getUrl(response.request.responseURL);
                                 window.history.pushState({reload: 'reload'}, 'title', go_url);
