@@ -31,3 +31,4 @@ Route::prefix('test')->group(function () {
 
 Route::resource('temps', 'TempController');
 
+Route::resource('infos', 'InfoController');
