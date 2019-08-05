@@ -1,1 +1,1 @@
-@includeFirst(['temp._footer', 'frameworks._footer']);
+@includeFirst(['temp._foot', 'frameworks._foot']);
