@@ -5,15 +5,15 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Services\TempService;
+use App\Services\TmplService;
 use Illuminate\Support\Facades\Log;
 
-class TempTest extends TestCase
+class TmplTest extends TestCase
 {
-    public function testTempGetList()
+    public function testTmplGetList()
     {
-        $TempService = new TempService();
-        $response = $TempService->getList();
+        $TmplService = new TmplService();
+        $response = $TmplService->getList();
         Log::info('message', [$response]);
         $this->assertTrue(true);
     }
