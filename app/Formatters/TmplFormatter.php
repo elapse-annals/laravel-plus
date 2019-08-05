@@ -21,12 +21,12 @@ class TmplFormatter extends Formatter
      */
     public function formatIndex(array $data): array
     {
-        $items = collect($data['temps']->items())->toArray();
+        $items = collect($data['tmpls']->items())->toArray();
         return [
             'info' => $data['info'],
             'js_data' => [
                 'data' => $items,
-                'page' => $this->assemblyPage($data['temps']),
+                'page' => $this->assemblyPage($data['tmpls']),
             ],
             'list_map' => $data['list_map'],
             'search_map' => $data['search_map'],

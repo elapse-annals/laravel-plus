@@ -20,4 +20,5 @@ Route::prefix('test')->group(function () {
 
 
 
+
 Route::apiResource('tmpls', 'TmplController');

@@ -31,4 +31,5 @@ Route::prefix('test')->group(function () {
 
 
 
+
 Route::resource('tmpls', 'TmplController');

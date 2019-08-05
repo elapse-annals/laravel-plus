@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Temp;
+use App\Models\Tmpl;
 
-class TempsTableSeeder extends Seeder
+class TmplsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class TempsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Temp::class, 50)
+        factory(Tmpl::class, 50)
             ->create();
     }
 }

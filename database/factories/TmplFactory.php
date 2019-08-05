@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\Temp;
+use App\Models\Tmpl;
 use Faker\Factory as Factory;
 
-$factory->define(Temp::class, function () {
+$factory->define(Tmpl::class, function () {
     $faker = Factory::create('zh_CN');
     $operated_by = $faker->name;
     return [

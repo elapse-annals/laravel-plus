@@ -73,22 +73,22 @@ class TmplController extends Controller
                 }, $data);
             }
             $this->validationIndexRequest($data);
-            $temps = $this->service->getList($data);
+            $tmpls = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $this->successReturn($temps, 'success', $this->formatter->assemblyPage($temps));
+                return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
             }
             $table_comment_map = $this->getTableCommentMap();
             $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = $this->filter(
                 [
                     'info' => $this->getInfo(),
-                    'temps' => $temps,
+                    'tmpls' => $tmpls,
                     'list_map' => $table_comment_map,
                     'search_map' => $table_comment_map,
                 ],
                 __FUNCTION__
             );
-            return view('temp.index', $view_data);
+            return view('tmpl.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
         }
@@ -158,7 +158,7 @@ class TmplController extends Controller
                 ],
                 'detail_data' => $this->getTableCommentMap(),
             ];
-            return view('temp.create', $view_data);
+            return view('tmpl.create', $view_data);
         } catch (Exception $exception) {
         }
     }
@@ -174,12 +174,12 @@ class TmplController extends Controller
     {
         try {
             $this->validationShowRequest($id);
-            $temp = $this->service->getIdInfo($id);
+            $tmpl = $this->service->getIdInfo($id);
             $view_data = $this->filter(
                 [
                     'info' => $this->getInfo(),
                     'js_data' => [
-                        'detail_data' => $temp,
+                        'detail_data' => $tmpl,
                     ],
                     'detail_data' => $this->getTableCommentMap(),
                 ],
@@ -188,7 +188,7 @@ class TmplController extends Controller
             if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
-            return view('temp.show', $view_data);
+            return view('tmpl.show', $view_data);
         } catch (Exception $exception) {
             return $this->catchException($exception);
         }
@@ -280,7 +280,7 @@ class TmplController extends Controller
     public function edit(Request $request, $id)
     {
         $view_data = $this->show($request, $id, true);
-        return view('temp.edit', $view_data);
+        return view('tmpl.edit', $view_data);
     }
 
     /**
@@ -363,7 +363,7 @@ class TmplController extends Controller
 
     public function export()
     {
-        $excel_name = 'temp.xls';
+        $excel_name = 'tmpl.xls';
         return Excel::download(new TmplExport, $excel_name);
     }
 
