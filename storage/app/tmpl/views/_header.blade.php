@@ -1,1 +1,1 @@
-@includeFirst(['tmpl._head', 'frameworks._head']);
+@includeFirst(['tmpl._head', 'frameworks._head'])
