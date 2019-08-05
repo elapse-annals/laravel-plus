@@ -3,11 +3,11 @@
 namespace App\Formatters;
 
 /**
- * Class TempFormatter
+ * Class TmplFormatter
  *
  * @package App\Formatters
  */
-class TempFormatter extends Formatter
+class TmplFormatter extends Formatter
 {
     /**
      * if Association model need :  

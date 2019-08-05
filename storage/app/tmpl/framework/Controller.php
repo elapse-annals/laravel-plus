@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\TempExport;
-use App\Formatters\TempFormatter;
-use App\Transformers\TempTransformer;
-use App\Services\TempService;
+use App\Exports\TmplExport;
+use App\Formatters\TmplFormatter;
+use App\Transformers\TmplTransformer;
+use App\Services\TmplService;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -15,24 +15,24 @@ use Illuminate\Support\Facades\Cache;
 
 
 /**
- * Class TempController
+ * Class TmplController
  *
  * @package App\Http\Controllers
  */
-class TempController extends Controller
+class TmplController extends Controller
 {
     /**
-     * @var TempService
+     * @var TmplService
      */
     protected $service;
     /**
-     * TempFormatter
+     * TmplFormatter
      *
-     * @var TempFormatter
+     * @var TmplFormatter
      */
     private $formatter;
     /**
-     * @var TempTransformer
+     * @var TmplTransformer
      */
     private $transformer;
 
@@ -46,15 +46,15 @@ class TempController extends Controller
     private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
-     * TempController constructor.
+     * TmplController constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->service = new TempService();
+        $this->service = new TmplService();
         if ($this->enable_filter) {
-            $this->formatter = new TempFormatter();
-            $this->transformer = new TempTransformer();
+            $this->formatter = new TmplFormatter();
+            $this->transformer = new TmplTransformer();
         }
     }
 
@@ -303,10 +303,10 @@ class TempController extends Controller
      */
     private function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
     {
-        $table_maps = Cache::remember('map_Temps', 1,
+        $table_maps = Cache::remember('map_Tmpls', 1,
             function () use ($table_name, $connection_name) {
                 if (empty($table_name)) {
-                    $table_name = Str::plural(Str::snake('Temps'));
+                    $table_name = Str::plural(Str::snake('Tmpls'));
                 }
                 $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
                 $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
@@ -364,7 +364,7 @@ class TempController extends Controller
     public function export()
     {
         $excel_name = 'temp.xls';
-        return Excel::download(new TempExport, $excel_name);
+        return Excel::download(new TmplExport, $excel_name);
     }
 
     /**

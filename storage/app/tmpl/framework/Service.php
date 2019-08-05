@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\Presenters\TempPresenter;
-use App\Repositories\TempRepository;
+use App\Presenters\TmplPresenter;
+use App\Repositories\TmplRepository;
 
 /**
- * Class TempService
+ * Class TmplService
  *
  * @package App\Services
  */
-class TempService extends Service
+class TmplService extends Service
 {
     /**
-     * @var TempRepository
+     * @var TmplRepository
      */
     protected $repository;
 
@@ -23,12 +23,12 @@ class TempService extends Service
     private $request_data;
 
     /**
-     * TempService constructor.
+     * TmplService constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new TempRepository();
+        $this->repository = new TmplRepository();
     }
 
     /**
@@ -68,7 +68,7 @@ class TempService extends Service
     /**
      * @param $id
      *
-     * @return \App\Models\Temp|\App\Models\Temp[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return \App\Models\Tmpl|\App\Models\Tmpl[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function getIdInfo($id)
     {

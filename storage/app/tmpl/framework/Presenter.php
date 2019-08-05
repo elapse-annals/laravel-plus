@@ -3,11 +3,11 @@
 namespace App\Presenters;
 
 /**
- * Class TempPresenter
+ * Class TmplPresenter
  *
  * @package App\Presenters
  */
-class TempPresenter extends Presenter
+class TmplPresenter extends Presenter
 {
 
 }

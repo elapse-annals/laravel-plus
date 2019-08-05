@@ -29,4 +29,6 @@ Route::prefix('test')->group(function () {
     Route::any('test', 'testController@test');
 });
 
-Route::resource('temps', 'TempController');
+
+
+Route::resource('tmpls', 'TmplController');
