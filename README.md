@@ -146,6 +146,7 @@ $ composer require php-tool/laravel-plus-make
 Tips:
 - 注意文件被其它服务占用问题，可进行重启尝试
     （Failed to clear cache. Make sure you have the appropriate permissions.）
+- 使用导出需要在 web.php 中 export 注册路由
 
 ##### 热切换配置使用（config/dynamic/）
 在 .env 中设置 ENABLE_HOT_SWITCHING=true 后，会在   AppServiceProvider 进行 dynamic 映射（对性能有一定影响，慎用）
@@ -303,7 +304,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
         - [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) Http 请求包
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
         - [doctrine/dbal](https://github.com/doctrine/dbal)   数据库抽象层
-        - [maatwebsite/excel]() 增加 excel 组件
+        - [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) 增加 excel 组件
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       ```php

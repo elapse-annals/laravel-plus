@@ -21,7 +21,10 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('plural/{singular}', 'StringPresenter@plural');
 
-Route::prefix('export')->group(function(){
+/**
+ * Export routing registration
+ */
+Route::prefix('export')->group(function () {
     Route::get('tmpls', 'TmplController@export');
 });
 
