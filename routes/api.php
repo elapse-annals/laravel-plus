@@ -18,8 +18,5 @@ Route::prefix('test')->group(function () {
     Route::any('test', 'testController@test');
 });
 
-
-
-
 Route::apiResource('tmpls', 'TmplController');
 
