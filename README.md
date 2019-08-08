@@ -351,6 +351,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 优化模板渲染与 API 接口一致性
 
 优化多模型关联
+- 关联创建
+- 关联修改
 
 增加多语言数据库，和迁移，自动更新功能
 
