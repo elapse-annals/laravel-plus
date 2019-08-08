@@ -26,7 +26,7 @@ class Repository
      *
      * @return mixed
      */
-    protected function assembvlyWhere($model, array $data, array $table_maps = [], $match_method = 'right')
+    protected function assemblyWhere($model, array $data, array $table_maps = [], $match_method = 'right')
     {
         foreach ($data as $key => $datum) {
             if (empty($datum)) {
