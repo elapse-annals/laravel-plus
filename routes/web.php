@@ -24,12 +24,5 @@ Route::prefix('export')->group(function(){
     Route::get('temps', 'TempController@export');
 });
 
-Route::prefix('test')->group(function () {
-    Route::get('exception', 'testController@exception');
-    Route::any('test', 'testController@test');
-});
-
-
-
-
 Route::resource('tmpls', 'TmplController');
+
