@@ -26,7 +26,7 @@ class Repository
      *
      * @return mixed
      */
-    protected function assembvlyWhere($model, array $data, array $table_maps = [], $match_method = 'left')
+    protected function assembvlyWhere($model, array $data, array $table_maps = [], $match_method = 'right')
     {
         foreach ($data as $key => $datum) {
             if (empty($datum)) {
@@ -48,7 +48,7 @@ class Repository
                         switch ($match_method) {
                             case 'all':
                                 $temp_datum = '%' . $temp_datum;
-                            case 'left':
+                            case 'right':
                                 $temp_datum = $temp_datum . '%';
                                 $model = $model->when($datum, function ($query) use ($temp_key, $temp_datum) {
                                     return $query->where($temp_key, 'like', $temp_datum);
