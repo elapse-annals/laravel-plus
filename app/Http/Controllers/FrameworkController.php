@@ -69,6 +69,7 @@ class FrameworkController extends Controller
             case 'Presenter':
             case 'Transformer':
             case 'Formatter':
+            case 'Export':
                 $this->file_path = $framework_file_type . 's';
                 break;
         }
