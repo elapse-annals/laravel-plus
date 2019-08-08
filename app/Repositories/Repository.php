@@ -19,14 +19,14 @@ class Repository
     }
 
     /**
-     * @param object $model
-     * @param array  $data
-     * @param array  $table_maps
+     * @param $model
+     * @param array $data
+     * @param array $table_maps
      * @param string $match_method
      *
-     * @return object
+     * @return mixed
      */
-    protected function assembvlyWhere(object $model, array $data, array $table_maps = [], $match_method = 'left')
+    protected function assembvlyWhere($model, array $data, array $table_maps = [], $match_method = 'left')
     {
         foreach ($data as $key => $datum) {
             if (empty($datum)) {

@@ -17,11 +17,11 @@ class Formatter
     }
 
     /**
-     * @param object $data
+     * @param $data
      *
      * @return array
      */
-    public function assemblyPage(object $data): array
+    public function assemblyPage($data): array
     {
         return [
             "current_page" => $data->currentPage(),
