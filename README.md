@@ -105,15 +105,16 @@ composer global require hirak/prestissimo
 ```
 3. [Composer 镜像](https://learnku.com/composer/t/4484/composer-mirror-use-help)
 
+ aliyun
+ ```php
+ $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+ ```
+ 
 cnpkg
 ```php
  $ composer config -g repos.packagist composer https://php.cnpkg.org
  ```
  
- aliyun
- ```php
- $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
- ```
 
 
 <hr>
