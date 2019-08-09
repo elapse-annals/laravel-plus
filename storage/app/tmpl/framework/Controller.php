@@ -79,15 +79,17 @@ class TmplController extends Controller
             }
             $table_comment_map = $this->getTableCommentMap();
             $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
-            $view_data = $this->filter(
-                [
-                    'info' => $this->getInfo(),
-                    'tmpls' => $tmpls,
-                    'list_map' => $table_comment_map,
-                    'search_map' => $table_comment_map,
-                ],
-                __FUNCTION__
-            );
+            $view_data = [
+                'info'       => $this->getInfo(),
+                'tmpls'      => $tmpls,
+                'list_map'   => $table_comment_map,
+                'search_map' => $table_comment_map,
+            ];
+            if ($this->enable_filter) {
+                $view_data = $this->transformer->transformIndex(
+                    $this->formatter->formatIndex($view_data)
+                );
+            }
             return view('tmpl.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
@@ -140,7 +142,7 @@ class TmplController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (!empty($rules)) {
+        if (! empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -152,8 +154,8 @@ class TmplController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -165,8 +167,8 @@ class TmplController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -175,16 +177,18 @@ class TmplController extends Controller
         try {
             $this->validationShowRequest($id);
             $tmpl = $this->service->getIdInfo($id);
-            $view_data = $this->filter(
-                [
-                    'info' => $this->getInfo(),
-                    'js_data' => [
-                        'detail_data' => $tmpl,
-                    ],
-                    'detail_data' => $this->getTableCommentMap(),
+            $view_data = [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
+                    'detail_data' => $tmpl,
                 ],
-                __FUNCTION__
-            );
+                'detail_data' => $this->getTableCommentMap(),
+            ];
+            if ($this->enable_filter) {
+                $view_data = $this->transformer->transformIndex(
+                    $this->formatter->formatIndex($view_data)
+                );
+            }
             if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
@@ -290,8 +294,8 @@ class TmplController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
@@ -318,9 +322,9 @@ class TmplController extends Controller
                     if (empty($table_column)) {
                         $table_column = $key;
                     }
-                    if (!in_array($key, $filter_words)) {
+                    if (! in_array($key, $filter_words)) {
                         $show_columns[] = [
-                            'prop' => $key,
+                            'prop'  => $key,
                             'label' => $table_column,
                         ];
                     }
@@ -330,24 +334,6 @@ class TmplController extends Controller
         return unserialize($table_maps);
     }
 
-    /**
-     * @param array $data
-     * @param string $controller_function
-     *
-     * @return array
-     * @todo 过度抽象
-     */
-    private function filter(array $data, string $controller_function): array
-    {
-        if ($this->enable_filter && in_array($controller_function, $this->transformer_functions)) {
-            $controller_plural = ucfirst($controller_function);
-            $formatterKey = 'format' . $controller_plural;
-            $transformKey = 'transform' . $controller_plural;
-            return $this->transformer->{$transformKey}(
-                $this->formatter->{$formatterKey}($data)
-            );
-        }
-    }
 
     /**
      * @param int $id
@@ -368,25 +354,25 @@ class TmplController extends Controller
     }
 
     /**
-     * @todo 根据 Model 反射生成关联模型
-     *
      * @param array $table_comment_map
      *
      * @return array
+     * @todo 根据 Model 反射生成关联模型
+     *
      */
     private function appendAssociationModelMap(array $table_comment_map): array
     {
         array_push($table_comment_map, [
-            'prop' => 'info',
-            'label' => 'info',
-            'is_array' => true,
+            'prop'      => 'info',
+            'label'     => 'info',
+            'is_array'  => true,
             'child_map' => [
                 [
-                    'prop' => 'hobby',
+                    'prop'  => 'hobby',
                     'label' => '爱好',
                 ],
                 [
-                    'prop' => 'created_at',
+                    'prop'  => 'created_at',
                     'label' => '创建时间',
                 ],
             ],
