@@ -20,6 +20,13 @@ class Controller extends BaseController
      * @var
      */
     protected $service;
+
+
+    /**
+     *
+     */
+    const SUCCESS_CODE = 200;
+
     /**
      *
      */
@@ -42,7 +49,7 @@ class Controller extends BaseController
     protected function successReturn($data = null, $message = 'success', $page = []): array
     {
         $arr = [
-            'code' => 200,
+            'code' => self::SUCCESS_CODE,
             'msg'  => $message,
             'data' => $data,
             'page' => $page,
@@ -71,4 +78,40 @@ class Controller extends BaseController
         }
         return response($exception->getMessage(), $code);
     }
+
+    /**
+     * @param null   $table_name
+     * @param string $connection_name
+     *
+     * @return array
+     */
+    protected function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
+    {
+        $table_maps = Cache::remember('map_' . $table_name, 1,
+            function () use ($table_name, $connection_name) {
+                if (empty($table_name)) {
+                    $table_name = Str::plural(Str::snake('Tmpls'));
+                }
+                $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
+                $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
+                $filter_words = [
+                    'deleted_by',
+                    'deleted_at',
+                ];
+                foreach ($table_columns as $key => $table_column) {
+                    if (empty($table_column)) {
+                        $table_column = $key;
+                    }
+                    if (! in_array($key, $filter_words)) {
+                        $show_columns[] = [
+                            'prop'  => $key,
+                            'label' => $table_column,
+                        ];
+                    }
+                }
+                return serialize($show_columns);
+            });
+        return unserialize($table_maps);
+    }
+
 }

@@ -300,42 +300,6 @@ class TmplController extends Controller
     }
 
     /**
-     * @param string $table_name
-     * @param string $connection_name
-     *
-     * @return array
-     */
-    private function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
-    {
-        $table_maps = Cache::remember('map_Tmpls', 1,
-            function () use ($table_name, $connection_name) {
-                if (empty($table_name)) {
-                    $table_name = Str::plural(Str::snake('Tmpls'));
-                }
-                $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
-                $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
-                $filter_words = [
-                    'deleted_by',
-                    'deleted_at',
-                ];
-                foreach ($table_columns as $key => $table_column) {
-                    if (empty($table_column)) {
-                        $table_column = $key;
-                    }
-                    if (! in_array($key, $filter_words)) {
-                        $show_columns[] = [
-                            'prop'  => $key,
-                            'label' => $table_column,
-                        ];
-                    }
-                }
-                return serialize($show_columns);
-            });
-        return unserialize($table_maps);
-    }
-
-
-    /**
      * @param int $id
      *
      * @throws Exception
@@ -357,26 +321,22 @@ class TmplController extends Controller
      * @param array $table_comment_map
      *
      * @return array
-     * @todo 根据 Model 反射生成关联模型
-     *
      */
     private function appendAssociationModelMap(array $table_comment_map): array
     {
-        array_push($table_comment_map, [
-            'prop'      => 'info',
-            'label'     => 'info',
-            'is_array'  => true,
-            'child_map' => [
-                [
-                    'prop'  => 'hobby',
-                    'label' => '爱好',
-                ],
-                [
-                    'prop'  => 'created_at',
-                    'label' => '创建时间',
+        $child_maps = [
+            [
+                'prop'      => 'child_table_name',
+                'label'     => 'child_table_comment',
+                'is_array'  => true,
+                'child_map' => [
+                    $this->getTableCommentMap('child_table_name'),
                 ],
             ],
-        ]);
+        ];
+        foreach ($child_maps as $child_map) {
+            array_push($table_comment_map, $child_map);
+        }
         return $table_comment_map;
     }
 
