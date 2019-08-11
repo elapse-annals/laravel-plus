@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Info;
+use Illuminate\Database\Seeder;
 
 class InfosTableSeeder extends Seeder
 {

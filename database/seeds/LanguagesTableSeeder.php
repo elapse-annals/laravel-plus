@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Tmpl;
+use App\Models\Language;
 use Illuminate\Database\Seeder;
 
-class TmplsTableSeeder extends Seeder
+class LanguagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class TmplsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Tmpl::class, 50)
+        factory(Language::class, 50)
             ->create();
     }
 }
