@@ -13,7 +13,7 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lanuages', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('key');
             $table->string('code', 2);
