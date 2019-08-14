@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\TmplExport;
-use App\Formatters\TmplFormatter;
-use App\Transformers\TmplTransformer;
-use App\Services\TmplService;
+use App\Exports\LanguageExport;
+use App\Formatters\LanguageFormatter;
+use App\Transformers\LanguageTransformer;
+use App\Services\LanguageService;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -15,24 +15,24 @@ use Illuminate\Support\Facades\Cache;
 
 
 /**
- * Class TmplController
+ * Class LanguageController
  *
  * @package App\Http\Controllers
  */
-class TmplController extends Controller
+class LanguageController extends Controller
 {
     /**
-     * @var TmplService
+     * @var LanguageService
      */
     protected $service;
     /**
-     * TmplFormatter
+     * LanguageFormatter
      *
-     * @var TmplFormatter
+     * @var LanguageFormatter
      */
     private $formatter;
     /**
-     * @var TmplTransformer
+     * @var LanguageTransformer
      */
     private $transformer;
 
@@ -40,17 +40,21 @@ class TmplController extends Controller
      * @var bool
      */
     private $enable_filter = true;
+    /**
+     * @var array
+     */
+    private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
-     * TmplController constructor.
+     * LanguageController constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->service = new TmplService();
+        $this->service = new LanguageService();
         if ($this->enable_filter) {
-            $this->formatter = new TmplFormatter();
-            $this->transformer = new TmplTransformer();
+            $this->formatter = new LanguageFormatter();
+            $this->transformer = new LanguageTransformer();
         }
     }
 
@@ -69,15 +73,15 @@ class TmplController extends Controller
                 }, $data);
             }
             $this->validationIndexRequest($data);
-            $tmpls = $this->service->getList($data);
+            $languages = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
+                return $this->successReturn($languages, 'success', $this->formatter->assemblyPage($languages));
             }
             $table_comment_map = $this->getTableCommentMap();
             $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = [
                 'info'       => $this->getInfo(),
-                'tmpls'      => $tmpls,
+                'languages'      => $languages,
                 'list_map'   => $table_comment_map,
                 'search_map' => $table_comment_map,
             ];
@@ -86,7 +90,7 @@ class TmplController extends Controller
                     $this->formatter->formatIndex($view_data)
                 );
             }
-            return view('tmpl.index', $view_data);
+            return view('language.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
         }
@@ -156,7 +160,7 @@ class TmplController extends Controller
                 ],
                 'detail_data' => $this->getTableCommentMap(),
             ];
-            return view('tmpl.create', $view_data);
+            return view('language.create', $view_data);
         } catch (Exception $exception) {
         }
     }
@@ -172,11 +176,11 @@ class TmplController extends Controller
     {
         try {
             $this->validationShowRequest($id);
-            $tmpl = $this->service->getIdInfo($id);
+            $language = $this->service->getIdInfo($id);
             $view_data = [
                 'info'        => $this->getInfo(),
                 'js_data'     => [
-                    'detail_data' => $tmpl,
+                    'detail_data' => $language,
                 ],
                 'detail_data' => $this->getTableCommentMap(),
             ];
@@ -188,7 +192,7 @@ class TmplController extends Controller
             if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
-            return view('tmpl.show', $view_data);
+            return view('language.show', $view_data);
         } catch (Exception $exception) {
             return $this->catchException($exception);
         }
@@ -281,7 +285,7 @@ class TmplController extends Controller
     public function edit(Request $request, $id)
     {
         $view_data = $this->show($request, $id, true);
-        return view('tmpl.edit', $view_data);
+        return view('language.edit', $view_data);
     }
 
     /**
@@ -310,8 +314,8 @@ class TmplController extends Controller
 
     public function export()
     {
-        $excel_name = 'tmpl.xls';
-        return Excel::download(new TmplExport, $excel_name);
+        $excel_name = 'language.xls';
+        return Excel::download(new LanguageExport, $excel_name);
     }
 
     /**
