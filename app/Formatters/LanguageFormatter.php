@@ -3,11 +3,11 @@
 namespace App\Formatters;
 
 /**
- * Class TmplFormatter
+ * Class LanguageFormatter
  *
  * @package App\Formatters
  */
-class TmplFormatter extends Formatter
+class LanguageFormatter extends Formatter
 {
     /**
      * if Association model need :  
@@ -21,12 +21,12 @@ class TmplFormatter extends Formatter
      */
     public function formatIndex(array $data): array
     {
-        $items = collect($data['tmpls']->items())->toArray();
+        $items = collect($data['languages']->items())->toArray();
         return [
             'info' => $data['info'],
             'js_data' => [
                 'data' => $items,
-                'page' => $this->assemblyPage($data['tmpls']),
+                'page' => $this->assemblyPage($data['languages']),
             ],
             'list_map' => $data['list_map'],
             'search_map' => $data['search_map'],

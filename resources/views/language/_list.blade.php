@@ -46,11 +46,11 @@
                 header-align="center"
         >
             <template slot-scope="scope">
-                <a :href="'/tmpls/'+scope.row.id">
+                <a :href="'/languages/'+scope.row.id">
                     <el-button size="small" type="primary" plain
                                icon="el-icon-zoom-in"></el-button>
                 </a>
-                <a :href="'/tmpls/'+scope.row.id+'/edit'">
+                <a :href="'/languages/'+scope.row.id+'/edit'">
                     <el-button size="small" type="primary" plain icon="el-icon-edit"></el-button>
                 </a>
                 <el-button size="small" type="danger" plain icon="el-icon-delete"

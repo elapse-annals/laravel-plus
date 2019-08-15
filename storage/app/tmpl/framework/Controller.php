@@ -40,10 +40,6 @@ class TmplController extends Controller
      * @var bool
      */
     private $enable_filter = true;
-    /**
-     * @var array
-     */
-    private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
      * TmplController constructor.

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\TmplExport;
-use App\Formatters\TmplFormatter;
-use App\Transformers\TmplTransformer;
-use App\Services\TmplService;
+use App\Exports\LanguageExport;
+use App\Formatters\LanguageFormatter;
+use App\Transformers\LanguageTransformer;
+use App\Services\LanguageService;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -15,24 +15,24 @@ use Illuminate\Support\Facades\Cache;
 
 
 /**
- * Class TmplController
+ * Class LanguageController
  *
  * @package App\Http\Controllers
  */
-class TmplController extends Controller
+class LanguageController extends Controller
 {
     /**
-     * @var TmplService
+     * @var LanguageService
      */
     protected $service;
     /**
-     * TmplFormatter
+     * LanguageFormatter
      *
-     * @var TmplFormatter
+     * @var LanguageFormatter
      */
     private $formatter;
     /**
-     * @var TmplTransformer
+     * @var LanguageTransformer
      */
     private $transformer;
 
@@ -46,15 +46,15 @@ class TmplController extends Controller
     private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
-     * TmplController constructor.
+     * LanguageController constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->service = new TmplService();
+        $this->service = new LanguageService();
         if ($this->enable_filter) {
-            $this->formatter = new TmplFormatter();
-            $this->transformer = new TmplTransformer();
+            $this->formatter = new LanguageFormatter();
+            $this->transformer = new LanguageTransformer();
         }
     }
 
@@ -73,22 +73,24 @@ class TmplController extends Controller
                 }, $data);
             }
             $this->validationIndexRequest($data);
-            $tmpls = $this->service->getList($data);
+            $languages = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
+                return $this->successReturn($languages, 'success', $this->formatter->assemblyPage($languages));
             }
             $table_comment_map = $this->getTableCommentMap();
             $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
-            $view_data = $this->filter(
-                [
-                    'info' => $this->getInfo(),
-                    'tmpls' => $tmpls,
-                    'list_map' => $table_comment_map,
-                    'search_map' => $table_comment_map,
-                ],
-                __FUNCTION__
-            );
-            return view('tmpl.index', $view_data);
+            $view_data = [
+                'info'       => $this->getInfo(),
+                'languages'      => $languages,
+                'list_map'   => $table_comment_map,
+                'search_map' => $table_comment_map,
+            ];
+            if ($this->enable_filter) {
+                $view_data = $this->transformer->transformIndex(
+                    $this->formatter->formatIndex($view_data)
+                );
+            }
+            return view('language.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
         }
@@ -140,7 +142,7 @@ class TmplController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (!empty($rules)) {
+        if (! empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -152,21 +154,21 @@ class TmplController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
             ];
-            return view('tmpl.create', $view_data);
+            return view('language.create', $view_data);
         } catch (Exception $exception) {
         }
     }
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -174,21 +176,23 @@ class TmplController extends Controller
     {
         try {
             $this->validationShowRequest($id);
-            $tmpl = $this->service->getIdInfo($id);
-            $view_data = $this->filter(
-                [
-                    'info' => $this->getInfo(),
-                    'js_data' => [
-                        'detail_data' => $tmpl,
-                    ],
-                    'detail_data' => $this->getTableCommentMap(),
+            $language = $this->service->getIdInfo($id);
+            $view_data = [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
+                    'detail_data' => $language,
                 ],
-                __FUNCTION__
-            );
+                'detail_data' => $this->getTableCommentMap(),
+            ];
+            if ($this->enable_filter) {
+                $view_data = $this->transformer->transformIndex(
+                    $this->formatter->formatIndex($view_data)
+                );
+            }
             if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
-            return view('tmpl.show', $view_data);
+            return view('language.show', $view_data);
         } catch (Exception $exception) {
             return $this->catchException($exception);
         }
@@ -224,6 +228,7 @@ class TmplController extends Controller
             if ($request->is('api/*')) {
                 return $res_db;
             }
+            return $res_db;
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
@@ -280,7 +285,7 @@ class TmplController extends Controller
     public function edit(Request $request, $id)
     {
         $view_data = $this->show($request, $id, true);
-        return view('tmpl.edit', $view_data);
+        return view('language.edit', $view_data);
     }
 
     /**
@@ -290,63 +295,9 @@ class TmplController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
-    }
-
-    /**
-     * @param string $table_name
-     * @param string $connection_name
-     *
-     * @return array
-     */
-    private function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
-    {
-        $table_maps = Cache::remember('map_Tmpls', 1,
-            function () use ($table_name, $connection_name) {
-                if (empty($table_name)) {
-                    $table_name = Str::plural(Str::snake('Tmpls'));
-                }
-                $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
-                $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
-                $filter_words = [
-                    'deleted_by',
-                    'deleted_at',
-                ];
-                foreach ($table_columns as $key => $table_column) {
-                    if (empty($table_column)) {
-                        $table_column = $key;
-                    }
-                    if (!in_array($key, $filter_words)) {
-                        $show_columns[] = [
-                            'prop' => $key,
-                            'label' => $table_column,
-                        ];
-                    }
-                }
-                return serialize($show_columns);
-            });
-        return unserialize($table_maps);
-    }
-
-    /**
-     * @param array $data
-     * @param string $controller_function
-     *
-     * @return array
-     * @todo 过度抽象
-     */
-    private function filter(array $data, string $controller_function): array
-    {
-        if ($this->enable_filter && in_array($controller_function, $this->transformer_functions)) {
-            $controller_plural = ucfirst($controller_function);
-            $formatterKey = 'format' . $controller_plural;
-            $transformKey = 'transform' . $controller_plural;
-            return $this->transformer->{$transformKey}(
-                $this->formatter->{$formatterKey}($data)
-            );
-        }
     }
 
     /**
@@ -363,34 +314,30 @@ class TmplController extends Controller
 
     public function export()
     {
-        $excel_name = 'tmpl.xls';
-        return Excel::download(new TmplExport, $excel_name);
+        $excel_name = 'language.xls';
+        return Excel::download(new LanguageExport, $excel_name);
     }
 
     /**
-     * @todo 根据 Model 反射生成关联模型
-     *
      * @param array $table_comment_map
      *
      * @return array
      */
     private function appendAssociationModelMap(array $table_comment_map): array
     {
-        array_push($table_comment_map, [
-            'prop' => 'info',
-            'label' => 'info',
-            'is_array' => true,
-            'child_map' => [
-                [
-                    'prop' => 'hobby',
-                    'label' => '爱好',
-                ],
-                [
-                    'prop' => 'created_at',
-                    'label' => '创建时间',
+        $child_maps = [
+            [
+                'prop'      => 'child_table_name',
+                'label'     => 'child_table_comment',
+                'is_array'  => true,
+                'child_map' => [
+                    $this->getTableCommentMap('child_table_name'),
                 ],
             ],
-        ]);
+        ];
+        foreach ($child_maps as $child_map) {
+            array_push($table_comment_map, $child_map);
+        }
         return $table_comment_map;
     }
 

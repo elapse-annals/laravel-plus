@@ -3,11 +3,11 @@
 namespace App\Transformers;
 
 /**
- * Class TmplTransformer
+ * Class LanguageTransformer
  *
  * @package App\Transformers
  */
-class TmplTransformer extends Transformer
+class LanguageTransformer extends Transformer
 {
     /**
      * @param array $data

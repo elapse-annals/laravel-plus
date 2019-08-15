@@ -1,11 +1,11 @@
-@extends('tmpl._layout')
+@extends('language._layout')
 
 @section('content')
     <div class="detail">
         <el-form ref="form" :model="form" label-width="80px">
-            @include('tmpl._detail')
+            @include('language._detail')
             <div class="operation">
-                <a href="/tmpls">
+                <a href="/languages">
                     <el-button @click="onReturn">返回</el-button>
                 </a>
             </div>

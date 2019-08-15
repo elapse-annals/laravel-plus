@@ -1,12 +1,12 @@
 <template>
     <el-row>
         <el-col :span="19">
-            <a href="/tmpls/create">
+            <a href="/languages/create">
                 <el-button type="primary" plain icon="el-icon-plus">
                     新增
                 </el-button>
             </a>
-            <a href="/export/tmpls" target="_blank">
+            <a href="/export/languages" target="_blank">
                 <el-button  plain icon="el-icon-download">导出</el-button>
             </a>
         </el-col>

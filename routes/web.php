@@ -34,5 +34,7 @@ Route::prefix('export')->group(function () {
     Route::get('tmpls', 'TmplController@export');
 });
 
-Route::resource('tmpls', 'TmplController');
+
+
+Route::resource('languages', 'LanguageController');
 

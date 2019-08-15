@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Models\Tmpl;
+use App\Models\Language;
 use phpDocumentor\Reflection\Types\Object_;
 
 /**
- * Class TmplRepository
+ * Class LanguageRepository
  *
  * @package App\Presenters
  */
-class TmplRepository extends Repository
+class LanguageRepository extends Repository
 {
     /**
      * @var int
@@ -26,32 +26,32 @@ class TmplRepository extends Repository
      */
     public function getList(array $data = [])
     {
-        $Tmpl = new Tmpl();
+        $Language = new Language();
         if (!empty($data)) {
-            $Tmpl = $this->assemblyWhere($Tmpl, $data);
+            $Language = $this->assembvlyWhere($Language, $data);
         }
-        return $Tmpl->Paginate($this->per_page);
+        return $Language->Paginate($this->per_page);
     }
 
     /**
      * @param $id
      *
-     * @return Tmpl|Tmpl[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return Language|Language[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function find($id)
     {
-        return Tmpl::find($id);
+        return Language::find($id);
     }
 
     public function create(array $save)
     {
-        return Tmpl::create($save);
+        return Language::create($save);
     }
 
     /**
      * @param array $save
      *
-     * @return Tmpl|\Illuminate\Database\Eloquent\Model
+     * @return Language|\Illuminate\Database\Eloquent\Model
      */
     public function updateOrCreate(array $save)
     {
@@ -62,18 +62,18 @@ class TmplRepository extends Repository
         if (isset($save['updated_at'])) {
             $attributes['updated_at'] = $save['updated_at'];
         }
-        return Tmpl::updateOrCreate($attributes, $save);
+        return Language::updateOrCreate($attributes, $save);
     }
 
     /**
      * @param array $save
      *
-     * @return Tmpl|\Illuminate\Database\Eloquent\Model
+     * @return Language|\Illuminate\Database\Eloquent\Model
      */
     public function update(array $save, $id)
     {
         $attributes['updated_at'] = $save['updated_at'];
-        return Tmpl::find($id)->update($attributes, $save);
+        return Language::find($id)->update($attributes, $save);
     }
 
     /**
@@ -83,7 +83,7 @@ class TmplRepository extends Repository
      */
     public function destroy(int $id)
     {
-        return Tmpl::destroy($id);
+        return Language::destroy($id);
     }
 
 }

@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\Presenters\TmplPresenter;
-use App\Repositories\TmplRepository;
+use App\Presenters\LanguagePresenter;
+use App\Repositories\LanguageRepository;
 
 /**
- * Class TmplService
+ * Class LanguageService
  *
  * @package App\Services
  */
-class TmplService extends Service
+class LanguageService extends Service
 {
     /**
-     * @var TmplRepository
+     * @var LanguageRepository
      */
     protected $repository;
 
@@ -23,12 +23,12 @@ class TmplService extends Service
     private $request_data;
 
     /**
-     * TmplService constructor.
+     * LanguageService constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new TmplRepository();
+        $this->repository = new LanguageRepository();
     }
 
     /**
@@ -68,7 +68,7 @@ class TmplService extends Service
     /**
      * @param $id
      *
-     * @return \App\Models\Tmpl|\App\Models\Tmpl[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return \App\Models\Language|\App\Models\Language[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function getIdInfo($id)
     {
