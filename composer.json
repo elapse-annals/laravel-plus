@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.8.*",
         "laravel/scout": "^7.1",
+        "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
         "overtrue/laravel-lang": "^3.0",

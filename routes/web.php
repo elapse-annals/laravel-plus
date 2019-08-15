@@ -21,6 +21,12 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('plural/{singular}', 'StringPresenter@plural');
 
+Route::prefix('login')->group(function () {
+    Route::get('google', 'Auth\LoginController@redirectToProvider');
+    Route::get('google/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
+
 /**
  * Export routing registration
  */
