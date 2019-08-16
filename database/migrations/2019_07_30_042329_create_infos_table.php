@@ -15,7 +15,7 @@ class CreateInfosTable extends Migration
     {
         Schema::create('infos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('temp_id')->comment('temps.id');
+            $table->integer('tmpl_id')->comment('tmpls.id');
             $table->string('hobby')->comment('爱好');
             $table->timestamps();
         });
