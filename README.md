@@ -306,6 +306,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
         - [doctrine/dbal](https://github.com/doctrine/dbal)   数据库抽象层
         - [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) 增加 excel 组件
+        - [laravel/socialite] () 社会化登陆包【注意配置代理或更改底层路由请求】
+             - 替代方案  [overtrue/socialite](https://github.com/overtrue/socialite) 包含国内社会化登陆
     - develop     开发环境
       - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具
       ```php
