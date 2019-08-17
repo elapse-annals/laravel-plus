@@ -22,3 +22,4 @@ Route::prefix('test')->group(function () {
 
 Route::apiResource('languages', 'LanguageController');
 
+Route::apiResource('tmpls', 'TmplController');
