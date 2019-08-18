@@ -40,6 +40,11 @@ class FrameworkController extends Controller
     private $file_path;
 
     /**
+     * @var bool
+     */
+    private $is_static_render = false;
+
+    /**
      * FrameworkController constructor.
      *
      * @param $framework_name
@@ -51,6 +56,26 @@ class FrameworkController extends Controller
         $this->framework_name_plural = Str::plural($this->framework_name);
         $this->framework_name_low = strtolower($this->framework_name);
         $this->framework_name_low_plural = Str::plural($this->framework_name_low);
+    }
+
+    /**
+     * @param $framework_file_type
+     * @param $is_delete
+     * @param $is_static_render
+     *
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function handle($framework_file_type, $is_delete, $is_static_render)
+    {
+        $this->init($framework_file_type);
+        $this->is_static_render = $is_static_render;
+        $this->file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
+        if ($is_delete) {
+            $this->delete($framework_file_type);
+        } else {
+            $this->checkFileExistence($framework_file_type);
+            $this->create($framework_file_type);
+        }
     }
 
     /**
@@ -72,24 +97,6 @@ class FrameworkController extends Controller
             case 'Export':
                 $this->file_path = $framework_file_type . 's';
                 break;
-        }
-    }
-
-    /**
-     * @param $framework_file_type
-     * @param $is_delete
-     *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    public function handle($framework_file_type, $is_delete)
-    {
-        $this->init($framework_file_type);
-        $this->file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
-        if ($is_delete) {
-            $this->delete($framework_file_type);
-        } else {
-            $this->checkFileExistence($framework_file_type);
-            $this->create($framework_file_type);
         }
     }
 
@@ -161,7 +168,7 @@ class FrameworkController extends Controller
         $body = str_replace('tmpls', $this->framework_name_low_plural, $body);
         $body = str_replace('tmpl', $this->framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
-        if (!is_file($file)) {
+        if (! is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
@@ -174,16 +181,40 @@ class FrameworkController extends Controller
             }
             $framework_view_files = scandir($resources_directory);
             foreach ($framework_view_files as $framework_view_file) {
-                if (!in_array($framework_view_file, ['.', '..'])) {
+                if (! in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace('tmpls', $this->framework_name_low_plural, $file_get_contents);
                     $file_get_contents = str_replace('tmpl', $this->framework_name_low, $file_get_contents);
+                    if ($this->is_static_render) {
+                        $file_get_contents = $this->generateStaticView($framework_view_file, $file_get_contents);
+                    }
                     file_put_contents($route_web_path, $file_get_contents);
                 }
             }
         }
-        usleep(100000);
+        usleep(50000);
+    }
+
+    /**
+     * @param $file_name
+     * @param $data
+     *
+     * @return mixed
+     */
+    private function generateStaticView($file_name, $data)
+    {
+        switch ($file_name) {
+            case '_list.blade.php':
+                $data = $this->generatelistView($data);
+                break;
+        }
+        return $data;
+    }
+
+    private function generatelistView($data)
+    {
+        return $data;
     }
 
     /**
