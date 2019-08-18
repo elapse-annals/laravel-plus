@@ -22,6 +22,8 @@ class Framework extends Command
                             {--delete : delete framework}
                             {--D : delete framework}
                             {--NonMapModel : non auto mapping model}
+                            {--StaticRender : Static rendering html}
+                            {--static : Static rendering html}
                             ';
 
     /**
@@ -65,7 +67,7 @@ class Framework extends Command
         try {
             $framework_name = $this->argument('framework_name');
             list($basis, $is_delete) = $this->initOption();
-            if ($is_delete && !$this->confirm('Do you wish to continue? [y|N]')) {
+            if ($is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
                 throw new Exception('Continue Delete');
             }
             $framework_file_types = $this->framework_file_types;
@@ -99,6 +101,8 @@ class Framework extends Command
         $is_delete = $this->option('delete');
         $is_delete or $is_delete = $this->option('D');
         $non_map_model = $this->option('NonMapModel');
-        return [$basis, $is_delete, $non_map_model];
+        $is_static_render = $this->option('static');
+        $is_static_render or $is_static_render = $this->option('StaticRender');
+        return [$basis, $is_delete, $non_map_model, $is_static_render];
     }
 }
