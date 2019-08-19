@@ -8,6 +8,7 @@
                 type="selection"
                 width="55">
         </el-table-column>
+
         @foreach ($list_map as $table_datum)
             @if(isset($table_datum['is_array']) && true === $table_datum['is_array'])
                 <el-table-column
@@ -37,8 +38,8 @@
                 >
                 </el-table-column>
             @endif
-
         @endforeach
+
         <el-table-column
                 fixed="right"
                 label="操作"
