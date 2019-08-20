@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('plural/{singular}', 'StringPresenter@plural');
+//Route::get('plural/{singular}', 'StringService@plural');
 
 Route::prefix('login')->group(function () {
     Route::get('google', 'Auth\LoginController@redirectToProvider');

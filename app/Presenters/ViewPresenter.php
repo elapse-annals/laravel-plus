@@ -9,6 +9,12 @@ namespace App\Presenters;
  */
 class ViewPresenter extends Presenter
 {
+    /**
+     * @param $list_map
+     * @param $is_static_render
+     *
+     * @return string
+     */
     public function lists($list_map, $is_static_render)
     {
         $view_html = '';
@@ -26,6 +32,9 @@ class ViewPresenter extends Presenter
         return $view_html;
     }
 
+    /**
+     * @return string
+     */
     private function autoTableColumn()
     {
         return '@foreach($list_map as $table_datum)
@@ -55,6 +64,11 @@ class ViewPresenter extends Presenter
 
     }
 
+    /**
+     * @param $column
+     *
+     * @return string
+     */
     private function tableColumn($column)
     {
         return <<<EOF
@@ -62,6 +76,11 @@ class ViewPresenter extends Presenter
 EOF;
     }
 
+    /**
+     * @param $column_array
+     *
+     * @return string
+     */
     private function tableColumnArray($column_array)
     {
         $temp_view = <<<EOF
@@ -83,6 +102,11 @@ EOF;
 
     }
 
+    /**
+     * @param $column
+     *
+     * @return string
+     */
     private function input($column)
     {
         return <<<EOF
@@ -92,6 +116,11 @@ EOF;
 EOF;
     }
 
+    /**
+     * @param $column
+     *
+     * @return string
+     */
     private function inputNumber($column)
     {
         return <<<EOF
@@ -101,6 +130,11 @@ EOF;
 EOF;
     }
 
+    /**
+     * @param $column
+     *
+     * @return string
+     */
     private function date($column)
     {
         return <<<EOF
@@ -117,6 +151,9 @@ EOF;
 
     }
 
+    /**
+     *
+     */
     private function ChileArray()
     {
 

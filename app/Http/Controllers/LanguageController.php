@@ -312,6 +312,9 @@ class LanguageController extends Controller
         }
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function export()
     {
         $excel_name = 'language.xls';

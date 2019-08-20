@@ -13,13 +13,6 @@
 
 Route::middleware('auth:api')->get('/user', 'ClosureController@user');
 
-Route::prefix('test')->group(function () {
-    Route::get('exception', 'testController@exception');
-    Route::any('test', 'testController@test');
-});
-
-
-
 Route::apiResource('languages', 'LanguageController');
 
 Route::apiResource('tmpls', 'TmplController');
