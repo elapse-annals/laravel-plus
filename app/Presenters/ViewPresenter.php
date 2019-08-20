@@ -37,8 +37,7 @@ class ViewPresenter extends Presenter
                                 <el-table-column
                                         prop="{{$item[\'prop\']}}"
                                         label="{{$item[\'label\']}}"
-                                        min-width="180"
-                                >
+                                        min-width="180">
                                 </el-table-column>
                             @endforeach
                         </el-table>
@@ -89,8 +88,37 @@ EOF;
 
     }
 
-    private function date()
+    private function input($column)
     {
+        return <<<EOF
+                <el-form-item label="{{$column['label']}}">
+                    <el-input v-model="search.{{$column['prop']}}" placeholder="{{$column['label']}}"></el-input>
+                </el-form-item>
+EOF;
+    }
+
+    private function inputNumber($column)
+    {
+        return <<<EOF
+                <el-form-item label="{{$column['label']}}">
+                    <el-input v-model.number="search.{{$column['prop']}}" placeholder="{{$column['label']}}"></el-input>
+                </el-form-item>
+EOF;
+    }
+
+    private function date($column)
+    {
+        return <<<EOF
+                <el-date-picker
+                        v-model="search.{{$column['prop']}}"
+                        type="datetimerange"
+                        start-placeholder="{{$column['label']}} @lang('form.start_date')"
+                        end-placeholder="{{$column['label']}} @lang('form.end_date')"
+                        value-format="yyyy-MM-dd HH:mm"
+                        format="yyyy-MM-dd HH:mm"
+                        :default-time="['00:00:00', '23:59:59']">
+                </el-date-picker>
+EOF;
 
     }
 
