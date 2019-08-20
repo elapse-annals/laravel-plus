@@ -83,11 +83,6 @@ EOF;
 
     }
 
-    private function button()
-    {
-
-    }
-
     private function input($column)
     {
         return <<<EOF
@@ -119,11 +114,6 @@ EOF;
                         :default-time="['00:00:00', '23:59:59']">
                 </el-date-picker>
 EOF;
-
-    }
-
-    private function text()
-    {
 
     }
 
