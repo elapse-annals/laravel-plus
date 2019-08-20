@@ -1,0 +1,1635 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>general</h1>
+<!-- START_c6c5c00d6ac7f771f157dff4a2889b1a -->
+<h2>_debugbar/open</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/_debugbar/open" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/_debugbar/open");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": ""
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET _debugbar/open</code></p>
+<!-- END_c6c5c00d6ac7f771f157dff4a2889b1a -->
+<!-- START_7b167949c615f4a7e7b673f8d5fdaf59 -->
+<h2>Return Clockwork output</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/_debugbar/clockwork/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/_debugbar/clockwork/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": ""
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET _debugbar/clockwork/{id}</code></p>
+<!-- END_7b167949c615f4a7e7b673f8d5fdaf59 -->
+<!-- START_01a252c50bd17b20340dbc5a91cea4b7 -->
+<h2>_debugbar/telescope/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/_debugbar/telescope/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/_debugbar/telescope/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": ""
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET _debugbar/telescope/{id}</code></p>
+<!-- END_01a252c50bd17b20340dbc5a91cea4b7 -->
+<!-- START_5f8a640000f5db43332951f0d77378c4 -->
+<h2>Return the stylesheets for the Debugbar</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/_debugbar/assets/stylesheets" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/_debugbar/assets/stylesheets");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": ""
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET _debugbar/assets/stylesheets</code></p>
+<!-- END_5f8a640000f5db43332951f0d77378c4 -->
+<!-- START_db7a887cf930ce3c638a8708fd1a75ee -->
+<h2>Return the javascript for the Debugbar</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/_debugbar/assets/javascript" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/_debugbar/assets/javascript");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": ""
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET _debugbar/assets/javascript</code></p>
+<!-- END_db7a887cf930ce3c638a8708fd1a75ee -->
+<!-- START_0973671c4f56e7409202dc85c868d442 -->
+<h2>Forget a cache key</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/_debugbar/cache/1/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/_debugbar/cache/1/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE _debugbar/cache/{key}/{tags?}</code></p>
+<!-- END_0973671c4f56e7409202dc85c868d442 -->
+<!-- START_2b6e5a4b188cb183c7e59558cce36cb6 -->
+<h2>api/user</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/user" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/user");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/user</code></p>
+<!-- END_2b6e5a4b188cb183c7e59558cce36cb6 -->
+<!-- START_d29df5fd928092000b93edb0dadbff5d -->
+<h2>api/languages</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/languages" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/languages");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "code": 200,
+    "msg": "success",
+    "data": {
+        "current_page": 1,
+        "data": [],
+        "first_page_url": "http:\/\/localhost\/api\/languages?page=1",
+        "from": null,
+        "last_page": 1,
+        "last_page_url": "http:\/\/localhost\/api\/languages?page=1",
+        "next_page_url": null,
+        "path": "http:\/\/localhost\/api\/languages",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": null,
+        "total": 0
+    },
+    "page": {
+        "current_page": 1,
+        "sizes": [
+            10,
+            50,
+            100,
+            300
+        ],
+        "per_page": 10,
+        "total": 0
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/languages</code></p>
+<!-- END_d29df5fd928092000b93edb0dadbff5d -->
+<!-- START_251ae2f999ed24b033dc7019479bc321 -->
+<h2>api/languages</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/api/languages" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/languages");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/languages</code></p>
+<!-- END_251ae2f999ed24b033dc7019479bc321 -->
+<!-- START_6a2f6b05e085322db45211385cf4fe6c -->
+<h2>api/languages/{language}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/languages/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/languages/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/languages/{language}</code></p>
+<!-- END_6a2f6b05e085322db45211385cf4fe6c -->
+<!-- START_2acd265efa49099aa7c9bdf4c21ef4ba -->
+<h2>api/languages/{language}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://localhost/api/languages/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/languages/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/languages/{language}</code></p>
+<p><code>PATCH api/languages/{language}</code></p>
+<!-- END_2acd265efa49099aa7c9bdf4c21ef4ba -->
+<!-- START_37f53dfadb6328e8a7f0f72a53d4b17c -->
+<h2>api/languages/{language}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/api/languages/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/languages/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/languages/{language}</code></p>
+<!-- END_37f53dfadb6328e8a7f0f72a53d4b17c -->
+<!-- START_0dc72988a5c009237e25cade0afb7ec7 -->
+<h2>api/tmpls</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/tmpls" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/tmpls");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "code": 200,
+    "msg": "success",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "name": "植健",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "仇文君",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "仇文君",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 2,
+                "name": "庄鹰",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "胥志明",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "胥志明",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 3,
+                "name": "谈智勇",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "郜林",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "郜林",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 4,
+                "name": "白莉",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "阮旭",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "阮旭",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 5,
+                "name": "查岩",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "安冬梅",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "安冬梅",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 6,
+                "name": "滕斌",
+                "sex": 1,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "保华",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "保华",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 7,
+                "name": "齐祥",
+                "sex": 1,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "瞿桂珍",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "瞿桂珍",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 8,
+                "name": "纪志诚",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "成玉梅",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "成玉梅",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 9,
+                "name": "谈云",
+                "sex": 1,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "陆杨",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "陆杨",
+                "deleted_at": null,
+                "deleted_by": null
+            },
+            {
+                "id": 10,
+                "name": "楚伦",
+                "sex": 0,
+                "created_at": "2019-08-05 06:16:46",
+                "created_by": "井瑜",
+                "updated_at": "2019-08-05 06:16:46",
+                "updated_by": "井瑜",
+                "deleted_at": null,
+                "deleted_by": null
+            }
+        ],
+        "first_page_url": "http:\/\/localhost\/api\/tmpls?page=1",
+        "from": 1,
+        "last_page": 10,
+        "last_page_url": "http:\/\/localhost\/api\/tmpls?page=10",
+        "next_page_url": "http:\/\/localhost\/api\/tmpls?page=2",
+        "path": "http:\/\/localhost\/api\/tmpls",
+        "per_page": 10,
+        "prev_page_url": null,
+        "to": 10,
+        "total": 100
+    },
+    "page": {
+        "current_page": 1,
+        "sizes": [
+            10,
+            50,
+            100,
+            300
+        ],
+        "per_page": 10,
+        "total": 100
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/tmpls</code></p>
+<!-- END_0dc72988a5c009237e25cade0afb7ec7 -->
+<!-- START_2f7ebb723c171906124113761e58c0b9 -->
+<h2>api/tmpls</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/api/tmpls" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/tmpls");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/tmpls</code></p>
+<!-- END_2f7ebb723c171906124113761e58c0b9 -->
+<!-- START_0a5947287c9965a48660511a82178028 -->
+<h2>api/tmpls/{tmpl}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/tmpls/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/tmpls/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/tmpls/{tmpl}</code></p>
+<!-- END_0a5947287c9965a48660511a82178028 -->
+<!-- START_c967e4084aad3339c39094b9e80b5a1c -->
+<h2>api/tmpls/{tmpl}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://localhost/api/tmpls/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/tmpls/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/tmpls/{tmpl}</code></p>
+<p><code>PATCH api/tmpls/{tmpl}</code></p>
+<!-- END_c967e4084aad3339c39094b9e80b5a1c -->
+<!-- START_5f5e3d189ec0c7431086cd6feb64c443 -->
+<h2>api/tmpls/{tmpl}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/api/tmpls/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/tmpls/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/tmpls/{tmpl}</code></p>
+<!-- END_5f5e3d189ec0c7431086cd6feb64c443 -->
+<!-- START_66e08d3cc8222573018fed49e121e96d -->
+<h2>Show the application&#039;s login form.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET login</code></p>
+<!-- END_66e08d3cc8222573018fed49e121e96d -->
+<!-- START_ba35aa39474cb98cfb31829e70eb8b74 -->
+<h2>Handle a login request to the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST login</code></p>
+<!-- END_ba35aa39474cb98cfb31829e70eb8b74 -->
+<!-- START_e65925f23b9bc6b93d9356895f29f80c -->
+<h2>Log the user out of the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/logout" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/logout");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST logout</code></p>
+<!-- END_e65925f23b9bc6b93d9356895f29f80c -->
+<!-- START_ff38dfb1bd1bb7e1aa24b4e1792a9768 -->
+<h2>Show the application registration form.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/register" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/register");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET register</code></p>
+<!-- END_ff38dfb1bd1bb7e1aa24b4e1792a9768 -->
+<!-- START_d7aad7b5ac127700500280d511a3db01 -->
+<h2>Handle a registration request for the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/register" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/register");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST register</code></p>
+<!-- END_d7aad7b5ac127700500280d511a3db01 -->
+<!-- START_d72797bae6d0b1f3a341ebb1f8900441 -->
+<h2>Display the form to request a password reset link.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/password/reset" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET password/reset</code></p>
+<!-- END_d72797bae6d0b1f3a341ebb1f8900441 -->
+<!-- START_feb40f06a93c80d742181b6ffb6b734e -->
+<h2>Send a reset link to the given user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/password/email" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/password/email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST password/email</code></p>
+<!-- END_feb40f06a93c80d742181b6ffb6b734e -->
+<!-- START_e1605a6e5ceee9d1aeb7729216635fd7 -->
+<h2>Display the password reset view for the given token.</h2>
+<p>If no token is present, display the link request form.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/password/reset/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/password/reset/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET password/reset/{token}</code></p>
+<!-- END_e1605a6e5ceee9d1aeb7729216635fd7 -->
+<!-- START_cafb407b7a846b31491f97719bb15aef -->
+<h2>Reset the given user&#039;s password.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/password/reset" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST password/reset</code></p>
+<!-- END_cafb407b7a846b31491f97719bb15aef -->
+<!-- START_53be1e9e10a08458929a2e0ea70ddb86 -->
+<h2>/</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /</code></p>
+<!-- END_53be1e9e10a08458929a2e0ea70ddb86 -->
+<!-- START_cb859c8e84c35d7133b6a6c8eac253f8 -->
+<h2>Show the application dashboard.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/home" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/home");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET home</code></p>
+<!-- END_cb859c8e84c35d7133b6a6c8eac253f8 -->
+<!-- START_f497f1f7d005ed681f077661b5a3f11b -->
+<h2>logs</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/logs" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/logs");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "logs": [
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:16:16",
+            "text": "[730μs] select * from `tmpls` where `tmpls`.`id` = '1' and `tmpls`.`deleted_at` is null limit 1 | GET: api\/tmpls\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:16:16",
+            "text": "[510μs] select * from `tmpls` where `tmpls`.`deleted_at` is null limit 10 offset 0 | GET: api\/tmpls  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:16:16",
+            "text": "[630μs] select count(*) as aggregate from `tmpls` where `tmpls`.`deleted_at` is null | GET: api\/tmpls  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:16:16",
+            "text": "[730μs] show full columns from tmpls | GET: api\/languages\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:16:15",
+            "text": "[870μs] select * from `languages` where `languages`.`id` = '1' and `languages`.`deleted_at` is null limit 1 | GET: api\/languages\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:16:15",
+            "text": "[2.48ms] select count(*) as aggregate from `languages` where `languages`.`deleted_at` is null | GET: api\/languages  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "error",
+            "folder": null,
+            "level_class": "danger",
+            "level_img": "exclamation-triangle",
+            "date": "2019-08-20 08:15:18",
+            "text": "Class App\\Http\\Controllers\\StringPresenter does not exist {\"exception\":\"[object] (ReflectionException(code: -1): Class App\\\\Http\\\\Controllers\\\\StringPresenter does not exist at \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php:267)",
+            "in_file": null,
+            "stack": "[stacktrace]\n#0 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(267): ReflectionClass-&gt;__construct('App\\\\\\\\Http\\\\\\\\Contro...')\n#1 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(231): Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;isRouteVisibleForDocumentation(Array)\n#2 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(84): Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;processRoutes(Object(Mpociot\\\\ApiDoc\\\\Tools\\\\Generator), Array)\n#3 [internal function]: Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;handle()\n#4 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(32): call_user_func_array(Array, Array)\n#5 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(90): Illuminate\\\\Container\\\\BoundMethod::Illuminate\\\\Container\\\\{closure}()\n#6 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(34): Illuminate\\\\Container\\\\BoundMethod::callBoundMethod(Object(Illuminate\\\\Foundation\\\\Application), Array, Object(Closure))\n#7 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php(576): Illuminate\\\\Container\\\\BoundMethod::call(Object(Illuminate\\\\Foundation\\\\Application), Array, Array, NULL)\n#8 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php(183): Illuminate\\\\Container\\\\Container-&gt;call(Array)\n#9 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Command\/Command.php(255): Illuminate\\\\Console\\\\Command-&gt;execute(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Illuminate\\\\Console\\\\OutputStyle))\n#10 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php(170): Symfony\\\\Component\\\\Console\\\\Command\\\\Command-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Illuminate\\\\Console\\\\OutputStyle))\n#11 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(921): Illuminate\\\\Console\\\\Command-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#12 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(273): Symfony\\\\Component\\\\Console\\\\Application-&gt;doRunCommand(Object(Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation), Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#13 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(149): Symfony\\\\Component\\\\Console\\\\Application-&gt;doRun(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#14 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php(90): Symfony\\\\Component\\\\Console\\\\Application-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#15 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php(133): Illuminate\\\\Console\\\\Application-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#16 \/home\/vagrant\/Code\/LaravelPlus\/artisan(37): Illuminate\\\\Foundation\\\\Console\\\\Kernel-&gt;handle(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#17 {main}\n\"} \n"
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:18",
+            "text": "[480μs] select * from `tmpls` where `tmpls`.`id` = '1' and `tmpls`.`deleted_at` is null limit 1 | GET: api\/tmpls\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:18",
+            "text": "[350μs] select * from `tmpls` where `tmpls`.`deleted_at` is null limit 10 offset 0 | GET: api\/tmpls  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:18",
+            "text": "[560μs] select count(*) as aggregate from `tmpls` where `tmpls`.`deleted_at` is null | GET: api\/tmpls  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:18",
+            "text": "[830μs] show full columns from tmpls | GET: api\/languages\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:18",
+            "text": "[600μs] select * from `languages` where `languages`.`id` = '1' and `languages`.`deleted_at` is null limit 1 | GET: api\/languages\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:18",
+            "text": "[1.63ms] select count(*) as aggregate from `languages` where `languages`.`deleted_at` is null | GET: api\/languages  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "error",
+            "folder": null,
+            "level_class": "danger",
+            "level_img": "exclamation-triangle",
+            "date": "2019-08-20 08:15:03",
+            "text": "Class App\\Http\\Controllers\\StringPresenter does not exist {\"exception\":\"[object] (ReflectionException(code: -1): Class App\\\\Http\\\\Controllers\\\\StringPresenter does not exist at \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php:267)",
+            "in_file": null,
+            "stack": "[stacktrace]\n#0 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(267): ReflectionClass-&gt;__construct('App\\\\\\\\Http\\\\\\\\Contro...')\n#1 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(231): Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;isRouteVisibleForDocumentation(Array)\n#2 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(84): Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;processRoutes(Object(Mpociot\\\\ApiDoc\\\\Tools\\\\Generator), Array)\n#3 [internal function]: Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;handle()\n#4 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(32): call_user_func_array(Array, Array)\n#5 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(90): Illuminate\\\\Container\\\\BoundMethod::Illuminate\\\\Container\\\\{closure}()\n#6 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(34): Illuminate\\\\Container\\\\BoundMethod::callBoundMethod(Object(Illuminate\\\\Foundation\\\\Application), Array, Object(Closure))\n#7 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php(576): Illuminate\\\\Container\\\\BoundMethod::call(Object(Illuminate\\\\Foundation\\\\Application), Array, Array, NULL)\n#8 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php(183): Illuminate\\\\Container\\\\Container-&gt;call(Array)\n#9 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Command\/Command.php(255): Illuminate\\\\Console\\\\Command-&gt;execute(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Illuminate\\\\Console\\\\OutputStyle))\n#10 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php(170): Symfony\\\\Component\\\\Console\\\\Command\\\\Command-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Illuminate\\\\Console\\\\OutputStyle))\n#11 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(921): Illuminate\\\\Console\\\\Command-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#12 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(273): Symfony\\\\Component\\\\Console\\\\Application-&gt;doRunCommand(Object(Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation), Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#13 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(149): Symfony\\\\Component\\\\Console\\\\Application-&gt;doRun(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#14 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php(90): Symfony\\\\Component\\\\Console\\\\Application-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#15 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php(133): Illuminate\\\\Console\\\\Application-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#16 \/home\/vagrant\/Code\/LaravelPlus\/artisan(37): Illuminate\\\\Foundation\\\\Console\\\\Kernel-&gt;handle(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#17 {main}\n\"} \n"
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:03",
+            "text": "[750μs] show full columns from tmpls | GET: api\/tmpls\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:03",
+            "text": "[590μs] select * from `tmpls` where `tmpls`.`id` = '1' and `tmpls`.`deleted_at` is null limit 1 | GET: api\/tmpls\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:03",
+            "text": "[370μs] select * from `tmpls` where `tmpls`.`deleted_at` is null limit 10 offset 0 | GET: api\/tmpls  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:03",
+            "text": "[550μs] select count(*) as aggregate from `tmpls` where `tmpls`.`deleted_at` is null | GET: api\/tmpls  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:02",
+            "text": "[85.27ms] show full columns from tmpls | GET: api\/languages\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:02",
+            "text": "[46.74ms] select * from `languages` where `languages`.`id` = '1' and `languages`.`deleted_at` is null limit 1 | GET: api\/languages\/1  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "debug",
+            "folder": null,
+            "level_class": "info",
+            "level_img": "info-circle",
+            "date": "2019-08-20 08:15:02",
+            "text": "[284.13ms] select count(*) as aggregate from `languages` where `languages`.`deleted_at` is null | GET: api\/languages  ",
+            "in_file": null,
+            "stack": ""
+        },
+        {
+            "context": "local",
+            "level": "error",
+            "folder": null,
+            "level_class": "danger",
+            "level_img": "exclamation-triangle",
+            "date": "2019-08-20 08:14:03",
+            "text": "Class App\\Http\\Controllers\\testController does not exist {\"exception\":\"[object] (ReflectionException(code: -1): Class App\\\\Http\\\\Controllers\\\\testController does not exist at \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php:267)",
+            "in_file": null,
+            "stack": "[stacktrace]\n#0 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(267): ReflectionClass-&gt;__construct('App\\\\\\\\Http\\\\\\\\Contro...')\n#1 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(231): Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;isRouteVisibleForDocumentation(Array)\n#2 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/mpociot\/laravel-apidoc-generator\/src\/Commands\/GenerateDocumentation.php(84): Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;processRoutes(Object(Mpociot\\\\ApiDoc\\\\Tools\\\\Generator), Array)\n#3 [internal function]: Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation-&gt;handle()\n#4 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(32): call_user_func_array(Array, Array)\n#5 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(90): Illuminate\\\\Container\\\\BoundMethod::Illuminate\\\\Container\\\\{closure}()\n#6 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php(34): Illuminate\\\\Container\\\\BoundMethod::callBoundMethod(Object(Illuminate\\\\Foundation\\\\Application), Array, Object(Closure))\n#7 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php(576): Illuminate\\\\Container\\\\BoundMethod::call(Object(Illuminate\\\\Foundation\\\\Application), Array, Array, NULL)\n#8 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php(183): Illuminate\\\\Container\\\\Container-&gt;call(Array)\n#9 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Command\/Command.php(255): Illuminate\\\\Console\\\\Command-&gt;execute(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Illuminate\\\\Console\\\\OutputStyle))\n#10 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php(170): Symfony\\\\Component\\\\Console\\\\Command\\\\Command-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Illuminate\\\\Console\\\\OutputStyle))\n#11 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(921): Illuminate\\\\Console\\\\Command-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#12 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(273): Symfony\\\\Component\\\\Console\\\\Application-&gt;doRunCommand(Object(Mpociot\\\\ApiDoc\\\\Commands\\\\GenerateDocumentation), Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#13 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/symfony\/console\/Application.php(149): Symfony\\\\Component\\\\Console\\\\Application-&gt;doRun(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#14 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php(90): Symfony\\\\Component\\\\Console\\\\Application-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#15 \/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php(133): Illuminate\\\\Console\\\\Application-&gt;run(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#16 \/home\/vagrant\/Code\/LaravelPlus\/artisan(37): Illuminate\\\\Foundation\\\\Console\\\\Kernel-&gt;handle(Object(Symfony\\\\Component\\\\Console\\\\Input\\\\ArgvInput), Object(Symfony\\\\Component\\\\Console\\\\Output\\\\ConsoleOutput))\n#17 {main}\n\"} \n"
+        }
+    ],
+    "folders": [],
+    "current_folder": null,
+    "folder_files": [],
+    "files": [
+        "laravel-2019-08-20.log",
+        "laravel-2019-08-15.log"
+    ],
+    "current_file": "laravel-2019-08-20.log",
+    "standardFormat": true
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET logs</code></p>
+<!-- END_f497f1f7d005ed681f077661b5a3f11b -->
+<!-- START_31a68fedc57a93db458c04b98534014b -->
+<h2>login/google</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/login/google" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/login/google");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (302):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET login/google</code></p>
+<!-- END_31a68fedc57a93db458c04b98534014b -->
+<!-- START_12773dfcab6c67cb9b3ca416e95abcaf -->
+<h2>Obtain the user information from GitHub.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/login/google/callback" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/login/google/callback");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Server Error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET login/google/callback</code></p>
+<!-- END_12773dfcab6c67cb9b3ca416e95abcaf -->
+<!-- START_a28f1c3ff8cc1b761447adbbf0d75b92 -->
+<h2>export/tmpls</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/export/tmpls" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/export/tmpls");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET export/tmpls</code></p>
+<!-- END_a28f1c3ff8cc1b761447adbbf0d75b92 -->
+<!-- START_6e3a68104e6332202d7aae1a30757fa5 -->
+<h2>languages</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/languages" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'homestead.child_table_name' doesn't exist (SQL: show full columns from child_table_name)",
+    "\/home\/vagrant\/Code\/LaravelPlus\/vendor\/laravel\/framework\/src\/Illuminate\/Database\/Connection.php",
+    664
+]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET languages</code></p>
+<!-- END_6e3a68104e6332202d7aae1a30757fa5 -->
+<!-- START_d7fd6c25e1bb206dc555dd50f9a9dbd7 -->
+<h2>languages/create</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/languages/create" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages/create");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET languages/create</code></p>
+<!-- END_d7fd6c25e1bb206dc555dd50f9a9dbd7 -->
+<!-- START_965df74acbd1d6b67795db6f97da52de -->
+<h2>languages</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/languages" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST languages</code></p>
+<!-- END_965df74acbd1d6b67795db6f97da52de -->
+<!-- START_10ef2a1a57e18f637d50e7429893e74d -->
+<h2>languages/{language}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/languages/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET languages/{language}</code></p>
+<!-- END_10ef2a1a57e18f637d50e7429893e74d -->
+<!-- START_c77bc0b9b7cc405538edf3bb853ce468 -->
+<h2>languages/{language}/edit</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/languages/1/edit" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages/1/edit");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Server Error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET languages/{language}/edit</code></p>
+<!-- END_c77bc0b9b7cc405538edf3bb853ce468 -->
+<!-- START_842577b2b8e95876e0fcc9851c4ca685 -->
+<h2>languages/{language}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://localhost/languages/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT languages/{language}</code></p>
+<p><code>PATCH languages/{language}</code></p>
+<!-- END_842577b2b8e95876e0fcc9851c4ca685 -->
+<!-- START_1fed63c0322c001f8e2f6a470627b6d8 -->
+<h2>languages/{language}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/languages/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/languages/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE languages/{language}</code></p>
+<!-- END_1fed63c0322c001f8e2f6a470627b6d8 -->
+<!-- START_5d7e5f8b503726052abc9e52e2e7b53d -->
+<h2>tmpls</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/tmpls" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET tmpls</code></p>
+<!-- END_5d7e5f8b503726052abc9e52e2e7b53d -->
+<!-- START_9d6f73994840f842b94daa777d47f058 -->
+<h2>tmpls/create</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/tmpls/create" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls/create");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET tmpls/create</code></p>
+<!-- END_9d6f73994840f842b94daa777d47f058 -->
+<!-- START_cc2049968a546980cb1a2ce91ead0fee -->
+<h2>tmpls</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/tmpls" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST tmpls</code></p>
+<!-- END_cc2049968a546980cb1a2ce91ead0fee -->
+<!-- START_a5e33c31e313dfc5f4205405915769cd -->
+<h2>tmpls/{tmpl}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/tmpls/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET tmpls/{tmpl}</code></p>
+<!-- END_a5e33c31e313dfc5f4205405915769cd -->
+<!-- START_c97360937c1d599c1f443a806c86a287 -->
+<h2>tmpls/{tmpl}/edit</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/tmpls/1/edit" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls/1/edit");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Server Error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET tmpls/{tmpl}/edit</code></p>
+<!-- END_c97360937c1d599c1f443a806c86a287 -->
+<!-- START_f1251c45912a3fa7d014f375e7720d5a -->
+<h2>tmpls/{tmpl}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://localhost/tmpls/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT tmpls/{tmpl}</code></p>
+<p><code>PATCH tmpls/{tmpl}</code></p>
+<!-- END_f1251c45912a3fa7d014f375e7720d5a -->
+<!-- START_7ca5144139ecda1385f79e547b0d9490 -->
+<h2>tmpls/{tmpl}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/tmpls/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/tmpls/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE tmpls/{tmpl}</code></p>
+<!-- END_7ca5144139ecda1385f79e547b0d9490 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>
