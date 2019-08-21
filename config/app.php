@@ -182,11 +182,11 @@ return [
 
 
         // Elastic Search
-        Laravel\Scout\ScoutServiceProvider::class,
-        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+//        Laravel\Scout\ScoutServiceProvider::class,
+//        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
         // RabbitMQ
-        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
+//        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
     ],
 
     /*

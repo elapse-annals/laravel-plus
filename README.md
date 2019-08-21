@@ -291,20 +291,23 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 - 增加默认加载软件包
     - production  生产环境
         - [respect/validation](https://github.com/Respect/Validation) 验证包
-        - [react/react](https://github.com/reactphp/react) ReactPHP 多进程异步扩展（可以移除）
+        - [react/react](https://github.com/reactphp/react) ReactPHP 多进程异步扩展（手动,引入后 Process 才可使用）
+            - react/child-process
+            - react/event-loop
         - 引入 ElasticSearch For scout
-            - [laravel/scout](https://github.com/laravel/scout) 
-            - [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)
-             - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (可选)
+            - [laravel/scout](https://github.com/laravel/scout) (手动)
+            - [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)(手动)
+            
+             - [elastic/elasticsearch-php](https://github.com/elastic/elasticsearch-php) 原生 ElasticSearch (手动)
         - rabbitMQ 扩展
             - vladimir-yuldashev/laravel-queue-rabbitmq         
-            - php-amqplib/php-amqplib 原生（可选）
+            - php-amqplib/php-amqplib 原生(手动)
         - [rap2hpoutre/laravel-log-viewer](https://github.com/rap2hpoutre/laravel-log-viewer) 日志展示 [访问 host/logs] 
         - [predis/predis](https://github.com/nrk/predis) Redis 插件（建议使用 php-redis 扩展）
-        - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包（可单独引用）
+        - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包(手动)
         - [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) Http 请求包
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
-        - [doctrine/dbal](https://github.com/doctrine/dbal)   数据库抽象层
+        - [doctrine/dbal](https://github.com/doctrine/dbal)   数据库抽象层(手动)
         - [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) 增加 excel 组件
         - [laravel/socialite] () 社会化登陆包【注意配置代理或更改底层路由请求】
              - 替代方案  [overtrue/socialite](https://github.com/overtrue/socialite) 包含国内社会化登陆
