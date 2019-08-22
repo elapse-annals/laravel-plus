@@ -324,6 +324,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
       - [nunomaduro/larastan]() 增加 laravel 静态检测工具
       - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可选）
+      - [darkaonline/l5-swagger]() swagger 文档生成
+      - [mpociot/laravel-apidoc-generator]() api doc 文档生成
   
 -  增加前端资源
     - element-ui 样式框架（可选方案 iview）
