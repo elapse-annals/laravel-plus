@@ -61,7 +61,6 @@ class ViewPresenter extends Presenter
                 </el-table-column>
             @endif
         @endforeach';
-
     }
 
     /**
@@ -99,7 +98,6 @@ EOF;
 EOF;
 
         return $temp_view;
-
     }
 
     /**
@@ -148,7 +146,6 @@ EOF;
                         :default-time="['00:00:00', '23:59:59']">
                 </el-date-picker>
 EOF;
-
     }
 
     /**
@@ -156,6 +153,5 @@ EOF;
      */
     private function ChileArray()
     {
-
     }
 }
