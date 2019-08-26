@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Presenters\ViewPresenter;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -129,7 +130,7 @@ class FrameworkController extends Controller
                 $this->deleteRoute($route_type);
             }
         }
-        usleep(100000);
+        usleep(10000);
     }
 
     /**
@@ -168,7 +169,7 @@ class FrameworkController extends Controller
         $body = str_replace('tmpls', $this->framework_name_low_plural, $body);
         $body = str_replace('tmpl', $this->framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
-        if (! is_file($file)) {
+        if (!is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
@@ -181,19 +182,17 @@ class FrameworkController extends Controller
             }
             $framework_view_files = scandir($resources_directory);
             foreach ($framework_view_files as $framework_view_file) {
-                if (! in_array($framework_view_file, ['.', '..'])) {
+                if (!in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace('tmpls', $this->framework_name_low_plural, $file_get_contents);
                     $file_get_contents = str_replace('tmpl', $this->framework_name_low, $file_get_contents);
-                    if ($this->is_static_render) {
-                        $file_get_contents = $this->generateStaticView($framework_view_file, $file_get_contents);
-                    }
+                    $file_get_contents = $this->generateStaticView($framework_view_file, $file_get_contents);
                     file_put_contents($route_web_path, $file_get_contents);
                 }
             }
         }
-        usleep(50000);
+        usleep(10000);
     }
 
     /**
@@ -204,17 +203,20 @@ class FrameworkController extends Controller
      */
     private function generateStaticView($file_name, $data)
     {
+        $replace_data = '';
         switch ($file_name) {
             case '_list.blade.php':
-                $data = $this->generatelistView($data);
+                $replace_data = $this->generatelistView($data);
                 break;
         }
+        $data = str_replace('Placeholder', $replace_data, $data);
         return $data;
     }
 
     private function generatelistView($data)
     {
-        return $data;
+        $ViewPresenter = new ViewPresenter();
+        return $ViewPresenter->lists([], $this->is_static_render);
     }
 
     /**
