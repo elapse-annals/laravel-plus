@@ -209,7 +209,7 @@ class FrameworkController extends Controller
                 $replace_data = $this->generatelistView($data);
                 break;
         }
-        $data = str_replace('Placeholder', $replace_data, $data);
+        $data = str_replace('%Placeholder%', $replace_data, $data);
         return $data;
     }
 

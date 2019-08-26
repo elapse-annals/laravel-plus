@@ -9,7 +9,7 @@
                 width="55">
         </el-table-column>
 
-        Placeholder
+        %Placeholder%
 
         <el-table-column
                 fixed="right"
