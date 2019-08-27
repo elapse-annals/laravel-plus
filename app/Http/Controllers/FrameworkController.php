@@ -213,10 +213,51 @@ class FrameworkController extends Controller
         return $data;
     }
 
+    /**
+     * @param $data
+     *
+     * @return string
+     */
     private function generatelistView($data)
     {
         $ViewPresenter = new ViewPresenter();
-        return $ViewPresenter->lists([], $this->is_static_render);
+        $list_map = [];
+        if ($this->is_static_render) {
+            $list_map = $this->getModelMap();
+        }
+        return $ViewPresenter->lists($list_map, $this->is_static_render);
+    }
+
+    /**
+     * @param array $list_map
+     *
+     * @return array
+     * @throws \ReflectionException
+     */
+    private function getModelMap(array $list_map = []): array
+    {
+        $ReflectionClass = new \ReflectionClass("\App\Models\{$this->framework_name}");
+        $list_map = $this->getTableCommentMap($this->framework_name);
+        $child_map_lists = $this->assemblyChildMapList($ReflectionClass->getMethods());
+        $this->appendAssociationModelMap($list_map, $child_map_lists);
+        return $list_map;
+    }
+
+    /**
+     * @param array $data
+     * @param array $child_map_lists
+     *
+     * @return array
+     */
+    private function assemblyChildMapList(array $data, array $child_map_lists = []): array
+    {
+        foreach ($data as $datum) {
+            $child_map_lists[] = [
+                'prop' => $datum,
+                'label' => $datum,
+            ];
+        }
+        return $child_map_lists;
     }
 
     /**

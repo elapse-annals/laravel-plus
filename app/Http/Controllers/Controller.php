@@ -43,9 +43,9 @@ class Controller extends BaseController
     }
 
     /**
-     * @param null   $data
+     * @param null $data
      * @param string $message
-     * @param array  $page
+     * @param array $page
      *
      * @return array
      */
@@ -53,7 +53,7 @@ class Controller extends BaseController
     {
         $arr = [
             'code' => self::SUCCESS_CODE,
-            'msg'  => $message,
+            'msg' => $message,
             'data' => $data,
             'page' => $page,
         ];
@@ -62,7 +62,7 @@ class Controller extends BaseController
 
     /**
      * @param \Exception $exception
-     * @param null       $type
+     * @param null $type
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
@@ -76,14 +76,14 @@ class Controller extends BaseController
             return [
                 'code' => $code,
                 'data' => ['error_file' => $exception->getFile() . ':' . $exception->getLine()],
-                'msg'  => $exception->getMessage(),
+                'msg' => $exception->getMessage(),
             ];
         }
         return response($exception->getMessage(), $code);
     }
 
     /**
-     * @param null   $table_name
+     * @param null $table_name
      * @param string $connection_name
      *
      * @return array
@@ -105,9 +105,9 @@ class Controller extends BaseController
                     if (empty($table_column)) {
                         $table_column = $key;
                     }
-                    if (! in_array($key, $filter_words)) {
+                    if (!in_array($key, $filter_words)) {
                         $show_columns[] = [
-                            'prop'  => $key,
+                            'prop' => $key,
                             'label' => $table_column,
                         ];
                     }
@@ -115,6 +115,32 @@ class Controller extends BaseController
                 return serialize($show_columns);
             });
         return unserialize($table_maps);
+    }
+
+    /**
+     * @param array $table_comment_map
+     * @param array $child_map_lists
+     *
+     * @return array
+     */
+    protected function appendAssociationModelMap(array $table_comment_map, array $child_map_lists): array
+    {
+        foreach ($child_map_lists as $child_map_list) {
+            $child_maps = [
+                [
+                    'prop' => $child_map_list['prop'],
+                    'label' => $child_map_list['label'],
+                    'is_array' => true,
+                    'child_map' => [
+                        $this->getTableCommentMap($child_map_list['prop']),
+                    ],
+                ],
+            ];
+        }
+        foreach ($child_maps as $child_map) {
+            array_push($table_comment_map, $child_map);
+        }
+        return $table_comment_map;
     }
 
 }

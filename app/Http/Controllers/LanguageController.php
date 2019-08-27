@@ -320,28 +320,4 @@ class LanguageController extends Controller
         $excel_name = 'language.xls';
         return Excel::download(new LanguageExport, $excel_name);
     }
-
-    /**
-     * @param array $table_comment_map
-     *
-     * @return array
-     */
-    private function appendAssociationModelMap(array $table_comment_map): array
-    {
-        $child_maps = [
-            [
-                'prop'      => 'child_table_name',
-                'label'     => 'child_table_comment',
-                'is_array'  => true,
-                'child_map' => [
-                    $this->getTableCommentMap('child_table_name'),
-                ],
-            ],
-        ];
-        foreach ($child_maps as $child_map) {
-            array_push($table_comment_map, $child_map);
-        }
-        return $table_comment_map;
-    }
-
 }

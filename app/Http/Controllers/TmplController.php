@@ -74,7 +74,7 @@ class TmplController extends Controller
                 return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
             }
             $table_comment_map = $this->getTableCommentMap();
-//            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
+//            $table_comment_map = $this->appendAssociationModelMap($table_comment_map,[]);
             $view_data = [
                 'info'       => $this->getInfo(),
                 'tmpls'      => $tmpls,
@@ -314,27 +314,6 @@ class TmplController extends Controller
         return Excel::download(new TmplExport, $excel_name);
     }
 
-    /**
-     * @param array $table_comment_map
-     *
-     * @return array
-     */
-    private function appendAssociationModelMap(array $table_comment_map): array
-    {
-        $child_maps = [
-            [
-                'prop'      => 'child_table_name',
-                'label'     => 'child_table_comment',
-                'is_array'  => true,
-                'child_map' => [
-                    $this->getTableCommentMap('child_table_name'),
-                ],
-            ],
-        ];
-        foreach ($child_maps as $child_map) {
-            array_push($table_comment_map, $child_map);
-        }
-        return $table_comment_map;
-    }
+
 
 }
