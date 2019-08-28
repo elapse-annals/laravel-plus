@@ -217,6 +217,7 @@ class FrameworkController extends Controller
      * @param $data
      *
      * @return string
+     * @throws \ReflectionException
      */
     private function generatelistView($data)
     {
