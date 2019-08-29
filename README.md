@@ -364,6 +364,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 - 关联创建
 - 关联修改
 
+增加动态生成视图
+
 增加多语言数据库，和迁移，自动更新功能
 
 简化介绍，完善 wiki
