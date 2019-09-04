@@ -370,3 +370,5 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 
 简化介绍，完善 wiki
 
+更新 6.0 版本
+
