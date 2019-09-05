@@ -71,7 +71,7 @@ class TmplController extends Controller
             if ($request->is('api/*') || true == $request->input('api')) {
                 return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
             }
-            $table_comment_map = $this->getTableCommentMap();
+            $table_comment_map = $this->getTableCommentMap('Tmpls');
 //            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = [
                 'info'       => $this->getInfo(),
@@ -152,7 +152,7 @@ class TmplController extends Controller
                 'js_data'     => [
                     'data' => [],
                 ],
-                'detail_data' => $this->getTableCommentMap(),
+                'detail_data' => $this->getTableCommentMap('Tmpls'),
             ];
             return view('tmpl.create', $view_data);
         } catch (Exception $exception) {
@@ -176,7 +176,7 @@ class TmplController extends Controller
                 'js_data'     => [
                     'detail_data' => $tmpl,
                 ],
-                'detail_data' => $this->getTableCommentMap(),
+                'detail_data' => $this->getTableCommentMap('Tmpls'),
             ];
             if ($this->enable_filter) {
                 $view_data = $this->transformer->transformIndex(

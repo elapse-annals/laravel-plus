@@ -73,7 +73,7 @@ class TmplController extends Controller
             if ($request->is('api/*') || true == $request->input('api')) {
                 return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
             }
-            $table_comment_map = $this->getTableCommentMap();
+            $table_comment_map = $this->getTableCommentMap('Tmpls');
 //            $table_comment_map = $this->appendAssociationModelMap($table_comment_map,[]);
             $view_data = [
                 'info'       => $this->getInfo(),

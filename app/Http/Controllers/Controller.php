@@ -93,7 +93,7 @@ class Controller extends BaseController
         $table_maps = Cache::remember('map_' . $table_name, 1,
             function () use ($table_name, $connection_name) {
                 if (empty($table_name)) {
-                    $table_name = Str::plural(Str::snake('Tmpls'));
+                    $table_name = Str::plural(Str::snake($table_name));
                 }
                 $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
                 $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
