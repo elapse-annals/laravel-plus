@@ -71,14 +71,14 @@ class TmplController extends Controller
             $this->validationIndexRequest($data);
             $tmpls = $this->service->getList($data);
             if ($request->is('api/*') || true == $request->input('api')) {
-                return $this->successReturn($tmpls, 'success', $this->formatter->assemblyPage($tmpls));
+                return $this->successReturn($tmpls, $this->formatter->assemblyPage($tmpls));
             }
             $table_comment_map = $this->getTableCommentMap('Tmpls');
 //            $table_comment_map = $this->appendAssociationModelMap($table_comment_map,[]);
             $view_data = [
-                'info'       => $this->getInfo(),
-                'tmpls'      => $tmpls,
-                'list_map'   => $table_comment_map,
+                'info' => $this->getInfo(),
+                'tmpls' => $tmpls,
+                'list_map' => $table_comment_map,
                 'search_map' => $table_comment_map,
             ];
             if ($this->enable_filter) {
@@ -138,7 +138,7 @@ class TmplController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (! empty($rules)) {
+        if (!empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -150,8 +150,8 @@ class TmplController extends Controller
     {
         try {
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'data' => [],
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -163,8 +163,8 @@ class TmplController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $id
-     * @param bool    $is_edit
+     * @param int $id
+     * @param bool $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -174,8 +174,8 @@ class TmplController extends Controller
             $this->validationShowRequest($id);
             $tmpl = $this->service->getIdInfo($id);
             $view_data = [
-                'info'        => $this->getInfo(),
-                'js_data'     => [
+                'info' => $this->getInfo(),
+                'js_data' => [
                     'detail_data' => $tmpl,
                 ],
                 'detail_data' => $this->getTableCommentMap(),
@@ -291,8 +291,8 @@ class TmplController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author'      => 'Ben',
-            'title'       => 'index title',
+            'author' => 'Ben',
+            'title' => 'index title',
         ];
     }
 
@@ -313,7 +313,6 @@ class TmplController extends Controller
         $excel_name = 'tmpl.xls';
         return Excel::download(new TmplExport, $excel_name);
     }
-
 
 
 }

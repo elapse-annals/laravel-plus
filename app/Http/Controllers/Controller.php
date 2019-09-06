@@ -44,20 +44,22 @@ class Controller extends BaseController
 
     /**
      * @param null $data
-     * @param string $message
      * @param array $page
+     * @param string $message
      *
      * @return array
      */
-    protected function successReturn($data = null, $message = 'success', $page = []): array
+    protected function successReturn($data = null, $page = [], $message = 'success'): array
     {
-        $arr = [
+        $response = [
             'code' => self::SUCCESS_CODE,
             'msg' => $message,
             'data' => $data,
-            'page' => $page,
         ];
-        return $arr;
+        if ($page) {
+            $response['page'] = $page;
+        }
+        return $response;
     }
 
     /**
