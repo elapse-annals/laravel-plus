@@ -318,6 +318,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
       ```php
         php artisan code:models --table=tb_name   // 指定表 
         php artisan code:models --connection=mysql  // 指定数据库连接
+        php artisan code:models --connection=mysql --table=tb_name   // 指定连接和指定表
       ```
       - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
       - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
