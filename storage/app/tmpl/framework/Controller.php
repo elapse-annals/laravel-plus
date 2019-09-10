@@ -120,7 +120,7 @@ class TmplController extends Controller
             $this->validateStoreRequest($data);
             $store_status = $this->service->store($data);
             DB::commit();
-            return $store_status;
+            return $this->successReturn($store_status);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
@@ -220,9 +220,10 @@ class TmplController extends Controller
             $res_db = $this->service->update($data, $id);
             DB::commit();
             if ($request->is('api/*')) {
-                return $res_db;
+                return $this->successReturn($res_db);
             }
-            return $res_db;
+            $view_data = $this->show($request, $id, true);
+            return view('tmpl.show',$view_data);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
