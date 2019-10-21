@@ -35,7 +35,7 @@
 
 | PHP     | Laravel |
 |:-------:|:-------:|
-| >=7.1.3 | >=5.8    |
+| >=7.1.3 | >=6.0    |
 
 ## 文档
 
@@ -56,7 +56,7 @@
 ```php
 // A. github （推荐）
 $ git clone https://github.com/ElapseAnnals/LaravelPlus.git   
-$ git checkout 5.8.0 // 切换至当前最新稳定版本或直接使用 master 版本
+$ git checkout 5.8.0 // 切换至当前最新稳定版本
 ```
 或
 ```php
