@@ -32,8 +32,8 @@
         "nunomaduro/collision": "^3.0",
         "nunomaduro/larastan": "^0.3.17",
         "overtrue/laravel-query-logger": "^1.0",
-        "phpunit/phpunit": "^7.5",
-        "reliese/laravel": "^0.0.13"
+        "phpunit/phpunit": "^8.5",
+        "phptool/laravel": "dev-master"
     },
     "config": {
         "optimize-autoloader": true,
