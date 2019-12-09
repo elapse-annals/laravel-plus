@@ -17,7 +17,7 @@ Route::get('/', 'ClosureController@welcome');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+//Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //Route::get('plural/{singular}', 'StringService@plural');
 
