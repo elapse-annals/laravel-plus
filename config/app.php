@@ -178,9 +178,6 @@ return [
         // add other pack
         Overtrue\LaravelLang\TranslationServiceProvider::class,
 
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-
-
         // Elastic Search
 //        Laravel\Scout\ScoutServiceProvider::class,
 //        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
