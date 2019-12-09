@@ -2,8 +2,8 @@
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">Plus</b> </p>
 
-![php-badge](https://img.shields.io/badge/php-%3E%3D%207.1-8892BF.svg)
-![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D5.8-red.svg)
+![php-badge](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)
+![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D6.2-red.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
 <img class="latest_stable_version_img" title="latest stable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
 <img class="total_img" title="total" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
