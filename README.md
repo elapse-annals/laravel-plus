@@ -341,7 +341,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
        - [mpociot/laravel-apidoc-generator]() api doc 文档生成                  
        - [nunomaduro/larastan]() 增加 laravel 静态检测工具     
 
-        - guzzlehttp/guzzle Http 请求包
+       - [guzzlehttp/guzzle]() Http 请求包
              
              
              
@@ -377,15 +377,13 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 ## 待办
 优化模板渲染与 API 接口一致性
 
-优化多模型关联
-- 关联创建
-- 关联修改
-
-增加动态生成视图
+增加生成静态视图
 
 增加多语言数据库，和迁移，自动更新功能
 
 简化介绍，完善 wiki
 
-更新 6.0 版本
+优化多模型关联
+- 关联创建
+- 关联修改
 
