@@ -19,7 +19,6 @@ service:
   - redis-server
 
 before_script:
-  - php -m
   - cp .env.travis .env
   - composer global require hirak/prestissimo
   - composer install
