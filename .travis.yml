@@ -3,7 +3,6 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - php: 7.2
     - php: 7.4
 
 cache:
@@ -19,6 +18,7 @@ service:
   - redis-server
 
 before_script:
+  - php -m
   - cp .env.travis .env
   - composer global require hirak/prestissimo
   - composer install
