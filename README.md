@@ -383,7 +383,4 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 
 简化介绍，完善 wiki
 
-优化多模型关联
-- 关联创建
-- 关联修改
 
