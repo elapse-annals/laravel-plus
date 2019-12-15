@@ -219,7 +219,10 @@ class TmplController extends Controller
             $this->validateUpdateRequest($data, $id);
             $res_db = $this->service->update($data, $id);
             DB::commit();
-            if ($request->is('api/*')) {
+            if ($request->is('api/*') ||
+                true == $request->input('api') ||
+                'json' == $request->getContentType()
+            ) {
                 return $this->successReturn($res_db);
             }
             $view_data = $this->show($request, $id, true);
