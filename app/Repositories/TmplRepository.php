@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Models\Tmpl;
 use phpDocumentor\Reflection\Types\Object_;
-use Illuminate\Support\Facades\Schema;
 
 /**
  * Class TmplRepository
@@ -28,7 +27,7 @@ class TmplRepository extends Repository
     public function getList(array $data = [])
     {
         $Tmpl = new Tmpl();
-        if (! empty($data)) {
+        if (!empty($data)) {
             $Tmpl = $this->assembvlyWhere($Tmpl, $data);
         }
         return $Tmpl->Paginate($this->per_page);

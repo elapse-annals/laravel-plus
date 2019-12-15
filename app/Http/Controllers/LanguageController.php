@@ -10,8 +10,6 @@ use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cache;
 
 
 /**
@@ -40,10 +38,6 @@ class LanguageController extends Controller
      * @var bool
      */
     private $enable_filter = true;
-    /**
-     * @var array
-     */
-    private $transformer_functions = ['index', 'show', 'edit'];
 
     /**
      * LanguageController constructor.
@@ -77,8 +71,8 @@ class LanguageController extends Controller
             if ($request->is('api/*') || true == $request->input('api')) {
                 return $this->successReturn($languages, $this->formatter->assemblyPage($languages));
             }
-            $table_comment_map = $this->getTableCommentMap();
-            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
+            $table_comment_map = $this->getTableCommentMap('languages');
+//            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = [
                 'info' => $this->getInfo(),
                 'languages' => $languages,
@@ -126,7 +120,7 @@ class LanguageController extends Controller
             $this->validateStoreRequest($data);
             $store_status = $this->service->store($data);
             DB::commit();
-            return $store_status;
+            return $this->successReturn($store_status);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
@@ -158,7 +152,7 @@ class LanguageController extends Controller
                 'js_data' => [
                     'data' => [],
                 ],
-                'detail_data' => $this->getTableCommentMap(),
+                'detail_data' => $this->getTableCommentMap('Languages'),
             ];
             return view('language.create', $view_data);
         } catch (Exception $exception) {
@@ -182,7 +176,7 @@ class LanguageController extends Controller
                 'js_data' => [
                     'detail_data' => $language,
                 ],
-                'detail_data' => $this->getTableCommentMap(),
+                'detail_data' => $this->getTableCommentMap('Languages'),
             ];
             if ($this->enable_filter) {
                 $view_data = $this->transformer->transformIndex(
@@ -226,9 +220,10 @@ class LanguageController extends Controller
             $res_db = $this->service->update($data, $id);
             DB::commit();
             if ($request->is('api/*')) {
-                return $res_db;
+                return $this->successReturn($res_db);
             }
-            return $res_db;
+            $view_data = $this->show($request, $id, true);
+            return view('language.show',$view_data);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
@@ -312,9 +307,6 @@ class LanguageController extends Controller
         }
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     */
     public function export()
     {
         $excel_name = 'language.xls';

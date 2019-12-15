@@ -15,9 +15,9 @@ class CreateLanguagesTable extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('key');
+            $table->string('key_word');
             $table->string('code', 2);
-            $table->string('value');
+            $table->string('key_value');
             $table->timestamp('created_at')->useCurrent();
             $table->string('created_by', 80);
             $table->timestamp('updated_at')->default(
@@ -26,7 +26,7 @@ class CreateLanguagesTable extends Migration
             $table->string('updated_by', 80);
             $table->timestamp('deleted_at')->nullable();
             $table->string('deleted_by', 80)->nullable();
-            $table->index(['key', 'code']);
+            $table->index(['key_word', 'code']);
             $table->comment = '语言';
         });
     }

@@ -14,9 +14,9 @@ use Reliese\Database\Eloquent\Model;
  * Class Language
  * 
  * @property int $id
- * @property string $key
+ * @property string $key_word
  * @property string $code
- * @property string $value
+ * @property string $key_value
  * @property Carbon $created_at
  * @property string $created_by
  * @property Carbon $updated_at
@@ -32,9 +32,9 @@ class Language extends Model
 	protected $table = 'languages';
 
 	protected $fillable = [
-		'key',
+		'key_word',
 		'code',
-		'value',
+		'key_value',
 		'created_by',
 		'updated_by',
 		'deleted_by'
