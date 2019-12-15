@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class TmplController
- *
  * @package App\Http\Controllers
  */
 class TmplController extends Controller
@@ -110,7 +109,8 @@ class TmplController extends Controller
     /**
      * @param Request $request
      *
-     * @return array|int
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws Exception
      */
     public function store(Request $request)
     {
@@ -142,7 +142,7 @@ class TmplController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -156,6 +156,7 @@ class TmplController extends Controller
             ];
             return view('tmpl.create', $view_data);
         } catch (Exception $exception) {
+            return $this->catchException($exception);
         }
     }
 
@@ -208,7 +209,7 @@ class TmplController extends Controller
      * @param Request $request
      * @param         $id
      *
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|int
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      * @throws Exception
      */
     public function update(Request $request, $id)
@@ -220,8 +221,8 @@ class TmplController extends Controller
             $res_db = $this->service->update($data, $id);
             DB::commit();
             if ($request->is('api/*') ||
-                true == $request->input('api') ||
-                'json' == $request->getContentType()
+                true === $request->input('api') ||
+                'json' === $request->getContentType()
             ) {
                 return $this->successReturn($res_db);
             }
@@ -234,8 +235,8 @@ class TmplController extends Controller
     }
 
     /**
-     * @param $id
      * @param $data
+     * @param $id
      *
      * @throws Exception
      */
