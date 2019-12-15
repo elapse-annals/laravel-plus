@@ -35,7 +35,7 @@
 
 | PHP     | Laravel |
 |:-------:|:-------:|
-| >=7.1.3 | >=6.0    |
+| >=7.2 | >=6.0    |
 
 ## 文档
 
@@ -377,5 +377,3 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 ## 待办列表
 
 [Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)
-
-
