@@ -26,7 +26,6 @@ Route::prefix('login')->group(function () {
     Route::get('google/callback', 'Auth\LoginController@handleProviderCallback');
 });
 
-
 /**
  * Export routing registration
  */
@@ -34,23 +33,8 @@ Route::prefix('export')->group(function () {
     Route::get('tmpls', 'TmplController@export');
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Resource Route
+ */
 Route::resource('languages', 'LanguageController');
-
 Route::resource('tmpls', 'TmplController');

@@ -72,11 +72,11 @@ class LanguageController extends Controller
                 return $this->successReturn($languages, $this->formatter->assemblyPage($languages));
             }
             $table_comment_map = $this->getTableCommentMap('languages');
-//            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
+            //            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = [
-                'info' => $this->getInfo(),
-                'languages' => $languages,
-                'list_map' => $table_comment_map,
+                'info'       => $this->getInfo(),
+                'languages'      => $languages,
+                'list_map'   => $table_comment_map,
                 'search_map' => $table_comment_map,
             ];
             if ($this->enable_filter) {
@@ -136,7 +136,7 @@ class LanguageController extends Controller
     {
         $rules = [];
         $messages = [];
-        if (!empty($rules)) {
+        if (! empty($rules)) {
             $this->validate($data, $rules, $messages);
         }
     }
@@ -148,11 +148,11 @@ class LanguageController extends Controller
     {
         try {
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'data' => [],
                 ],
-                'detail_data' => $this->getTableCommentMap('Languages'),
+                'detail_data' => $this->getTableCommentMap('languages'),
             ];
             return view('language.create', $view_data);
         } catch (Exception $exception) {
@@ -161,8 +161,8 @@ class LanguageController extends Controller
 
     /**
      * @param Request $request
-     * @param int $id
-     * @param bool $is_edit
+     * @param int     $id
+     * @param bool    $is_edit
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -172,15 +172,15 @@ class LanguageController extends Controller
             $this->validationShowRequest($id);
             $language = $this->service->getIdInfo($id);
             $view_data = [
-                'info' => $this->getInfo(),
-                'js_data' => [
+                'info'        => $this->getInfo(),
+                'js_data'     => [
                     'detail_data' => $language,
                 ],
-                'detail_data' => $this->getTableCommentMap('Languages'),
+                'detail_data' => $this->getTableCommentMap('languages'),
             ];
             if ($this->enable_filter) {
-                $view_data = $this->transformer->transformIndex(
-                    $this->formatter->formatIndex($view_data)
+                $view_data = $this->transformer->transformShow(
+                    $this->formatter->formatShow($view_data)
                 );
             }
             if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
@@ -223,7 +223,7 @@ class LanguageController extends Controller
                 return $this->successReturn($res_db);
             }
             $view_data = $this->show($request, $id, true);
-            return view('language.show',$view_data);
+            return view('language.show', $view_data);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
@@ -290,8 +290,8 @@ class LanguageController extends Controller
     {
         return [
             'description' => 'xxx',
-            'author' => 'Ben',
-            'title' => 'index title',
+            'author'      => 'Ben',
+            'title'       => 'index title',
         ];
     }
 
