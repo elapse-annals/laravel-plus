@@ -14,10 +14,10 @@ class ViewPresenter extends Presenter
      *
      * @return string
      */
-    public function lists($list_map = [])
+    public function lists($list_map = [], $is_static_render)
     {
         $view_html = '';
-        if ($this->is_static_render) {
+        if ($is_static_render) {
             foreach ($list_map as $table_datum) {
                 if (isset($table_datum['is_array']) && true === $table_datum['is_array']) {
                     $view_html .= $this->tableColumnArray($table_datum);

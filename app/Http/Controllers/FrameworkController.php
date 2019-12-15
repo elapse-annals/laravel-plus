@@ -210,10 +210,10 @@ class FrameworkController extends Controller
                 $replace_data = $this->generateListView($data);
                 break;
             case '_detail.blade.php':
-                $replace_data = $this->generateDetailView($data);
+                //                $replace_data = $this->generateDetailView($data);
                 break;
             case '_search.blade.php':
-                $replace_data = $this->generateSearchView($data);
+                //                $replace_data = $this->generateSearchView($data);
                 break;
         }
         $data = str_replace('%Placeholder%', $replace_data, $data);
@@ -233,7 +233,7 @@ class FrameworkController extends Controller
         if ($this->is_static_render) {
             $list_map = $this->getModelMap();
         }
-        return $ViewPresenter->lists($list_map);
+        return $ViewPresenter->lists($list_map, $this->is_static_render);
     }
 
     /**

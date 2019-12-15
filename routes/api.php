@@ -15,12 +15,16 @@ Route::middleware('auth:api')->get('/user', 'ClosureController@user');
 
 Route::apiResource('languages', 'LanguageController');
 
+
+
+
+
+
+
+
+
+
+
+
+
 Route::apiResource('tmpls', 'TmplController');
-
-
-
-
-
-
-
-
