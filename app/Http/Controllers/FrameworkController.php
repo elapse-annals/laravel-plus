@@ -169,7 +169,7 @@ class FrameworkController extends Controller
         $body = str_replace('tmpls', $this->framework_name_low_plural, $body);
         $body = str_replace('tmpl', $this->framework_name_low, $body);
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
-        if (!is_file($file)) {
+        if (! is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
@@ -182,7 +182,7 @@ class FrameworkController extends Controller
             }
             $framework_view_files = scandir($resources_directory);
             foreach ($framework_view_files as $framework_view_file) {
-                if (!in_array($framework_view_file, ['.', '..'])) {
+                if (! in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace('tmpls', $this->framework_name_low_plural, $file_get_contents);
@@ -199,14 +199,21 @@ class FrameworkController extends Controller
      * @param $file_name
      * @param $data
      *
-     * @return mixed
+     * @return string|string[]
+     * @throws \ReflectionException
      */
     private function generateStaticView($file_name, $data)
     {
         $replace_data = '';
         switch ($file_name) {
             case '_list.blade.php':
-                $replace_data = $this->generatelistView($data);
+                $replace_data = $this->generateListView($data);
+                break;
+            case '_detail.blade.php':
+                $replace_data = $this->generateDetailView($data);
+                break;
+            case '_search.blade.php':
+                $replace_data = $this->generateSearchView($data);
                 break;
         }
         $data = str_replace('%Placeholder%', $replace_data, $data);
@@ -219,23 +226,21 @@ class FrameworkController extends Controller
      * @return string
      * @throws \ReflectionException
      */
-    private function generatelistView($data)
+    private function generateListView($data)
     {
         $ViewPresenter = new ViewPresenter();
         $list_map = [];
         if ($this->is_static_render) {
             $list_map = $this->getModelMap();
         }
-        return $ViewPresenter->lists($list_map, $this->is_static_render);
+        return $ViewPresenter->lists($list_map);
     }
 
     /**
-     * @param array $list_map
-     *
      * @return array
      * @throws \ReflectionException
      */
-    private function getModelMap(array $list_map = []): array
+    private function getModelMap(): array
     {
         $ReflectionClass = new \ReflectionClass("\App\Models\{$this->framework_name}");
         $list_map = $this->getTableCommentMap($this->framework_name);
@@ -254,7 +259,7 @@ class FrameworkController extends Controller
     {
         foreach ($data as $datum) {
             $child_map_lists[] = [
-                'prop' => $datum,
+                'prop'  => $datum,
                 'label' => $datum,
             ];
         }

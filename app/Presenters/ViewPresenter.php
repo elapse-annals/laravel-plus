@@ -10,15 +10,14 @@ namespace App\Presenters;
 class ViewPresenter extends Presenter
 {
     /**
-     * @param $list_map
-     * @param $is_static_render
+     * @param array $list_map
      *
      * @return string
      */
-    public function lists($list_map = [], $is_static_render = false)
+    public function lists($list_map = [])
     {
         $view_html = '';
-        if ($is_static_render) {
+        if ($this->is_static_render) {
             foreach ($list_map as $table_datum) {
                 if (isset($table_datum['is_array']) && true === $table_datum['is_array']) {
                     $view_html .= $this->tableColumnArray($table_datum);
@@ -86,7 +85,7 @@ EOF;
         <el-table-column min-width="180" >
                     <template slot-scope="scope" width="200">
                         <el-table :data="scope.row.info" style="width: 100%">
-                           
+
 EOF;
         foreach ($column_array['child_map'] as $item) {
             $temp_view .= $this->tableColumn($item);

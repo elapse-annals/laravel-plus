@@ -374,13 +374,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 ## 进展
 - 开发 SwiftCMS 实际应用以进行完善
 
-## 待办
-优化模板渲染与 API 接口一致性
+## 待办列表
 
-增加生成静态视图
-
-增加多语言数据库，和迁移，自动更新功能
-
-简化介绍，完善 wiki
+[Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)
 
 
