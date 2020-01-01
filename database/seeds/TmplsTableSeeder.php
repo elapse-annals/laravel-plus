@@ -12,7 +12,7 @@ class TmplsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Tmpl::class, 50)
+        factory(Tmpl::class, 500)
             ->create();
     }
 }
