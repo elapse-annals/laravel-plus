@@ -343,7 +343,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 
        - [guzzlehttp/guzzle]() Http 请求包
              
-             
+       - [ClassPreloader/ClassPreloader]() vendor preload 生成器       
              
                      
 -  增加前端资源
