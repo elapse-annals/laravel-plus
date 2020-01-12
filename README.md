@@ -117,6 +117,10 @@ cnpkg
 $ composer global require hirak/prestissimo
 ```
  
+#### 4.更新项目
+```shell script
+php LaravelPlus/update YourProject
+``` 
 
 
 <hr>
