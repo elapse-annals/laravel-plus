@@ -38,3 +38,6 @@ samples/
 
 # PHPUnit
 .phpunit.result.cache
+
+# PHP CS
+.php_cs.cache
