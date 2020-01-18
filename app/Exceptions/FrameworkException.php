@@ -3,12 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
-use Log;
+use Illuminate\Support\Facades\Log;
 use \Illuminate\Http\JsonResponse;
 
 /**
  * Class FrameworkException
- *
  * @package App\Exceptions
  */
 class FrameworkException extends Exception

@@ -67,6 +67,9 @@ class Framework extends Command
                 $msg = 'delete';
             }
             $stdout_string = PHP_EOL . " {$msg} framework \e[31m{$framework_name}\e[0m \e[32msuccess";
+        } catch (FrameworkException $exception) {
+            $stdout_string = " \e[31m {$exception->getMessage()} \e[0m \e[32min file
+            {$exception->getFile()} line {$exception->getLine()}";
         } catch (Exception $exception) {
             $stdout_string = " \e[31m {$exception->getMessage()} \e[0m \e[32min file
             {$exception->getFile()} line {$exception->getLine()}";
