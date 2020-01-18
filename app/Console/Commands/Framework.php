@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Exceptions\FrameworkException;
 use Exception;
 use Illuminate\Console\Command;
 use App\Http\Controllers\FrameworkController;
@@ -17,7 +18,7 @@ class Framework extends Command
      * @var string
      */
     protected $signature = 'make:framework
-                            {framework_name : framework name}                            
+                            {framework_name : framework name}
                             {--delete : delete framework}
                             {--D : delete framework}
                             {--StaticRender : Static rendering html}
@@ -43,23 +44,15 @@ class Framework extends Command
     ];
 
     /**
-     * Framework constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      *
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             $framework_name = $this->argument('framework_name');
-            list($is_delete, $is_static_render) = $this->initOption();
-            if ($is_delete && !$this->confirm('Do you wish to continue? [y|N]')) {
-                throw new Exception('Continue Delete');
+            [$is_delete, $is_static_render] = $this->initOption();
+            if ($is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
+                throw new FrameworkException('Continue Delete');
             }
             $framework_file_types = $this->framework_file_types;
             $bar = $this->output->createProgressBar(count($framework_file_types));
@@ -75,7 +68,8 @@ class Framework extends Command
             }
             $stdout_string = PHP_EOL . " {$msg} framework \e[31m{$framework_name}\e[0m \e[32msuccess";
         } catch (Exception $exception) {
-            $stdout_string = " \e[31m{$exception->getMessage()}\e[0m \e[32min file {$exception->getFile()} line {$exception->getLine()}";
+            $stdout_string = " \e[31m {$exception->getMessage()} \e[0m \e[32min file
+            {$exception->getFile()} line {$exception->getLine()}";
         }
         $this->info($stdout_string);
     }

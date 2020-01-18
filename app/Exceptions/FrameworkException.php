@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Log;
+use \Illuminate\Http\JsonResponse;
 
 /**
  * Class FrameworkException
@@ -15,7 +16,7 @@ class FrameworkException extends Exception
     /**
      *
      */
-    public function report()
+    public function report(): void
     {
         Log::notice($this->getMessage() . ':' . $this->getFile() . '.' . $this->getLine());
         if (empty($this->getCode())) {
@@ -24,9 +25,9 @@ class FrameworkException extends Exception
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function render()
+    public function render(): JsonResponse
     {
         return response()->json(
             ['code' => $this->code, 'msg' => $this->message],
