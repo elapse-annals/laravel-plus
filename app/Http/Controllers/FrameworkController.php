@@ -7,6 +7,7 @@ use App\Presenters\ViewPresenter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ReflectionClass;
+use ReflectionException as ReflectionExceptionAlias;
 
 /**
  * Class FrameworkController
@@ -26,7 +27,7 @@ class FrameworkController extends Controller
     /**
      * @var string
      */
-    private $framework_name_plural;
+//    private $framework_name_plural;
     /**
      * @var string
      */
@@ -54,7 +55,7 @@ class FrameworkController extends Controller
     {
         parent::__construct();
         $this->framework_name = ucfirst($framework_name);
-        $this->framework_name_plural = Str::plural($this->framework_name);
+        //        $this->framework_name_plural = Str::plural($this->framework_name);
         $this->framework_name_low = strtolower($this->framework_name);
         $this->framework_name_low_plural = Str::plural($this->framework_name_low);
     }
@@ -65,8 +66,8 @@ class FrameworkController extends Controller
      * @param $is_static_render
      *
      * @throws FrameworkException
+     * @throws ReflectionExceptionAlias
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
      */
     public function handle($framework_file_type, $is_delete, $is_static_render)
     {
@@ -160,32 +161,34 @@ class FrameworkController extends Controller
      * @param $framework_file_type
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
+     * @throws ReflectionExceptionAlias
      */
     public function create($framework_file_type): void
     {
         $framework_name_plural = Str::plural($this->framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
-        $body = str_replace([
-                                'Tmpls',
-                                'Tmpl',
-                                'tmpls',
-                                'tmpl',
-                            ],
-                            [
-                                $framework_name_plural,
-                                $this->framework_name,
-                                $this->framework_name_low_plural,
-                                $this->framework_name_low,
-                            ],
-                            $body);
+        $body = str_replace(
+            [
+                'Tmpls',
+                'Tmpl',
+                'tmpls',
+                'tmpl',
+            ],
+            [
+                $framework_name_plural,
+                $this->framework_name,
+                $this->framework_name_low_plural,
+                $this->framework_name_low,
+            ],
+            $body
+        );
         $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
         if (! is_file($file)) {
             file_put_contents($file, $body);
         }
         if ('Controller' === $framework_file_type) {
-            $tmpl_resources_directory = storage_path("app/tmpl/views");
+            $tmpl_resources_directory = storage_path('app/tmpl/views');
             $resources_directory = base_path("resources/views/{$this->framework_name_low}");
             exec("cp -r {$tmpl_resources_directory} {$resources_directory}");
             $route_types = ['web', 'api'];
@@ -215,7 +218,7 @@ class FrameworkController extends Controller
      * @param $data
      *
      * @return string|string[]
-     * @throws \ReflectionException
+     * @throws ReflectionExceptionAlias
      */
     private function generateStaticView($file_name, $data)
     {
@@ -237,7 +240,7 @@ class FrameworkController extends Controller
 
     /**
      * @return string
-     * @throws \ReflectionException
+     * @throws ReflectionExceptionAlias
      */
     private function generateListView(): string
     {
@@ -251,7 +254,7 @@ class FrameworkController extends Controller
 
     /**
      * @return array
-     * @throws \ReflectionException
+     * @throws ReflectionExceptionAlias
      */
     private function getModelMap(): array
     {
@@ -286,12 +289,12 @@ class FrameworkController extends Controller
     private function insertRoute($route_type): void
     {
         switch ($route_type) {
-            case 'web':
-                $resource_type = 'resource';
-                break;
             case 'api':
                 $resource_type = 'apiResource';
                 break;
+            case 'web':
+            default:
+                $resource_type = 'resource';
         }
         $route_web_path = base_path("routes/{$route_type}.php");
         $route_string = "Route::{$resource_type}('{$this->framework_name_low_plural}'," .
