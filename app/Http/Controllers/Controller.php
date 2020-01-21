@@ -10,6 +10,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 
 /**
  * Class Controller
@@ -67,7 +69,7 @@ class Controller extends BaseController
      * @param Exception $exception
      * @param null      $type
      *
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return array|ResponseFactory|Response
      */
     public function catchException(Exception $exception, $type = null)
     {
