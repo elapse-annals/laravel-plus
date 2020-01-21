@@ -95,7 +95,7 @@ class TmplController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    private function validationIndexRequest(array $data): void
+    private function validationIndexRequest(array $data)
     {
         $rules = [
         ];
@@ -208,8 +208,7 @@ class TmplController extends Controller
      * @param Request $request
      * @param         $id
      *
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|int
-     * @throws Exception
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function update(Request $request, $id)
     {
@@ -221,7 +220,7 @@ class TmplController extends Controller
             DB::commit();
             if ($request->is('api/*') ||
                 true == $request->input('api') ||
-                'json' == $request->getContentType()
+                'json' === $request->getContentType()
             ) {
                 return $this->successReturn($res_db);
             }
