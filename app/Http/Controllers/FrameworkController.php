@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionException as ReflectionExceptionAlias;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 /**
  * Class FrameworkController
@@ -27,7 +28,7 @@ class FrameworkController extends Controller
     /**
      * @var string
      */
-//    private $framework_name_plural;
+    //    private $framework_name_plural;
     /**
      * @var string
      */
@@ -65,11 +66,11 @@ class FrameworkController extends Controller
      * @param $is_delete
      * @param $is_static_render
      *
+     * @throws FileNotFoundException
      * @throws FrameworkException
      * @throws ReflectionExceptionAlias
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function handle($framework_file_type, $is_delete, $is_static_render)
+    public function handle($framework_file_type, $is_delete, $is_static_render): void
     {
         $this->init($framework_file_type);
         $this->is_static_render = $is_static_render;
@@ -160,7 +161,7 @@ class FrameworkController extends Controller
     /**
      * @param $framework_file_type
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      * @throws ReflectionExceptionAlias
      */
     public function create($framework_file_type): void
