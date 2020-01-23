@@ -9,8 +9,8 @@
 
 function updateSelfFramework()
 {
-    $app_path = app_path();
-    $storage_path = storage_path();
+    $app_path = './app';
+    $storage_path = './storage/app/tmpl';
     exec('cp ');
 }
 
