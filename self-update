@@ -12,18 +12,22 @@ function updateSelfFramework()
     $app_path = './app';
     $storage_path = './storage/app/tmpl';
     $framework_dirs = [
-        'Http/Controllers'=>'Controller',
-        'Exports'=>'Export',
-        'Formatters'=>'Formatter',
-        'Presenters'=>'Presenter',
-        'Repositories'=>'Repository',
-        'Services'=>'Service',
-        'Transformers'=>'Transformer',
+        'Http/Controllers' => 'Controller',
+        'Exports'          => 'Export',
+        'Formatters'       => 'Formatter',
+        'Presenters'       => 'Presenter',
+        'Repositories'     => 'Repository',
+        'Services'         => 'Service',
+        'Transformers'     => 'Transformer',
     ];
-    foreach ($framework_dirs as $key=>$value) {
-        exec("cp {$app_path}/{$key}/Tmpl{$value}.php {$storage_path}/framework/{$value}.php");
+    foreach ($framework_dirs as $key => $value) {
+        $exec_string = "cp {$app_path}/{$key}/Tmpl{$value}.php {$storage_path}/framework/{$value}.php";
+        echo '  ' . $exec_string . PHP_EOL;
+        exec($exec_string);
     }
-    exec("cp ./resources/views/tmpl/* {$storage_path}/views");
+    $exec_string = "cp ./resources/views/tmpl/* {$storage_path}/views";
+    echo '  ' . $exec_string . PHP_EOL;
+    exec($exec_string);
 }
 
 function handle()
