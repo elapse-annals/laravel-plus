@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Tmpl;
+use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Class TmplRepository

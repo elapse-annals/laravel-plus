@@ -12,7 +12,7 @@ function updateSelfFramework()
     $app_path = './app';
     $storage_path = './storage/app/tmpl';
     $framework_dirs = [
-        'Controllers'=>'Controller',
+        'Http/Controllers'=>'Controller',
         'Exports'=>'Export',
         'Formatters'=>'Formatter',
         'Presenters'=>'Presenter',
@@ -21,7 +21,7 @@ function updateSelfFramework()
         'Transformers'=>'Transformer',
     ];
     foreach ($framework_dirs as $key=>$value) {
-        exec("cp {$app_path}./Http/{$key}}/Tmpl{$value}.php {$storage_path}/framework/{$value}.php");
+        exec("cp {$app_path}/{$key}/Tmpl{$value}.php {$storage_path}/framework/{$value}.php");
     }
     exec("cp ./resources/views/tmpl/* {$storage_path}/views");
 }

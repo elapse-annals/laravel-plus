@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class TmplController
+ *
  * @package App\Http\Controllers
  */
 class TmplController extends Controller
@@ -94,7 +95,7 @@ class TmplController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    private function validationIndexRequest(array $data): void
+    private function validationIndexRequest(array $data)
     {
         $rules = [
         ];
@@ -109,8 +110,7 @@ class TmplController extends Controller
     /**
      * @param Request $request
      *
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     * @throws Exception
+     * @return array|int
      */
     public function store(Request $request)
     {
@@ -142,7 +142,7 @@ class TmplController extends Controller
     }
 
     /**
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -156,7 +156,6 @@ class TmplController extends Controller
             ];
             return view('tmpl.create', $view_data);
         } catch (Exception $exception) {
-            return $this->catchException($exception);
         }
     }
 
@@ -210,7 +209,6 @@ class TmplController extends Controller
      * @param         $id
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     * @throws Exception
      */
     public function update(Request $request, $id)
     {
@@ -221,7 +219,7 @@ class TmplController extends Controller
             $res_db = $this->service->update($data, $id);
             DB::commit();
             if ($request->is('api/*') ||
-                true === $request->input('api') ||
+                true == $request->input('api') ||
                 'json' === $request->getContentType()
             ) {
                 return $this->successReturn($res_db);
@@ -235,8 +233,8 @@ class TmplController extends Controller
     }
 
     /**
-     * @param $data
      * @param $id
+     * @param $data
      *
      * @throws Exception
      */
@@ -315,5 +313,21 @@ class TmplController extends Controller
     {
         $excel_name = 'tmpl.xls';
         return Excel::download(new TmplExport, $excel_name);
+    }
+
+    public function testQueryDb()
+    {
+//        return 'yoyo';
+        /*$act_time = microtime(true);
+        $sum = 0;
+        for ($i = 1; $i < 100000; $i++) {
+            $sum = $sum * round(0, 1) + $sum;
+        }
+        return microtime(true) - $act_time;*/
+        $act_time = microtime(true);
+        for ($i = 1; $i < 10; $i++) {
+            $res = DB::select("SELECT * FROM tmpls LIMIT {$i},1;");
+        }
+        return microtime(true) - $act_time;
     }
 }

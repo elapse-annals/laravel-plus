@@ -1,21 +1,21 @@
 <template>
     <el-table
-            :data="list_data"
-            style="width: 100%"
-            show-summary
-            @selection-change="handleSelectionChange">
+        :data="list_data"
+        style="width: 100%"
+        show-summary
+        @selection-change="handleSelectionChange">
         <el-table-column
-                type="selection"
-                width="55">
+            type="selection"
+            width="55">
         </el-table-column>
 
         %Placeholder%
 
         <el-table-column
-                fixed="right"
-                label="操作"
-                width="160"
-                header-align="center"
+            fixed="right"
+            label="操作"
+            width="160"
+            header-align="center"
         >
             <template slot-scope="scope">
                 <a :href="'/tmpls/'+scope.row.id">
