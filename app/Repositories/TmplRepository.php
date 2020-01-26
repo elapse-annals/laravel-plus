@@ -27,7 +27,7 @@ class TmplRepository extends Repository
     {
         $Tmpl = new Tmpl();
         if (!empty($data)) {
-            $Tmpl = $this->assembvlyWhere($Tmpl, $data);
+            $Tmpl = $this->assemblyWhere($Tmpl, $data);
         }
         return $Tmpl->Paginate($this->per_page);
     }
