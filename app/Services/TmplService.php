@@ -41,7 +41,7 @@ class TmplService extends Service
         if (isset($data['per_page'])) {
             $this->repository->per_page = $data['per_page'];
         }
-        if (! isset($data['search']) || '{}' == $data['search']) {
+        if (! isset($data['search']) || '{}' === $data['search']) {
             $data['search'] = [];
         }
         return $this->repository->getList($data['search']);
@@ -68,7 +68,7 @@ class TmplService extends Service
     /**
      * @param $id
      *
-     * @return \App\Models\Tmpl|\App\Models\Tmpl[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return mixed
      */
     public function getIdInfo($id)
     {
@@ -77,8 +77,9 @@ class TmplService extends Service
 
     /**
      * @param $data
+     * @param $id
      *
-     * @return int
+     * @return mixed
      */
     public function update($data, $id)
     {
@@ -88,7 +89,7 @@ class TmplService extends Service
     /**
      * @param $id
      */
-    public function destroy($id)
+    public function destroy($id):void
     {
         $this->repository->destroy($id);
     }

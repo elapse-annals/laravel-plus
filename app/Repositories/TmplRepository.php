@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Tmpl;
-use phpDocumentor\Reflection\Types\Object_;
 
 /**
  * Class TmplRepository
@@ -36,7 +35,7 @@ class TmplRepository extends Repository
     /**
      * @param $id
      *
-     * @return Tmpl|Tmpl[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return mixed
      */
     public function find($id)
     {
@@ -67,8 +66,9 @@ class TmplRepository extends Repository
 
     /**
      * @param array $save
+     * @param       $id
      *
-     * @return Tmpl|\Illuminate\Database\Eloquent\Model
+     * @return mixed
      */
     public function update(array $save, $id)
     {
