@@ -95,7 +95,7 @@ class TmplController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    private function validationIndexRequest(array $data)
+    protected function validationIndexRequest(array $data): void
     {
         $rules = [
         ];
@@ -142,7 +142,7 @@ class TmplController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -156,6 +156,7 @@ class TmplController extends Controller
             ];
             return view('tmpl.create', $view_data);
         } catch (Exception $exception) {
+            return [];
         }
     }
 
@@ -233,21 +234,21 @@ class TmplController extends Controller
     }
 
     /**
-     * @param $id
      * @param $data
+     * @param $id
      *
      * @throws Exception
      */
-    private function validateUpdateRequest($data, $id)
+    protected function validateUpdateRequest($data, $id): void
     {
         $this->validateRequestId($id);
+        $this->validateRequestData($data);
     }
 
     /**
      * @param int $id
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     * @throws Exception
      */
     public function destroy(int $id)
     {
@@ -309,25 +310,16 @@ class TmplController extends Controller
         }
     }
 
+    private function validateRequestData($data): void
+    {
+        if (empty($data)) {
+            throw new Exception('request data is empty');
+        }
+    }
+
     public function export()
     {
         $excel_name = 'tmpl.xls';
         return Excel::download(new TmplExport, $excel_name);
-    }
-
-    public function testQueryDb()
-    {
-//        return 'yoyo';
-        /*$act_time = microtime(true);
-        $sum = 0;
-        for ($i = 1; $i < 100000; $i++) {
-            $sum = $sum * round(0, 1) + $sum;
-        }
-        return microtime(true) - $act_time;*/
-        $act_time = microtime(true);
-        for ($i = 1; $i < 10; $i++) {
-            $res = DB::select("SELECT * FROM tmpls LIMIT {$i},1;");
-        }
-        return microtime(true) - $act_time;
     }
 }
