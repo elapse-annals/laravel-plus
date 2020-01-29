@@ -18,7 +18,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
             $this->app->register(\Reliese\Coders\CodersServiceProvider::class);
-//            $this->app->register(Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            //            $this->app->register(Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
         }
     }
 
@@ -29,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-// if mysql version < 5.7.7
+        // if mysql version < 5.7.7
         Schema::defaultStringLength(191);
 
         if (true === env('ENABLE_HOT_SWITCHING')) {

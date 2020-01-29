@@ -27,15 +27,15 @@ class TmplRepository extends Repository
     {
         $Tmpl = new Tmpl();
         if (!empty($data)) {
-            $Tmpl = $this->assemblyWhere($Tmpl, $data);
+            $Tmpl = $this->assembvlyWhere($Tmpl, $data);
         }
-        return $Tmpl->Paginate($this->per_page);
+        return $Tmpl->orderBy('id')->Paginate($this->per_page);
     }
 
     /**
      * @param $id
      *
-     * @return mixed
+     * @return Tmpl|Tmpl[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function find($id)
     {
@@ -66,9 +66,8 @@ class TmplRepository extends Repository
 
     /**
      * @param array $save
-     * @param       $id
      *
-     * @return mixed
+     * @return Tmpl|\Illuminate\Database\Eloquent\Model
      */
     public function update(array $save, $id)
     {

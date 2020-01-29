@@ -37,5 +37,6 @@ Route::prefix('export')->group(function () {
  * Resource route
  */
 Route::resource('languages', 'LanguageController');
-Route::resource('tmpls', 'TmplController');
+
 Route::get('testQueryDb', 'TmplController@testQueryDb');
+Route::resource('tmpls', 'TmplController');
