@@ -146,7 +146,7 @@ class FrameworkController extends Controller
                 $this->deleteRoute($route_type);
             }
         }
-        usleep(10000);
+        usleep(1000);
     }
 
     /**
@@ -223,7 +223,7 @@ class FrameworkController extends Controller
                 }
             }
         }
-        usleep(10000);
+        usleep(1000);
     }
 
     /**
