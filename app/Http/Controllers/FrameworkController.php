@@ -43,11 +43,6 @@ class FrameworkController extends Controller
     private $file_path;
 
     /**
-     * @var bool
-     */
-    private $is_static_render = false;
-
-    /**
      * FrameworkController constructor.
      *
      * @param $framework_name
@@ -64,16 +59,14 @@ class FrameworkController extends Controller
     /**
      * @param $framework_file_type
      * @param $is_delete
-     * @param $is_static_render
      *
      * @throws FileNotFoundException
      * @throws FrameworkException
      * @throws ReflectionExceptionAlias
      */
-    public function handle($framework_file_type, $is_delete, $is_static_render): void
+    public function handle($framework_file_type, $is_delete): void
     {
         $this->initFilePath($framework_file_type);
-        $this->is_static_render = $is_static_render;
         $temp_framework_file_type = $framework_file_type;
         if ('TestUnit' === $framework_file_type) {
             $temp_framework_file_type = 'Test';
@@ -271,11 +264,8 @@ class FrameworkController extends Controller
     private function generateListView(): string
     {
         $ViewPresenter = new ViewPresenter();
-        $list_map = [];
-        if ($this->is_static_render) {
-            $list_map = $this->getModelMap();
-        }
-        return $ViewPresenter->lists($list_map, $this->is_static_render);
+        $list_map = $this->getModelMap();
+        return $ViewPresenter->lists($list_map);
     }
 
     /**

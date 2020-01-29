@@ -21,8 +21,6 @@ class Framework extends Command
                             {framework_name : framework name}
                             {--delete : delete framework}
                             {--D : delete framework}
-                            {--StaticRender : Static rendering html}
-                            {--static : Static rendering html}
                             ';
 
     /**
@@ -52,7 +50,7 @@ class Framework extends Command
     {
         try {
             $framework_name = $this->argument('framework_name');
-            [$is_delete, $is_static_render] = $this->initOption();
+            $is_delete = $this->initOption();
             if ($is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
                 throw new FrameworkException('Continue Delete');
             }
@@ -60,7 +58,7 @@ class Framework extends Command
             $bar = $this->output->createProgressBar(count($framework_file_types));
             $FrameworkController = new FrameworkController($framework_name);
             foreach ($framework_file_types as $framework_file_type) {
-                $FrameworkController->handle($framework_file_type, $is_delete, $is_static_render);
+                $FrameworkController->handle($framework_file_type, $is_delete);
                 $bar->advance();
             }
             $bar->finish();
@@ -86,8 +84,6 @@ class Framework extends Command
     {
         $is_delete = $this->option('delete');
         $is_delete or $is_delete = $this->option('D');
-        $is_static_render = $this->option('static');
-        $is_static_render or $is_static_render = $this->option('StaticRender');
-        return [$is_delete, $is_static_render];
+        return $is_delete;
     }
 }
