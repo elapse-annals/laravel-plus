@@ -72,11 +72,17 @@ class FrameworkController extends Controller
      */
     public function handle($framework_file_type, $is_delete, $is_static_render): void
     {
-        $this->init($framework_file_type);
+        $this->initFilePath($framework_file_type);
         $this->is_static_render = $is_static_render;
-        $this->file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
+        $temp_framework_file_type = $framework_file_type;
+        if ('TestUnit' === $framework_file_type) {
+            $temp_framework_file_type = 'Test';
+        }
+        $this->file = app_path("{$this->file_path}/{$this->framework_name}{$temp_framework_file_type}.php");
         if ($is_delete) {
             $this->delete($framework_file_type);
+        } elseif ('Test' === $framework_file_type || 'TestUnit' === $framework_file_type) {
+            $this->createTest($framework_file_type);
         } else {
             $this->checkFileExistence($framework_file_type);
             $this->create($framework_file_type);
@@ -86,7 +92,7 @@ class FrameworkController extends Controller
     /**
      * @param $framework_file_type
      */
-    public function init($framework_file_type): void
+    public function initFilePath($framework_file_type): void
     {
         switch ($framework_file_type) {
             case 'Controller':
@@ -101,6 +107,12 @@ class FrameworkController extends Controller
             case 'Formatter':
             case 'Export':
                 $this->file_path = $framework_file_type . 's';
+                break;
+            case 'Test':
+                $this->file_path = '../tests/Feature';
+                break;
+            case 'TestUnit':
+                $this->file_path = '../tests/Unit';
                 break;
         }
     }
@@ -122,7 +134,7 @@ class FrameworkController extends Controller
      */
     public function delete($framework_file_type): void
     {
-        $file = app_path("{$this->file_path}/{$this->framework_name}{$framework_file_type}.php");
+        $file = $this->file;
         if (file_exists($file)) {
             unlink($file);
         }
@@ -164,7 +176,7 @@ class FrameworkController extends Controller
      * @throws FileNotFoundException
      * @throws ReflectionExceptionAlias
      */
-    public function create($framework_file_type): void
+    private function create($framework_file_type): void
     {
         $framework_name_plural = Str::plural($this->framework_name);
         $Storage = Storage::disk('local');
@@ -212,6 +224,19 @@ class FrameworkController extends Controller
             }
         }
         usleep(10000);
+    }
+
+    /**
+     * @param $framework_file_type
+     */
+    private function createTest($framework_file_type)
+    {
+        if ('Test' === $framework_file_type) {
+            exec("php artisan make:test {$this->framework_name}Test");
+        }
+        if ('TestUnit' === $framework_file_type) {
+            exec("php artisan make:test {$this->framework_name}Test --unit");
+        }
     }
 
     /**

@@ -26,11 +26,6 @@ class Framework extends Command
                             ';
 
     /**
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
      * @var array
      */
     private $framework_file_types = [
@@ -41,7 +36,14 @@ class Framework extends Command
         'Transformer',
         'Formatter',
         'Export',
+        'Test',
+        'TestUnit',
     ];
+
+    /**
+     * @var string
+     */
+    protected $description = 'Command description';
 
     /**
      *
