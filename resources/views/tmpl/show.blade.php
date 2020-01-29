@@ -5,7 +5,7 @@
         <el-form ref="form" :model="form" label-width="80px">
             @include('tmpl._detail')
             <div class="operation">
-                <a href="/$this->framework_name_low_plural">
+                <a href="/tmpls">
                     <el-button @click="onReturn">返回</el-button>
                 </a>
             </div>

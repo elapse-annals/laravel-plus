@@ -51,7 +51,7 @@
                     console.log(tmpl_this)
                 },
                 deleteRow(id) {
-                    axios.delete('/$this->framework_name_low_plural/' + id)
+                    axios.delete('/tmpls/' + id)
                         .then(
                             (response) => {
                                 console.log(response);
@@ -73,7 +73,7 @@
                         per_page: _this.page.per_page,
                         api: true
                     };
-                    axios.get('/$this->framework_name_low_plural/', {params: request_parameter})
+                    axios.get('/tmpls/', {params: request_parameter})
                         .then((response) => {
                             _this.fullscreen_loading = false;
                             var message_type = 'reload error';

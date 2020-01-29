@@ -7,7 +7,7 @@
             <div class="operation">
                 <el-button type="primary" @click="onSubmit">立即创建</el-button>
                 <el-button @click="onCancel">取消</el-button>
-                <a href="/$this->framework_name_low_plural">
+                <a href="/tmpls">
                     <el-button>返回</el-button>
                 </a>
             </div>
@@ -27,7 +27,7 @@
             },
             methods: {
                 onSubmit() {
-                    axios.post('/$this->framework_name_low_plural', this.detail_data)
+                    axios.post('/tmpls', this.detail_data)
                         .then((response) => {
                             var message_type = 'error';
                             if (200 == response.data.code) {

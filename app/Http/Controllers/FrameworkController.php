@@ -203,7 +203,7 @@ class FrameworkController extends Controller
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace(
                         ['tmpls', 'tmpl'],
-                        ['$this->framework_name_low_plural', $this->framework_name_low],
+                        [$this->framework_name_low_plural, $this->framework_name_low],
                         $file_get_contents
                     );
                     $file_get_contents = $this->generateStaticView($framework_view_file, $file_get_contents);
