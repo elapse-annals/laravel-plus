@@ -11,10 +11,11 @@ class ViewPresenter extends Presenter
 {
     /**
      * @param array $list_map
+     * @param bool  $is_static_render
      *
      * @return string
      */
-    public function lists($list_map = [],$is_static_render = false)
+    public function lists($list_map = [], $is_static_render = false): string
     {
         $view_html = '';
         if ($is_static_render) {
@@ -31,7 +32,10 @@ class ViewPresenter extends Presenter
         return $view_html;
     }
 
-    public function detail()
+    /**
+     * @return string
+     */
+    public function detail(): string
     {
         return '@foreach ($detail_data as $detail_datum)
                     <el-row>
@@ -48,7 +52,11 @@ class ViewPresenter extends Presenter
                     </el-row>
                 @endforeach';
     }
-    public function search()
+
+    /**
+     * @return string
+     */
+    public function search(): string
     {
         return '@foreach ($search_map as $table_datum)
                     @if (0 === substr_compare($table_datum[\'prop\'],\'_at\',-strlen(\'_at\')))

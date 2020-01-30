@@ -41,11 +41,11 @@ class FrameworkController extends Controller
      */
     private $file_path;
     /**
-     * @see ViewPresenter
+     * @see  ViewPresenter
      *
-     * @var string
+     * @var \stdClass
      */
-    private $ViewPresenter = \stdClass::class;
+    private $ViewPresenter;
     /**
      * @var
      */
@@ -280,23 +280,6 @@ class FrameworkController extends Controller
     {
         $list_map = $this->getTableCommentMap($this->framework_name_low_plural);
         return $list_map;
-    }
-
-    /**
-     * @param array $data
-     * @param array $child_map_lists
-     *
-     * @return array
-     */
-    private function assemblyChildMapList(array $data, array $child_map_lists = []): array
-    {
-        foreach ($data as $datum) {
-            $child_map_lists[] = [
-                'prop'  => $datum,
-                'label' => $datum,
-            ];
-        }
-        return $child_map_lists;
     }
 
     /**
