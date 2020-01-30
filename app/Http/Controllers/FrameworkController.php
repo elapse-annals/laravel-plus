@@ -41,9 +41,7 @@ class FrameworkController extends Controller
      */
     private $file_path;
     /**
-     * @see  ViewPresenter
-     *
-     * @var \stdClass
+     * @var  ViewPresenter
      */
     private $ViewPresenter;
     /**

@@ -3,152 +3,85 @@
 namespace App\Presenters;
 
 /**
- * Class Presenter
- *
+ * Class ViewPresenter
  * @package App\Presenters
  */
 class ViewPresenter extends Presenter
 {
     /**
-     * @param array $list_map
-     * @param bool  $is_static_render
+     * @param array  $list_map
+     * @param string $view_html
      *
      * @return string
      */
-    public function lists($list_map = [], $is_static_render = false): string
+    public function lists(array $list_map = [], string $view_html = ''): string
     {
-        $view_html = '';
-        if ($is_static_render) {
-            foreach ($list_map as $table_datum) {
-                if (isset($table_datum['is_array']) && true === $table_datum['is_array']) {
-                    $view_html .= $this->tableColumnArray($table_datum);
-                } else {
-                    $view_html .= $this->tableColumn($table_datum);
-                }
-            }
-        } else {
-            $view_html = $this->autoTableColumn();
+        foreach ($list_map as $table_datum) {
+            $view_html .= $this->tableColumn($table_datum);
         }
         return $view_html;
     }
 
     /**
-     * @return string
-     */
-    public function detail(): string
-    {
-        return '@foreach ($detail_data as $detail_datum)
-                    <el-row>
-                        <el-col :span="4">
-                            <label for="{{$detail_datum[\'prop\']}}">{{$detail_datum[\'label\']}}</label>
-                        </el-col>
-                        <el-col :span="16">
-                            <el-input id="{{$detail_datum[\'prop\']}}"
-                                      :class="{aggravation:detail_data.{{$detail_datum[\'prop\']}}}"
-                                      v-model="detail_data.{{$detail_datum[\'prop\']}}"
-                                      :disabled="is_disabled_edit"
-                                      placeholder="{{$detail_datum[\'label\']}}"></el-input>
-                        </el-col>
-                    </el-row>
-                @endforeach';
-    }
-
-    /**
-     * @return string
-     */
-    public function search(): string
-    {
-        return '@foreach ($search_map as $table_datum)
-                    @if (0 === substr_compare($table_datum[\'prop\'],\'_at\',-strlen(\'_at\')))
-                        <el-date-picker
-                                v-model="search.{{$table_datum[\'prop\']}}"
-                                type="datetimerange"
-                                start-placeholder="{{$table_datum[\'label\']}} @lang(\'form.start_date\')"
-                                end-placeholder="{{$table_datum[\'label\']}} @lang(\'form.end_date\')"
-                                value-format="yyyy-MM-dd HH:mm"
-                                format="yyyy-MM-dd HH:mm"
-                                :default-time="[\'00:00:00\', \'23:59:59\']">
-                        </el-date-picker>
-                    @elseif (0 === substr_compare($table_datum[\'prop\'],\'_number\',-strlen(\'_number\')))
-                        <el-form-item label="{{$table_datum[\'label\']}}">
-                            <el-input v-model.number="search.{{$table_datum[\'prop\']}}"
-                                      placeholder="{{$table_datum[\'label\']}}"></el-input>
-                        </el-form-item>
-                    @else
-                        <el-form-item label="{{$table_datum[\'label\']}}">
-                            <el-input v-model="search.{{$table_datum[\'prop\']}}"
-                                      placeholder="{{$table_datum[\'label\']}}"></el-input>
-                        </el-form-item>
-                    @endif
-                @endforeach';
-    }
-
-    /**
-     * @return string
-     */
-    private function autoTableColumn()
-    {
-        return '@foreach($list_map as $table_datum)
-                @if(isset($table_datum[\'is_array\']) && true === $table_datum[\'is_array\'])
-                    <el-table-column min-width="190">
-                        <template slot-scope="scope" width="200">
-                            <el-table :data="scope.row.info" style="width: 100%">
-                                @foreach($table_datum[\'child_map\'] as $item)
-                                    <el-table-column
-                                            prop="{{$item[\'prop\']}}"
-                                            label="{{$item[\'label\']}}"
-                                            min-width="190">
-                                    </el-table-column>
-                                @endforeach
-                            </el-table>
-                        </template>
-                    </el-table-column>
-                @else
-                    <el-table-column
-                            prop="{{$table_datum[\'prop\']}}"
-                            label="{{$table_datum[\'label\']}}"
-                            min-width="190"
-                    >
-                    </el-table-column>
-                @endif
-            @endforeach';
-    }
-
-    /**
-     * @param $column
+     * @param array  $list_map
+     * @param string $view_html
      *
      * @return string
      */
-    private function tableColumn($column)
+    public function detail(array $list_map = [], string $view_html = ''): string
+    {
+        foreach ($list_map as $table_datum) {
+            $view_html .= $this->getDetailCol($table_datum);
+        }
+        return $view_html;
+    }
+
+    private function getDetailCol($detail_datum)
     {
         return <<<EOF
- <el-table-column prop="{$column['prop']}" label="{$column['label']}" min-width="180"></el-table-column>
+<el-row>
+    <el-col :span="4">
+        <label for="{{$detail_datum['prop']}}">{{$detail_datum['label']}}</label>
+    </el-col>
+    <el-col :span="16">
+        <el-input id="{{$detail_datum['prop']}}"
+                  :class="{aggravation:detail_data.{{$detail_datum['prop']}}}"
+                  v-model="detail_data.{{$detail_datum['prop']}}"
+                  :disabled="is_disabled_edit"
+                  placeholder="{{$detail_datum['label']}}"></el-input>
+    </el-col>
+</el-row>
 EOF;
     }
 
     /**
-     * @param $column_array
+     * @param array  $list_map
+     * @param string $view_html
      *
      * @return string
      */
-    private function tableColumnArray($column_array)
+    public function search(array $list_map = [], string $view_html = ''): string
     {
-        $temp_view = <<<EOF
-        <el-table-column min-width="180" >
-                    <template slot-scope="scope" width="200">
-                        <el-table :data="scope.row.info" style="width: 100%">
-
-EOF;
-        foreach ($column_array['child_map'] as $item) {
-            $temp_view .= $this->tableColumn($item);
+        foreach ($list_map as $table_datum) {
+            $view_html .= $this->getDetailCol($table_datum);
         }
-        $temp_view .= <<<EOF
-                        </el-table>
-                    </template>
-                </el-table-column>
-EOF;
+        return $view_html;
+    }
 
-        return $temp_view;
+    /**
+     * @param array $column
+     *
+     * @return string
+     */
+    private function tableColumn(array $column): string
+    {
+        return <<<EOF
+ <el-table-column
+    prop="{$column['prop']}"
+    label="{$column['label']}"
+    min-width="190">
+</el-table-column>
+EOF;
     }
 
     /**
@@ -197,12 +130,5 @@ EOF;
                         :default-time="['00:00:00', '23:59:59']">
                 </el-date-picker>
 EOF;
-    }
-
-    /**
-     *
-     */
-    private function ChileArray()
-    {
     }
 }
