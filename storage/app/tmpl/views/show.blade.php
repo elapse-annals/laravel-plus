@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="detail">
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="detail_data" label-width="80px">
 
             @include('tmpl._detail')
 
             <div class="operation">
                 <a href="/tmpls">
-                    <el-button @click="onReturn">返回</el-button>
+                    <el-button >返回</el-button>
                 </a>
             </div>
         </el-form>

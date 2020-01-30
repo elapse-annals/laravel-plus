@@ -257,13 +257,13 @@ class FrameworkController extends Controller
         $replace_data = '';
         switch ($file_name) {
             case '_list.blade.php':
-                $replace_data = $this->ViewPresenter->lists();
+                $replace_data = $this->ViewPresenter->lists($this->model_map);
                 break;
             case '_detail.blade.php':
-                $replace_data = $this->ViewPresenter->detail();
+                $replace_data = $this->ViewPresenter->detail($this->model_map);
                 break;
             case '_search.blade.php':
-                $replace_data = $this->ViewPresenter->search();
+                $replace_data = $this->ViewPresenter->search($this->model_map);
                 break;
         }
         $data = str_replace('%Placeholder%', $replace_data, $data);

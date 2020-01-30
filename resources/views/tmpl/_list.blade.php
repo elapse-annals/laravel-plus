@@ -9,30 +9,42 @@
             width="40">
         </el-table-column>
 
-        @foreach($list_map as $table_datum)
-            @if(isset($table_datum['is_array']) && true === $table_datum['is_array'])
-                <el-table-column min-width="190">
-                    <template slot-scope="scope" width="200">
-                        <el-table :data="scope.row.info" style="width: 100%">
-                            @foreach($table_datum['child_map'] as $item)
-                                <el-table-column
-                                    prop="{{$item['prop']}}"
-                                    label="{{$item['label']}}"
-                                    min-width="190">
-                                </el-table-column>
-                            @endforeach
-                        </el-table>
-                    </template>
-                </el-table-column>
-            @else
-                <el-table-column
-                    prop="{{$table_datum['prop']}}"
-                    label="{{$table_datum['label']}}"
-                    min-width="190"
-                >
-                </el-table-column>
-            @endif
-        @endforeach
+         <el-table-column
+    prop="id"
+    label="id"
+    min-width="190">
+</el-table-column>
+ <el-table-column
+    prop="name"
+    label="名称"
+    min-width="190">
+</el-table-column>
+ <el-table-column
+    prop="sex"
+    label="性别"
+    min-width="190">
+</el-table-column>
+ <el-table-column
+    prop="created_at"
+    label="created_at"
+    min-width="190">
+</el-table-column>
+ <el-table-column
+    prop="created_by"
+    label="created_by"
+    min-width="190">
+</el-table-column>
+ <el-table-column
+    prop="updated_at"
+    label="updated_at"
+    min-width="190">
+</el-table-column>
+ <el-table-column
+    prop="updated_by"
+    label="updated_by"
+    min-width="190">
+</el-table-column>
+
 
         <el-table-column
             fixed="right"

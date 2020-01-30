@@ -41,16 +41,17 @@ class ViewPresenter extends Presenter
         return <<<EOF
 <el-row>
     <el-col :span="4">
-        <label for="{{$detail_datum['prop']}}">{{$detail_datum['label']}}</label>
+        <label for="{$detail_datum['prop']}">{$detail_datum['label']}</label>
     </el-col>
     <el-col :span="16">
-        <el-input id="{{$detail_datum['prop']}}"
-                  :class="{aggravation:detail_data.{{$detail_datum['prop']}}}"
-                  v-model="detail_data.{{$detail_datum['prop']}}"
+        <el-input id="{$detail_datum['prop']}"
+                  :class="{aggravation:detail_data.{$detail_datum['prop']}}"
+                  v-model="detail_data.{$detail_datum['prop']}"
                   :disabled="is_disabled_edit"
-                  placeholder="{{$detail_datum['label']}}"></el-input>
+                  placeholder="{$detail_datum['label']}"></el-input>
     </el-col>
 </el-row>
+
 EOF;
     }
 
@@ -62,10 +63,29 @@ EOF;
      */
     public function search(array $list_map = [], string $view_html = ''): string
     {
-        foreach ($list_map as $table_datum) {
-            $view_html .= $this->getDetailCol($table_datum);
-        }
-        return $view_html;
+        return '@foreach ($search_map as $table_datum)
+                    @if (0 === substr_compare($table_datum[\'prop\'],\'_at\',-strlen(\'_at\')))
+                        <el-date-picker
+                                v-model="search.{{$table_datum[\'prop\']}}"
+                                type="datetimerange"
+                                start-placeholder="{{$table_datum[\'label\']}} @lang(\'form.start_date\')"
+                                end-placeholder="{{$table_datum[\'label\']}} @lang(\'form.end_date\')"
+                                value-format="yyyy-MM-dd HH:mm"
+                                format="yyyy-MM-dd HH:mm"
+                                :default-time="[\'00:00:00\', \'23:59:59\']">
+                        </el-date-picker>
+                    @elseif (0 === substr_compare($table_datum[\'prop\'],\'_number\',-strlen(\'_number\')))
+                        <el-form-item label="{{$table_datum[\'label\']}}">
+                            <el-input v-model.number="search.{{$table_datum[\'prop\']}}"
+                                      placeholder="{{$table_datum[\'label\']}}"></el-input>
+                        </el-form-item>
+                    @else
+                        <el-form-item label="{{$table_datum[\'label\']}}">
+                            <el-input v-model="search.{{$table_datum[\'prop\']}}"
+                                      placeholder="{{$table_datum[\'label\']}}"></el-input>
+                        </el-form-item>
+                    @endif
+                @endforeach';
     }
 
     /**
@@ -81,6 +101,7 @@ EOF;
     label="{$column['label']}"
     min-width="190">
 </el-table-column>
+
 EOF;
     }
 
@@ -131,4 +152,5 @@ EOF;
                 </el-date-picker>
 EOF;
     }
+
 }
