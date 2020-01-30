@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Model;
 use App\Services\DateService;
 
 /**
