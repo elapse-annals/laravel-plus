@@ -74,7 +74,7 @@ class TmplController extends Controller
             $table_comment_map = $this->getTableCommentMap('tmpls');
             //            $table_comment_map = $this->appendAssociationModelMap($table_comment_map);
             $view_data = [
-                'info'       => $this->getInfo(),
+                'info'       => $this->getInfo('index'),
                 'tmpls'      => $tmpls,
                 'list_map'   => $table_comment_map,
                 'search_map' => $table_comment_map,
@@ -148,7 +148,7 @@ class TmplController extends Controller
     {
         try {
             $view_data = [
-                'info'        => $this->getInfo(),
+                'info'        => $this->getInfo('create'),
                 'js_data'     => [
                     'data' => [],
                 ],
@@ -172,7 +172,7 @@ class TmplController extends Controller
             $this->validationShowRequest($id);
             $tmpl = $this->service->getIdInfo($id);
             $view_data = [
-                'info'        => $this->getInfo(),
+                'info'        => $this->getInfo('show'),
                 'js_data'     => [
                     'detail_data' => $tmpl,
                 ],
@@ -286,14 +286,16 @@ class TmplController extends Controller
     }
 
     /**
+     * @param $type
+     *
      * @return array
      */
-    private function getInfo(): array
+    private function getInfo($type): array
     {
         return [
-            'description' => 'xxx',
+            'description' => "tmpl {$type} description",
             'author'      => 'Ben',
-            'title'       => 'index title',
+            'title'       => "tmpl {$type} title",
         ];
     }
 
