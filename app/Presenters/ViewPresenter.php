@@ -90,14 +90,14 @@ class ViewPresenter extends Presenter
     {
         return '@foreach($list_map as $table_datum)
                 @if(isset($table_datum[\'is_array\']) && true === $table_datum[\'is_array\'])
-                    <el-table-column min-width="180">
+                    <el-table-column min-width="190">
                         <template slot-scope="scope" width="200">
                             <el-table :data="scope.row.info" style="width: 100%">
                                 @foreach($table_datum[\'child_map\'] as $item)
                                     <el-table-column
                                             prop="{{$item[\'prop\']}}"
                                             label="{{$item[\'label\']}}"
-                                            min-width="180">
+                                            min-width="190">
                                     </el-table-column>
                                 @endforeach
                             </el-table>
@@ -107,7 +107,7 @@ class ViewPresenter extends Presenter
                     <el-table-column
                             prop="{{$table_datum[\'prop\']}}"
                             label="{{$table_datum[\'label\']}}"
-                            min-width="180"
+                            min-width="190"
                     >
                     </el-table-column>
                 @endif
