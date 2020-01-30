@@ -48,4 +48,15 @@ Route::get('testQueryDb', 'TmplController@testQueryDb');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 Route::resource('tmpls', 'TmplController');

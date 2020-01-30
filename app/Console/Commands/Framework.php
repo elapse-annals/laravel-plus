@@ -21,6 +21,7 @@ class Framework extends Command
                             {framework_name : framework name}
                             {--delete : delete framework}
                             {--D : delete framework}
+                            {--F : force cover framework}
                             ';
 
     /**
@@ -50,7 +51,7 @@ class Framework extends Command
     {
         try {
             $framework_name = $this->argument('framework_name');
-            $is_delete = $this->initOption();
+            [$is_delete, $is_force] = $this->initOption();
             if ($is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
                 throw new FrameworkException('Continue Delete');
             }
@@ -58,7 +59,7 @@ class Framework extends Command
             $bar = $this->output->createProgressBar(count($framework_file_types));
             $FrameworkController = new FrameworkController($framework_name);
             foreach ($framework_file_types as $framework_file_type) {
-                $FrameworkController->handle($framework_file_type, $is_delete);
+                $FrameworkController->handle($framework_file_type, $is_delete, $is_force);
                 $bar->advance();
             }
             $bar->finish();
@@ -84,6 +85,7 @@ class Framework extends Command
     {
         $is_delete = $this->option('delete');
         $is_delete or $is_delete = $this->option('D');
-        return $is_delete;
+        $is_force = $this->option('F');
+        return [$is_delete, $is_force];
     }
 }

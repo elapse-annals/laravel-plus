@@ -43,4 +43,15 @@ Route::apiResource('languages', 'LanguageController');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 Route::apiResource('tmpls', 'TmplController');

@@ -6,7 +6,6 @@ use App\Exceptions\FrameworkException;
 use App\Presenters\ViewPresenter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use ReflectionClass;
 use ReflectionException as ReflectionExceptionAlias;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
@@ -28,7 +27,7 @@ class FrameworkController extends Controller
     /**
      * @var string
      */
-    //    private $framework_name_plural;
+    private $framework_name_plural;
     /**
      * @var string
      */
@@ -41,6 +40,16 @@ class FrameworkController extends Controller
      * @var
      */
     private $file_path;
+    /**
+     * @see ViewPresenter
+     *
+     * @var string
+     */
+    private $ViewPresenter = \stdClass::class;
+    /**
+     * @var
+     */
+    private $model_map;
 
     /**
      * FrameworkController constructor.
@@ -57,14 +66,15 @@ class FrameworkController extends Controller
     }
 
     /**
-     * @param $framework_file_type
-     * @param $is_delete
+     * @param      $framework_file_type
+     * @param      $is_delete
+     * @param bool $is_force
      *
      * @throws FileNotFoundException
      * @throws FrameworkException
      * @throws ReflectionExceptionAlias
      */
-    public function handle($framework_file_type, $is_delete): void
+    public function handle($framework_file_type, $is_delete, $is_force = false): void
     {
         $this->initFilePath($framework_file_type);
         $temp_framework_file_type = $framework_file_type;
@@ -77,6 +87,9 @@ class FrameworkController extends Controller
         } elseif ('Test' === $framework_file_type || 'TestUnit' === $framework_file_type) {
             $this->createTest($framework_file_type);
         } else {
+            if (true === $is_force) {
+                $this->delete($framework_file_type);
+            }
             $this->checkFileExistence($framework_file_type);
             $this->create($framework_file_type);
         }
@@ -171,7 +184,7 @@ class FrameworkController extends Controller
      */
     private function create($framework_file_type): void
     {
-        $framework_name_plural = Str::plural($this->framework_name);
+        $this->framework_name_plural = Str::plural($this->framework_name);
         $Storage = Storage::disk('local');
         $body = $Storage->get("tmpl/framework/{$framework_file_type}.php");
         $body = str_replace(
@@ -182,7 +195,7 @@ class FrameworkController extends Controller
                 'tmpl',
             ],
             [
-                $framework_name_plural,
+                $this->framework_name_plural,
                 $this->framework_name,
                 $this->framework_name_low_plural,
                 $this->framework_name_low,
@@ -202,6 +215,8 @@ class FrameworkController extends Controller
                 $this->insertRoute($route_type);
             }
             $framework_view_files = scandir($resources_directory);
+            $this->ViewPresenter = new ViewPresenter();
+            $this->model_map = $this->getModelMap();
             foreach ($framework_view_files as $framework_view_file) {
                 if (! in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
@@ -244,28 +259,17 @@ class FrameworkController extends Controller
         $replace_data = '';
         switch ($file_name) {
             case '_list.blade.php':
-                $replace_data = $this->generateListView();
+                $replace_data = $this->ViewPresenter->lists();
                 break;
             case '_detail.blade.php':
-                //                $replace_data = $this->generateDetailView($data);
+                $replace_data = $this->ViewPresenter->detail();
                 break;
             case '_search.blade.php':
-                //                $replace_data = $this->generateSearchView($data);
+                $replace_data = $this->ViewPresenter->search();
                 break;
         }
         $data = str_replace('%Placeholder%', $replace_data, $data);
         return $data;
-    }
-
-    /**
-     * @return string
-     * @throws ReflectionExceptionAlias
-     */
-    private function generateListView(): string
-    {
-        $ViewPresenter = new ViewPresenter();
-        $list_map = $this->getModelMap();
-        return $ViewPresenter->lists($list_map);
     }
 
     /**
@@ -274,11 +278,7 @@ class FrameworkController extends Controller
      */
     private function getModelMap(): array
     {
-        $argument = "\App\Models\{$this->framework_name}";
-        $ReflectionClass = new ReflectionClass($argument);
-        $list_map = $this->getTableCommentMap($this->framework_name);
-        $child_map_lists = $this->assemblyChildMapList($ReflectionClass->getMethods());
-        $this->appendAssociationModelMap($list_map, $child_map_lists);
+        $list_map = $this->getTableCommentMap($this->framework_name_low_plural);
         return $list_map;
     }
 
