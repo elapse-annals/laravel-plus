@@ -13,9 +13,9 @@ class TmplTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testTmpls()
     {
-        $response = $this->get('/');
+        $response = $this->get('/tmpls');
 
         $response->assertStatus(200);
     }
