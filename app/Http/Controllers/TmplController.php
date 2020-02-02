@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+//namespace App\Http\Controllers;
 
 use App\Exports\TmplExport;
 use App\Formatters\TmplFormatter;
@@ -42,7 +42,7 @@ class TmplController extends Controller
     /**
      * TmplController constructor.
      */
-    public function __construct()
+    protected function __construct()
     {
         parent::__construct();
         $this->service = new TmplService();
