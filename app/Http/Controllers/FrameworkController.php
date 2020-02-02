@@ -276,7 +276,7 @@ class FrameworkController extends Controller
      */
     private function getModelMap(): array
     {
-        $list_map = $this->getTableCommentMap($this->framework_name_low_plural);
+        $list_map = $this->getTableCommentMap($this->framework_name_plural);
         return $list_map;
     }
 
