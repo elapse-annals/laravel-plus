@@ -52,7 +52,7 @@
                     }).catch(error => console.log(error));
                 },
                 onCancel() {
-                    // @todo 处理引用传递问题
+                    //
                     this.detail_data = this.init_list_data
                 },
             }
