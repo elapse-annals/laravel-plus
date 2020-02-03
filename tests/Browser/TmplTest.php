@@ -6,7 +6,7 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class FrameworkTest extends DuskTestCase
+class TmplTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -16,8 +16,8 @@ class FrameworkTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('http://127.0.0.1:8000')
-                    ->assertSee('Laravel');
+            $browser->visit(env('APP_URL').'/tmpls')
+                    ->assertSee('tmpl');
         });
     }
 }
