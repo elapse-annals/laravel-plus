@@ -1,1 +1,1 @@
-@includeFirst(['tmpl._foot', 'frameworks._foot'])
+@includeFirst(['tmpls._foot', 'frameworks._foot'])

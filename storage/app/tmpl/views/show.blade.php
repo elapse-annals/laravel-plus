@@ -1,10 +1,10 @@
-@extends('tmpl._layout')
+@extends('tmpls._layout')
 
 @section('content')
     <div class="detail">
         <el-form ref="form" :model="detail_data" label-width="80px">
 
-            @include('tmpl._detail')
+            @include('tmpls._detail')
 
             <div class="operation">
                 <a href="/tmpls">

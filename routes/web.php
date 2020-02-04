@@ -40,28 +40,6 @@ Route::resource('languages', 'LanguageController');
 
 Route::get('testQueryDb', 'TmplController@testQueryDb');
 
+
+
 Route::resource('tmpls', 'TmplController');
-
-
-
-
-
-
-
-
-
-
-
-
-Route::resource('passwordresets', 'PasswordResetController');
-
-
-
-
-
-
-
-
-
-
-

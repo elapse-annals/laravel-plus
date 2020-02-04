@@ -11,7 +11,7 @@ class TmplTest extends TestCase
      *
      * @return void
      */
-    public function testTmpl()
+    public function testExample()
     {
         $this->assertTrue(true);
     }

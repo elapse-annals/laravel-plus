@@ -84,7 +84,7 @@ class TmplController extends Controller
                     $this->formatter->formatIndex($view_data)
                 );
             }
-            return view('tmpl.index', $view_data);
+            return view('tmpls.index', $view_data);
         } catch (Exception $exception) {
             return [$exception->getMessage(), $exception->getFile(), $exception->getLine()];
         }
@@ -154,7 +154,7 @@ class TmplController extends Controller
                 ],
                 'detail_data' => $this->getTableCommentMap('tmpls'),
             ];
-            return view('tmpl.create', $view_data);
+            return view('tmpls.create', $view_data);
         } catch (Exception $exception) {
         }
     }
@@ -186,7 +186,7 @@ class TmplController extends Controller
             if ($request->is('api/*') || true == $request->input('api') || $is_edit) {
                 return $view_data;
             }
-            return view('tmpl.show', $view_data);
+            return view('tmpls.show', $view_data);
         } catch (Exception $exception) {
             return $this->catchException($exception);
         }
@@ -225,7 +225,7 @@ class TmplController extends Controller
                 return $this->successReturn($res_db);
             }
             $view_data = $this->show($request, $id, true);
-            return view('tmpl.show', $view_data);
+            return view('tmpls.show', $view_data);
         } catch (Exception $exception) {
             DB::rollBack();
             return $this->catchException($exception, 'api');
@@ -282,7 +282,7 @@ class TmplController extends Controller
     public function edit(Request $request, $id)
     {
         $view_data = $this->show($request, $id, true);
-        return view('tmpl.edit', $view_data);
+        return view('tmpls.edit', $view_data);
     }
 
     /**

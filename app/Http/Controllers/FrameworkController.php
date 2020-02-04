@@ -57,7 +57,7 @@ class FrameworkController extends Controller
     public function __construct($framework_name)
     {
         parent::__construct();
-        $this->framework_name = ucfirst($framework_name);
+        $this->framework_name = ucfirst(Str::singular($framework_name));
         //        $this->framework_name_plural = Str::plural($this->framework_name);
         $this->framework_name_snake = Str::snake($this->framework_name);
         $this->framework_name_snake_plural = Str::plural($this->framework_name_snake);
@@ -145,7 +145,6 @@ class FrameworkController extends Controller
         if ('Controller' === $framework_file_type) {
             $new_directory = base_path("resources/views/{$this->framework_name_snake_plural}");
             exec("rm -rf {$new_directory}");
-            echo "rm -rf {$new_directory}";
             $route_types = ['web', 'api'];
             foreach ($route_types as $route_type) {
                 $this->deleteRoute($route_type);

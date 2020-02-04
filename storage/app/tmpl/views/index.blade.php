@@ -1,17 +1,17 @@
-@extends('tmpl._layout')
+@extends('tmpls._layout')
 
 @section('content')
     <div class="search">
-        @include('tmpl._search')
+        @include('tmpls._search')
     </div>
     <div class="stripe">
-        @include('tmpl._stripe')
+        @include('tmpls._stripe')
     </div>
     <div class="table">
-        @include('tmpl._list')
+        @include('tmpls._list')
     </div>
     <div class="page">
-        @include('tmpl._page')
+        @include('tmpls._page')
     </div>
 @endsection
 
