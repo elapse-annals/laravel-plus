@@ -40,7 +40,19 @@ function handle()
     echo "\033[34m Update \033[31m{$product}\e[0m \e[34m project loading ... \e[0m" . PHP_EOL;
     global $update_files;
     replaceFile($update_files, $product);
+    copyFramework($product);
     echo "\033[32mUpdate \033[31m{$product}\e[0m \e[32mproject success" . PHP_EOL;
+}
+
+function copyFramework($product)
+{
+    global $laravel_plus_basename;
+    $copy_exec = "cp {$laravel_plus_basename}/app/Console/Commands/Framework.php {$product}/app/Console/Commands/Framework.php" . PHP_EOL;
+    echo $copy_exec;
+    exec($copy_exec);
+    $copy_exec = "cp {$laravel_plus_basename}/app/Http/Controllers/FrameworkController.php {$product}/app/Http/Controllers/FrameworkController.php" . PHP_EOL;
+    echo $copy_exec;
+    exec($copy_exec);
 }
 
 /**
