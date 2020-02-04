@@ -49,3 +49,19 @@ Route::resource('tmpls', 'TmplController');
 
 
 
+
+
+
+
+Route::resource('passwordresets', 'PasswordResetController');
+
+
+
+
+
+
+
+
+
+
+

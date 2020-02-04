@@ -95,11 +95,6 @@ class Controller extends BaseController
      */
     protected function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
     {
-
-        if (! is_file(app_path('Models') .'/'. Str::singular($table_name) . '.php')) {
-            echo app_path('Models') .'/'. Str::singular($table_name) . '.php'.PHP_EOL;
-            return [];
-        }
         $table_maps = Cache::remember(
             'map_' . $table_name,
             1,

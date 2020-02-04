@@ -24,3 +24,19 @@ Route::apiResource('tmpls', 'TmplController');
 
 
 
+
+
+
+
+Route::apiResource('passwordresets', 'PasswordResetController');
+
+
+
+
+
+
+
+
+
+
+

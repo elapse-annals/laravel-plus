@@ -31,11 +31,11 @@ class FrameworkController extends Controller
     /**
      * @var string
      */
-    private $framework_name_low;
+    private $framework_name_snake;
     /**
      * @var string
      */
-    private $framework_name_low_plural;
+    private $framework_name_snake_plural;
     /**
      * @var
      */
@@ -59,8 +59,8 @@ class FrameworkController extends Controller
         parent::__construct();
         $this->framework_name = ucfirst($framework_name);
         //        $this->framework_name_plural = Str::plural($this->framework_name);
-        $this->framework_name_low = strtolower($this->framework_name);
-        $this->framework_name_low_plural = Str::plural($this->framework_name_low);
+        $this->framework_name_snake = Str::snake($this->framework_name);
+        $this->framework_name_snake_plural = Str::plural($this->framework_name_snake);
     }
 
     /**
@@ -143,8 +143,9 @@ class FrameworkController extends Controller
             unlink($file);
         }
         if ('Controller' === $framework_file_type) {
-            $new_directory = base_path("resources/views/{$this->framework_name}");
+            $new_directory = base_path("resources/views/{$this->framework_name_snake_plural}");
             exec("rm -rf {$new_directory}");
+            echo "rm -rf {$new_directory}";
             $route_types = ['web', 'api'];
             foreach ($route_types as $route_type) {
                 $this->deleteRoute($route_type);
@@ -167,7 +168,7 @@ class FrameworkController extends Controller
                 $resource_type = 'resource';
         }
         $route_web_path = base_path("routes/{$route_type}.php");
-        $route_string = "Route::{$resource_type}('{$this->framework_name_low_plural}'," .
+        $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
             " '{$this->framework_name}Controller');";
         $file_get_contents = file_get_contents($route_web_path);
         $file_get_contents = str_replace($route_string, '', $file_get_contents);
@@ -195,8 +196,8 @@ class FrameworkController extends Controller
             [
                 $this->framework_name_plural,
                 $this->framework_name,
-                $this->framework_name_low_plural,
-                $this->framework_name_low,
+                $this->framework_name_snake_plural,
+                $this->framework_name_snake,
             ],
             $body
         );
@@ -206,7 +207,7 @@ class FrameworkController extends Controller
         }
         if ('Controller' === $framework_file_type) {
             $tmpl_resources_directory = storage_path('app/tmpl/views');
-            $resources_directory = base_path("resources/views/{$this->framework_name_low}");
+            $resources_directory = base_path("resources/views/{$this->framework_name_snake_plural}");
             exec("cp -r {$tmpl_resources_directory} {$resources_directory}");
             $route_types = ['web', 'api'];
             foreach ($route_types as $route_type) {
@@ -218,10 +219,13 @@ class FrameworkController extends Controller
             foreach ($framework_view_files as $framework_view_file) {
                 if (! in_array($framework_view_file, ['.', '..'])) {
                     $route_web_path = $resources_directory . '/' . $framework_view_file;
+                    if (is_dir($route_web_path)) {
+                        continue;
+                    }
                     $file_get_contents = file_get_contents($route_web_path);
                     $file_get_contents = str_replace(
                         ['tmpls', 'tmpl'],
-                        [$this->framework_name_low_plural, $this->framework_name_low],
+                        [$this->framework_name_snake_plural, $this->framework_name_snake],
                         $file_get_contents
                     );
                     $file_get_contents = $this->generateStaticView($framework_view_file, $file_get_contents);
@@ -276,7 +280,11 @@ class FrameworkController extends Controller
      */
     private function getModelMap(): array
     {
-        $list_map = $this->getTableCommentMap($this->framework_name_plural);
+        if (! is_file(app_path('Models') . '/' . $this->framework_name . '.php')) {
+            echo app_path('Models') . '/' . $this->framework_name . '.php' . PHP_EOL;
+            return [];
+        }
+        $list_map = $this->getTableCommentMap($this->framework_name_snake_plural);
         return $list_map;
     }
 
@@ -294,7 +302,7 @@ class FrameworkController extends Controller
                 $resource_type = 'resource';
         }
         $route_web_path = base_path("routes/{$route_type}.php");
-        $route_string = "Route::{$resource_type}('{$this->framework_name_low_plural}'," .
+        $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
             " '{$this->framework_name}Controller');";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
