@@ -280,7 +280,7 @@ class FrameworkController extends Controller
     private function getModelMap(): array
     {
         if (! is_file(app_path('Models') . '/' . $this->framework_name . '.php')) {
-            echo app_path('Models') . '/' . $this->framework_name . '.php' . PHP_EOL;
+            echo 'Model ' . app_path('Models') . '/' . $this->framework_name . '.php not exist' . PHP_EOL;
             return [];
         }
         $list_map = $this->getTableCommentMap($this->framework_name_snake_plural);
