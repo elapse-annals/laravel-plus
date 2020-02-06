@@ -145,7 +145,6 @@ class FrameworkController extends Controller
         if ('Controller' === $framework_file_type) {
             $new_directory = base_path("resources/views/{$this->framework_name_snake_plural}");
             exec("rm -rf {$new_directory}");
-            echo "rm -rf {$new_directory}";
             $route_types = ['web', 'api'];
             foreach ($route_types as $route_type) {
                 $this->deleteRoute($route_type);
