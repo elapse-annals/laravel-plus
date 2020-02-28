@@ -1,3 +1,7 @@
+Rename [laravel-plus](https://github.com/ElapseAnnals/laravel-plus) 
+
+---
+
 [English](./README-EN.md) | 中文
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">Plus</b> </p>
