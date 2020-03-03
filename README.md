@@ -387,4 +387,6 @@ package todo update list
 
 "overtrue/laravel-query-logger"
 
+"overtrue/laravel-lang"
+
 [Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)

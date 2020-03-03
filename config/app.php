@@ -158,7 +158,7 @@ return [
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
-//        Illuminate\Translation\TranslationServiceProvider::class,
+        //        Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
@@ -176,14 +176,14 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // add other pack
-        Overtrue\LaravelLang\TranslationServiceProvider::class,
+        //        Overtrue\LaravelLang\TranslationServiceProvider::class,
 
         // Elastic Search
-//        Laravel\Scout\ScoutServiceProvider::class,
-//        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        //        Laravel\Scout\ScoutServiceProvider::class,
+        //        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
         // RabbitMQ
-//        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
+        //        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
     ],
 
     /*
