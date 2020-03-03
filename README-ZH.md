@@ -1,6 +1,6 @@
-English | [中文](README-ZH.md)
+[English](README.md) | 中文
 
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">plus</b> </p>
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">Plus</b> </p>
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D6.2-red.svg)
@@ -12,7 +12,7 @@ English | [中文](README-ZH.md)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
 ## 介绍
-[LaravelPlus](https://github.com/ElapseAnnals/Laravel-plus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
+[LaravelPlus](https://github.com/ElapseAnnals/LaravelPlus) 基于 [Laravel](https://github.com/laravel/laravel) 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
 
 拓展功能
 - 自动 Laravel 与 Vue/Element UI 基于基础模型的代码生成器。
@@ -35,7 +35,7 @@ English | [中文](README-ZH.md)
 
 | PHP     | Laravel |
 |:-------:|:-------:|
-| >=7.2.5 | >=7.0    |
+| >=7.2 | >=6.0    |
 
 ## 文档
 
