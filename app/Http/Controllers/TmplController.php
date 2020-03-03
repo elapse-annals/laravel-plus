@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
 use App\Exports\TmplExport;
 use App\Formatters\TmplFormatter;
 use App\Transformers\TmplTransformer;

@@ -5,8 +5,8 @@
                 <el-date-picker
                         v-model="search.{{$table_datum['prop']}}"
                         type="datetimerange"
-                        start-placeholder="{{$table_datum['label']}} @lang('form.start_date')"
-                        end-placeholder="{{$table_datum['label']}} @lang('form.end_date')"
+                        start-placeholder="{{$table_datum['label']}} lang('form.start_date')"
+                        end-placeholder="{{$table_datum['label']}} lang('form.end_date')"
                         value-format="yyyy-MM-dd HH:mm"
                         format="yyyy-MM-dd HH:mm"
                         :default-time="['00:00:00', '23:59:59']">
