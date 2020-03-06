@@ -112,7 +112,7 @@ cnpkg
  $ composer config -g repos.packagist composer https://php.cnpkg.org
  ```
 
-3. Composer  加速工具 prestissimo 引入
+3. Composer  加速工具 prestissimo 引入(There may be loading issues when using mirroring)
 ```php
 $ composer global require hirak/prestissimo
 ```
@@ -348,6 +348,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
        - [guzzlehttp/guzzle]() Http 请求包
              
        - [ClassPreloader/ClassPreloader]() vendor preload 生成器       
+       -[beyondcode/laravel-self-diagnosis]() laravel project diagnosisl
              
                      
 -  增加前端资源
@@ -382,7 +383,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 package todo update list
 
 
-"beyondcode/laravel-self-diagnosis"
+
 
 
 [Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)
