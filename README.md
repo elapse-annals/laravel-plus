@@ -381,12 +381,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 ## 待办列表
 package todo update list
 
-"beyondcode/laravel-dump-server"
 
 "beyondcode/laravel-self-diagnosis"
 
-"overtrue/laravel-query-logger"
-
-"overtrue/laravel-lang"
 
 [Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)

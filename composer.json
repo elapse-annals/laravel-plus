@@ -19,15 +19,18 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "~2.0",
         "maatwebsite/excel": "^3.1.17",
+        "overtrue/laravel-lang": "^3.0.18",
         "reliese/laravel": "^0.0.14"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "beyondcode/laravel-dump-server": "^1.4",
         "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
+        "overtrue/laravel-query-logger": "^1.0.8",
         "phpunit/phpunit": "^8.5",
         "roave/security-advisories": "dev-master"
     },
