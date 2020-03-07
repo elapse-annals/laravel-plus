@@ -295,7 +295,7 @@ class FrameworkController extends Controller
                 $resource_type = 'resource';
         }
         $route_web_path = base_path("routes/{$route_type}.php");
-        $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
+        $route_string = "Route::{$resource_type}('{$this->framework_name_plural}'," .
             " '{$this->framework_name}Controller');";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
