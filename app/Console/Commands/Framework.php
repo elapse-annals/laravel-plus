@@ -60,8 +60,7 @@ class Framework extends Command
             }
             $FrameworkController = new FrameworkController($framework_name);
             if ($this->is_remove) {
-                $FrameworkController = new FrameworkController($framework_name);
-                $FrameworkController->removesSaffolding();
+                $FrameworkController->removesScaffold();
                 die();
             }
             $framework_file_types = $this->framework_file_types;

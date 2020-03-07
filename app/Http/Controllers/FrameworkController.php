@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\FrameworkException;
 use App\Presenters\ViewPresenter;
-use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use ReflectionException as ReflectionExceptionAlias;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 /**
@@ -71,7 +69,6 @@ class FrameworkController extends Controller
      *
      * @throws FileNotFoundException
      * @throws FrameworkException
-     * @throws ReflectionExceptionAlias
      */
     public function handle($framework_file_type, $is_delete, $is_force = false): void
     {
@@ -179,7 +176,6 @@ class FrameworkController extends Controller
      * @param $framework_file_type
      *
      * @throws FileNotFoundException
-     * @throws ReflectionExceptionAlias
      */
     private function create($framework_file_type): void
     {
@@ -239,7 +235,7 @@ class FrameworkController extends Controller
     /**
      * @param $framework_file_type
      */
-    private function createTest($framework_file_type)
+    private function createTest($framework_file_type): void
     {
         if ('Test' === $framework_file_type) {
             exec("php artisan make:test {$this->framework_name}Test");
@@ -254,7 +250,6 @@ class FrameworkController extends Controller
      * @param $data
      *
      * @return string|string[]
-     * @throws ReflectionExceptionAlias
      */
     private function generateStaticView($file_name, $data)
     {
@@ -276,7 +271,6 @@ class FrameworkController extends Controller
 
     /**
      * @return array
-     * @throws ReflectionExceptionAlias
      */
     private function getModelMap(): array
     {
@@ -284,8 +278,7 @@ class FrameworkController extends Controller
             echo 'Model ' . app_path('Models') . '/' . $this->framework_name . '.php not exist' . PHP_EOL;
             return [];
         }
-        $list_map = $this->getTableCommentMap($this->framework_name_snake_plural);
-        return $list_map;
+        return $this->getTableCommentMap($this->framework_name_snake_plural);
     }
 
     /**
@@ -307,12 +300,15 @@ class FrameworkController extends Controller
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
 
-    public function removesSaffolding()
+    /**
+     *
+     */
+    public function removesScaffold(): void
     {
         $files = [
-            base_path("self-update"),
-            base_path("update"),
-            base_path("create"),
+            base_path('self-update'),
+            base_path('update'),
+            base_path('create'),
         ];
         foreach ($files as $file) {
             exec("rm -rf {$file}");
