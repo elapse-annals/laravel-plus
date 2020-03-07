@@ -26,7 +26,7 @@ class TmplRepository extends Repository
     public function getList(array $data = [])
     {
         $Tmpl = new Tmpl();
-        if (!empty($data)) {
+        if (! empty($data)) {
             $Tmpl = $this->assemblyWhere($Tmpl, $data);
         }
         return $Tmpl->orderBy('id')->Paginate($this->per_page);
@@ -66,13 +66,15 @@ class TmplRepository extends Repository
 
     /**
      * @param array $save
+     * @param       $id
      *
-     * @return Tmpl|\Illuminate\Database\Eloquent\Model
+     * @return mixed
      */
     public function update(array $save, $id)
     {
-        $attributes['updated_at'] = $save['updated_at'];
-        return Tmpl::find($id)->update($attributes, $save);
+        return Tmpl::where('id', $id)
+            ->where('updated_at', $save['updated_at'])
+            ->update($save);
     }
 
     /**
