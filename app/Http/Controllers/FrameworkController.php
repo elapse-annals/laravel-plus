@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\FrameworkException;
 use App\Presenters\ViewPresenter;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ReflectionException as ReflectionExceptionAlias;
@@ -304,5 +305,17 @@ class FrameworkController extends Controller
         $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
             " '{$this->framework_name}Controller');";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
+    }
+
+    public function removesSaffolding()
+    {
+        $files = [
+            base_path("self-update"),
+            base_path("update"),
+            base_path("create"),
+        ];
+        foreach ($files as $file) {
+            exec("rm -rf {$file}");
+        }
     }
 }

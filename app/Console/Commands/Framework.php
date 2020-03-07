@@ -22,6 +22,7 @@ class Framework extends Command
                             {--delete : delete framework}
                             {--D : delete framework}
                             {--F : force cover framework}
+                            {--M : Remove scaffolding}
                             ';
 
     /**
@@ -39,6 +40,8 @@ class Framework extends Command
         'TestUnit',
     ];
 
+    private $is_remove = false;
+
     /**
      * @var string
      */
@@ -55,9 +58,14 @@ class Framework extends Command
             if ($is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
                 throw new FrameworkException('Continue Delete');
             }
+            $FrameworkController = new FrameworkController($framework_name);
+            if ($this->is_remove) {
+                $FrameworkController = new FrameworkController($framework_name);
+                $FrameworkController->removesSaffolding();
+                die();
+            }
             $framework_file_types = $this->framework_file_types;
             $bar = $this->output->createProgressBar(count($framework_file_types));
-            $FrameworkController = new FrameworkController($framework_name);
             foreach ($framework_file_types as $framework_file_type) {
                 $FrameworkController->handle($framework_file_type, $is_delete, $is_force);
                 $bar->advance();
@@ -86,6 +94,7 @@ class Framework extends Command
         $is_delete = $this->option('delete');
         $is_delete or $is_delete = $this->option('D');
         $is_force = $this->option('F');
+        $this->is_remove = $this->option('M');
         return [$is_delete, $is_force];
     }
 }
