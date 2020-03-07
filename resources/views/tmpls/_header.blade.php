@@ -1,1 +1,3 @@
-@includeFirst(['tmpls._head', 'frameworks._head'])
+<div>
+    header
+</div>
