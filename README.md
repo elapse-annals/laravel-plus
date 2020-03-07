@@ -349,6 +349,7 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
              
        - [ClassPreloader/ClassPreloader]() vendor preload 生成器       
        -[beyondcode/laravel-self-diagnosis]() laravel project diagnosisl
+        -[beyondcode/laravel-dump-server](https://github.com/beyondcode/laravel-dump-server) that collects all your dump call outputs
              
                      
 -  增加前端资源
