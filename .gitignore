@@ -17,6 +17,7 @@ _ide_helper_models.php
 node_modules/
 npm-debug.log
 yarn-error.log
+dist/
 
 # Laravel  & Lumen specific
 public/storage
