@@ -28,4 +28,9 @@ class ClosureController extends Controller
     {
         return $request->user();
     }
+
+    public function hello(): string
+    {
+        return 'hello world';
+    }
 }
