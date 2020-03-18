@@ -99,8 +99,13 @@ class Controller extends BaseController
             'map_' . $table_name,
             1,
             static function () use ($table_name, $connection_name) {
-                if (empty($table_name)) {
+                if (! empty($table_name)) {
                     $table_name = Str::plural(Str::snake($table_name));
+                } else {
+                    return [
+                        'prop'  => null,
+                        'label' => null,
+                    ];
                 }
                 $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
                 $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
