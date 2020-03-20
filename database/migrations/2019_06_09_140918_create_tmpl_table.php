@@ -19,9 +19,13 @@ class CreateTmplTable extends Migration
             $table->tinyInteger('sex')->comment('性别');
             $table->timestamp('created_at')->useCurrent();
             $table->string('created_by', 80);
-            $table->timestamp('updated_at')->default(
-                DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-            );
+            if ('mysql' == env('DB_DATABASE')) {
+                $table->timestamp('updated_at')->default(
+                    DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+                );
+            }else{
+                $table->timestamp('updated_at');
+            }
             $table->string('updated_by', 80);
             $table->timestamp('deleted_at')->nullable();
             $table->string('deleted_by', 80)->nullable();
