@@ -95,19 +95,19 @@ class Controller extends BaseController
      */
     protected function getTableCommentMap($table_name = null, $connection_name = 'mysql'): array
     {
+        if (! empty($table_name)) {
+            $table_name = Str::plural(Str::snake($table_name));
+        } else {
+            return [
+                'prop'  => null,
+                'label' => null,
+            ];
+        }
+        $table_column_dbs = $this->getTableColumnDbs($connection_name, $table_name);
         $table_maps = Cache::remember(
             'map_' . $table_name,
             1,
-            static function () use ($table_name, $connection_name) {
-                if (! empty($table_name)) {
-                    $table_name = Str::plural(Str::snake($table_name));
-                } else {
-                    return [
-                        'prop'  => null,
-                        'label' => null,
-                    ];
-                }
-                $table_column_dbs = DB::connection($connection_name)->select("show full columns from {$table_name}");
+            static function () use ($table_column_dbs) {
                 $table_columns = array_column($table_column_dbs, 'Comment', 'Field');
                 $filter_words = [
                     'deleted_by',
@@ -129,6 +129,21 @@ class Controller extends BaseController
             }
         );
         return unserialize($table_maps, ['allowed_classes' => false]);
+    }
+
+    private function getTableColumnDbs($connection_name, $table_name)
+    {
+        switch (env('DB_DATABASE')) {
+            case 'mysql':
+                return DB::connection($connection_name)->select("show full columns from {$table_name}");
+                break;
+            case 'pgsql':
+                $schema = config("database.connections.{$connection_name}.schema");
+                return DB::connection($connection_name)->select("SELECT *  FROM information_schema.columns  WHERE table_schema = '{$schema}'   AND table_name   = '{$table_name}'");
+                break;
+            default:
+                return [];
+        }
     }
 
     /**

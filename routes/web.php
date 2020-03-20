@@ -38,7 +38,7 @@ Route::prefix('export')->group(function () {
  */
 //Route::resource('languages', 'LanguageController');
 
-//Route::resource('tmpls', 'TmplController');
+Route::resource('tmpls', 'TmplController');
 
 Route::get('hello', 'ClosureController@hello');
 
