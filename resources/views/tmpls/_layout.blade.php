@@ -11,7 +11,7 @@
     <div id="main" class="row">
         @yield('content')
     </div>
-    <footer class="row">
+    <footer class="footer row">
         @includeFirst(['tmpls._footer', 'frameworks._footer'])
     </footer>
 </div>
