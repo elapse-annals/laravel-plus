@@ -393,3 +393,8 @@ package todo update list
 
 
 [Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/ElapseAnnals/laravel-plus.svg)](https://starchart.cc/ElapseAnnals/laravel-plus)
