@@ -313,7 +313,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
             ```php artisan ide-helper:generate``` 
       - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
       - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.* ，请手动安装 composer require nunomaduro/phpinsights --dev）
-     
+     - [php-ext-xlswriter](https://github.com/viest/php-ext-xlswriter) excel 处理扩展，性能强劲（30万行 4 s）
+     - [PHP_XLSXWriter](https://github.com/mk-j/PHP_XLSXWriter) 简单强力的 excel 扩展
       
   
   - 推荐软件包列表
