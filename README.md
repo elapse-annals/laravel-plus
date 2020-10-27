@@ -298,6 +298,8 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
     - production  生产环境
       
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
+        
+        - [laravel-lang/lang](laravel-lang/lang) 
        
         - [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) 增加 excel 组件
     
