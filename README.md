@@ -234,7 +234,7 @@ phpunit
 
 
 
-dusk 浏览器测试
+dusk 浏览器测试 (默认不安装)
 ```php
 composer require laravel/dusk --dev
 php artisan dusk:install  // 需要翻墙
