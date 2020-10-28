@@ -5,9 +5,6 @@ English | [中文](README-ZH.md)
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D6.2-red.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/Laravel-Plus.svg)](https://travis-ci.org/ElapseAnnals/Laravel-Plus)
-<img class="latest_stable_version_img" title="latest stable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
-<img class="total_img" title="total" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
-<img class="latest_unstable_version_img" title="latest unstable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/unstable">
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
