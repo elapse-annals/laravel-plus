@@ -109,7 +109,7 @@ cnpkg
  $ composer config -g repos.packagist composer https://php.cnpkg.org
  ```
 
-3. Composer  加速工具 prestissimo 引入(There may be loading issues when using mirroring)
+3. Composer 加速工具 prestissimo 引入(There may be loading issues when using mirroring)(使用 composer2 可以不用引入)
 ```php
 $ composer global require hirak/prestissimo
 ```
