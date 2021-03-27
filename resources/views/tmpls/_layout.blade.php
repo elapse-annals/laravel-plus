@@ -9,7 +9,14 @@
         @includeFirst(['tmpls._header', 'frameworks._header'])
     </header>
     <div id="main" class="row">
-        @yield('content')
+        <el-container style="min-height: 500px; border: 1px solid #eee">
+            @includeFirst(['tmpls._aside', 'frameworks._aside'])
+            <el-container>
+                <el-main>
+                    @yield('content')
+                </el-main>
+            </el-container>
+        </el-container>
     </div>
     <footer class="footer row">
         @includeFirst(['tmpls._footer', 'frameworks._footer'])

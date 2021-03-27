@@ -51,6 +51,9 @@
                             message: response.data.msg,
                             type: message_type
                         });
+                        if (200 == response.data.code) {
+                            window.location.href("/tmpls/" + response.data.data.id);
+                        }
                     }).catch(error => console.log(error));
                 },
                 onCancel() {

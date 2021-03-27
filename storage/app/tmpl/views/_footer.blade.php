@@ -1,1 +1,1 @@
-@includeFirst(['tmpls._foot', 'frameworks._foot'])
+<div class="copyright text-right">© Copyright 2020 Laravel Plus</div>
