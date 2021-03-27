@@ -2,7 +2,7 @@
 # Author: ben<benhuang1024@gmail.com>
 
 # other
-vendor/
+/vendor/
 .vagrant
 
 # IDE
