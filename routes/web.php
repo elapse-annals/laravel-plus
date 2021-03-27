@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Export routing registration
+ */
+Route::prefix('export')->group(function () {
+    Route::get('tmpls', 'TmplController@export');
+});
+
+Route::resource('tmpls', 'TmplController');
