@@ -21,7 +21,7 @@ Route::get('/', function () {
  * Export routing registration
  */
 Route::prefix('export')->group(function () {
-    Route::get('tmpls', 'TmplController@export');
+    Route::get('tmpls', [App\Http\Controllers\TmplController::class, 'export']);
 });
 
-Route::resource('tmpls', 'TmplController');
+Route::resource('tmpls', App\Http\Controllers\TmplController::class);
