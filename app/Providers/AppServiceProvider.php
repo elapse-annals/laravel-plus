@@ -15,11 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment() !== 'production') {
+        if ('local' === $this->app->environment()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
             $this->app->register(\Reliese\Coders\CodersServiceProvider::class);
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-            //            $this->app->register(Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
         }
     }
 

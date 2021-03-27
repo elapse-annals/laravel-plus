@@ -4,10 +4,7 @@ English | [中文](README-ZH.md)
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D6.2-red.svg)
-[![Build Status](https://api.travis-ci.org/ElapseAnnals/LaravelPlus.svg)](https://travis-ci.org/ElapseAnnals/LaravelPlus)
-<img class="latest_stable_version_img" title="latest stable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
-<img class="total_img" title="total" src="https://poser.pugx.org/elapse-annals/laravel-plus/downloads">
-<img class="latest_unstable_version_img" title="latest unstable version" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/unstable">
+[![Build Status](https://api.travis-ci.org/ElapseAnnals/Laravel-Plus.svg)](https://travis-ci.org/ElapseAnnals/Laravel-Plus)
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
@@ -112,7 +109,7 @@ cnpkg
  $ composer config -g repos.packagist composer https://php.cnpkg.org
  ```
 
-3. Composer  加速工具 prestissimo 引入(There may be loading issues when using mirroring)
+3. Composer 加速工具 prestissimo 引入(There may be loading issues when using mirroring)(使用 composer2 可以不用引入)
 ```php
 $ composer global require hirak/prestissimo
 ```
@@ -230,11 +227,10 @@ $this->business_name
 (new \App\Http\Controllers\{$this->business_name}ProcessAction()->run();
 ``` 
 ## 测试驱动开发（TDD）
+
 phpunit
 
-
-
-dusk 浏览器测试
+dusk 浏览器测试 (默认不安装)
 ```php
 composer require laravel/dusk --dev
 php artisan dusk:install  // 需要翻墙
@@ -296,9 +292,11 @@ api token 维护使用 auth:api 中间件或 [barryvdh/laravel-cors](https://git
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
 - 增加默认加载软件包
     - production  生产环境
-      
+
         - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
-       
+
+        - [laravel-lang/lang](laravel-lang/lang)
+
         - [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) 增加 excel 组件
     
     - develop     开发环境

@@ -3,7 +3,6 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - php: 7.2
     - php: 7.3
     - php: 7.4
 
@@ -21,7 +20,6 @@ service:
 
 before_script:
   - cp .env.travis .env
-  - composer global require hirak/prestissimo
   - composer install
   - composer dump-autoload
   - php artisan key:generate
