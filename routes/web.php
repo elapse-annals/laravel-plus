@@ -24,7 +24,7 @@ Route::prefix('export')->group(function () {
     Route::get('tmpls', [App\Http\Controllers\TmplController::class, 'export']);
 });
 
-Route::resource('tmpls', App\Http\Controllers\TmplController::class);
+Route::middleware(['auth:sanctum'])->resource('tmpls', App\Http\Controllers\TmplController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

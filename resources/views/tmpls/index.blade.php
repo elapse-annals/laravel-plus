@@ -18,6 +18,9 @@
 @section('script')
     <script>
         var js_data = JSON.parse('@json($js_data)');
+        setTimeout(function () {
+            document.getElementById('aside').style.display = "block"
+        }, 100);
         var mixinSlot = {
             data: {
                 'fullscreen_loading': false,
