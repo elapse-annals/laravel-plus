@@ -20,6 +20,7 @@ mix.webpackConfig({
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/jet-stream.js', 'public/js')
+    .js('resources/js/plus.js', 'public/js')
     .postCss('resources/css/jet-stream.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),

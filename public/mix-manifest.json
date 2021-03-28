@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/jet-stream.js": "/js/jet-stream.js",
+    "/js/plus.js": "/js/plus.js",
     "/css/app.css": "/css/app.css",
     "/css/jet-stream.css": "/css/jet-stream.css"
 }

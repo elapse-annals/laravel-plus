@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @includeFirst(['tmpls._head', 'frameworks._head'])
@@ -24,6 +24,7 @@
 </div>
 @section('script')
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plus.js')}}"></script>
 @show
 </body>
 </html>
