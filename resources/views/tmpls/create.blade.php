@@ -19,7 +19,7 @@
 
 @section('script')
     <script>
-        var mixin = {
+        var mixinSlot = {
             data: {
                 'detail_data': {},
                 'disabled_array': ['id'],

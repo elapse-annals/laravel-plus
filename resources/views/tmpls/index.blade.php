@@ -18,7 +18,7 @@
 @section('script')
     <script>
         var js_data = JSON.parse('@json($js_data)');
-        var mixin = {
+        var mixinSlot = {
             data: {
                 'fullscreen_loading': false,
                 'list_data': js_data.data,

@@ -10,9 +10,18 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.2.1",
+        "@tailwindcss/typography": "^0.3.0",
+        "alpinejs": "^2.7.3",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.1.14",
+        "postcss-import": "^12.0.1",
+        "tailwindcss": "^2.0.1"
+    },
+    "dependencies": {
+        "element-ui": "^2.15.1",
+        "vue": "^2.6.12"
     }
 }

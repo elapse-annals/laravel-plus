@@ -276,7 +276,7 @@ npm run watch   // 监视编译（开发时启用）
 ```html
 <script>
     var js_data = @json($js_data);
-    var mixin = {
+    var mixinSlot = {
         data: {
         },
         methods: {
