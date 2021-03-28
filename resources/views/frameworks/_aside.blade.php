@@ -1,4 +1,4 @@
-<el-aside width="150px" id="aside" style="background-color: rgb(238, 241, 246);display: none">
+<el-aside width="150px" id="aside" style="background-color: rgb(238, 241, 246);">
     <el-menu :default-openeds="['1']">
         <el-submenu index="1">
             <template slot="title"><i class="el-icon-message"></i>tmpl</template>
