@@ -48,7 +48,11 @@ EOF;
     public function detail(array $list_map = [], string $view_html = ''): string
     {
         foreach ($list_map as $table_datum) {
-            $view_html .= $this->getDetailCol($table_datum);
+            if ('id' == $table_datum) {
+                $view_html .= $this->getDetailColDisabled($table_datum);
+            } else {
+                $view_html .= $this->getDetailCol($table_datum);
+            }
         }
         return $view_html;
     }
@@ -66,6 +70,26 @@ EOF;
                       :class="{aggravation:detail_data.{$detail_datum['prop']}}"
                       v-model="detail_data.{$detail_datum['prop']}"
                       :disabled="is_disabled_edit"
+                      placeholder="{$detail_datum['label']}"></el-input>
+        </el-col>
+    </el-row>
+<el-form-item>
+EOF;
+    }
+
+    private function getDetailColDisabled($detail_datum)
+    {
+        return <<<EOF
+<el-form-item>
+    <el-row>
+        <el-col :span="4">
+            <label for="{$detail_datum['prop']}">{$detail_datum['label']}</label>
+        </el-col>
+        <el-col :span="16">
+            <el-input id="{$detail_datum['prop']}"
+                      :class="{aggravation:detail_data.{$detail_datum['prop']}}"
+                      v-model="detail_data.{$detail_datum['prop']}"
+                      :disabled="false"
                       placeholder="{$detail_datum['label']}"></el-input>
         </el-col>
     </el-row>
