@@ -10,6 +10,13 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    }
+})
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/jet-stream.js', 'public/js')

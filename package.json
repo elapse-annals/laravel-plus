@@ -21,7 +21,7 @@
         "tailwindcss": "^2.0.1"
     },
     "dependencies": {
-        "element-ui": "^2.15.1",
+        "element-ui": "^2.13.1",
         "vue": "^2.6.12"
     }
 }
