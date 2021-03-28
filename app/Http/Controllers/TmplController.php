@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
 use App\Exports\TmplExport;
 use App\Formatters\TmplFormatter;
 use App\Transformers\TmplTransformer;
@@ -11,6 +10,7 @@ use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 /**
@@ -54,22 +54,25 @@ class TmplController extends Controller
     }
 
     /**
+     *
+     * @name get list view
+     *
      * @param Request $request
      *
-     * @return array|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
         try {
             $data = $request->input();
-            if (true == $request->input('api')) {
+            if (true === $request->input('api')) {
                 $data = array_map(function ($datum) {
-                    return json_decode($datum, true);
+                    return json_decode($datum, true, 512, JSON_THROW_ON_ERROR);
                 }, $data);
             }
             $this->validationIndexRequest($data);
             $tmpls = $this->service->getList($data);
-            if ($request->is('api/*') || true == $request->input('api')) {
+            if ($request->is('api/*') || true === $request->input('api')) {
                 return $this->successReturn($tmpls, $this->formatter->assemblyPage($tmpls));
             }
             $table_comment_map = $this->getTableCommentMap('tmpls');
@@ -109,9 +112,12 @@ class TmplController extends Controller
     }
 
     /**
+     *
+     * @name post
+     *
      * @param Request $request
      *
-     * @return array|int
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -129,21 +135,26 @@ class TmplController extends Controller
     }
 
     /**
-     * @param $data
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @param array $data
      */
-    private function validateStoreRequest($data)
+    private function validateStoreRequest(array $data)
     {
         $rules = [];
         $messages = [];
+        $rules = $this->dynamicVerification($rules);
         if (! empty($rules)) {
-            $this->validate($data, $rules, $messages);
+            $validator = Validator::make($data, $rules, $messages);
+            if ($validator->errors()) {
+                throw new Exception($validator->errors()->first(), 416);
+            }
         }
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @name get view
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -161,11 +172,14 @@ class TmplController extends Controller
     }
 
     /**
+     *
+     * @name get
+     *
      * @param Request $request
      * @param int     $id
-     * @param bool    $is_edit
+     * @param false   $is_edit
      *
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show(Request $request, int $id, $is_edit = false)
     {
@@ -206,10 +220,12 @@ class TmplController extends Controller
     }
 
     /**
+     * @name put
+     *
      * @param Request $request
      * @param         $id
      *
-     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -219,10 +235,8 @@ class TmplController extends Controller
             $this->validateUpdateRequest($data, $id);
             $res_db = $this->service->update($data, $id);
             DB::commit();
-            if ($request->is('api/*') ||
-                true == $request->input('api') ||
-                'json' === $request->getContentType()
-            ) {
+            if ($request->is('api/*') || true == $request->input('api')
+                || 'json' === $request->getContentType()) {
                 return $this->successReturn($res_db);
             }
             $view_data = $this->show($request, $id, true);
@@ -242,13 +256,24 @@ class TmplController extends Controller
     private function validateUpdateRequest($data, $id)
     {
         $this->validateRequestId($id);
+        $rules = [];
+        $messages = [];
+        $rules = $this->dynamicVerification($rules);
+        if (! empty($rules)) {
+            $validator = Validator::make($data, $rules, $messages);
+            if ($validator->errors()) {
+                throw new Exception($validator->errors()->first(), 416);
+            }
+        }
     }
 
     /**
+     *
+     * @name delete
+     *
      * @param int $id
      *
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
-     * @throws Exception
      */
     public function destroy(int $id)
     {
@@ -332,5 +357,21 @@ class TmplController extends Controller
             $res = DB::select("SELECT * FROM tmpls LIMIT {$i},1;");
         }
         return microtime(true) - $act_time;
+    }
+
+    /**
+     * @param array $rules
+     *
+     * @return array
+     */
+    private function dynamicVerification(array $rules): array
+    {
+        $nulls = $this->getTableNotNull('tmpls');
+        if (! empty($nulls)) {
+            foreach ($nulls as $null) {
+                $temp_rules[$null] = 'required';
+            }
+        }
+        return array_merge($rules, $temp_rules);
     }
 }

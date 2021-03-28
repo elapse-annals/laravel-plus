@@ -103,7 +103,7 @@ class Controller extends BaseController
                 'label' => null,
             ];
         }
-        $table_column_dbs = $this->getTableColumnDbs($connection_name, $table_name);
+        $table_column_dbs = $this->getTableColumnDbs($table_name, $connection_name);
         $table_maps = Cache::remember(
             'map_' . $table_name,
             1,
@@ -131,19 +131,26 @@ class Controller extends BaseController
         return unserialize($table_maps, ['allowed_classes' => false]);
     }
 
-    private function getTableColumnDbs($connection_name, $table_name)
+    /**
+     * @param string $table_name
+     * @param string $connection_name
+     *
+     * @return array
+     */
+    private function getTableColumnDbs(string $table_name, string $connection_name = 'mysql')
     {
-        switch (env('DB_DATABASE')) {
+        switch ($connection_name) {
             case 'mysql':
-                return DB::connection($connection_name)->select("show full columns from {$table_name}");
+                $res = DB::connection($connection_name)->select("show full columns from {$table_name}");
                 break;
             case 'pgsql':
                 $schema = config("database.connections.{$connection_name}.schema");
-                return DB::connection($connection_name)->select("SELECT *  FROM information_schema.columns  WHERE table_schema = '{$schema}'   AND table_name   = '{$table_name}'");
+                $res = DB::connection($connection_name)->select("SELECT *  FROM information_schema.columns  WHERE table_schema = '{$schema}'   AND table_name   = '{$table_name}'");
                 break;
             default:
-                return [];
+                $res = [];
         }
+        return $res;
     }
 
     /**
@@ -171,5 +178,24 @@ class Controller extends BaseController
             $table_comment_map[] = $child_map;
         }
         return $table_comment_map;
+    }
+
+    /**
+     * @param string $table_name
+     * @param string $connection_name
+     *
+     * @return array
+     */
+    protected function getTableNotNull(string $table_name, string $connection_name = 'mysql'): array
+    {
+        $table_column_dbs = $this->getTableColumnDbs($table_name, $connection_name);
+        $table_columns = array_column($table_column_dbs, 'Null', 'Field');
+        $nulls = [];
+        foreach ($table_columns as $key => $value) {
+            if ('NO' === $value && ! in_array($key, ['id', 'created_at', 'updated_at'])) {
+                array_push($nulls, $key);
+            }
+        }
+        return $nulls;
     }
 }
