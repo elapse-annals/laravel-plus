@@ -74,9 +74,6 @@ class FrameworkController extends Controller
     {
         $this->initFilePath($framework_file_type);
         $temp_framework_file_type = $framework_file_type;
-        if ('TestUnit' === $framework_file_type) {
-            $temp_framework_file_type = 'Test';
-        }
         $this->file = app_path("{$this->file_path}/{$this->framework_name}{$temp_framework_file_type}.php");
         if ($is_delete) {
             $this->delete($framework_file_type);
@@ -107,12 +104,6 @@ class FrameworkController extends Controller
             case 'Formatter':
             case 'Export':
                 $this->file_path = $framework_file_type . 's';
-                break;
-            case 'Test':
-                $this->file_path = '../tests/Feature';
-                break;
-            case 'TestUnit':
-                $this->file_path = '../tests/Unit';
                 break;
         }
     }
