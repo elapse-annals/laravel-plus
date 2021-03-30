@@ -94,7 +94,7 @@ $ cp .env.example .env
 
 ```php
 $ cd YourProject //  进入 YourProject 项目中
-$ composer install   // 安装依赖软件包 （请先已安装 composer ）
+$ composer update   // 安装依赖软件包 （请先已安装 composer ）
 $ php artisan key:generate    // 更新 key
 $ php artisan vendor:publish // 发布扩展包的资源
 $ php artisan migrate  // 迁移数据库
