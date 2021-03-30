@@ -35,6 +35,7 @@ class TmplService extends Service
      * @param array $data
      *
      * @return mixed
+     * @throws \JsonException
      */
     public function getList($data = [])
     {
@@ -42,9 +43,11 @@ class TmplService extends Service
             $this->repository->per_page = $data['per_page'];
         }
         if (! isset($data['search']) || '{}' == $data['search']) {
-            $data['search'] = [];
+            $search = [];
+        } else {
+            $search = DataService::jsonToArray($data['search']);
         }
-        return $this->repository->getList($data['search']);
+        return $this->repository->getList($search);
     }
 
     /**

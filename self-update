@@ -25,8 +25,6 @@ function updateSelfFramework()
         echo '  ' . $exec_string . PHP_EOL;
         exec($exec_string);
     }
-//    $exec_string = "cp ./resources/views/tmpl/* {$storage_path}/views";
-//    echo '  ' . $exec_string . PHP_EOL;
     exec($exec_string);
 }
 
