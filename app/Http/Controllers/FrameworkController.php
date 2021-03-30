@@ -166,7 +166,7 @@ class FrameworkController extends Controller
         }
         $route_web_path = base_path("routes/{$route_type}.php");
         $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
-            " '{$this->framework_name}Controller');";
+            "App\Http\Controllers\\{$this->framework_name}Controller::class);";
         $file_get_contents = file_get_contents($route_web_path);
         $file_get_contents = str_replace($route_string, '', $file_get_contents);
         file_put_contents($route_web_path, $file_get_contents);
@@ -296,7 +296,7 @@ class FrameworkController extends Controller
         }
         $route_web_path = base_path("routes/{$route_type}.php");
         $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
-            " '{$this->framework_name}Controller');";
+            "App\Http\Controllers\\{$this->framework_name}Controller::class);";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
 
