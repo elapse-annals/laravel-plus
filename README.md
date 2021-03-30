@@ -3,7 +3,7 @@ English | [中文](README-ZH.md)
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">plus</b> </p>
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)
-![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D8.0-red.svg)
+![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D8.12-red.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/Laravel-Plus.svg)](https://travis-ci.org/ElapseAnnals/Laravel-Plus)
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
