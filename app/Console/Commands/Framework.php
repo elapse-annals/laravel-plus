@@ -36,8 +36,6 @@ class Framework extends Command
         'Transformer',
         'Formatter',
         'Export',
-        'Test',
-        'TestUnit',
     ];
 
     private $is_remove = false;

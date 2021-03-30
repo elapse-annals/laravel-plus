@@ -80,8 +80,6 @@ class FrameworkController extends Controller
         $this->file = app_path("{$this->file_path}/{$this->framework_name}{$temp_framework_file_type}.php");
         if ($is_delete) {
             $this->delete($framework_file_type);
-        } elseif ('Test' === $framework_file_type || 'TestUnit' === $framework_file_type) {
-            $this->createTest($framework_file_type);
         } else {
             if (true === $is_force) {
                 $this->delete($framework_file_type);
