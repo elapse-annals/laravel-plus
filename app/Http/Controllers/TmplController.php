@@ -72,7 +72,7 @@ class TmplController extends Controller
             }
             $this->validationIndexRequest($data);
             $tmpls = $this->service->getList($data);
-            if ($request->is('api/*') || true === $request->input('api')) {
+            if ($request->is('api/*') || true == $request->input('api')) {
                 return $this->successReturn($tmpls, $this->formatter->assemblyPage($tmpls));
             }
             $table_comment_map = $this->getTableCommentMap('tmpls');

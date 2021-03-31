@@ -74,14 +74,9 @@ class FrameworkController extends Controller
     {
         $this->initFilePath($framework_file_type);
         $temp_framework_file_type = $framework_file_type;
-        if ('TestUnit' === $framework_file_type) {
-            $temp_framework_file_type = 'Test';
-        }
         $this->file = app_path("{$this->file_path}/{$this->framework_name}{$temp_framework_file_type}.php");
         if ($is_delete) {
             $this->delete($framework_file_type);
-        } elseif ('Test' === $framework_file_type || 'TestUnit' === $framework_file_type) {
-            $this->createTest($framework_file_type);
         } else {
             if (true === $is_force) {
                 $this->delete($framework_file_type);
@@ -109,12 +104,6 @@ class FrameworkController extends Controller
             case 'Formatter':
             case 'Export':
                 $this->file_path = $framework_file_type . 's';
-                break;
-            case 'Test':
-                $this->file_path = '../tests/Feature';
-                break;
-            case 'TestUnit':
-                $this->file_path = '../tests/Unit';
                 break;
         }
     }
@@ -166,7 +155,7 @@ class FrameworkController extends Controller
         }
         $route_web_path = base_path("routes/{$route_type}.php");
         $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
-            " '{$this->framework_name}Controller');";
+            "App\Http\Controllers\\{$this->framework_name}Controller::class);";
         $file_get_contents = file_get_contents($route_web_path);
         $file_get_contents = str_replace($route_string, '', $file_get_contents);
         file_put_contents($route_web_path, $file_get_contents);
@@ -296,7 +285,7 @@ class FrameworkController extends Controller
         }
         $route_web_path = base_path("routes/{$route_type}.php");
         $route_string = "Route::{$resource_type}('{$this->framework_name_snake_plural}'," .
-            " '{$this->framework_name}Controller');";
+            "App\Http\Controllers\\{$this->framework_name}Controller::class);";
         file_put_contents($route_web_path, $route_string . PHP_EOL, FILE_APPEND);
     }
 

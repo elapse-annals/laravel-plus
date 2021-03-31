@@ -36,8 +36,6 @@ class Framework extends Command
         'Transformer',
         'Formatter',
         'Export',
-        'Test',
-        'TestUnit',
     ];
 
     private $is_remove = false;
@@ -70,9 +68,10 @@ class Framework extends Command
                 $bar->advance();
             }
             $bar->finish();
-            $msg = 'create';
             if ($is_delete) {
                 $msg = 'delete';
+            } else {
+                $msg = 'create';
             }
             $stdout_string = PHP_EOL . " {$msg} framework \e[31m{$framework_name}\e[0m \e[32msuccess";
         } catch (FrameworkException $exception) {

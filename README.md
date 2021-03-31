@@ -2,8 +2,8 @@ English | [中文](README-ZH.md)
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"><b align="center">plus</b> </p>
 
-![php-badge](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)
-![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D6.2-red.svg)
+![php-badge](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)
+![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D8.12-red.svg)
 [![Build Status](https://api.travis-ci.org/ElapseAnnals/Laravel-Plus.svg)](https://travis-ci.org/ElapseAnnals/Laravel-Plus)
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
@@ -13,92 +13,56 @@ English | [中文](README-ZH.md)
 [LaravelPlus](https://github.com/ElapseAnnals/Laravel-plus) 基于 [Laravel](https://github.com/laravel/laravel)
 增加部分软件包初始安装和进行业务使用功能改动，来创建一个开箱即用的应用.
 
-拓展功能
-
-- 自动 Laravel 与 Vue/Element UI 基于基础模型的代码生成器。
-- 多进程使用
-- 环境配置切换
-
 ## 目的
 
-为了减少重复 CURD 和新项目的配置麻烦等问题，如：
-
-* 现有的 infyomlabs/laravel-generator CODE 生成工具虽然好用，但是不太喜欢样式和代码结构。
-* 有些本地，测试，线上的配置需要频繁改动的需要。
-* 多个项目构建引入包，配置扩展等重复性操作
-* 基于 ReactPHP 多进程使用
-* Where 条件语句自动生成
-
-## 版本基础
-
-当前稳定版本：<img class="latest_stable_version_img" src="https://poser.pugx.org/elapse-annals/laravel-plus/v/stable">
-
-当前版本基于
-
-| PHP     | Laravel |
-|:-------:|:-------:|
-| > =7.2.5 | > =7.0    |
-
-## 文档
-
-具体 [Wiki](https://github.com/ElapseAnnals/LaravelPlus/wiki)  （待完善）
+- 增加基于模型 CURD 生成工具
+- 自动 Laravel 与 Vue/Element UI 基于基础模型的代码生成器。
+- 环境配置切换
 
 ## 运行环境要求
 
-- 已安装 PHP
-- 脚本运行前置要求（任意一种）
-    - [homestead](https://learnku.com/docs/laravel/5.5/homestead/1285) 中(推荐)
-    - *unix 环境
-    - Windows 下安装 [cmder](https://cmder.net/) - [下载地址](https://cmder.en.softonic.com/)
-    - cmd 运行未进行兼容（现有异常会不过滤和清理部分文件） (不推荐)
+- PHP
+- composer
+- MySQL ｜ PgSQL
 
 ## 项目使用
+
+#### 0.配置镜像
+
+配置 composer aliyun 镜像
+
+ ```php
+ $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+ ```
 
 #### 1.下载项目
 
 ```php
-// A. github （推荐）
-$ git clone https://github.com/ElapseAnnals/laravel-plus.git   
-$ git checkout 5.8.0 // 切换至当前最新稳定版本
-```
-
-或
-
-```php
-// B. composer
-$ composer create-project elapse-annals/laravel-plus
-$ mv laravel-plus  LaravelPlus
+$ git clone https://github.com/ElapseAnnals/laravel-plus.git
 ```
 
 #### 2.创建新项目
 
 ```php
 //  A.在当前目录运行自动复制脚本 （ 推荐）
+// YourProject 需要创建的项目名
 $ php LaravelPlus/create YourProject
-```
-
-或
-
-```
-//  B.在当前目录手动复制项目至自身项目
-$ cd LaravelPlus
-$ rm composer.lock
-$ rsync -av --exclude  . --exclude  .. --exclude  .git/ --exclude  vendor/ --exclude  .github/ LaravelPlus/* YourProject             
-					//  为消除对称  */         
-$ cd YourProject
-$ rm composer.lock .env .travis
-$ cp .env.example .env   
 ```
 
 #### 3.新项目初始化
 
 ```php
 $ cd YourProject //  进入 YourProject 项目中
-$ composer install   // 安装依赖软件包 （请先已安装 composer ）
+$ cp .env.example .env
+$ composer update   // 安装依赖软件包 （请先已安装 composer ）
 $ php artisan key:generate    // 更新 key
-$ php artisan vendor:publish // 发布扩展包的资源
+$ php artisan vendor:publish // 发布扩展包的资源 - 选择 0
 $ php artisan migrate  // 迁移数据库
+```
 
+####    
+
+```php
 // 以下非必须
 $ php artisan storage:link // 图片资源软连接映射
 $ php artisan clear-compiled // 清理编译
@@ -108,31 +72,15 @@ $ php artisan ide-helper:meta  // 生成 PHPStorm 辅助提示(重启 PHPStorm)
 $ php artisan ide-helper:models //  生成模型辅助提示(需链接数据库)
 ```
 
-Tips:
-
-1. 兼容 laravel-plus 目录名
-
-2. [Composer 镜像](https://learnku.com/composer/t/4484/composer-mirror-use-help)
-
-aliyun
-
- ```php
- $ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
- ```
-
-cnpkg
+##### 4。本地服务开启
 
 ```php
- $ composer config -g repos.packagist composer https://php.cnpkg.org
- ```
-
-3. Composer 加速工具 prestissimo 引入(There may be loading issues when using mirroring)(使用 composer2 可以不用引入)
-
-```php
-$ composer global require hirak/prestissimo
+php artisan serve
 ```
 
-#### 4.更新项目
+Tips：
+
+##### 更新 YourProject 项目（插件有改动时在上级目录中使用）
 
 ```shell script
 php LaravelPlus/update YourProject
@@ -148,20 +96,22 @@ framework 脚本创建内容：
 
 - Controller, Service, Repository 等文件和对应关联关系
 - Route 资源路由增加
-- Controller 中资源类型代码和模型数据处理（开发中）
+- Controller 中资源类型代码和模型数据处理
 
-直接使用本项目内容（推荐）
-
-```
- $ php artisan make:framework Test  // 创建分层结构（推荐）
- $ php artisan make:framework Test --basis  // 创建系统分层和主要分层结构（Controller, Service, Repository）
- $ php artisan make:framework Test --D // 删除分层结构 
-```
-
-或引入 [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 插件软件包（更新进度慢）
+模型生成工具
 
 ```php
-$ composer require php-tool/laravel-plus-make
+php artisan code:models --table=tb_name   // 指定表
+php artisan code:models --connection=mysql  // 指定数据库连接
+php artisan code:models --connection=mysql --table=tb_name   // 指定连接和指定表
+```
+
+使用 framework 功能 （Tmpls 是对应模型复数名称）
+
+```
+ $ php artisan make:framework Tmpls  // 创建分层结构（推荐）
+ $ php artisan make:framework Tmpls --D // 删除分层结构 
+  $ php artisan make:framework Tmpls --F // 强制生成分层结构 
 ```
 
 效果图：
@@ -211,68 +161,6 @@ Tips：
     - php artisan route:cache
     - php artisan config:clear
     - php artisan clear-compiled // 清理编译 php artisan debug:clear
-
-##### 本地服务开启
-
-```php
-php artisan serve
-```
-
-##### 数据库迁移
-
-设置数据工厂填充中文配置
-
-```php
-use Faker\Factory as Factory;
-
-$  $faker = Factory::create('zh_CN');
-```
-
-##### 多进程使用
-
-通过 MainProcess 控制 ChildProcess 进程（仅能在 CLI 模式下运行）
-
-定时执行在 Console/Kernel.php 中 schedule 配置
-
-运行流程
-
-```php
-MainProcess(主进程调度) => MainProcessController（主进程执行任务，拆分子进程） => 
-ChildProcess（子进程调度） => ChildProcessController （子进程任务） =>
-  MainProcessController（接收子进程） => MainProcess（主进程结束）
-```
-
-业务任务名
-
-$this->business_name
-
-主进程业务逻辑和数据请求
-
-```php
-（new \App\Http\Controllers\{$this->business_name}Action())->getData();
-
-（new \App\Http\Controllers\{$this->business_name}Action())->run();
-```
-
-子进程运行业务逻辑
-
-```php
-(new \App\Http\Controllers\{$this->business_name}ProcessAction()->run();
-``` 
-
-## 测试驱动开发（TDD）
-
-phpunit
-
-dusk 浏览器测试 (默认不安装)
-
-```php
-composer require laravel/dusk --dev
-php artisan dusk:install  // 需要翻墙
-```
-
-[chromedriver 镜像](http://npm.taobao.org/mirrors/chromedriver/) 下载对应 Chrome 版本资源 手动重命名移动至
-LaravelPlus/vendor/laravel/dusk/bin/chromedriver-mac
 
 ## 性能优化（只建议生产环境使用）
 
@@ -330,32 +218,24 @@ web 经过权限，csrf 等中间件和 Session api token 维护使用 auth:api
 - 设置日志打印默认按天执行（.env::LOG_CHANNEL）
 - 增加默认加载软件包
     - production 生产环境
-
-        - [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
-
-        - [laravel-lang/lang](laravel-lang/lang)
-
         - [maatwebsite/excel](https://github.com/Maatwebsite/Laravel-Excel) 增加 excel 组件
 
     - develop 开发环境
-        - [reliese/laravel](https://github.com/reliese/laravel)         模型生成工具 / phptool/laravel
-      ```php
-        php artisan code:models --table=tb_name   // 指定表 
-        php artisan code:models --connection=mysql  // 指定数据库连接
-        php artisan code:models --connection=mysql --table=tb_name   // 指定连接和指定表
-      ```
+        - [reliese/laravel](https://github.com/reliese/laravel)
         - [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)   debuger 工具
         - [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)   ide 辅助工具   
           ```php artisan ide-helper:generate```
-        - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
-        - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS,需求版本 php 7.2.*
-          ，请手动安装 composer require nunomaduro/phpinsights --dev）
-    - [php-ext-xlswriter](https://github.com/viest/php-ext-xlswriter) excel 处理扩展，性能强劲（30万行 4 s）
-    - [PHP_XLSXWriter](https://github.com/mk-j/PHP_XLSXWriter) 简单强力的 excel 扩展
+
+-推荐扩展
+
+- [php-ext-xlswriter](https://github.com/viest/php-ext-xlswriter) excel 处理扩展，性能强劲（30万行 4 s）
 
 
 - 推荐软件包列表
-
+    - [PHP_XLSXWriter](https://github.com/mk-j/PHP_XLSXWriter) 简单强力的 excel 扩展
+        - [overtrue/laravel-query-logger](https://github.com/overtrue/laravel-query-logger)       日志工具
+    - [nunomaduro/phpinsights](https://github.com/nunomaduro/phpinsights)          统计检测项目问题（类似 PHPCS）
+- [overtrue/laravel-lang](https://github.com/overtrue/laravel-lang) 多语言本地化 i18n
     - [laravel/socialite] () 社会化登陆包【注意配置代理或更改底层路由请求】 - 替代方案  [overtrue/socialite](https://github.com/overtrue/socialite)
       包含国内社会化登陆
 
@@ -374,8 +254,6 @@ web 经过权限，csrf 等中间件和 Session api token 维护使用 auth:api
 
     - [php-tool/laravel-plus-make](https://github.com/PHPTool/LaravelPlusMake) Laravel Plus Make 自动生成 framework 代码插件软件包(
       手动)
-
-    - [infyomlabs/laravel-generator](https://github.com/InfyOmLabs/laravel-generator)     Code 代码生成工具（可选）
     - [darkaonline/l5-swagger]() swagger 文档生成
     - [mpociot/laravel-apidoc-generator]() api doc 文档生成
     - [nunomaduro/larastan]() 增加 laravel 静态检测工具
@@ -390,7 +268,7 @@ web 经过权限，csrf 等中间件和 Session api token 维护使用 auth:api
 
 
 - 增加前端资源
-    - element-ui 样式框架（可选方案 iview）
+    - element-ui 样式框架
 
 - 增加默认图片存储目录（storage/app/public/images)
 
@@ -406,23 +284,12 @@ web 经过权限，csrf 等中间件和 Session api token 维护使用 auth:api
             - 减少在 blade 用 @if...@else...@endif
         - Transformers 转化层/筛选层（筛选后在选择输出）
         - Formatters 格式化层（对于输出数据进行格式化，服务于 view 层），便于前端模版展示
-- 增加 redis 多语言配置读取
 - 设置默认 Schema index 长度
 
   使用 Schema 注意 MySQL 版本低于 5.7.7 需设置默认 index 长度小于 191
   ```php
   Schema::defaultStringLength(191);
   ```
-
-## 进展
-
-- 开发 SwiftCMS 实际应用以进行完善
-
-## 待办列表
-
-package todo update list
-
-[Projects](https://github.com/ElapseAnnals/LaravelPlus/projects)
 
 ## Stargazers over time
 
