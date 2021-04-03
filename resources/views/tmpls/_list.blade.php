@@ -5,11 +5,6 @@
         show-summary
         @selection-change="handleSelectionChange">
         <el-table-column
-            type="selection"
-            width="40">
-        </el-table-column>
-
-        <el-table-column
             prop="id"
             label="id"
             min-width="190">
@@ -44,7 +39,6 @@
             label="updated_by"
             min-width="190">
         </el-table-column>
-
 
         <el-table-column
             fixed="right"

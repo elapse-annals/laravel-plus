@@ -18,8 +18,8 @@
         <el-date-picker
             v-model="search.created_at"
             type="datetimerange"
-            start-placeholder="created_at ('form.start_date')"
-            end-placeholder="created_at ('form.end_date')"
+            start-placeholder="created_at @lang('form.start_date')"
+            end-placeholder="created_at @lang('form.end_date')"
             value-format="yyyy-MM-dd HH:mm"
             format="yyyy-MM-dd HH:mm"
             :default-time="['00:00:00', '23:59:59']">
@@ -32,8 +32,8 @@
         <el-date-picker
             v-model="search.updated_at"
             type="datetimerange"
-            start-placeholder="updated_at lang('form.start_date')"
-            end-placeholder="updated_at lang('form.end_date')"
+            start-placeholder="updated_at @lang('form.start_date')"
+            end-placeholder="updated_at @lang('form.end_date')"
             value-format="yyyy-MM-dd HH:mm"
             format="yyyy-MM-dd HH:mm"
             :default-time="['00:00:00', '23:59:59']">

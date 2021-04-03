@@ -19,12 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-
-
-
-
-
-
-
-
-Route::apiResource('teams',App\Http\Controllers\TeamController::class);
+Route::apiResource('tmpls', App\Http\Controllers\TmplController::class);

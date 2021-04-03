@@ -1,1 +1,1 @@
-<div class="copyright text-right">© Copyright 2020 Laravel Plus</div>
+<div class="copyright text-right">© Copyright 2021 Laravel Plus</div>
