@@ -19,7 +19,7 @@ class CreateTmplTable extends Migration
             $table->tinyInteger('sex')->comment('性别');
             $table->timestamp('created_at')->useCurrent();
             $table->string('created_by', 80);
-            if ('mysql' == env('DB_DATABASE')) {
+            if ('mysql' == env('DB_CONNECTION')) {
                 $table->timestamp('updated_at')->default(
                     DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
                 );

@@ -26,7 +26,6 @@ before_script:
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
   - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
-  - mysql -e 'show variables like 'sql_mode''
   - php artisan migrate
 
 script:
