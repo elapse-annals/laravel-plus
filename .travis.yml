@@ -21,10 +21,10 @@ service:
 
 before_script:
   - cp .env.travis .env
-  - cp .env .env.testing
   - composer install
   - composer dump-autoload
   - php artisan key:generate
+  - cp .env .env.testing
   - php artisan vendor:publish --tag=0
   - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
   - php artisan migrate
