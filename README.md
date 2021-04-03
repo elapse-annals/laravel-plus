@@ -4,7 +4,7 @@ English | [中文](README-ZH.md)
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D8.12-red.svg)
-[![Build Status](https://api.travis-ci.org/ElapseAnnals/Laravel-Plus.svg)](https://travis-ci.org/ElapseAnnals/Laravel-Plus)
+[![Build Status](https://www.travis-ci.com/elapse-annals/laravel-plus.svg?branch=master](https://www.travis-ci.com/elapse-annals/laravel-plus.svg?branch=master)
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
