@@ -254,7 +254,7 @@ class FrameworkController extends Controller
                 $replace_data = $this->ViewPresenter->search($this->model_map);
                 break;
         }
-        $data = str_replace('%Placeholder%', $replace_data, $data);
+        $data = str_replace('%Laravel-Plus-Placeholder%', $replace_data, $data);
         return $data;
     }
 

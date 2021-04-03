@@ -32,3 +32,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 
+
+
+
+
+
+
+
+Route::resource('teams',App\Http\Controllers\TeamController::class);

@@ -73,7 +73,7 @@ EOF;
                       placeholder="{$detail_datum['label']}"></el-input>
         </el-col>
     </el-row>
-<el-form-item>
+</el-form-item>
 EOF;
     }
 
@@ -93,7 +93,7 @@ EOF;
                       placeholder="{$detail_datum['label']}"></el-input>
         </el-col>
     </el-row>
-<el-form-item>
+</el-form-item>
 EOF;
     }
 
