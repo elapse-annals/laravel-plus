@@ -4,7 +4,7 @@ English | [中文](README-ZH.md)
 
 ![php-badge](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)
 ![laravel-badge](https://img.shields.io/badge/Laravel%20-%3E%3D8.12-red.svg)
-[![Build Status](https://www.travis-ci.com/elapse-annals/laravel-plus.svg?branch=master](https://www.travis-ci.com/elapse-annals/laravel-plus.svg?branch=master)
+![Build Status](https://www.travis-ci.com/elapse-annals/laravel-plus.svg?branch=master)
 [![License](https://poser.pugx.org/elapse-annals/laravel-plus/license)](LICENSE)
 [![composer.lock](https://poser.pugx.org/elapse-annals/laravel-plus/composerlock)](https://packagist.org/packages/elapse-annals/laravel-plus)
 
@@ -53,23 +53,7 @@ $ php LaravelPlus/create YourProject
 
 ```php
 $ cd YourProject //  进入 YourProject 项目中
-$ cp .env.example .env
-$ composer update   // 安装依赖软件包 （请先已安装 composer ）
-$ php artisan key:generate    // 更新 key
-$ php artisan vendor:publish // 发布扩展包的资源 - 选择 0
-$ php artisan migrate  // 迁移数据库
-```
-
-####    
-
-```php
-// 以下非必须
-$ php artisan storage:link // 图片资源软连接映射
-$ php artisan clear-compiled // 清理编译
-$ php artisan ide-helper:generate // 生成 ide 辅助提示（电脑配置足够不建议使用，与vendor混淆）
-$ php artisan vendor:publish --provider="Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" --tag=config // 加入配置
-$ php artisan ide-helper:meta  // 生成 PHPStorm 辅助提示(重启 PHPStorm)
-$ php artisan ide-helper:models //  生成模型辅助提示(需链接数据库)
+$ php artisan make:framework init --init
 ```
 
 ##### 4。本地服务开启

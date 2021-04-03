@@ -19,6 +19,7 @@ class Framework extends Command
      */
     protected $signature = 'make:framework
                             {framework_name : framework name}
+                            {--init : init framework}
                             {--delete : delete framework}
                             {--D : delete framework}
                             {--F : force cover framework}
@@ -39,11 +40,15 @@ class Framework extends Command
     ];
 
     private $is_remove = false;
+    private $is_delete = false;
+    private $is_force = false;
+    private $is_init = false;
 
     /**
      * @var string
      */
     protected $description = 'Command description';
+
 
     /**
      *
@@ -52,8 +57,12 @@ class Framework extends Command
     {
         try {
             $framework_name = $this->argument('framework_name');
-            [$is_delete, $is_force] = $this->initOption();
-            if ($is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
+            $this->initOption();
+            if ($this->is_init) {
+                $this->init();
+                die();
+            }
+            if ($this->is_delete && ! $this->confirm('Do you wish to continue? [y|N]')) {
                 throw new FrameworkException('Continue Delete');
             }
             $FrameworkController = new FrameworkController($framework_name);
@@ -64,11 +73,11 @@ class Framework extends Command
             $framework_file_types = $this->framework_file_types;
             $bar = $this->output->createProgressBar(count($framework_file_types));
             foreach ($framework_file_types as $framework_file_type) {
-                $FrameworkController->handle($framework_file_type, $is_delete, $is_force);
+                $FrameworkController->handle($framework_file_type, $this->is_delete, $this->is_force);
                 $bar->advance();
             }
             $bar->finish();
-            if ($is_delete) {
+            if ($this->is_delete) {
                 $msg = 'delete';
             } else {
                 $msg = 'create';
@@ -84,15 +93,23 @@ class Framework extends Command
         $this->info($stdout_string);
     }
 
-    /**
-     * @return array
-     */
-    private function initOption(): array
+    private function init()
     {
-        $is_delete = $this->option('delete');
-        $is_delete or $is_delete = $this->option('D');
-        $is_force = $this->option('F');
+        exec('cp .env.example .env');
+        exec('composer update');
+        $this->call('key:generate');
+        exec('php artisan vendor:publish --tag=0');
+        $this->call('migrate');
+    }
+
+    /**
+     *
+     */
+    private function initOption(): void
+    {
+        $this->is_delete = $this->option('delete') ?: $this->option('D');
+        $this->is_force = $this->option('F');
         $this->is_remove = $this->option('M');
-        return [$is_delete, $is_force];
+        $this->is_init = $this->option('init');
     }
 }
