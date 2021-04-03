@@ -82,15 +82,15 @@ framework 脚本创建内容：
 - Route 资源路由增加
 - Controller 中资源类型代码和模型数据处理
 
-模型生成工具
+模型生成
 
 ```php
-php artisan code:models --table=tb_name   // 指定表
+php artisan code:models --table=table_name   // 指定表
 php artisan code:models --connection=mysql  // 指定数据库连接
-php artisan code:models --connection=mysql --table=tb_name   // 指定连接和指定表
+php artisan code:models --connection=mysql --table=table_name   // 指定连接和指定表
 ```
 
-使用 framework 功能 （Tmpls 是对应模型复数名称）
+使用 framework 功能创建 CURL（Tmpls 是对应模型复数名称）
 
 ```
  $ php artisan make:framework Tmpls  // 创建分层结构（推荐）
