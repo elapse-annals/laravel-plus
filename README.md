@@ -108,7 +108,7 @@ Tips:
 
 ##### 热切换配置使用（config/dynamic/）
 
-在 .env 中设置 ENABLE_HOT_SWITCHING=true 后，会在 AppServiceProvider 进行 dynamic 映射（对性能有一定影响，慎用）
+在 .env 中设置 ENABLE_HOT_SWITCHING=true 后，会在 AppServiceProvider 进行 dynamic 映射
 
 使用方式:
 
