@@ -5,6 +5,7 @@ matrix:
   include:
     - php: 7.3
     - php: 7.4
+    - php: 8.0
 
 cache:
   directories:
@@ -19,6 +20,7 @@ service:
   - redis-server
 
 before_script:
+  - show variables like 'sql_mode'
   - cp .env.travis .env
   - composer install
   - composer dump-autoload
