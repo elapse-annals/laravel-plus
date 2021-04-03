@@ -20,13 +20,13 @@ service:
   - redis-server
 
 before_script:
-  - show variables like 'sql_mode'
   - cp .env.travis .env
   - composer install
   - composer dump-autoload
   - php artisan key:generate
   - php artisan vendor:publish --tag=0
   - mysql -e 'CREATE DATABASE IF NOT EXISTS laravel_plus;'
+  - mysql -e 'show variables like 'sql_mode''
   - php artisan migrate
 
 script:
