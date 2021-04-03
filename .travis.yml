@@ -21,6 +21,7 @@ service:
 
 before_script:
   - cp .env.travis .env
+  - cp .env .env.testing
   - composer install
   - composer dump-autoload
   - php artisan key:generate
