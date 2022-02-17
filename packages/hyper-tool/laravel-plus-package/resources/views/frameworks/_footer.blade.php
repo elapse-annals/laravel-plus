@@ -1,0 +1,1 @@
+<div id="copyright text-right">© Copyright Laravel Plus</div>
