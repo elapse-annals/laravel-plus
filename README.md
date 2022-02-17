@@ -53,6 +53,7 @@ $ php LaravelPlus/create YourProject
 
 ```php
 $ cd YourProject //  进入 YourProject 项目中
+$ composer update
 $ php artisan make:framework init --init
 ```
 

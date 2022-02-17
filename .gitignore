@@ -42,3 +42,6 @@ samples/
 
 # PHP CS
 .php_cs.cache
+
+# Mac
+*/.DS_Store
